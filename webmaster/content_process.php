@@ -47,6 +47,10 @@ case'view':
 	{
 		$heart->redirect('content.php?show=viewComputer-training&id='.$_REQUEST['id']);
 	}
+	if($_REQUEST['page']=='Mobile-development')
+	{
+		$heart->redirect('content.php?show=viewMobile-development&id='.$_REQUEST['id']);
+	}
 exit();
 break;
 // show edit window
@@ -87,6 +91,10 @@ case'edit':
 	}if($_REQUEST['id']==120 || $_REQUEST['id']==10)
 	{
 		$heart->redirect('content.php?show=editComputer-service&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['id']==121 || $_REQUEST['id']==11)
+	{
+		$heart->redirect('content.php?show=editMobile-development&id='.$_REQUEST['id']);
 	}
 	
 exit();
@@ -337,7 +345,7 @@ case'updateClientBanner':
 		$heart->sql_query($sql1);
 	}
        
-	$heart->redirect('content.php?show=viewClient&m=2&id='.$_REQUEST['id']);
+	$heart->redirect('content.php?show=viewClient&m=2&id='.$_REQUEST['redirect_id']);
 break;
 
 case'updatePortfollioBanner':
@@ -376,7 +384,7 @@ case'updatePortfollioBanner':
 		$heart->sql_query($sql1);
 	}
        
-	$heart->redirect('content.php?show=viewPortfollio&m=2&id='.$_REQUEST['id']);
+	$heart->redirect('content.php?show=viewPortfollio&m=2&id='.$_REQUEST['redirect_id']);
 break;
 
 case'updateTechSupportBanner':
@@ -414,7 +422,7 @@ case'updateTechSupportBanner':
 		$heart->sql_query($sql1);
 	}
        
-	$heart->redirect('content.php?show=viewTechSupport&m=2&id='.$_REQUEST['id']);
+	$heart->redirect('content.php?show=viewTechSupport&m=2&id='.$_REQUEST['redirect_id']);
 break;
 
 case'updateIt-ServiceBanner':
@@ -452,7 +460,7 @@ case'updateIt-ServiceBanner':
 		$heart->sql_query($sql1);
 	}
        
-	$heart->redirect('content.php?show=viewIt-service&m=2&id='.$_REQUEST['id']);
+	$heart->redirect('content.php?show=viewIt-service&m=2&id='.$_REQUEST['redirect_id']);
 break;
 
 case'update_ComputerTraining_Banner':
@@ -489,8 +497,45 @@ case'update_ComputerTraining_Banner':
 		        WHERE `id` = '".$_REQUEST['id']."' ";
 		$heart->sql_query($sql1);
 	}
+	$heart->redirect('content.php?show=viewComputer-training&m=2&id='.$_REQUEST['redirect_id']);
+	break;
+
+
+case 'update_MobileDevelopment_banner':
+       $BannerTitle=addslashes($_REQUEST['BannerTitle']);
+       $altTag=addslashes($_REQUEST['altTag']);
+       $ph1 = $_FILES['image']['name'];
+	   $a31 = $_FILES['image']['tmp_name'];
+	   $last_id = 'mobileDevelopment';
+	if($ph1!='')
+	{
+
+			$file_ext1=explode(".",$ph1);
+			$ext1= strtolower($file_ext1[count($file_ext1)-1]);
+			$value1=$last_id."_".$last_id.".".$ext1;
+			$path1="../images/".$value1;
+				
+				//echo $value;
+				chmod($path1,0777);
+				copy($a31,$path1);
+				chmod($path1,0777);
+
+		   	
+	 	$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+	       `BannerTitle` = '".$BannerTitle."',
+	       `altTag` 	= '".$altTag."',
+	       `bannerImg` 	= '".$value1."'
+	        WHERE `id` 	= '".$_REQUEST['id']."' ";
+	$heart->sql_query($sql1);
+	}else{
+		$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+		       `BannerTitle` = '".$BannerTitle."',
+		     	`altTag` 	= '".$altTag."'
+		        WHERE `id` = '".$_REQUEST['id']."' ";
+		$heart->sql_query($sql1);
+	}
        
-	$heart->redirect('content.php?show=viewComputer-training&m=2&id='.$_REQUEST['id']);
+	$heart->redirect('content.php?show=viewMobile-development&m=2&id='.$_REQUEST['redirect_id']);
 break;
 
 //show add window

@@ -13,7 +13,7 @@
         <?php 
             $sql =   "SELECT * FROM ".$cfg['DB_HOME_BANNER']."
                                      WHERE  
-                                    `status` ='A' ORDER BY `id`DESC";
+                                    `status` ='A' ORDER BY `id` DESC";
             $res    =   $mycms->sql_query($sql);
             $counter =0;
             while($row    =   $mycms->sql_fetchrow($res)) { ?>   

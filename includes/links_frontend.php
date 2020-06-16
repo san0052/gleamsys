@@ -1,18 +1,15 @@
 <?php
 @session_start();
 //header("Cache-Control: no-cache, must-revalidate");
-
 include_once("configure.php");
-
 include_once("configure.override.php");
 
 include_once("configure.language.php");
+
 include_once("function.php");
 include_once("frontend.template.php");
 include_once("libs/class.common.php"); 
-
 $mycms= new commonClass();
-
 $mycms->del_cache();
 function startTime(){
 	global $mycms;
