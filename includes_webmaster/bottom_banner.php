@@ -1,0 +1,2 @@
+<div style="width:480px; float:left; display:inline;"><? if(getLink(4)!='0'){?><a href="<?=getLink(4)?>" target="_blank"><img src="<?=$cfg['BANNER_IMAGES'].getImage(4)?>" alt="" /></a><? }else{?><img src="<?=$cfg['BANNER_IMAGES'].getImage(4)?>" alt="" /><? }?></div>
+<div style="width:480px; float:left; display:inline; margin-left:1px;"><? if(getLink(5)!='0'){?><a href="<?=getLink(5)?>" target="_blank"><img src="<?=$cfg['BANNER_IMAGES'].getImage(5)?>" alt="" /></a><? }else{?><img src="<?=$cfg['BANNER_IMAGES'].getImage(5)?>" alt="" /><? }?></div>

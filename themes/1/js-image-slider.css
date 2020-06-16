@@ -1,0 +1,24 @@
+        
+#slider {
+    width:848px;height:385px;
+	background:#fff url(loading.gif) no-repeat;
+	position:relative;
+	margin:0 auto;
+}
+#slider img {
+	position:absolute;
+	border:none;
+	display:none;
+}
+
+
+
+
+/* --------- Others ------- */
+#slider 
+{
+	transform: translate3d(0,0,0);
+    -ms-transform:translate3d(0,0,0);
+    -moz-transform:translate3d(0,0,0);
+    -o-transform:translate3d(0,0,0);
+}

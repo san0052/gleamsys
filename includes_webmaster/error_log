@@ -1,0 +1,80 @@
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Notice:  Undefined index: width in /home/rainb3ig/public_html/includes/watermark.php on line 13
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Notice:  Undefined index: height in /home/rainb3ig/public_html/includes/watermark.php on line 14
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Notice:  Undefined index: pic in /home/rainb3ig/public_html/includes/watermark.php on line 15
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Warning:  getimagesize(photo_gallary/default.jpg): failed to open stream: No such file or directory in /home/rainb3ig/public_html/lib/class.common.php on line 1296
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$r in /home/rainb3ig/public_html/lib/class.common.php on line 1423
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$q in /home/rainb3ig/public_html/lib/class.common.php on line 1424
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$q in /home/rainb3ig/public_html/lib/class.common.php on line 1426
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$r in /home/rainb3ig/public_html/lib/class.common.php on line 1427
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Notice:  getimagesize(): Read error! in /home/rainb3ig/public_html/lib/class.common.php on line 1433
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Warning:  imagecreatefromgif(): '../image_bank/watermark/' is not a valid GIF file in /home/rainb3ig/public_html/lib/class.common.php on line 1439
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Warning:  imagecopyresized() expects parameter 2 to be resource, boolean given in /home/rainb3ig/public_html/lib/class.common.php on line 1442
+[11-Oct-2018 03:24:38 Etc/GMT] PHP Notice:  Undefined variable: content in /home/rainb3ig/public_html/lib/class.common.php on line 1583
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Notice:  Undefined index: width in /home/rainb3ig/public_html/includes/watermark.php on line 13
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Notice:  Undefined index: height in /home/rainb3ig/public_html/includes/watermark.php on line 14
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Notice:  Undefined index: pic in /home/rainb3ig/public_html/includes/watermark.php on line 15
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Warning:  getimagesize(photo_gallary/default.jpg): failed to open stream: No such file or directory in /home/rainb3ig/public_html/lib/class.common.php on line 1296
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$r in /home/rainb3ig/public_html/lib/class.common.php on line 1423
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$q in /home/rainb3ig/public_html/lib/class.common.php on line 1424
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$q in /home/rainb3ig/public_html/lib/class.common.php on line 1426
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$r in /home/rainb3ig/public_html/lib/class.common.php on line 1427
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Notice:  getimagesize(): Read error! in /home/rainb3ig/public_html/lib/class.common.php on line 1433
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Warning:  imagecreatefromgif(): '../image_bank/watermark/' is not a valid GIF file in /home/rainb3ig/public_html/lib/class.common.php on line 1439
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Warning:  imagecopyresized() expects parameter 2 to be resource, boolean given in /home/rainb3ig/public_html/lib/class.common.php on line 1442
+[14-Oct-2018 21:01:28 Etc/GMT] PHP Notice:  Undefined variable: content in /home/rainb3ig/public_html/lib/class.common.php on line 1583
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Notice:  Undefined index: width in /home/rainb3ig/public_html/includes/watermark.php on line 13
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Notice:  Undefined index: height in /home/rainb3ig/public_html/includes/watermark.php on line 14
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Notice:  Undefined index: pic in /home/rainb3ig/public_html/includes/watermark.php on line 15
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Warning:  getimagesize(photo_gallary/default.jpg): failed to open stream: No such file or directory in /home/rainb3ig/public_html/lib/class.common.php on line 1296
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$r in /home/rainb3ig/public_html/lib/class.common.php on line 1423
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$q in /home/rainb3ig/public_html/lib/class.common.php on line 1424
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$q in /home/rainb3ig/public_html/lib/class.common.php on line 1426
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$r in /home/rainb3ig/public_html/lib/class.common.php on line 1427
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Notice:  getimagesize(): Read error! in /home/rainb3ig/public_html/lib/class.common.php on line 1433
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Warning:  imagecreatefromgif(): '../image_bank/watermark/' is not a valid GIF file in /home/rainb3ig/public_html/lib/class.common.php on line 1439
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Warning:  imagecopyresized() expects parameter 2 to be resource, boolean given in /home/rainb3ig/public_html/lib/class.common.php on line 1442
+[09-Jan-2019 17:57:04 Etc/GMT] PHP Notice:  Undefined variable: content in /home/rainb3ig/public_html/lib/class.common.php on line 1583
+[30-May-2019 18:57:00 Etc/GMT] PHP Notice:  Undefined index: width in /home/rainb3ig/public_html/includes/watermark.php on line 13
+[30-May-2019 18:57:00 Etc/GMT] PHP Notice:  Undefined index: height in /home/rainb3ig/public_html/includes/watermark.php on line 14
+[30-May-2019 18:57:00 Etc/GMT] PHP Notice:  Undefined index: pic in /home/rainb3ig/public_html/includes/watermark.php on line 15
+[30-May-2019 18:57:00 Etc/GMT] PHP Warning:  getimagesize(photo_gallary/default.jpg): failed to open stream: No such file or directory in /home/rainb3ig/public_html/lib/class.common.php on line 1296
+[30-May-2019 18:57:00 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[30-May-2019 18:57:00 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[30-May-2019 18:57:00 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[30-May-2019 18:57:00 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[30-May-2019 18:57:00 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$r in /home/rainb3ig/public_html/lib/class.common.php on line 1423
+[30-May-2019 18:57:00 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$q in /home/rainb3ig/public_html/lib/class.common.php on line 1424
+[30-May-2019 18:57:00 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$q in /home/rainb3ig/public_html/lib/class.common.php on line 1426
+[30-May-2019 18:57:00 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$r in /home/rainb3ig/public_html/lib/class.common.php on line 1427
+[30-May-2019 18:57:00 Etc/GMT] PHP Notice:  getimagesize(): Read error! in /home/rainb3ig/public_html/lib/class.common.php on line 1433
+[30-May-2019 18:57:00 Etc/GMT] PHP Warning:  imagecreatefromgif(): '../image_bank/watermark/' is not a valid GIF file in /home/rainb3ig/public_html/lib/class.common.php on line 1439
+[30-May-2019 18:57:00 Etc/GMT] PHP Warning:  imagecopyresized() expects parameter 2 to be resource, boolean given in /home/rainb3ig/public_html/lib/class.common.php on line 1442
+[30-May-2019 18:57:01 Etc/GMT] PHP Notice:  Undefined variable: content in /home/rainb3ig/public_html/lib/class.common.php on line 1583
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Notice:  Undefined index: width in /home/rainb3ig/public_html/includes/watermark.php on line 13
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Notice:  Undefined index: height in /home/rainb3ig/public_html/includes/watermark.php on line 14
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Notice:  Undefined index: pic in /home/rainb3ig/public_html/includes/watermark.php on line 15
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Warning:  getimagesize(photo_gallary/default.jpg): failed to open stream: No such file or directory in /home/rainb3ig/public_html/lib/class.common.php on line 1296
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$k in /home/rainb3ig/public_html/lib/class.common.php on line 1308
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$r in /home/rainb3ig/public_html/lib/class.common.php on line 1423
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$q in /home/rainb3ig/public_html/lib/class.common.php on line 1424
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$q in /home/rainb3ig/public_html/lib/class.common.php on line 1426
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Notice:  Undefined property: Thumbnail::$r in /home/rainb3ig/public_html/lib/class.common.php on line 1427
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Notice:  getimagesize(): Read error! in /home/rainb3ig/public_html/lib/class.common.php on line 1433
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Warning:  imagecreatefromgif(): '../image_bank/watermark/' is not a valid GIF file in /home/rainb3ig/public_html/lib/class.common.php on line 1439
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Warning:  imagecopyresized() expects parameter 2 to be resource, boolean given in /home/rainb3ig/public_html/lib/class.common.php on line 1442
+[08-Jun-2019 14:00:24 Etc/GMT] PHP Notice:  Undefined variable: content in /home/rainb3ig/public_html/lib/class.common.php on line 1583

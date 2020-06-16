@@ -1,0 +1,10 @@
+.home_menu {
+	width:320px;
+	height:140px;
+	text-align: center;
+	top:0px;
+	left:0px;
+}
+.home_menu a{
+	display:block;
+}

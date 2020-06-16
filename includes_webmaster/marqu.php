@@ -1,0 +1,2 @@
+<marquee scrollamount="3" onmouseover="this.stop();" onmouseout="this.start();" width="1000">
+<div style="display:inline; line-height:40px; padding-top:0; top:0;color:#990000; font:"myriad Pro";"><strong style="font-size:16px;"><?=pagecontent(12)?></strong></div></marquee>

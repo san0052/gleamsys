@@ -1,0 +1,29 @@
+RewriteEngine On
+# RewriteCond %{REQUEST_METHOD} ^TRACE
+# RewriteRule .* - [F]
+# RewriteCond %{SERVER_PORT} 80
+# ErrorDocument 404 /error.php
+
+#URL-Rewriting
+
+# RewriteRule ^/FILE-([^/]*)-([^/]*)$  $2.$1  [L]
+
+RewriteRule ^Home$      index.php?m=$1&maincity=$2  [L]
+RewriteRule ^Products$   listing.php  [L]
+RewriteRule ^About$   about.php  [L]
+RewriteRule ^Terms$   terms.php  [L]
+RewriteRule ^Privacy$   privacy.php  [L]
+RewriteRule ^Refund$   refund.php  [L]
+RewriteRule ^Contact$   contact.php?m=$1  [L]
+RewriteRule ^Wishlist$   wishlist.php?m=$1  [L]
+RewriteRule ^Details$   details.php?m=$1&product=$2&category=$3&maincategory=$4  [L]
+RewriteRule ^Cart$   cart.php?m=$1  [L]
+RewriteRule ^Checkout$   checkout.php?m=$1  [L]
+RewriteRule ^Confirmorder$   confirmorder.php?m=$1  [L]
+RewriteRule ^Login$   login.php?m=$1  [L]
+RewriteRule ^Register$ register.php?m=$1  [L]
+
+
+
+# THE FOLLOWING CODE SHOULD BE THE LAST CODE OF HTACCESS
+RewriteRule ^/([^/]*)$  $1.php  [L]
