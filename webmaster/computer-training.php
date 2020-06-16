@@ -17,7 +17,7 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 ?>
 <link href="css/adminstyle.css" rel="stylesheet" type="text/css" />
 <script language="javascript" src="scripts/notes.js"></script>
-<!-- <script language="javascript" src="scripts/ckeditor/ckeditor.js"></script> -->
+<script language="javascript" src="scripts/ckeditor/ckeditor.js"></script> 
 <style type="text/css">
 
 .style3 {color: #FFFFFF}
@@ -91,16 +91,18 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 				 <!-- <td width="6%" align="center" class="leftBarText_new1">Db No </td> -->
 				 <td width="17%" align="center" colspan="3" class="leftBarText_new1">Computer Details</td>
 	             <td width="23%" align="center" colspan="3" class="leftBarText_new1">Description</td>
-	             <td width="17%" align="center" colspan="3" class="leftBarText_new1">Subject Name</td>
+	             <td width="17%" align="center" colspan="3" class="leftBarText_new1">Image</td>
+	             <td width="17%" align="center" colspan="3" class="leftBarText_new1">Image Alt Tag</td>
 				 <td width="13%" align="center" class="leftBarText_new1">Status</td> 
 				 <td width="15%" align="center" class="leftBarText_new1">Action</td>
             </tr>		  
 			
-		<?
+		<?php
+
 		 	$sql    = "SELECT * FROM ".$cfg['DB_COMPUTER_TRAIN']." WHERE 
 						`siteId`= '".$cfg['SESSION_SITE']."' 
 						AND `status` != 'D'
-						AND `subjectBy`= 'trainingPart'"; 
+						"; 
 			$res    = $heart->sql_query($sql);
 			$maxrow = $heart->sql_numrows($res);
 				
@@ -115,19 +117,29 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 				<td align="center"><input  name="checkvalue" id="checkvalue"  value="<?=$row['id']?>" type="checkbox" />	</td>
 			
               	<td align="center"><?=$i+$offset?></td>
-				<!-- <td align="center"><?//=$row['id']?></td> -->
-			  	<td align="center" colspan="4" >&nbsp;<?=ucfirst($row['pageName']);?></td>
-              	<td align="center" colspan="3" >&nbsp;<?=$row['serviceTitle'];?></td>
-				<td align="center" colspan="2" >&nbsp;<?=$row['description'];?></td>
-				<td align="center" colspan="3" >&nbsp;<?=$row['subjectName'];?></td>	
+              	<td align="center" colspan="3" >&nbsp;<?=$row['serviceOption'];?></td>
+				<td align="center" colspan="3" >&nbsp;<?=$row['serviceDescription'];?></td>
+				<td align="center" colspan="3" >&nbsp;
+					<?php if($row['computerImg']){?>
+					<img src="../images/<?=$row['computerImg']?>"  width="70" align="top"/>
+				<?php }else{ ?>
+					Image Not Available
+				<?php }?>
+				</td>
+				<td align="center" colspan="3" >&nbsp;
+					<?php if($row['altTag']){ ?>
+						<?=$row['altTag'];?>
+					<?php }else{ ?>
+						Not Available Alt Tag
+					<?php }?>
+					</td>	
 				<td align="center">
 				  <a href="service-process.php?act=<?=($row['status']=='A')?'Inactive':'Active'?>&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?=$row['id']?>" class="<?=($row['status']=='A')?'greenbuttonelementsNew':'redbuttonelementsNew'?>"><?=($row['status']=='A')?'Active':'Inactive'?></a>
 				  
 				  </td>
 				  <td align="center">
-				  	 <!--  <a href="homeCounter?show=view&pageno=<?//=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?//=$row['id']?>"><img src="images/view.gif" title="View" width="16" height="16" border="0" /></a> -->
 				  
-					  <a href="service-process.php?act=editItServe&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?=$row['id']?>"><img src="images/edit.gif" title="Edit" width="16" height="16" border="0" /></a>
+					  <a href="service-process.php?act=editComputerService&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?=$row['id']?>"><img src="images/edit.gif" title="Edit" width="16" height="16" border="0" /></a>
 				  
 					  <!-- <a href="service-process.php?act=del&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?=$row['id']?>"><img src="images/drop.gif" title="Delete" width="16" height="16" border="0" onClick="return confirm('Do you really want to delete this record ?');" /></a> -->
 				  
@@ -189,7 +201,7 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 				
 			<tr class="row1">
                 <td colspan="2" align="center">
-					<textarea name="description" id="description" class="forminputelement textareawid" rows="4"></textarea>	
+					<textarea name="serviceDescription" id="serviceDescription" class="forminputelement textareawid" rows="4"></textarea>	
 				</td>
             </tr>
 
@@ -229,16 +241,16 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 	  
 	  
 	  
-	    if($show=='editItServe')
+	    if($show=='editComputer')
 		{
-			$sql="SELECT * FROM ". $cfg['DB_SERVICE_INFO'] ." 
-			 		where `id`=".$_REQUEST['id']." AND `pageName`='it-service'"; 
+			$sql="SELECT * FROM ". $cfg['DB_COMPUTER_TRAIN'] ." 
+			 		where `id`=".$_REQUEST['id']." "; 
 			$res=$heart->sql_query($sql);
 			$row=$heart->sql_fetchrow($res);
 	  ?>
-	  <form name="frmedit"  id="frm3" method="post" action="service-process.php" onsubmit="return edit_typ_value()">
+	  <form name="frmedit"  id="frm3" method="post" action="service-process.php" onsubmit="return edit_typ_value()" enctype="multipart/form-data">
           <p>
-            <input type="hidden" name="act" value="updateITService" />            
+            <input type="hidden" name="act" value="updateComputerService" />            
             <input type="hidden" name="id" value="<?=$row['id']?>" />
 			<input type="hidden" name="pageno" value="<?=$_REQUEST['pageno']?>" />
 			<input name="title" type="hidden"  id="category_or" value="<?=$row['title']?>" />
@@ -256,27 +268,38 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
               </tr>
 			  <? } ?>
               <tr class="row1"> 
-                <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Content By</span> <span class="redstar">*</span></td> 
+                <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Computer Details</span> <span class="redstar">*</span></td> 
                 <td width="70%" colspan="4" align="left">
-				<input type="text" class="forminputelement" name="serviceTitle" id="serviceTitle" value="<?=stripslashes($row['serviceTitle'])?>"/>
+				<input type="text" class="forminputelement" name="serviceOption" id="serviceOption" value="<?=stripslashes($row['serviceOption'])?>"/>
 				&nbsp;&nbsp;</td>
 			 </tr> 
 				<tr class="row2"> 
 	                <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Description</span><span class="redstar">*</span></td> 
 	                <td  width="70%" colspan="4" class="leftBarText" align="left" valign="top">
-	                	<textarea name="description" id="description" rows="4" style="width:94%;height:auto;"><?php echo $row['description'];?></textarea>
+	                	<textarea name="serviceDescription" id="serviceDescription" rows="4" style="width:94%;height:auto;"><?php echo $row['serviceDescription'];?></textarea>
+	                	<script>
+                   			 CKEDITOR.replace( 'serviceDescription' );
+                		</script>
 	                </td>
 		  		</tr>
 
 		  		<tr class="row1"> 
-	                <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Subject Name</span> <span class="redstar">*</span></td> 
+	                <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Image</span> <span class="redstar">*</span></td> 
 	                <td width="70%" colspan="4" align="left">
-						<input type="text" class="forminputelement" name="subjectName" id="subjectName" value="<?=stripslashes($row['subjectName'])?>"/>
+						<input type="file" class="forminputelement" name="image" id="image"/>
+					&nbsp;&nbsp;<img src="../images/<?=$row['computerImg']?>"  width="70" align="top" />
+				</td>
+			 </tr>
+
+		  		<tr class="row1"> 
+	                <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Alt Tag</span> <span class="redstar">*</span></td> 
+	                <td width="70%" colspan="4" align="left">
+						<input type="text" class="forminputelement" name="altTag" id="altTag" value="<?=stripslashes($row['altTag'])?>"/>
 					&nbsp;&nbsp;</td>
 			 </tr>
 		 		
 		   <td align="center" colspan="2">
-				<a class="brownbttn" href="It-services.php?pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>">&lt;&lt;back</a>
+				<a class="brownbttn" href="computer-training.php?pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>">&lt;&lt;back</a>
 				<input type="submit" name="Save" id="Save" value="Save" class="loginbttn">
 		   </td> 
 		  
