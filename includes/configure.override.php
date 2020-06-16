@@ -1,4 +1,4 @@
-<?
+<?php
 //Uploads Folder
 $cfg['SERVICES']								=	'uploads/services/';
 $cfg['HOMESLIDER']								=	'uploads/homeSlider/';

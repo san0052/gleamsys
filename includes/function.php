@@ -6706,22 +6706,6 @@ function booknowcmn()
 
 <div>
 
-        <!--div class="booking-form" dep="book_form">
-
-            <form>
-
-                <input type="email" class="mail" placeholder="E-mail" >
-
-                <input type="submit" class="sub" value="Submit">
-
-            </form>
-
-
-
-        </div-->
-
-
-
         <button onclick="book(this)" class="left-book-buton" style="background: #333333;color: white;padding: 14px 15px;position: fixed;top: 50%;left: 0;transform:translate(0,-50%); font-family: myFirstFont;">
 
             B<br>o<br>o<br>k<br> <br>N<br>o<br>w<br><br><span ><i class="fas fa-long-arrow-alt-right" dep="rot" style="transition: .6s ease;"></i></span>
@@ -6750,7 +6734,7 @@ function booknowcmn()
 
 </div>
 
-<?
+<?php
 
 }
 

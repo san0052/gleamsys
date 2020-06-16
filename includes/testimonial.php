@@ -18,7 +18,7 @@
                     <?php 
                     $sql =   "SELECT * FROM ".$cfg['DB_TESTIMONIAL']."
                     WHERE  
-                    `status` ='A' ORDER BY `id`DESC";
+                    `status` ='A' ORDER BY `id` DESC";
                     $res    =   $mycms->sql_query($sql);
                     $num      =   $mycms->sql_numrows($res);
                     if($num >0){

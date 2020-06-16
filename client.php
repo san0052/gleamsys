@@ -9,7 +9,7 @@ include_once("includes/links_frontend.php"); ?>
         <?php 
             $sql =   "SELECT * FROM ".$cfg['DB_CLIENT_BANNER']."
                                      WHERE  
-                                    `status` ='A' ORDER BY `id`DESC";
+                                    `status` ='A' ORDER BY `id` DESC";
             $res    =   $mycms->sql_query($sql);
             $row    =   $mycms->sql_fetchrow($res);
         ?>

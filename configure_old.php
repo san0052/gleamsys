@@ -41,9 +41,9 @@ $cfg['DIR_WS_JSCRIPT']					=	'scripts/';
 
 //Database Details
 $cfg['DB_SERVER']						=	'localhost';
-$cfg['DB_SERVER_USERNAME']				=	'u731538542_kunanyicl'; // Database user name
-$cfg['DB_SERVER_PASSWORD']				=	'kunanyicl!@#$#@!'; // Database password
-$cfg['DB_DATABASE']						=	'u731538542_kunanyicl'; // Database Name*/
+$cfg['DB_SERVER_USERNAME']				=	'root'; // Database user name
+$cfg['DB_SERVER_PASSWORD']				=	'password'; // Database password
+$cfg['DB_DATABASE']						=	'gleamsys'; // Database Name*/
 
 
 $cfg['DB_TYPE']		        			=	'mysql'; // Dabase type MYSQL or ORACLE
