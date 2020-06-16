@@ -21,7 +21,7 @@ include_once('includes/pagesources.php');?>
                 <?php 
                     $sql =   "SELECT * FROM ".$cfg['DB_HOME_COUNTER']."
                                              WHERE  
-                                            `status` ='A' ORDER BY `id`DESC";
+                                            `status` ='A' ORDER BY `id` DESC";
                     $res =   $mycms->sql_query($sql);
                 while($row    =   $mycms->sql_fetchrow($res)){ ?>
                         <div class="col-xs-12 col-md-4">

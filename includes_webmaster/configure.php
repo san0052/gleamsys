@@ -174,6 +174,7 @@ $cfg['DB_PORTFOLIO_BANNER']			= "`".$cfg['TABLE_PREFIX']."portfolio_banner`";
 $cfg['DB_PORTFOLIO_INFO']			= "`".$cfg['TABLE_PREFIX']."portfolio_info`";
 $cfg['DB_SERVICE_BANNER']			= "`".$cfg['TABLE_PREFIX']."services_banner`";
 $cfg['DB_SERVICE_INFO']				= "`".$cfg['TABLE_PREFIX']."services_info`";
+$cfg['DB_COMPUTER_TRAIN']			= "`".$cfg['TABLE_PREFIX']."computer_training`";
 
 $cfg['SESSION_SITE']=2;
 ?>
