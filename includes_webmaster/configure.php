@@ -66,7 +66,7 @@ $cfg['BANNER_IMAGES']	  = 'image_bank/banner_image/';
 
 $cfg['DB_SERVER']			= 'localhost';
 $cfg['DB_SERVER_USERNAME']	= 'root'; // Database user name
-$cfg['DB_SERVER_PASSWORD']	= 'password'; // Database password
+$cfg['DB_SERVER_PASSWORD']	= ''; // Database password
 $cfg['DB_DATABASE']			= 'gleamsys'; // Database Name*/
 
 $cfg['DB_TYPE']		        = 'mysql'; // Dabase type MYSQL or ORACLE
