@@ -1,0 +1,6 @@
+INSERT INTO `gleam_cms` (`cmsId`, `siteId`, `pCatId`, `cmsName`, `content`, `cmsStatus`) VALUES
+(121, 2, 0, 'Mobile-development', NULL, 'A');
+
+INSERT INTO `gleam_services_banner` (`id`, `siteId`, `bannerType`, `pageHeading`, `BannerTitle`, `bannerImg`, `altTag`, `status`, `modifiedDateTime`) VALUES
+(4, 2, 'mobile-development', 'mobile-development', 'Mobile Development 33', 'mobileDevelopment_mobileDevelopment.jpg', 'mobile development12', 'A', '2020-06-16 23:59:42');
+
