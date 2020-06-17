@@ -85,6 +85,32 @@ function serviceTitle($pageid,$pageName){
 		return '';
 }
 
+
+function computer_desc($pageid,$flag = null)
+{
+	global  $mycms,$cfg;
+	
+	$sql	=	"SELECT * FROM ".$cfg['DB_COMPUTER_TRAIN']." WHERE `id` = '".$pageid."'  AND `status`= 'A' AND `pageName`= 'computer-training'";
+	$res	=	$mycms->sql_query($sql);
+	$row	=	$mycms->sql_fetchrow($res);
+	if($row['status']=='A') {
+		if (!is_null($flag) && ($flag == 'tick_sign')) {
+			if (!empty($row['serviceDescription'])) {
+				$newcontent = $row['serviceDescription'];
+				$newcontent = str_replace('<ul>','<ul class="why-us-content">', $newcontent);
+
+				$newcontent = str_replace('<li>','<li><span class="chk-tick"><i class="fa fa-check"></i></span>', $newcontent);	
+				$newcontent = stripslashes($newcontent);
+				return $newcontent;	
+			}	
+		} else {
+			return stripslashes($row['serviceDescription']);
+		}
+	}
+	else
+		return ''; 
+}
+
 function roundup($val,$pressision=2)
 
 {
