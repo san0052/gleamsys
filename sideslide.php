@@ -34,14 +34,12 @@
                         <input type="text" placeholder="Email Id">
                     </div>
                     <style>
-                        .forget-password-item
-                        {
+                        .forget-password-item {
                             display: none;
                         }
                     </style>
                     <script>
-                        function forgetpass()
-                        {
+                        function forgetpass() {
                             $("div[dep=forget-password]").slideToggle();
                         }
                     </script>
@@ -56,7 +54,7 @@
                         <button type="button" id="nextBtn" onclick="nextPrev(1)" class="demo-class">LOGIN</button>
                     </div>
                 </div>
-                
+
             </form>
         </div>
         <div class="regi-box" id="regi">
@@ -66,48 +64,48 @@
             </div>
             <form class="book-content">
                 <div class="book-content-inner">
-               
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Full Name">
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Mobile Number">
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Email Id">
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Location">
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="City">
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="State">
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Country">
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Pin Code">
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="password" placeholder="Password">
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="password" placeholder="Confirm Password">
-                        </div>
-                    
+
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="text" placeholder="Full Name">
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="text" placeholder="Mobile Number">
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="text" placeholder="Email Id">
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="text" placeholder="Location">
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="text" placeholder="City">
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="text" placeholder="State">
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="text" placeholder="Country">
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="text" placeholder="Pin Code">
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="password" placeholder="Password">
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="password" placeholder="Confirm Password">
+                    </div>
+
                 </div>
                 <div class="book-footer">
                     <div class="total">
@@ -128,46 +126,46 @@
             </div>
             <form method="post" action="sendEmail.php" class="book-content">
                 <div class="book-content-inner">
-                    
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Full Name" name="name" id="name">
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Email Id" name="email" id="email">
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Mobile Number" name="mobile" id="mobile">
-                        </div>
-                        <div class="col-xs-12 form-group pl pr">
-                            <div class="col-xs-4 rc pl">
-                                <label>BEGINNER
-                                    <div>
-                                        <input type="radio" name="enquiry" value="BEGINNER" checked="" id="BEGINNER">
-                                        <span class="checkmark"></span>
-                                    </div>
 
-                                </label>
-                            </div>
-                            <div class="col-xs-4 rc pr">
-                                <label>ADVANCED
-                                    <input type="radio" name="enquiry" value="ADVANCED" id="ADVANCED">
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="text" placeholder="Full Name" name="name" id="name">
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="text" placeholder="Email Id" name="email" id="email">
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="text" placeholder="Mobile Number" name="mobile" id="mobile">
+                    </div>
+                    <div class="col-xs-12 form-group pl pr">
+                        <div class="col-xs-4 rc pl">
+                            <label>BEGINNER
+                                <div>
+                                    <input type="radio" name="enquiry" value="BEGINNER" checked="" id="BEGINNER">
                                     <span class="checkmark"></span>
-                                </label>
-                            </div>
-                            <div class="col-xs-4 rc pr">
-                                <label>PROFESSIONAL
-                                    <input type="radio" name="enquiry" value="PROFESSIONAL" id="PROFESSIONAL">
-                                    <span class="checkmark"></span>
-                                </label>
-                            </div>
+                                </div>
+
+                            </label>
                         </div>
-                        <div class="col-xs-12 form-group">
-                            <textarea placeholder="Message" name="message" id="message"></textarea>
+                        <div class="col-xs-4 rc pr">
+                            <label>ADVANCED
+                                <input type="radio" name="enquiry" value="ADVANCED" id="ADVANCED">
+                                <span class="checkmark"></span>
+                            </label>
                         </div>
-                   
+                        <div class="col-xs-4 rc pr">
+                            <label>PROFESSIONAL
+                                <input type="radio" name="enquiry" value="PROFESSIONAL" id="PROFESSIONAL">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <textarea placeholder="Message" name="message" id="message"></textarea>
+                    </div>
+
                 </div>
                 <div class="book-footer">
 
@@ -176,7 +174,7 @@
                     </div>
                 </div>
             </form>
-            
+
         </div>
         <div class="login-box" id="techbook">
             <div class="book-header">
@@ -185,37 +183,37 @@
             </div>
             <form class="book-content" method="post" action="mail-process.php">
                 <div class="book-content-inner">
-                    
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Full Name" name="fullname" id="fullname">
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Email Id" name="emailId" id="emailId">
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Mobile Number" name="mobileNo" id="mobileNo">
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <select name="support_option" id="support_option">
-                                <option value=''>Support Option</option>
-                                <option value='Desktop Computer, Laptop, and Printer Repairs'>Desktop Computer, Laptop, and Printer Repairs</option>
-                                <option value='Network configuration, fix problems, and upgrades'>Network configuration, fix problems, and upgrades</option>
-                                <option value='Fix Security and Printer problems'>Fix Security and Printer problems</option>
-                                <option value='Fix Slow PC problem'>Fix Slow PC problem</option>
-                                <option value='Virus and Spyware protection &amp; removal'>Virus and Spyware protection &amp; removal</option>
-                                <option value='Software installation'>Software installation</option>
-                                <option value='Email services (Set up and Configure)'>Email services (Set up and Configure)</option>
-                                <option value='Fix Hard drive issues, data back-up, and recovery'>Fix Hard drive issues, data back-up, and recovery</option>
-                                <option value='Fix hardware problem and upgrades for better performance'>Fix hardware problem and upgrades for better performance</option>
-                            </select>
-                        </div>
-                        <div class="col-xs-12 form-group">
-                            <textarea placeholder="Message" name="msg" id="msg"></textarea>
-                        </div>
-                    
+
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="text" placeholder="Full Name" name="fullname" id="fullname">
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="text" placeholder="Email Id" name="emailId" id="emailId">
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <!-- <label>Full Name</label> -->
+                        <input type="text" placeholder="Mobile Number" name="mobileNo" id="mobileNo">
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <select name="support_option" id="support_option">
+                            <option value=''>Support Option</option>
+                            <option value='Desktop Computer, Laptop, and Printer Repairs'>Desktop Computer, Laptop, and Printer Repairs</option>
+                            <option value='Network configuration, fix problems, and upgrades'>Network configuration, fix problems, and upgrades</option>
+                            <option value='Fix Security and Printer problems'>Fix Security and Printer problems</option>
+                            <option value='Fix Slow PC problem'>Fix Slow PC problem</option>
+                            <option value='Virus and Spyware protection &amp; removal'>Virus and Spyware protection &amp; removal</option>
+                            <option value='Software installation'>Software installation</option>
+                            <option value='Email services (Set up and Configure)'>Email services (Set up and Configure)</option>
+                            <option value='Fix Hard drive issues, data back-up, and recovery'>Fix Hard drive issues, data back-up, and recovery</option>
+                            <option value='Fix hardware problem and upgrades for better performance'>Fix hardware problem and upgrades for better performance</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-12 form-group">
+                        <textarea placeholder="Message" name="msg" id="msg"></textarea>
+                    </div>
+
 
                 </div>
                 <div class="book-footer">
@@ -226,73 +224,155 @@
                 </div>
             </form>
         </div>
+        <div class="login-box" id="cartbox">
+            <div class="book-header">
+                <p>CART</p>
+                <button onclick="bookcls()"><i class="fas fa-grip-lines"></i></button>
+            </div>
+            <form class="book-content">
+                <div class="book-content-inner">
+                    <div class="order-list">
+                        <div class="item-details">
+                            <p class="prd-name">Product name</p>
+                            <p class="prd-id">product id</p>
+                            <p class="deliver-date">Delivery by Sun 21 Jun | Free</p>
+                            <p class="prd-price">$200</p>
+                            <button class="rmv-btn">Remove</button>
+                        </div>
+                        <div class="item-pic">
+                            <img src="images/prd-1.png">
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                    </div>
+                    <div class="order-list">
+                        <div class="item-details">
+                            <p class="prd-name">Product name</p>
+                            <p class="prd-id">product id</p>
+                            <p class="deliver-date">Delivery by Sun 21 Jun | Free</p>
+                            <p class="prd-price">$200</p>
+                            <button class="rmv-btn">Remove</button>
+                        </div>
+                        <div class="item-pic">
+                            <img src="images/prd-1.png">
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                    </div>
+                    <table class="table totalpayble">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Price Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Price( 2 Items )
+                                </td>
+                                <td>
+                                    $400
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Delivery Charge
+                                </td>
+                                <td>
+                                   Free
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    Total Payble
+                                </td>
+                                <td>
+                                    $400
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="book-footer">
+                    <div class="total">
+                        <h5>Total Payble</h5>
+                        <p class="prd-price">$200 <a>view details</a></p>
+                        
+                    </div>
+                    <div style="float:right;">
+                        <button type="button" id="nextBtn" class="demo-class" onclick="return validate();">Procceed</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-<script>
-function validate()
-    {
-      var fullname           =   $('#fullname').val();
-      var emailId            =   $('#emailId').val();
-      var mobileNo           =   $('#mobileNo').val();
-      var support_option     =   $('#support_option').val();
 
-      var msg                =   $('#msg').val();
-    
-      var flag = 0;
-      if(fullname =='')
-        {
+
+<script>
+    function validate() {
+        var fullname = $('#fullname').val();
+        var emailId = $('#emailId').val();
+        var mobileNo = $('#mobileNo').val();
+        var support_option = $('#support_option').val();
+
+        var msg = $('#msg').val();
+
+        var flag = 0;
+        if (fullname == '') {
             alert('Please enter your name');
             $('#name').focus();
             flag++;
         }
-        if(emailId =='')
-        {
+        if (emailId == '') {
             alert('Please enter your email address');
             $('#email').focus();
             flag++;
         }
-        if(mobileNo =='')
-        {
+        if (mobileNo == '') {
             alert('Please enter your mobile number');
             $('#mobileno').focus();
             flag++;
         }
-        if(support_option =='')
-        {
+        if (support_option == '') {
             alert('Please enter your Support Option');
             flag++;
         }
-        if(msg =='')
-        {
+        if (msg == '') {
             alert('Please enter your query');
             $('#message').focus();
             flag++;
         }
 
-      
-      if(flag>0)
-      {
-        return false;
-      }else{
+
+        if (flag > 0) {
+            return false;
+        } else {
             $.ajax({
-                url :"<?php echo $cfg['base_url'].'mail-process.php?act=booking'?>",
+                url: "<?php echo $cfg['base_url'] . 'mail-process.php?act=booking' ?>",
                 type: "POST",
-                data : { name : fullname, email: emailId, mobileno: mobileNo,support: support_option, massage:msg},
-                success : function(response){
-                    if (response !='') {
+                data: {
+                    name: fullname,
+                    email: emailId,
+                    mobileno: mobileNo,
+                    support: support_option,
+                    massage: msg
+                },
+                success: function(response) {
+                    if (response != '') {
                         response = response.trim();
-                       if(response == 'true') {
+                        if (response == 'true') {
                             alert('Email Send successfully');
-                            window.location.href="tech-support.php";
-                       } else {
+                            window.location.href = "tech-support.php";
+                        } else {
                             alert('Something went wrong');
-                       } 
+                        }
                     }
-                   
+
                     event.preventDefault();
                 }
             });
-      }
-      
+        }
+
     }
 </script>
