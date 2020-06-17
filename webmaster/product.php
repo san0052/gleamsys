@@ -446,7 +446,7 @@ $show=$_REQUEST['show'];
 																			} 
 
 																		}//if	
-																		
+
 																	}
 																	?>
 
@@ -461,19 +461,30 @@ $show=$_REQUEST['show'];
 																			&nbsp;&nbsp;&nbsp; </td>
 																			<td><input type="checkbox" name="fp" id="fp" value="1" />
 																				&nbsp;<span class="leftBarText_new">Featured Product</span> </td>
-																			</tr>
-																			<tr>
+																		</tr>
+																		<tr>
+																			<td>&nbsp;</td>
+																			<td><input type="checkbox" name="today_Spcial_product" id="today_Sp" value="1" />
+																				&nbsp;<span class="leftBarText_new">To-Day Spcial Product</span> </td>
+																		</tr>
+																		<tr>
+																			<td>&nbsp;</td>
+																			<td><input type="checkbox" name="new_arrival_pro" id="new_arrival_pro" value="1" />
+																				&nbsp;<span class="leftBarText_new">New Arrival</span> </td>
+																		</tr>
+																			<!-- <tr>
 																				<td>&nbsp;</td>
-																				<td><? if(countRightbar() < 8){?>
+																				<td><?// if(countRightbar() < 8){?>
 																					<input type="checkbox" name="rp" id="rp" value="1" />
 																					&nbsp;<span class="leftBarText_new">Show in rightbar</span>
-																					<? }?></td>
-																				</tr>
+																					<?// }?></td>
+																				</tr> -->
+
 																				<tr>
 																					<td>&nbsp;</td>
 																					<td><input type="checkbox" name="bp" id="bp" value="1" />
 																						&nbsp;<span class="leftBarText_new">Best Seller</span></td>
-																					</tr>
+																				</tr>
 																				</table></td>
 																			</tr>
 																			<tr class="row2">
@@ -560,21 +571,27 @@ $show=$_REQUEST['show'];
 																				<tr class="row2">
 																					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Image </span> <span class="redstar">*</span> </td>
 																					<td width="70%" colspan="4" align="left"><input name="image_add" id="image_add" type="file" class="forminputelement"/></td>
-																				</tr>                    <tr class="row1">			    		<td colspan="6" align="left" valign="top"><span class="leftBarText_new">Keywords Category List</span></td>			    	</tr>
-																				<tr class="row2">						<?								$n = 0;																				                $sqlcatkey="SELECT * FROM ".$cfg['DB_KEYWORD_CATEGORY']." WHERE `status`='A'";								                $rescatkey=$heart->sql_query($sqlcatkey);												$numrowskey=$heart->sql_numrows($rescatkey);								                while($rowcatkey=$heart->sql_fetchrow($rescatkey))												{													$n++;																															?>						<td align="left" valign="top">								<input type="checkbox" name="catkey_id[]" target='catkey'  id="catkey_id_<?=$rowcatkey['id']?>" value="<?=$rowcatkey['id']?>" onclick="check_key()"  />											<?=stripslashes($rowcatkey['name'])?>											</td>											<? if($n%3==0 && $n>0)												{													echo '</tr>'.(($n<$numrowskey)?'<tr class="row2">':'');												}																						}																					if($n%3>0)											{										 ?>											 <td colspan="<?=($n%3)+1 ?>">&nbsp;</td>										<?											} 																			?>                    </tr>
-																				<tr class="row1">
-                     <!-- <td colspan="5" align="left" class="leftBarText"><span class="leftBarText_new">Add on Product</span>
+																				</tr>
+																			<!-- 	<tr class="row1"><td colspan="6" align="left" valign="top"><span class="leftBarText_new">Keywords Category List</span></td></tr> -->
+																				<!-- <tr class="row2">
+																					<?$n = 0;	$sqlcatkey="SELECT * FROM ".$cfg['DB_KEYWORD_CATEGORY']." WHERE `status`='A'";	
+																					$rescatkey=$heart->sql_query($sqlcatkey);												
+																					$numrowskey=$heart->sql_numrows($rescatkey);								                
+																					while($rowcatkey=$heart->sql_fetchrow($rescatkey))												
+																						{ $n++;																															?>						<td align="left" valign="top">								<input type="checkbox" name="catkey_id[]" target='catkey'  id="catkey_id_<?=$rowcatkey['id']?>" value="<?=$rowcatkey['id']?>" onclick="check_key()"  />											<?=stripslashes($rowcatkey['name'])?>											</td>											<? if($n%3==0 && $n>0)												{													echo '</tr>'.(($n<$numrowskey)?'<tr class="row2">':'');												}																						}																					if($n%3>0)											{										 ?>											 <td colspan="<?=($n%3)+1 ?>">&nbsp;</td>										<?											} 																			?>                    </tr>
+																					<tr class="row1">
+                      <td colspan="5" align="left" class="leftBarText"><span class="leftBarText_new">Add on Product</span>
                      	<input type="checkbox" name="addon" id="addon" value="yes" onclick="addopen();" /></td>-->
 
-                     	<td colspan="6" align="left" valign="top"><span class="leftBarText_new">Keywords <input name="check_all" id="check_all" class="check-all" type="checkbox" onclick="checkall_add();"/>(Select All)</span></td>
-                     </tr>
+                     	<!--<td colspan="6" align="left" valign="top"><span class="leftBarText_new">Keywords <input name="check_all" id="check_all" class="check-all" type="checkbox" onclick="checkall_add();"/>(Select All)</span></td>
+                     </tr> -->
 
-                     <tr class="row2">
+                     <!-- <tr class="row2">
                      	<td colspan="3" align="left" valign="top">
                      		<input class="brownbttn" type="button" name="create key" id="create key" value="generate key" onclick="create_key()" />
                      	</td>
-                     </tr>	
-
+                     </tr> -->	
+<!-- 
                      <tr class="row2">
 
                      	<?
@@ -609,7 +626,7 @@ $show=$_REQUEST['show'];
 
                      	?>
 
-                     </tr>
+                     </tr> -->
                   <!--<td colspan="5" align="left" class="leftBarText"><div id="addon_prod" style="display:none;">
                         <div id="newlink" style="margin:-7px;">
                           <table width="100%" align="center" cellpadding="6" cellspacing="1" class="tborder_new" border="0">
@@ -961,45 +978,54 @@ $show=$_REQUEST['show'];
 								<td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Change Image </span> </td>
 								<td width="70%" colspan="4" align="left" valign="top"><input name="image_add[]" id="image_add" type="file" class="forminputelement"/>
 									&nbsp;&nbsp; <img src="../<?=$cfg['PRODUCT_IMAGES'].$row1['pd_image']?>"  width="70" align="top"/></td>
-								</tr>                                     <tr class="row1">			    		<td colspan="6" align="left" valign="top">			    			<span class="leftBarText_new">Keywords Category List</span>			    			<a onclick="display_catkey()" style="color:#ce0e0e; margin-left:10px; font-size:11px; font-weight:bold;">Show Category for change</a>			    			<input type="hidden" name="check_div" id="check_div" value="display">			    	    </td>			    	</tr>										<tr class="row2">						<td colspan="6" align="left" valign="top">							<div id="show_keycat" style="display: none;">							<table width="100%">								<tr class="row2">						<?								$n = 0;												$keycatselect=getcatgory_from_key($row1['keyword']);												                $sqlcatkey="SELECT * FROM ".$cfg['DB_KEYWORD_CATEGORY']." WHERE `status`='A'";								                $rescatkey=$heart->sql_query($sqlcatkey);												$numrowskey=$heart->sql_numrows($rescatkey);								                while($rowcatkey=$heart->sql_fetchrow($rescatkey))												{													$n++;									$slt='';									if(in_array($rowcatkey['id'],$keycatselect)){										$slt='checked=checked';									}																		?>								<td align="left" valign="top">										<input type="checkbox" name="catkey_id[]" target='catkey'  id="catkey_id_<?=$rowcatkey['id']?>" value="<?=$rowcatkey['id']?>" onclick="check_key()" <?=$slt?> />													<?=stripslashes($rowcatkey['name'])?>													</td>													<? if($n%3==0 && $n>0)														{															echo '</tr>'.(($n<$numrowskey)?'<tr class="row2">':'');														}																										}																									if($n%3>0)													{												 ?>													 <td colspan="<?=($n%3)+1 ?>">&nbsp;</td>												<?													} 																							?>		                    	</tr>                    </table>                  </div>                 </td>                </tr>
-								<tr class="row2">
-									<td width="30%" align="left" class="leftBarText" colspan="3"><span class="leftBarText_new">Keywords <input name="check_all" id="check_all" class="check-all" type="checkbox" onclick="checkall_edit(this.id,'key_id');"/>(Select All)</span></td>
+								</tr>                                     <tr class="row1">			 <td colspan="6" align="left" valign="top"><span class="leftBarText_new">Keywords Category List</span>			    			<a onclick="display_catkey()" style="color:#ce0e0e; margin-left:10px; font-size:11px; font-weight:bold;">Show Category for change</a>			    			<input type="hidden" name="check_div" id="check_div" value="display">
+								</td>
+								</tr>										
+								<tr class="row2">						
+									<td colspan="6" align="left" valign="top">							<div id="show_keycat" style="display: none;">							<table width="100%">
+										<tr class="row2">						
+											<?php $n = 0;
+											$keycatselect=getcatgory_from_key($row1['keyword']);	
+											$sqlcatkey="SELECT * FROM ".$cfg['DB_KEYWORD_CATEGORY']." WHERE `status`='A'";								  $rescatkey=$heart->sql_query($sqlcatkey);			
+											    $numrowskey=$heart->sql_numrows($rescatkey);		while($rowcatkey=$heart->sql_fetchrow($rescatkey))												{													$n++;									$slt='';									if(in_array($rowcatkey['id'],$keycatselect)){										$slt='checked=checked';									}																		?>								<td align="left" valign="top">										<input type="checkbox" name="catkey_id[]" target='catkey'  id="catkey_id_<?=$rowcatkey['id']?>" value="<?=$rowcatkey['id']?>" onclick="check_key()" <?=$slt?> />													<?=stripslashes($rowcatkey['name'])?>													</td>													<? if($n%3==0 && $n>0)														{															echo '</tr>'.(($n<$numrowskey)?'<tr class="row2">':'');														}																										}																									if($n%3>0)													{												 ?>													 <td colspan="<?=($n%3)+1 ?>">&nbsp;</td>												<?													} 																							?>		                    	</tr>                    </table>                  </div>                 </td>                </tr>
+											<tr class="row2">
+												<td width="30%" align="left" class="leftBarText" colspan="3"><span class="leftBarText_new">Keywords <input name="check_all" id="check_all" class="check-all" type="checkbox" onclick="checkall_edit(this.id,'key_id');"/>(Select All)</span></td>
 
-								</tr>
-								<tr class="row2">
+											</tr>
+											<tr class="row2">
 
-									<?
-									$n = 0;
+												<?
+												$n = 0;
 
-									$sqlcat="SELECT * FROM ".$cfg['DB_KEYWORD']." WHERE `status`='A'";
-									$rescat=$heart->sql_query($sqlcat);
-									$numrows=$heart->sql_numrows($rescat);
-									while($rowcat=$heart->sql_fetchrow($rescat))
-									{
-										$n++;
+												$sqlcat="SELECT * FROM ".$cfg['DB_KEYWORD']." WHERE `status`='A'";
+												$rescat=$heart->sql_query($sqlcat);
+												$numrows=$heart->sql_numrows($rescat);
+												while($rowcat=$heart->sql_fetchrow($rescat))
+												{
+													$n++;
 
-										?>
-										<td align="left" valign="top">
-											<input type="checkbox" name="key_id[]"  id="key_id_<?=$rowcat['id']?>" target="key" value="<?=$rowcat['id']?>"  <? if(in_array($rowcat['id'],$key)){?> checked="checked"<? }?>/>
-											<?=stripslashes($rowcat['key_name'])?>
-										</td>
-										<? if($n%3==0 && $n>0)
-										{
-											echo '</tr>'.(($n<$numrows)?'<tr class="row2">':'');
-										}
+													?>
+													<td align="left" valign="top">
+														<input type="checkbox" name="key_id[]"  id="key_id_<?=$rowcat['id']?>" target="key" value="<?=$rowcat['id']?>"  <? if(in_array($rowcat['id'],$key)){?> checked="checked"<? }?>/>
+														<?=stripslashes($rowcat['key_name'])?>
+													</td>
+													<? if($n%3==0 && $n>0)
+													{
+														echo '</tr>'.(($n<$numrows)?'<tr class="row2">':'');
+													}
 
-									}
+												}
 
-									if(($n)%3>0)
-									{
-										?>
-										<td colspan="<?=($n%3)+1 ?>">&nbsp;</td>
-										<?
-									} 
+												if(($n)%3>0)
+												{
+													?>
+													<td colspan="<?=($n%3)+1 ?>">&nbsp;</td>
+													<?
+												} 
 
-									?>
+												?>
 
-								</tr>
+											</tr>
 
 
                   <? /* if($row1['mainaddon']==0){ ?>

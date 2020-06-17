@@ -95,11 +95,11 @@
 				<li><a href="onlineStoreContent.php">Manage Online Store Content</a></li>
 			</ul>
 
-			<h3 class="menuheader expandable">Keyword Management</h3>
+			<!-- <h3 class="menuheader expandable">Keyword Management</h3>
 			<ul class="categoryitems">
 				<li><a href="keyword.php">Manage Keyword</a></li>
 				<li><a href="category_key.php">Manage Keyword Category</a></li>
-			</ul>
+			</ul> -->
 			<h3 class="menuheader expandable">Product Management</h3>
 			<ul class="categoryitems">
 				<li><a href="product.php">Manage Product</a></li>
