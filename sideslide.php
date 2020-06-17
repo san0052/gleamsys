@@ -126,20 +126,20 @@
                 <p>ENQUIRY</p>
                 <button onclick="bookcls()"><i class="fas fa-grip-lines"></i></button>
             </div>
-            <form method="post" action="sendEmail.php" class="book-content">
+            <form method="post" action="mail-process.php" class="book-content enquiry_form">
                 <div class="book-content-inner">
                     
                         <div class="col-xs-12 form-group">
                             <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Full Name" name="name" id="name">
+                            <input type="text" placeholder="Full Name" name="name" id="fname">
                         </div>
                         <div class="col-xs-12 form-group">
                             <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Email Id" name="email" id="email">
+                            <input type="text" placeholder="Email Id" name="email" id="userEmail">
                         </div>
                         <div class="col-xs-12 form-group">
                             <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Mobile Number" name="mobile" id="mobile">
+                            <input type="text" placeholder="Mobile Number" name="mobile" id="userMobile">
                         </div>
                         <div class="col-xs-12 form-group pl pr">
                             <div class="col-xs-4 rc pl">
@@ -172,7 +172,7 @@
                 <div class="book-footer">
 
                     <div style="float:right;">
-                        <button type="submit" id="nextBtn" class="demo-class">SUBMIT</button>
+                        <button type="button" id="nextBtn" class="demo-class" onclick="return enquiryForm();">SUBMIT</button>
                     </div>
                 </div>
             </form>
@@ -229,7 +229,7 @@
     </div>
 </div>
 <script>
-function validate()
+    function validate()
     {
       var fullname           =   $('#fullname').val();
       var emailId            =   $('#emailId').val();
@@ -284,6 +284,71 @@ function validate()
                        if(response == 'true') {
                             alert('Email Send successfully');
                             window.location.href="tech-support.php";
+                       } else {
+                            alert('Something went wrong');
+                       } 
+                    }
+                   
+                    event.preventDefault();
+                }
+            });
+      }
+      
+    }
+</script>
+
+<script>
+    function enquiryForm()
+    {
+      var fname              =   $('#fname').val().trim();
+      var userEmail          =   $('#userEmail').val().trim();
+      var userMobile         =   $('#userMobile').val().trim();
+      var message            =   $('#message').val().trim();
+    
+      var flag = 0;
+      if(fname =='')
+        {
+            alert('Please enter your name');
+            $('#fname').focus();
+            flag++;
+        }
+        if(userEmail =='')
+        {
+            alert('Please enter your email address');
+            $('#userEmail').focus();
+            flag++;
+        }
+        if(userMobile =='')
+        {
+            alert('Please enter your mobile number');
+            $('#userMobile').focus();
+            flag++;
+        }
+        
+        if(message =='')
+        {
+            alert('Please enter your query');
+            $('#message').focus();
+            flag++;
+        }
+
+      
+      if(flag>0)
+      {
+        return false;
+      }else{
+            $.ajax({
+                url :"<?php echo $cfg['base_url'].'mail-process.php?act=Enquiry_training'?>",
+                type: "POST",
+                data : { name : fname, email: userEmail, mobileno: userMobile,enquiry: $('input[name="enquiry"]:checked').val(), massage:message},
+                success : function(response){
+                    if (response !='') {
+                        response = response.trim();
+                        $('.enquiry_form').trigger('reset');
+                       if(response == 'true') {
+
+                            alert('Email Send successfully');
+                            window.location.href="computer-training.php";
                        } else {
                             alert('Something went wrong');
                        } 

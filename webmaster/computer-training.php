@@ -134,7 +134,7 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 					<?php }?>
 					</td>	
 				<td align="center">
-				  <a href="service-process.php?act=<?=($row['status']=='A')?'Inactive':'Active'?>&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?=$row['id']?>" class="<?=($row['status']=='A')?'greenbuttonelementsNew':'redbuttonelementsNew'?>"><?=($row['status']=='A')?'Active':'Inactive'?></a>
+				  <a href="service-process.php?act=<?=($row['status']=='A')?'InactiveTraining':'ActiveTraining'?>&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?=$row['id']?>" class="<?=($row['status']=='A')?'greenbuttonelementsNew':'redbuttonelementsNew'?>"><?=($row['status']=='A')?'Active':'Inactive'?></a>
 				  
 				  </td>
 				  <td align="center">
