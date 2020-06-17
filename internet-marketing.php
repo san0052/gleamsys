@@ -12,7 +12,7 @@
         <div class="item">
             <?php if (!empty($banner['bannerImg'])) { ?>
             <!-- <img src="images/web-design-banner.jpg"> -->
-            <img src="<?php echo 'images/'.$banner['bannerImg'];?>">
+            <img src="<?php echo 'images/'.$banner['bannerImg'];?>" alt="<?php echo !empty($banner['altTag'])?$banner['altTag']:''; ?>">
             <?php } ?>
             <div class="banner-text">
                 <!-- INTERNET MARKETING (SEO, SEM) -->
