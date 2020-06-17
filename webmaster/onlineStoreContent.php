@@ -76,7 +76,7 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 	    <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
           <thead>
             <tr>
-              <td colspan="11" align="left">&nbsp;<span class="style2">Manage Computer Training Section</span> </td>
+              <td colspan="11" align="left">&nbsp;<span class="style2">Manage IT Service Section</span> </td>
             </tr>
           </thead>
           <tbody>
@@ -89,8 +89,8 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 				 <td width="6%" align="center" class="leftBarText_new1"><input name="check_all" id="check_all" class="check-all" type="checkbox" onclick="checkall();"/></td>
           	     <td width="6%" align="center" class="leftBarText_new1">Sl No </td>
 				 <!-- <td width="6%" align="center" class="leftBarText_new1">Db No </td> -->
-				 <td width="17%" align="center" colspan="3" class="leftBarText_new1">Computer Details</td>
-	             <td width="23%" align="center" colspan="3" class="leftBarText_new1">Description</td>
+				 <td width="17%" align="center" colspan="3" class="leftBarText_new1">Page Name</td>
+	             <td width="23%" align="center" colspan="3" class="leftBarText_new1">Online Description</td>
 	             <td width="17%" align="center" colspan="3" class="leftBarText_new1">Image</td>
 	             <td width="17%" align="center" colspan="3" class="leftBarText_new1">Image Alt Tag</td>
 				 <td width="13%" align="center" class="leftBarText_new1">Status</td> 
@@ -99,7 +99,7 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 			
 		<?php
 
-		 	$sql    = "SELECT * FROM ".$cfg['DB_COMPUTER_TRAIN']." WHERE 
+		 	$sql    = "SELECT * FROM ".$cfg['DB_SHOP_CONTENT']." WHERE 
 						`siteId`= '".$cfg['SESSION_SITE']."' 
 						AND `status` != 'D'
 						"; 
@@ -114,14 +114,14 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 		?>
             <tr class="<?=($i%2==0)?'row1':'row2'?>">
 			
-				<td align="center"><input  name="checkvalue" id="checkvalue"  value="<?=$row['id']?>" type="checkbox" />	</td>
+				<td align="center"><input  name="checkvalue" id="checkvalue"  value="<?=$row['id']?>" type="checkbox" /></td>
 			
               	<td align="center"><?=$i+$offset?></td>
-              	<td align="center" colspan="3" >&nbsp;<?=$row['serviceOption'];?></td>
-				<td align="center" colspan="3" >&nbsp;<?=$row['serviceDescription'];?></td>
+              	<td align="center" colspan="3" >&nbsp;<?=$row['pageName'];?></td>
+				<td align="center" colspan="3" >&nbsp;<?=$row['description'];?></td>
 				<td align="center" colspan="3" >&nbsp;
-					<?php if($row['computerImg']){?>
-					<img src="../images/<?=$row['computerImg']?>"  width="70" align="top"/>
+					<?php if($row['image']){?>
+					<img src="../images/<?=$row['image']?>"  width="70" align="top"/>
 				<?php }else{ ?>
 					Image Not Available
 				<?php }?>
@@ -134,14 +134,12 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 					<?php }?>
 					</td>	
 				<td align="center">
-				  <a href="service-process.php?act=<?=($row['status']=='A')?'InactiveTraining':'ActiveTraining'?>&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?=$row['id']?>" class="<?=($row['status']=='A')?'greenbuttonelementsNew':'redbuttonelementsNew'?>"><?=($row['status']=='A')?'Active':'Inactive'?></a>
+				  <a href="onlineStoreContent-process.php?act=<?=($row['status']=='A')?'Inactive':'Active'?>&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?=$row['id']?>" class="<?=($row['status']=='A')?'greenbuttonelementsNew':'redbuttonelementsNew'?>"><?=($row['status']=='A')?'Active':'Inactive'?></a>
 				  
 				  </td>
 				  <td align="center">
 				  
-					  <a href="service-process.php?act=editComputerService&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?=$row['id']?>"><img src="images/edit.gif" title="Edit" width="16" height="16" border="0" /></a>
-				  
-					  <!-- <a href="service-process.php?act=del&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?=$row['id']?>"><img src="images/drop.gif" title="Delete" width="16" height="16" border="0" onClick="return confirm('Do you really want to delete this record ?');" /></a> -->
+					  <a href="onlineStoreContent-process.php?act=edit&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?=$row['id']?>"><img src="images/edit.gif" title="Edit" width="16" height="16" border="0" /></a>
 				  
 				  </td>
 			  
@@ -201,7 +199,7 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 				
 			<tr class="row1">
                 <td colspan="2" align="center">
-					<textarea name="serviceDescription" id="serviceDescription" class="forminputelement textareawid" rows="4"></textarea>	
+					<textarea name="description" id="description" class="forminputelement textareawid" rows="4"></textarea>	
 				</td>
             </tr>
 
@@ -241,16 +239,16 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 	  
 	  
 	  
-	    if($show=='editComputer')
+	    if($show=='editContent')
 		{
-			$sql="SELECT * FROM ". $cfg['DB_COMPUTER_TRAIN'] ." 
+			$sql="SELECT * FROM ". $cfg['DB_SHOP_CONTENT'] ." 
 			 		where `id`=".$_REQUEST['id']." "; 
 			$res=$heart->sql_query($sql);
 			$row=$heart->sql_fetchrow($res);
 	  ?>
-	  <form name="frmedit"  id="frm3" method="post" action="service-process.php" onsubmit="return edit_typ_value()" enctype="multipart/form-data">
+	  <form name="frmedit"  id="frm3" method="post" action="onlineStoreContent-process.php" onsubmit="return edit_typ_value()" enctype="multipart/form-data">
           <p>
-            <input type="hidden" name="act" value="updateComputerService" />            
+            <input type="hidden" name="act" value="update" />            
             <input type="hidden" name="id" value="<?=$row['id']?>" />
 			<input type="hidden" name="pageno" value="<?=$_REQUEST['pageno']?>" />
 			<input name="title" type="hidden"  id="category_or" value="<?=$row['title']?>" />
@@ -267,18 +265,13 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
                 <td colspan="5" align="left" class="redbuttonelements"><?=@$msg?></td>
               </tr>
 			  <? } ?>
-              <tr class="row1"> 
-                <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Computer Details</span> <span class="redstar">*</span></td> 
-                <td width="70%" colspan="4" align="left">
-				<input type="text" class="forminputelement" name="serviceOption" id="serviceOption" value="<?=stripslashes($row['serviceOption'])?>"/>
-				&nbsp;&nbsp;</td>
-			 </tr> 
+               
 				<tr class="row2"> 
 	                <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Description</span><span class="redstar">*</span></td> 
 	                <td  width="70%" colspan="4" class="leftBarText" align="left" valign="top">
-	                	<textarea name="serviceDescription" id="serviceDescription" rows="4" style="width:94%;height:auto;"><?php echo $row['serviceDescription'];?></textarea>
+	                	<textarea name="description" id="description" rows="4" style="width:94%;height:auto;"><?php echo $row['description'];?></textarea>
 	                	<script>
-                   			 CKEDITOR.replace( 'serviceDescription' );
+                   			 CKEDITOR.replace( 'description' );
                 		</script>
 	                </td>
 		  		</tr>
@@ -287,7 +280,7 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 	                <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Image</span> <span class="redstar">*</span></td> 
 	                <td width="70%" colspan="4" align="left">
 						<input type="file" class="forminputelement" name="image" id="image"/>
-					&nbsp;&nbsp;<img src="../images/<?=$row['computerImg']?>"  width="70" align="top" />
+					&nbsp;&nbsp;<img src="../images/<?=$row['image']?>"  width="70" align="top" />
 				</td>
 			 </tr>
 

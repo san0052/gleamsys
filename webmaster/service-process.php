@@ -76,6 +76,21 @@ case 'Inactive':
 	 $heart->redirect('tech-service.php?m=2&pageno='.$_REQUEST['pageno']);
 
 break;
+
+case 'ActiveTraining':
+
+	 $sql="UPDATE ".$cfg['DB_COMPUTER_TRAIN']."SET `status` = 'A' WHERE `id` ='".$_REQUEST['id']."'";
+	 $heart->sql_query($sql);
+	 $heart->redirect('computer-training.php?m=2&pageno='.$_REQUEST['pageno']);
+
+break;
+case 'InactiveTraining':
+
+	$sql="UPDATE ".$cfg['DB_COMPUTER_TRAIN']."SET `status` = 'I' WHERE `id` ='".$_REQUEST['id']."'";
+	 $heart->sql_query($sql);
+	 $heart->redirect('computer-training.php?m=2&pageno='.$_REQUEST['pageno']);
+
+break;
 case 'mulactive':
 
  $sql="UPDATE ".$cfg['DB_HOME_COUNTER']."SET `status` = 'A' WHERE `id` IN (".$_REQUEST['id'].")";

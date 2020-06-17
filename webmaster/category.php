@@ -53,10 +53,10 @@ $pId =($_REQUEST['pId']!="")?$_REQUEST['pId']:'0';
               </span>               
              </td>
             <td align="right" valign="middle" class="style5">
-			<?
-			 	$sql="SELECT * FROM ".$cfg['DB_SITE']."   ";
-				$res=$heart->sql_query($sql);				
-			 ?>
+      			<?php
+        			 	$sql="SELECT * FROM ".$cfg['DB_SITE']."   ";
+        				$res=$heart->sql_query($sql);				
+      			 ?>
                 <select name="" id="" onchange="getSes1(this.value);" class="forminputelement">
                   <? while($row=$heart->sql_fetchrow($res)){?>
                   <option value="<?=$row['s_id']?>" <? if($cfg['SESSION_SITE']==$row['s_id']){?> selected="selected"<? }?>>

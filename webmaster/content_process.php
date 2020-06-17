@@ -71,6 +71,31 @@ case'view':
 	{
 		$heart->redirect('content.php?show=viewCodeigniter-development&id='.$_REQUEST['id']);
 	}
+	if($_REQUEST['page']=='Internet-marketing')
+	{
+		$heart->redirect('content.php?show=viewInternet-marketing&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['page']=='Cloud-hosting')
+	{
+		$heart->redirect('content.php?show=viewCloud-hosting&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['page']=='Ssl-certificate')
+	{
+		$heart->redirect('content.php?show=viewSsl-certificate&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['page']=='Dedicated-linux-hosting')
+	{
+		$heart->redirect('content.php?show=viewDedicated-linux-hosting&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['page']=='Online-grocery-and-vegetable')
+	{
+		$heart->redirect('content.php?show=viewOnline-grocery-and-vegetable&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['page']=='Gps-location-app')
+	{
+		$heart->redirect('content.php?show=viewGps-location-app&id='.$_REQUEST['id']);
+	}
+
 exit();
 break;
 // show edit window
@@ -135,6 +160,30 @@ case'edit':
 	if($_REQUEST['id']==126 || $_REQUEST['id']==16)
 	{
 		$heart->redirect('content.php?show=editCodeigniter-development&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['id']==127 || $_REQUEST['id']==17)
+	{
+		$heart->redirect('content.php?show=editInternet-marketing&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['id']==128 || $_REQUEST['id']==18)
+	{
+		$heart->redirect('content.php?show=editCloud-hosting&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['id']==129 || $_REQUEST['id']==19)
+	{
+		$heart->redirect('content.php?show=editSsl-certificate&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['id']==130 || $_REQUEST['id']==20)
+	{
+		$heart->redirect('content.php?show=editDedicated-linux-hosting&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['id']==131 || $_REQUEST['id']==21)
+	{
+		$heart->redirect('content.php?show=editOnline-grocery-and-vegetable&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['id']==132 || $_REQUEST['id']==22)
+	{
+		$heart->redirect('content.php?show=editGps-location-app&id='.$_REQUEST['id']);
 	}
 	
 exit();
@@ -763,6 +812,191 @@ case 'update_CodeigniterDevelopment_banner':
 	$heart->redirect('content.php?show=viewCodeigniter-development&m=2&id='.$_REQUEST['redirect_id']);
 break;
 
+case 'update_InternetMarketing_banner':
+       $BannerTitle=addslashes($_REQUEST['BannerTitle']);
+       $altTag=addslashes($_REQUEST['altTag']);
+       $ph1 = $_FILES['image']['name'];
+	   $a31 = $_FILES['image']['tmp_name'];
+	   $last_id = 'internetMarket';
+	if($ph1!='')
+	{
+
+			$file_ext1=explode(".",$ph1);
+			$ext1= strtolower($file_ext1[count($file_ext1)-1]);
+			$value1=$last_id."_".$last_id.".".$ext1;
+			$path1="../images/".$value1;
+				
+				//echo $value;
+				chmod($path1,0777);
+				copy($a31,$path1);
+				chmod($path1,0777);
+
+		   	
+	 	$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+	       `BannerTitle` = '".$BannerTitle."',
+	       `altTag` 	= '".$altTag."',
+	       `bannerImg` 	= '".$value1."'
+	        WHERE `id` 	= '".$_REQUEST['id']."' ";
+	$heart->sql_query($sql1);
+	}else{
+		$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+		       `BannerTitle` = '".$BannerTitle."',
+		     	`altTag` 	= '".$altTag."'
+		        WHERE `id` = '".$_REQUEST['id']."' ";
+		$heart->sql_query($sql1);
+	}
+       
+	$heart->redirect('content.php?show=viewInternet-marketing&m=2&id='.$_REQUEST['redirect_id']);
+break;
+
+case 'update_SslCertificate_banner':
+       $BannerTitle=addslashes($_REQUEST['BannerTitle']);
+       $altTag=addslashes($_REQUEST['altTag']);
+       $ph1 = $_FILES['image']['name'];
+	   $a31 = $_FILES['image']['tmp_name'];
+	   $last_id = 'sslcertificate';
+	if($ph1!='')
+	{
+
+			$file_ext1=explode(".",$ph1);
+			$ext1= strtolower($file_ext1[count($file_ext1)-1]);
+			$value1=$last_id."_".$last_id.".".$ext1;
+			$path1="../images/".$value1;
+				
+				//echo $value;
+				chmod($path1,0777);
+				copy($a31,$path1);
+				chmod($path1,0777);
+
+		   	
+	 	$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+	       `BannerTitle` = '".$BannerTitle."',
+	       `altTag` 	= '".$altTag."',
+	       `bannerImg` 	= '".$value1."'
+	        WHERE `id` 	= '".$_REQUEST['id']."' ";
+	$heart->sql_query($sql1);
+	}else{
+		$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+		       `BannerTitle` = '".$BannerTitle."',
+		     	`altTag` 	= '".$altTag."'
+		        WHERE `id` = '".$_REQUEST['id']."' ";
+		$heart->sql_query($sql1);
+	}
+       
+	$heart->redirect('content.php?show=viewSsl-certificate&m=2&id='.$_REQUEST['redirect_id']);
+break;
+
+case 'update_Dedicatedlinuxhosting_banner':
+       $BannerTitle=addslashes($_REQUEST['BannerTitle']);
+       $altTag=addslashes($_REQUEST['altTag']);
+       $ph1 = $_FILES['image']['name'];
+	   $a31 = $_FILES['image']['tmp_name'];
+	   $last_id = 'Dedilinuxhost';
+	if($ph1!='')
+	{
+
+			$file_ext1=explode(".",$ph1);
+			$ext1= strtolower($file_ext1[count($file_ext1)-1]);
+			$value1=$last_id."_".$last_id.".".$ext1;
+			$path1="../images/".$value1;
+				
+				//echo $value;
+				chmod($path1,0777);
+				copy($a31,$path1);
+				chmod($path1,0777);
+
+		   	
+	 	$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+	       `BannerTitle` = '".$BannerTitle."',
+	       `altTag` 	= '".$altTag."',
+	       `bannerImg` 	= '".$value1."'
+	        WHERE `id` 	= '".$_REQUEST['id']."' ";
+	$heart->sql_query($sql1);
+	}else{
+		$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+		       `BannerTitle` = '".$BannerTitle."',
+		     	`altTag` 	= '".$altTag."'
+		        WHERE `id` = '".$_REQUEST['id']."' ";
+		$heart->sql_query($sql1);
+	}
+       
+	$heart->redirect('content.php?show=viewDedicated-linux-hosting&m=2&id='.$_REQUEST['redirect_id']);
+break;
+
+case 'update_Onlinegroceryandvegetable_banner':
+       $BannerTitle=addslashes($_REQUEST['BannerTitle']);
+       $altTag=addslashes($_REQUEST['altTag']);
+       $ph1 = $_FILES['image']['name'];
+	   $a31 = $_FILES['image']['tmp_name'];
+	   $last_id = 'onlinegroceryveg';
+	if($ph1!='')
+	{
+
+			$file_ext1=explode(".",$ph1);
+			$ext1= strtolower($file_ext1[count($file_ext1)-1]);
+			$value1=$last_id."_".$last_id.".".$ext1;
+			$path1="../images/".$value1;
+				
+				//echo $value;
+				chmod($path1,0777);
+				copy($a31,$path1);
+				chmod($path1,0777);
+
+		   	
+	 	$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+	       `BannerTitle` = '".$BannerTitle."',
+	       `altTag` 	= '".$altTag."',
+	       `bannerImg` 	= '".$value1."'
+	        WHERE `id` 	= '".$_REQUEST['id']."' ";
+	$heart->sql_query($sql1);
+	}else{
+		$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+		       `BannerTitle` = '".$BannerTitle."',
+		     	`altTag` 	= '".$altTag."'
+		        WHERE `id` = '".$_REQUEST['id']."' ";
+		$heart->sql_query($sql1);
+	}
+       
+	$heart->redirect('content.php?show=viewOnline-grocery-and-vegetable&m=2&id='.$_REQUEST['redirect_id']);
+break;
+
+
+case 'update_Gpslocationapp_banner':
+       $BannerTitle=addslashes($_REQUEST['BannerTitle']);
+       $altTag=addslashes($_REQUEST['altTag']);
+       $ph1 = $_FILES['image']['name'];
+	   $a31 = $_FILES['image']['tmp_name'];
+	   $last_id = 'gpslocapp';
+	if($ph1!='')
+	{
+
+			$file_ext1=explode(".",$ph1);
+			$ext1= strtolower($file_ext1[count($file_ext1)-1]);
+			$value1=$last_id."_".$last_id.".".$ext1;
+			$path1="../images/".$value1;
+				
+				//echo $value;
+				chmod($path1,0777);
+				copy($a31,$path1);
+				chmod($path1,0777);
+
+		   	
+	 	$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+	       `BannerTitle` = '".$BannerTitle."',
+	       `altTag` 	= '".$altTag."',
+	       `bannerImg` 	= '".$value1."'
+	        WHERE `id` 	= '".$_REQUEST['id']."' ";
+	$heart->sql_query($sql1);
+	}else{
+		$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+		       `BannerTitle` = '".$BannerTitle."',
+		     	`altTag` 	= '".$altTag."'
+		        WHERE `id` = '".$_REQUEST['id']."' ";
+		$heart->sql_query($sql1);
+	}
+       
+	$heart->redirect('content.php?show=viewGps-location-app&m=2&id='.$_REQUEST['redirect_id']);
+break;
 //show add window
 case'add':
 	$heart->redirect('content.php?show=add');	

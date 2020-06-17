@@ -200,8 +200,75 @@ switch($action)
 		}
 	break;
 
+	case'Enquiry_training':
+		$contactName	=	$_REQUEST['name'];
+		$contactEmail	=	$_REQUEST['email'];
+		$contactPhone	=	$_REQUEST['mobileno'];
+		$contactMessage	=	$_REQUEST['message'];
+		$EnqueryFor		=	$_REQUEST['enquiry'];
+		
+		//Send Email To Admin
+		$mail.='			<table width="100%" border="0" cellspacing="0" cellpadding="12" style="min-width: 700px;">';
+		$mail.='				<tr>';
+		$mail.='					<td height="9" colspan="3" align="left" valign="top" style="padding:1em 0 0 0;"><h2>There is a query from a visitor!</h2></td>';
+		$mail.='				</tr>';
+		$mail.='					<tr>';
+		$mail.='						<td style="width:10%; padding:0;">Enquiry For</td>';
+		$mail.='						<td style="width:2%; padding:0;">:</td>';
+		$mail.='						<td style="width:88%; padding:0;">'.$EnqueryFor.'</td>';
+		$mail.='					</tr>';
+		$mail.='					<tr>';
+		$mail.='						<td style="width:10%; padding:0;">From</td>';
+		$mail.='						<td style="width:2%; padding:0;">:</td>';
+		$mail.='						<td style="width:88%; padding:0;">'.$contactName.'</td>';
+		$mail.='					</tr>';
+		$mail.='					<tr>';
+		$mail.='						<td style="width:10%; padding:0;">Contact</td>';
+		$mail.='						<td style="width:2%; padding:0;">:</td>';
+		$mail.='						<td style="width:88%; padding:0;">'.$contactPhone.'</td>';
+		$mail.='					</tr>';
+		$mail.='					<tr>';
+		$mail.='						<td style="width:10%; padding:0;">Email</td>';
+		$mail.='						<td style="width:2%; padding:0;">:</td>';
+		$mail.='						<td style="width:88%; padding:0;">'.$contactEmail.'</td>';
+		$mail.='					</tr>';
+		$mail.='					<tr>';
+		$mail.='						<td height="10" colspan="3" align="left" valign="top" style="padding: 0;"></td>';
+		$mail.='					</tr>';
+		$mail.='					<tr>';
+		$mail.='						<td height="10" colspan="3" align="left" valign="top" style="padding:10px; border:1px solid #ccc; background:#f9f9f9;">';
+		$mail.='							<p style="font-weight:bold;">Query :</p>';
+		$mail.='							<p>'.$contactMessage.'</p>';
+		$mail.='						</td>';
+		$mail.='					</tr>';
+		$mail.='				</table>';		
+		
+		$message		=	$mail;
+		
+		$to_name 		=	'Admin';
+		$to_email 		=	$cfg['INFO_EMAIL'];
+		$form_name 		=	$cfg['ADMIN_NAME'];
+		$form_email		=	$cfg['ADMIN_EMAIL'];
+		$subject		=	"User Query";		
+		send_mail_contact($to_name, $to_email, $form_name, $form_email, $subject, $message);		
+			
+		/* ***** Send Email ***** */
+		$to_name 		=	$contactName;
+		$to_email 		=	$contactEmail;
+		$form_name 		=	$cfg['ADMIN_NAME'];
+		$form_email		=	$cfg['ADMIN_EMAIL'];
+		$subject		=	"Thank you for your query";		
+		$message		.=	'Dear '.$contactName.',<br/><br/>
+							We have received your query, will get back to your soon.';
+		$sendMail = send_mail_contact($to_name, $to_email, $form_name, $form_email, $subject, $message, $bcc='');
+		if($sendMail){
+			echo 'true';die;
+		}else{
+			echo 'false';die;
+		}
+	break;
 
-case 'newsletterAdd' :
+	case 'newsletterAdd' :
 		$custId	    =	stripslashes(strip_tags($_SESSION['userid']));
 		$email	    =	stripslashes(strip_tags($_REQUEST['emailNews']));
 
