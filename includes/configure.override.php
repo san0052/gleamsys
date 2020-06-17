@@ -123,6 +123,8 @@ $cfg['DB_GALLERY']						= "`".$cfg['TABLE_PREFIX']."gallery`";
 $cfg['DB_SHIPPING_TYPE']				= "`".$cfg['TABLE_PREFIX']."shipping_type`";
 $cfg['DB_BLOCK_TIME']					= "`".$cfg['TABLE_PREFIX']."block_ordertime`";
 $cfg['DB_COMPUTER_TRAIN']				= "`".$cfg['TABLE_PREFIX']."computer_training`";
+$cfg['DB_SHOP_CONTENT']				    = "`".$cfg['TABLE_PREFIX']."shop_content`";
+$cfg['DB_ONLINESTORE_BANNER']			= "`".$cfg['TABLE_PREFIX']."onlinestore_banner`";
 
 $cfg['SESSION_SITE']=2;
 
