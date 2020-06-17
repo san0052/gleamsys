@@ -2,11 +2,10 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 heading">
-                <h2>feature products</h2>
-
+                <h2>To-Day Special</h2>
             </div>
             <div class="col-xs-12 prd-listing-scrol">
-                <div class="col-xs-12 owl-carousel owl-theme featureproduct">
+                <div class="col-xs-12 owl-carousel owl-theme todayproduct">
                     <div class="item">
                         <div class="main-prd-box">
                             <div class="box_img">
@@ -126,13 +125,13 @@
             </div>
 
             <div class="col-xs-12 btn-box">
-                <button disabled style="cursor: no-drop;">view all products</button>
+                <button>view all products</button>
             </div>
         </div>
     </div>
 </div>
 <script>
-    $('.featureproduct').owlCarousel({
+    $('.todayproduct').owlCarousel({
 
         items: 2,
         nav: true,
