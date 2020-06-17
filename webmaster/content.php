@@ -1464,6 +1464,479 @@ if($show=='editContact'){
         </form>
       <?php }
 
+          if($show =='editInternet-marketing'){
+            $sql="SELECT * FROM ".$cfg['DB_SERVICE_BANNER']." WHERE `siteId`='".$cfg['SESSION_SITE']."' and `id` = 10 and `bannerType`='internet-marketing'";
+            $res  = $heart->sql_query($sql);
+            $row  = $heart->sql_fetchrow($res);
+            
+            ?>
+            <form action="content_process.php" method="post" name="frm" id="frm" enctype="multipart/form-data">
+              <p>
+                <input type="hidden" name="act" value="update_InternetMarketing_banner" />
+                <input type="hidden" name="id" value="<?=$row['id']?>" />
+                <input type="hidden" name="redirect_id" value="<?=$_GET['id']?>" />
+              </p>
+              <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
+                <thead>
+                  <tr>
+                    <td colspan="2" align="left" class="style2">&nbsp;Edit Page Section </td>
+                  </tr>
+                </thead>
+                <tbody>
+                 <tr class="row1">
+                  <td colspan="2" align="left" class="redbuttonelements"><?=@$msg?></td>
+                </tr>
+                <tr class="row2">
+                  <td width="30%" align="left" class="leftBarText_new">Page Heading</td>
+                  <td align="left"><input name="pageheading" type="text" class="forminputelement" id="pageheading" value="<?=stripslashes($row['pageHeading'])?>" readonly/></td>
+                </tr>
+                <tr class="row2">
+                  <td width="30%" align="left" class="leftBarText_new">Banner Title</td>
+                  <td align="left"><input name="BannerTitle" type="text" class="forminputelement" id="BannerTitle" value="<?=stripslashes($row['BannerTitle'])?>" /></td>
+                </tr>
+        <!-- <tr class="row1">
+          <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Content English</span> <span class="redstar">*</span></td>
+          
+          <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
+        </tr>
+        <tr class="row2">
+         <td colspan="2" align="left">
+          <textarea name="description1"  class="forminputelement" cols="80" id="description1" /><?=stripslashes($row['desc1'])?></textarea>
+          <script>
+
+                    // Replace the <textarea id="editor1"> with a CKEditor
+                    // instance, using default configuration.
+                    CKEDITOR.replace( 'description1' );
+                  </script>
+                </td>
+              </tr>
+
+              <tr class="row2">
+               <td colspan="2" align="left">
+                <textarea name="description2"  class="forminputelement" cols="80" id="description2" /><?=stripslashes($row['desc2'])?></textarea>
+                <script>
+                    // Replace the <textarea id="editor1"> with a CKEditor
+                    // instance, using default configuration.
+                    CKEDITOR.replace( 'description2' );
+                  </script>
+                </td>
+              </tr>
+            -->
+            <tr class="row2">
+              <td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Banner Image </span> </td>
+              <td width="70%" colspan="4" align="left" valign="top"><input name="image" id="image" type="file" class="forminputelement"/>
+                &nbsp;&nbsp; <img src="../images/<?=$row['bannerImg']?>"  width="70" align="top"/></td>
+              </tr> 
+              <tr class="row2">
+                <td width="30%" align="left" class="leftBarText_new">Alt Tag</td>
+                <td align="left"><input name="altTag" type="text" class="forminputelement" id="altTag" value="<?=stripslashes($row['altTag'])?>" /></td>
+              </tr>
+              <tr>
+                
+                <td align="center" colspan="2">
+                  <a class="brownbttn" href="content.php">&lt;&lt;back</a>
+                  <input type="submit" name="Save" id="Save" value="Save" class="loginbttn" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      <?php }
+
+          if($show =='editCloud-hosting'){
+            $sql="SELECT * FROM ".$cfg['DB_SERVICE_BANNER']." WHERE `siteId`='".$cfg['SESSION_SITE']."' and `id` = 11 and `bannerType`='cloud-hosting'";
+            $res  = $heart->sql_query($sql);
+            $row  = $heart->sql_fetchrow($res);
+            
+            ?>
+            <form action="content_process.php" method="post" name="frm" id="frm" enctype="multipart/form-data">
+              <p>
+                <input type="hidden" name="act" value="update_InternetMarketing_banner" />
+                <input type="hidden" name="id" value="<?=$row['id']?>" />
+                <input type="hidden" name="redirect_id" value="<?=$_GET['id']?>" />
+              </p>
+              <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
+                <thead>
+                  <tr>
+                    <td colspan="2" align="left" class="style2">&nbsp;Edit Page Section </td>
+                  </tr>
+                </thead>
+                <tbody>
+                 <tr class="row1">
+                  <td colspan="2" align="left" class="redbuttonelements"><?=@$msg?></td>
+                </tr>
+                <tr class="row2">
+                  <td width="30%" align="left" class="leftBarText_new">Page Heading</td>
+                  <td align="left"><input name="pageheading" type="text" class="forminputelement" id="pageheading" value="<?=stripslashes($row['pageHeading'])?>" readonly/></td>
+                </tr>
+                <tr class="row2">
+                  <td width="30%" align="left" class="leftBarText_new">Banner Title</td>
+                  <td align="left"><input name="BannerTitle" type="text" class="forminputelement" id="BannerTitle" value="<?=stripslashes($row['BannerTitle'])?>" /></td>
+                </tr>
+        <!-- <tr class="row1">
+          <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Content English</span> <span class="redstar">*</span></td>
+          
+          <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
+        </tr>
+        <tr class="row2">
+         <td colspan="2" align="left">
+          <textarea name="description1"  class="forminputelement" cols="80" id="description1" /><?=stripslashes($row['desc1'])?></textarea>
+          <script>
+
+                    // Replace the <textarea id="editor1"> with a CKEditor
+                    // instance, using default configuration.
+                    CKEDITOR.replace( 'description1' );
+                  </script>
+                </td>
+              </tr>
+
+              <tr class="row2">
+               <td colspan="2" align="left">
+                <textarea name="description2"  class="forminputelement" cols="80" id="description2" /><?=stripslashes($row['desc2'])?></textarea>
+                <script>
+                    // Replace the <textarea id="editor1"> with a CKEditor
+                    // instance, using default configuration.
+                    CKEDITOR.replace( 'description2' );
+                  </script>
+                </td>
+              </tr>
+            -->
+            <tr class="row2">
+              <td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Banner Image </span> </td>
+              <td width="70%" colspan="4" align="left" valign="top"><input name="image" id="image" type="file" class="forminputelement"/>
+                &nbsp;&nbsp; <img src="../images/<?=$row['bannerImg']?>"  width="70" align="top"/></td>
+              </tr> 
+              <tr class="row2">
+                <td width="30%" align="left" class="leftBarText_new">Alt Tag</td>
+                <td align="left"><input name="altTag" type="text" class="forminputelement" id="altTag" value="<?=stripslashes($row['altTag'])?>" /></td>
+              </tr>
+              <tr>
+                
+                <td align="center" colspan="2">
+                  <a class="brownbttn" href="content.php">&lt;&lt;back</a>
+                  <input type="submit" name="Save" id="Save" value="Save" class="loginbttn" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      <?php }
+
+    if($show =='editSsl-certificate'){
+            $sql="SELECT * FROM ".$cfg['DB_SERVICE_BANNER']." WHERE `siteId`='".$cfg['SESSION_SITE']."' and `id` = 12 and `bannerType`='ssl-certificate'";
+            $res  = $heart->sql_query($sql);
+            $row  = $heart->sql_fetchrow($res);
+            
+            ?>
+            <form action="content_process.php" method="post" name="frm" id="frm" enctype="multipart/form-data">
+              <p>
+                <input type="hidden" name="act" value="update_SslCertificate_banner" />
+                <input type="hidden" name="id" value="<?=$row['id']?>" />
+                <input type="hidden" name="redirect_id" value="<?=$_GET['id']?>" />
+              </p>
+              <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
+                <thead>
+                  <tr>
+                    <td colspan="2" align="left" class="style2">&nbsp;Edit Page Section </td>
+                  </tr>
+                </thead>
+                <tbody>
+                 <tr class="row1">
+                  <td colspan="2" align="left" class="redbuttonelements"><?=@$msg?></td>
+                </tr>
+                <tr class="row2">
+                  <td width="30%" align="left" class="leftBarText_new">Page Heading</td>
+                  <td align="left"><input name="pageheading" type="text" class="forminputelement" id="pageheading" value="<?=stripslashes($row['pageHeading'])?>" readonly/></td>
+                </tr>
+                <tr class="row2">
+                  <td width="30%" align="left" class="leftBarText_new">Banner Title</td>
+                  <td align="left"><input name="BannerTitle" type="text" class="forminputelement" id="BannerTitle" value="<?=stripslashes($row['BannerTitle'])?>" /></td>
+                </tr>
+        <!-- <tr class="row1">
+          <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Content English</span> <span class="redstar">*</span></td>
+          
+          <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
+        </tr>
+        <tr class="row2">
+         <td colspan="2" align="left">
+          <textarea name="description1"  class="forminputelement" cols="80" id="description1" /><?=stripslashes($row['desc1'])?></textarea>
+          <script>
+
+                    // Replace the <textarea id="editor1"> with a CKEditor
+                    // instance, using default configuration.
+                    CKEDITOR.replace( 'description1' );
+                  </script>
+                </td>
+              </tr>
+
+              <tr class="row2">
+               <td colspan="2" align="left">
+                <textarea name="description2"  class="forminputelement" cols="80" id="description2" /><?=stripslashes($row['desc2'])?></textarea>
+                <script>
+                    // Replace the <textarea id="editor1"> with a CKEditor
+                    // instance, using default configuration.
+                    CKEDITOR.replace( 'description2' );
+                  </script>
+                </td>
+              </tr>
+            -->
+            <tr class="row2">
+              <td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Banner Image </span> </td>
+              <td width="70%" colspan="4" align="left" valign="top"><input name="image" id="image" type="file" class="forminputelement"/>
+                &nbsp;&nbsp; <img src="../images/<?=$row['bannerImg']?>"  width="70" align="top"/></td>
+              </tr> 
+              <tr class="row2">
+                <td width="30%" align="left" class="leftBarText_new">Alt Tag</td>
+                <td align="left"><input name="altTag" type="text" class="forminputelement" id="altTag" value="<?=stripslashes($row['altTag'])?>" /></td>
+              </tr>
+              <tr>
+                
+                <td align="center" colspan="2">
+                  <a class="brownbttn" href="content.php">&lt;&lt;back</a>
+                  <input type="submit" name="Save" id="Save" value="Save" class="loginbttn" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      <?php }
+
+      if($show =='editDedicated-linux-hosting'){
+            $sql="SELECT * FROM ".$cfg['DB_SERVICE_BANNER']." WHERE `siteId`='".$cfg['SESSION_SITE']."' and `id` = 13 and `bannerType`='dedicated-linux-hosting'";
+            $res  = $heart->sql_query($sql);
+            $row  = $heart->sql_fetchrow($res);
+            
+            ?>
+            <form action="content_process.php" method="post" name="frm" id="frm" enctype="multipart/form-data">
+              <p>
+                <input type="hidden" name="act" value="update_Dedicatedlinuxhosting_banner" />
+                <input type="hidden" name="id" value="<?=$row['id']?>" />
+                <input type="hidden" name="redirect_id" value="<?=$_GET['id']?>" />
+              </p>
+              <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
+                <thead>
+                  <tr>
+                    <td colspan="2" align="left" class="style2">&nbsp;Edit Page Section </td>
+                  </tr>
+                </thead>
+                <tbody>
+                 <tr class="row1">
+                  <td colspan="2" align="left" class="redbuttonelements"><?=@$msg?></td>
+                </tr>
+                <tr class="row2">
+                  <td width="30%" align="left" class="leftBarText_new">Page Heading</td>
+                  <td align="left"><input name="pageheading" type="text" class="forminputelement" id="pageheading" value="<?=stripslashes($row['pageHeading'])?>" readonly/></td>
+                </tr>
+                <tr class="row2">
+                  <td width="30%" align="left" class="leftBarText_new">Banner Title</td>
+                  <td align="left"><input name="BannerTitle" type="text" class="forminputelement" id="BannerTitle" value="<?=stripslashes($row['BannerTitle'])?>" /></td>
+                </tr>
+        <!-- <tr class="row1">
+          <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Content English</span> <span class="redstar">*</span></td>
+          
+          <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
+        </tr>
+        <tr class="row2">
+         <td colspan="2" align="left">
+          <textarea name="description1"  class="forminputelement" cols="80" id="description1" /><?=stripslashes($row['desc1'])?></textarea>
+          <script>
+
+                    // Replace the <textarea id="editor1"> with a CKEditor
+                    // instance, using default configuration.
+                    CKEDITOR.replace( 'description1' );
+                  </script>
+                </td>
+              </tr>
+
+              <tr class="row2">
+               <td colspan="2" align="left">
+                <textarea name="description2"  class="forminputelement" cols="80" id="description2" /><?=stripslashes($row['desc2'])?></textarea>
+                <script>
+                    // Replace the <textarea id="editor1"> with a CKEditor
+                    // instance, using default configuration.
+                    CKEDITOR.replace( 'description2' );
+                  </script>
+                </td>
+              </tr>
+            -->
+            <tr class="row2">
+              <td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Banner Image </span> </td>
+              <td width="70%" colspan="4" align="left" valign="top"><input name="image" id="image" type="file" class="forminputelement"/>
+                &nbsp;&nbsp; <img src="../images/<?=$row['bannerImg']?>"  width="70" align="top"/></td>
+              </tr> 
+              <tr class="row2">
+                <td width="30%" align="left" class="leftBarText_new">Alt Tag</td>
+                <td align="left"><input name="altTag" type="text" class="forminputelement" id="altTag" value="<?=stripslashes($row['altTag'])?>" /></td>
+              </tr>
+              <tr>
+                
+                <td align="center" colspan="2">
+                  <a class="brownbttn" href="content.php">&lt;&lt;back</a>
+                  <input type="submit" name="Save" id="Save" value="Save" class="loginbttn" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      <?php }
+
+      if($show =='editOnline-grocery-and-vegetable'){
+            $sql="SELECT * FROM ".$cfg['DB_SERVICE_BANNER']." WHERE `siteId`='".$cfg['SESSION_SITE']."' and `id` = 14 and `bannerType`='online-grocery-and-vegetable'";
+            $res  = $heart->sql_query($sql);
+            $row  = $heart->sql_fetchrow($res);
+            
+            ?>
+            <form action="content_process.php" method="post" name="frm" id="frm" enctype="multipart/form-data">
+              <p>
+                <input type="hidden" name="act" value="update_Onlinegroceryandvegetable_banner" />
+                <input type="hidden" name="id" value="<?=$row['id']?>" />
+                <input type="hidden" name="redirect_id" value="<?=$_GET['id']?>" />
+              </p>
+              <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
+                <thead>
+                  <tr>
+                    <td colspan="2" align="left" class="style2">&nbsp;Edit Page Section </td>
+                  </tr>
+                </thead>
+                <tbody>
+                 <tr class="row1">
+                  <td colspan="2" align="left" class="redbuttonelements"><?=@$msg?></td>
+                </tr>
+                <tr class="row2">
+                  <td width="30%" align="left" class="leftBarText_new">Page Heading</td>
+                  <td align="left"><input name="pageheading" type="text" class="forminputelement" id="pageheading" value="<?=stripslashes($row['pageHeading'])?>" readonly/></td>
+                </tr>
+                <tr class="row2">
+                  <td width="30%" align="left" class="leftBarText_new">Banner Title</td>
+                  <td align="left"><input name="BannerTitle" type="text" class="forminputelement" id="BannerTitle" value="<?=stripslashes($row['BannerTitle'])?>" /></td>
+                </tr>
+        <!-- <tr class="row1">
+          <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Content English</span> <span class="redstar">*</span></td>
+          
+          <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
+        </tr>
+        <tr class="row2">
+         <td colspan="2" align="left">
+          <textarea name="description1"  class="forminputelement" cols="80" id="description1" /><?=stripslashes($row['desc1'])?></textarea>
+          <script>
+
+                    // Replace the <textarea id="editor1"> with a CKEditor
+                    // instance, using default configuration.
+                    CKEDITOR.replace( 'description1' );
+                  </script>
+                </td>
+              </tr>
+
+              <tr class="row2">
+               <td colspan="2" align="left">
+                <textarea name="description2"  class="forminputelement" cols="80" id="description2" /><?=stripslashes($row['desc2'])?></textarea>
+                <script>
+                    // Replace the <textarea id="editor1"> with a CKEditor
+                    // instance, using default configuration.
+                    CKEDITOR.replace( 'description2' );
+                  </script>
+                </td>
+              </tr>
+            -->
+            <tr class="row2">
+              <td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Banner Image </span> </td>
+              <td width="70%" colspan="4" align="left" valign="top"><input name="image" id="image" type="file" class="forminputelement"/>
+                &nbsp;&nbsp; <img src="../images/<?=$row['bannerImg']?>"  width="70" align="top"/></td>
+              </tr> 
+              <tr class="row2">
+                <td width="30%" align="left" class="leftBarText_new">Alt Tag</td>
+                <td align="left"><input name="altTag" type="text" class="forminputelement" id="altTag" value="<?=stripslashes($row['altTag'])?>" /></td>
+              </tr>
+              <tr>
+                
+                <td align="center" colspan="2">
+                  <a class="brownbttn" href="content.php">&lt;&lt;back</a>
+                  <input type="submit" name="Save" id="Save" value="Save" class="loginbttn" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      <?php }
+
+      if($show =='editGps-location-app'){
+            $sql="SELECT * FROM ".$cfg['DB_SERVICE_BANNER']." WHERE `siteId`='".$cfg['SESSION_SITE']."' and `id` = 15 and `bannerType`='gps-location-app'";
+            $res  = $heart->sql_query($sql);
+            $row  = $heart->sql_fetchrow($res);
+            
+            ?>
+            <form action="content_process.php" method="post" name="frm" id="frm" enctype="multipart/form-data">
+              <p>
+                <input type="hidden" name="act" value="update_Gpslocationapp_banner" />
+                <input type="hidden" name="id" value="<?=$row['id']?>" />
+                <input type="hidden" name="redirect_id" value="<?=$_GET['id']?>" />
+              </p>
+              <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
+                <thead>
+                  <tr>
+                    <td colspan="2" align="left" class="style2">&nbsp;Edit Page Section </td>
+                  </tr>
+                </thead>
+                <tbody>
+                 <tr class="row1">
+                  <td colspan="2" align="left" class="redbuttonelements"><?=@$msg?></td>
+                </tr>
+                <tr class="row2">
+                  <td width="30%" align="left" class="leftBarText_new">Page Heading</td>
+                  <td align="left"><input name="pageheading" type="text" class="forminputelement" id="pageheading" value="<?=stripslashes($row['pageHeading'])?>" readonly/></td>
+                </tr>
+                <tr class="row2">
+                  <td width="30%" align="left" class="leftBarText_new">Banner Title</td>
+                  <td align="left"><input name="BannerTitle" type="text" class="forminputelement" id="BannerTitle" value="<?=stripslashes($row['BannerTitle'])?>" /></td>
+                </tr>
+        <!-- <tr class="row1">
+          <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Content English</span> <span class="redstar">*</span></td>
+          
+          <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
+        </tr>
+        <tr class="row2">
+         <td colspan="2" align="left">
+          <textarea name="description1"  class="forminputelement" cols="80" id="description1" /><?=stripslashes($row['desc1'])?></textarea>
+          <script>
+
+                    // Replace the <textarea id="editor1"> with a CKEditor
+                    // instance, using default configuration.
+                    CKEDITOR.replace( 'description1' );
+                  </script>
+                </td>
+              </tr>
+
+              <tr class="row2">
+               <td colspan="2" align="left">
+                <textarea name="description2"  class="forminputelement" cols="80" id="description2" /><?=stripslashes($row['desc2'])?></textarea>
+                <script>
+                    // Replace the <textarea id="editor1"> with a CKEditor
+                    // instance, using default configuration.
+                    CKEDITOR.replace( 'description2' );
+                  </script>
+                </td>
+              </tr>
+            -->
+            <tr class="row2">
+              <td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Banner Image </span> </td>
+              <td width="70%" colspan="4" align="left" valign="top"><input name="image" id="image" type="file" class="forminputelement"/>
+                &nbsp;&nbsp; <img src="../images/<?=$row['bannerImg']?>"  width="70" align="top"/></td>
+              </tr> 
+              <tr class="row2">
+                <td width="30%" align="left" class="leftBarText_new">Alt Tag</td>
+                <td align="left"><input name="altTag" type="text" class="forminputelement" id="altTag" value="<?=stripslashes($row['altTag'])?>" /></td>
+              </tr>
+              <tr>
+                
+                <td align="center" colspan="2">
+                  <a class="brownbttn" href="content.php">&lt;&lt;back</a>
+                  <input type="submit" name="Save" id="Save" value="Save" class="loginbttn" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      <?php }
 
       if($show=='viewTerms'){
      // $cfg['SESSION_SITE'] = 2;
@@ -2585,6 +3058,428 @@ if($show=='editContact'){
         if($show=='viewCodeigniter-development') {
         // $cfg['SESSION_SITE'] = 2;
         $sql="SELECT * FROM ".$cfg['DB_SERVICE_BANNER']." WHERE `siteId`='".$cfg['SESSION_SITE']."' AND `status`='A' AND `id`= 9 AND `bannerType` = 'codeigniter-development'";
+        $res=$heart->sql_query($sql);
+        $row=$heart->sql_fetchrow($res);
+
+        ?>
+        <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
+          <thead>
+            <tr>
+              <td colspan="3" align="left" class="style2">&nbsp;View Page Details Section </td>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="row1">
+              <td colspan="3" align="right" class="redbuttonelements"><?=@$msg?></td>
+            </tr>
+            <tr class="row2">
+              <td colspan="3" align="right"><a class="brownbttn" style="font-size:11px; padding:3px 7px;" href="content_process.php?act=edit&amp;id=<?=$_GET['id']?>">Edit</a></td>
+            </tr>
+
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Page Heading</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['pageHeading'])?></td>
+            </tr>  
+            
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Title</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['BannerTitle'])?></td>
+            </tr>
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Image</td>
+            </tr>
+            
+            <tr class="row1">
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><img src="../images/<?=stripslashes($row['bannerImg']);?>" alt="<?=stripslashes($row['altTag'])?>" style="width:30%;height: auto;"></td>
+            </tr>        
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Alt Tag</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['altTag'])?></td>
+            </tr>
+            <tr class="row2">
+              <td class="leftBarText_new" align="left">Status</td>
+              <td colspan="2" align="left"><?=($row['status']=='A')?'Active':'Inactive'?></td>
+            </tr>
+            <tr>
+              <td colspan="3" align="center" >&nbsp;<!--<a href="content.php?show=view&id=<?=$_REQUEST['id']?>">&lt;&lt;back</a>--></td>
+            </tr>
+            <tr> 
+              <td align="center" colspan="2">
+                <a class="brownbttn" href="content.php">&lt;&lt;back</a>
+
+              </td> 
+            </tbody>
+          </table>
+
+        <? }
+        if($show=='viewInternet-marketing') {
+        // $cfg['SESSION_SITE'] = 2;
+        $sql="SELECT * FROM ".$cfg['DB_SERVICE_BANNER']." WHERE `siteId`='".$cfg['SESSION_SITE']."' AND `status`='A' AND `id`= 10 AND `bannerType` = 'internet-marketing'";
+        $res=$heart->sql_query($sql);
+        $row=$heart->sql_fetchrow($res);
+
+        ?>
+        <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
+          <thead>
+            <tr>
+              <td colspan="3" align="left" class="style2">&nbsp;View Page Details Section </td>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="row1">
+              <td colspan="3" align="right" class="redbuttonelements"><?=@$msg?></td>
+            </tr>
+            <tr class="row2">
+              <td colspan="3" align="right"><a class="brownbttn" style="font-size:11px; padding:3px 7px;" href="content_process.php?act=edit&amp;id=<?=$_GET['id']?>">Edit</a></td>
+            </tr>
+
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Page Heading</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['pageHeading'])?></td>
+            </tr>  
+            
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Title</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['BannerTitle'])?></td>
+            </tr>
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Image</td>
+            </tr>
+            
+            <tr class="row1">
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><img src="../images/<?=stripslashes($row['bannerImg']);?>" alt="<?=stripslashes($row['altTag'])?>" style="width:30%;height: auto;"></td>
+            </tr>        
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Alt Tag</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['altTag'])?></td>
+            </tr>
+            <tr class="row2">
+              <td class="leftBarText_new" align="left">Status</td>
+              <td colspan="2" align="left"><?=($row['status']=='A')?'Active':'Inactive'?></td>
+            </tr>
+            <tr>
+              <td colspan="3" align="center" >&nbsp;<!--<a href="content.php?show=view&id=<?=$_REQUEST['id']?>">&lt;&lt;back</a>--></td>
+            </tr>
+            <tr> 
+              <td align="center" colspan="2">
+                <a class="brownbttn" href="content.php">&lt;&lt;back</a>
+
+              </td> 
+            </tbody>
+          </table>
+
+        <? }   
+        if($show=='viewSsl-certificate') {
+        // $cfg['SESSION_SITE'] = 2;
+        $sql="SELECT * FROM ".$cfg['DB_SERVICE_BANNER']." WHERE `siteId`='".$cfg['SESSION_SITE']."' AND `status`='A' AND `id`= 12 AND `bannerType` = 'ssl-certificate'";
+        $res=$heart->sql_query($sql);
+        $row=$heart->sql_fetchrow($res);
+
+        ?>
+        <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
+          <thead>
+            <tr>
+              <td colspan="3" align="left" class="style2">&nbsp;View Page Details Section </td>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="row1">
+              <td colspan="3" align="right" class="redbuttonelements"><?=@$msg?></td>
+            </tr>
+            <tr class="row2">
+              <td colspan="3" align="right"><a class="brownbttn" style="font-size:11px; padding:3px 7px;" href="content_process.php?act=edit&amp;id=<?=$_GET['id']?>">Edit</a></td>
+            </tr>
+
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Page Heading</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['pageHeading'])?></td>
+            </tr>  
+            
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Title</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['BannerTitle'])?></td>
+            </tr>
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Image</td>
+            </tr>
+            
+            <tr class="row1">
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><img src="../images/<?=stripslashes($row['bannerImg']);?>" alt="<?=stripslashes($row['altTag'])?>" style="width:30%;height: auto;"></td>
+            </tr>        
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Alt Tag</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['altTag'])?></td>
+            </tr>
+            <tr class="row2">
+              <td class="leftBarText_new" align="left">Status</td>
+              <td colspan="2" align="left"><?=($row['status']=='A')?'Active':'Inactive'?></td>
+            </tr>
+            <tr>
+              <td colspan="3" align="center" >&nbsp;<!--<a href="content.php?show=view&id=<?=$_REQUEST['id']?>">&lt;&lt;back</a>--></td>
+            </tr>
+            <tr> 
+              <td align="center" colspan="2">
+                <a class="brownbttn" href="content.php">&lt;&lt;back</a>
+
+              </td> 
+            </tbody>
+          </table>
+
+        <? }
+        if($show=='viewDedicated-linux-hosting') {
+        // $cfg['SESSION_SITE'] = 2;
+        $sql="SELECT * FROM ".$cfg['DB_SERVICE_BANNER']." WHERE `siteId`='".$cfg['SESSION_SITE']."' AND `status`='A' AND `id`= 13 AND `bannerType` = 'dedicated-linux-hosting'";
+        $res=$heart->sql_query($sql);
+        $row=$heart->sql_fetchrow($res);
+
+        ?>
+        <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
+          <thead>
+            <tr>
+              <td colspan="3" align="left" class="style2">&nbsp;View Page Details Section </td>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="row1">
+              <td colspan="3" align="right" class="redbuttonelements"><?=@$msg?></td>
+            </tr>
+            <tr class="row2">
+              <td colspan="3" align="right"><a class="brownbttn" style="font-size:11px; padding:3px 7px;" href="content_process.php?act=edit&amp;id=<?=$_GET['id']?>">Edit</a></td>
+            </tr>
+
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Page Heading</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['pageHeading'])?></td>
+            </tr>  
+            
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Title</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['BannerTitle'])?></td>
+            </tr>
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Image</td>
+            </tr>
+            
+            <tr class="row1">
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><img src="../images/<?=stripslashes($row['bannerImg']);?>" alt="<?=stripslashes($row['altTag'])?>" style="width:30%;height: auto;"></td>
+            </tr>        
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Alt Tag</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['altTag'])?></td>
+            </tr>
+            <tr class="row2">
+              <td class="leftBarText_new" align="left">Status</td>
+              <td colspan="2" align="left"><?=($row['status']=='A')?'Active':'Inactive'?></td>
+            </tr>
+            <tr>
+              <td colspan="3" align="center" >&nbsp;<!--<a href="content.php?show=view&id=<?=$_REQUEST['id']?>">&lt;&lt;back</a>--></td>
+            </tr>
+            <tr> 
+              <td align="center" colspan="2">
+                <a class="brownbttn" href="content.php">&lt;&lt;back</a>
+
+              </td> 
+            </tbody>
+          </table>
+
+        <? }
+        if($show=='viewOnline-grocery-and-vegetable') {
+        // $cfg['SESSION_SITE'] = 2;
+        $sql="SELECT * FROM ".$cfg['DB_SERVICE_BANNER']." WHERE `siteId`='".$cfg['SESSION_SITE']."' AND `status`='A' AND `id`= 14 AND `bannerType` = 'online-grocery-and-vegetable'";
+        $res=$heart->sql_query($sql);
+        $row=$heart->sql_fetchrow($res);
+
+        ?>
+        <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
+          <thead>
+            <tr>
+              <td colspan="3" align="left" class="style2">&nbsp;View Page Details Section </td>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="row1">
+              <td colspan="3" align="right" class="redbuttonelements"><?=@$msg?></td>
+            </tr>
+            <tr class="row2">
+              <td colspan="3" align="right"><a class="brownbttn" style="font-size:11px; padding:3px 7px;" href="content_process.php?act=edit&amp;id=<?=$_GET['id']?>">Edit</a></td>
+            </tr>
+
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Page Heading</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['pageHeading'])?></td>
+            </tr>  
+            
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Title</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['BannerTitle'])?></td>
+            </tr>
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Image</td>
+            </tr>
+            
+            <tr class="row1">
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><img src="../images/<?=stripslashes($row['bannerImg']);?>" alt="<?=stripslashes($row['altTag'])?>" style="width:30%;height: auto;"></td>
+            </tr>        
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Alt Tag</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['altTag'])?></td>
+            </tr>
+            <tr class="row2">
+              <td class="leftBarText_new" align="left">Status</td>
+              <td colspan="2" align="left"><?=($row['status']=='A')?'Active':'Inactive'?></td>
+            </tr>
+            <tr>
+              <td colspan="3" align="center" >&nbsp;<!--<a href="content.php?show=view&id=<?=$_REQUEST['id']?>">&lt;&lt;back</a>--></td>
+            </tr>
+            <tr> 
+              <td align="center" colspan="2">
+                <a class="brownbttn" href="content.php">&lt;&lt;back</a>
+
+              </td> 
+            </tbody>
+          </table>
+
+        <? }
+
+        if($show=='viewGps-location-app') {
+        // $cfg['SESSION_SITE'] = 2;
+        $sql="SELECT * FROM ".$cfg['DB_SERVICE_BANNER']." WHERE `siteId`='".$cfg['SESSION_SITE']."' AND `status`='A' AND `id`= 15 AND `bannerType` = 'gps-location-app'";
+        $res=$heart->sql_query($sql);
+        $row=$heart->sql_fetchrow($res);
+
+        ?>
+        <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
+          <thead>
+            <tr>
+              <td colspan="3" align="left" class="style2">&nbsp;View Page Details Section </td>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="row1">
+              <td colspan="3" align="right" class="redbuttonelements"><?=@$msg?></td>
+            </tr>
+            <tr class="row2">
+              <td colspan="3" align="right"><a class="brownbttn" style="font-size:11px; padding:3px 7px;" href="content_process.php?act=edit&amp;id=<?=$_GET['id']?>">Edit</a></td>
+            </tr>
+
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Page Heading</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['pageHeading'])?></td>
+            </tr>  
+            
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Title</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['BannerTitle'])?></td>
+            </tr>
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Image</td>
+            </tr>
+            
+            <tr class="row1">
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><img src="../images/<?=stripslashes($row['bannerImg']);?>" alt="<?=stripslashes($row['altTag'])?>" style="width:30%;height: auto;"></td>
+            </tr>        
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Banner Alt Tag</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['altTag'])?></td>
+            </tr>
+            <tr class="row2">
+              <td class="leftBarText_new" align="left">Status</td>
+              <td colspan="2" align="left"><?=($row['status']=='A')?'Active':'Inactive'?></td>
+            </tr>
+            <tr>
+              <td colspan="3" align="center" >&nbsp;<!--<a href="content.php?show=view&id=<?=$_REQUEST['id']?>">&lt;&lt;back</a>--></td>
+            </tr>
+            <tr> 
+              <td align="center" colspan="2">
+                <a class="brownbttn" href="content.php">&lt;&lt;back</a>
+
+              </td> 
+            </tbody>
+          </table>
+
+        <? }
+
+        if($show=='viewCloud-hosting') {
+        // $cfg['SESSION_SITE'] = 2;
+        $sql="SELECT * FROM ".$cfg['DB_SERVICE_BANNER']." WHERE `siteId`='".$cfg['SESSION_SITE']."' AND `status`='A' AND `id`= 11 AND `bannerType` = 'cloud-hosting'";
         $res=$heart->sql_query($sql);
         $row=$heart->sql_fetchrow($res);
 
