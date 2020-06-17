@@ -36,12 +36,21 @@ include_once("includes/links_frontend.php"); ?>
         <div class="container">
 
             <div class="row">
+                <?php 
+                   $sql =   "SELECT * FROM ".$cfg['DB_COMPUTER_TRAIN']."
+                                             WHERE  
+                                            `status` ='A' 
+                                            AND `id` = 1
+                                           "; 
+                    $res    =   $mycms->sql_query($sql);
+                    $row    =   $mycms->sql_fetchrow($res);
+                ?>
 
                 <div class="cm-tr-up">
 
                     <div class="cm-tr-pic">
 
-                        <img src="images/cm-tr.jpg">
+                        <img src="images/<?php echo $row['computerImg'];?>">
 
                     </div>
 
@@ -60,49 +69,18 @@ include_once("includes/links_frontend.php"); ?>
 
 
                         <div id="London" class="tabcontent" style="display: block;">
-
-                            <ul class="why-us-content">
-
-                                <li><span class="chk-tick"><i class="fa fa-check"></i></span>Attend our free computer education sessions</li>
-
-                                <li><span class="chk-tick"><i class="fa fa-check"></i></span>Join specific groups</li>
-
-                                <li><span class="chk-tick"><i class="fa fa-check"></i></span>Certified Trainers</li>
-
-                            </ul>
-
+                            <?php echo computer_desc('1','tick_sign')?>
                         </div>
-
-
 
                         <div id="Paris" class="tabcontent">
-
-                            <p>This course aims to familiarise you with computers and Microsoft Windows, while learning basic computer, mouse and keyboard skills in a supportive classroom environment.</p>
-
+                            <?php echo computer_desc('2')?>
                         </div>
-
 
 
                         <div id="Tokyo" class="tabcontent">
 
-                            <ul class="why-us-content">
-
-                                <li><span class="chk-tick"><i class="fa fa-check"></i></span>Appropriately start up and shut down your computer</li>
-
-                                <li><span class="chk-tick"><i class="fa fa-check"></i></span>Navigate the operating system and start applications</li>
-
-                                <li><span class="chk-tick"><i class="fa fa-check"></i></span>Perform basic functions of file management</li>
-
-                                <li><span class="chk-tick"><i class="fa fa-check"></i></span>Perform basic functions in a word processor and spreadsheet</li>
-
-                                <li><span class="chk-tick"><i class="fa fa-check"></i></span>Manage print settings and print documents</li>
-
-                                <li><span class="chk-tick"><i class="fa fa-check"></i></span>Receive and send emails</li>
-
-                                <li><span class="chk-tick"><i class="fa fa-check"></i></span>Use a web browser to navigate the Internet</li>
-
-                            </ul>
-
+                             <?php echo computer_desc('3','tick_sign')?>
+                           
                         </div>
 
                     </div>
@@ -166,26 +144,8 @@ include_once("includes/links_frontend.php"); ?>
                         <h4>Beginner</h4>
 
                         <button class="enquery-btn" onclick="enqueryslide('begin')">Enquiry</button>
-
-                        <ul class="why-us-content">
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Fundamentals of computer</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Fundamental of operating system</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>E-mail & internet</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Introduction of computer virus</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Introduction to search engine</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Sending and receiving e-mail</li>
-
-                        </ul>
-
-
-
-                    </div>
+                            <?php echo computer_desc('4','tick_sign');?>
+                        </div>
 
                     <div class="col-xs-12 cm-tr-content-box">
 
@@ -286,33 +246,7 @@ include_once("includes/links_frontend.php"); ?>
                         <h4>Advanced</h4>
 
                         <button class="enquery-btn" onclick="enqueryslide('adv')">Enquiry</button>
-
-                        <ul class="why-us-content">
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Application software(Microsoft office)</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Operating system-windows</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Ms PowerPoint (animation)</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Ms word (text)</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Ms excel (a/c maintain)</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Ms access (data base management system)</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Introduction to pc h/w</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Introduction to networking</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>H/w installation and configuration</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Pc debugging, troubleshooting & maintenance</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>S/w installation & configuration, networking basis & configuration</li>
-
-                        </ul>
-
+                            <?php echo computer_desc('5','tick_sign')?>
                     </div>
 
                     <div class="col-xs-12 cm-tr-content-box">
@@ -370,43 +304,13 @@ include_once("includes/links_frontend.php"); ?>
                             </g>
 
                         </svg>
-
                         <h4>Professional</h4>
-
                         <button class="enquery-btn" onclick="enqueryslide('prof')">Enquiry</button>
-
-                        <ul class="why-us-content">
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Concept of web designing</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Introduction to web technology</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Introduction to client server technology</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Concept of internet working</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Fundamental of browsers</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Introduction to Photoshop</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Internet, protocols and browser</li>
-
-                            <li><span class="chk-tick"><i class="fa fa-check"></i></span>Html, Dhtml, Css, java script</li>
-
-                        </ul>
-
+                         <?php echo computer_desc('6','tick_sign')?>
                     </div>
-
-
-
                 </div>
-
-
-
             </div>
-
         </div>
-
     </div>
 
     <? include_once('includes/footer.php') ?>

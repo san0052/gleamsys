@@ -42,7 +42,7 @@ $cfg['DIR_WS_JSCRIPT']					=	'scripts/';
 //Database Details
 $cfg['DB_SERVER']						=	'localhost';
 $cfg['DB_SERVER_USERNAME']				=	'root'; // Database user name
-$cfg['DB_SERVER_PASSWORD']				=	'password'; // Database password
+$cfg['DB_SERVER_PASSWORD']				=	''; // Database password
 $cfg['DB_DATABASE']						=	'gleamsys'; // Database Name*/
 
 
