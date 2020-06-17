@@ -104,6 +104,10 @@ class sql_db
 			return die(mysqli_error($this->db_connect_id));
 		}
 	}
+
+	function inserted_id() {
+		return $this->db_connect_id->insert_id;
+	}
 	
 	/**
 	*

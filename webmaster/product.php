@@ -25,56 +25,12 @@ $show=$_REQUEST['show'];
 </script>
 <script type="text/javascript" src="scripts/jquery.min.js"></script>
 <script type="text/javascript" src="scripts/ddaccordion.js"></script>
-<!--<script type="text/javascript">
-ddaccordion.init({
-	headerclass: "expandable", //Shared CSS class name of headers group that are expandable
-	contentclass: "categoryitems", //Shared CSS class name of contents group
-	revealtype: "click", //Reveal content when user clicks or onmouseover the header? Valid value: "click", "clickgo", or "mouseover"
-	mouseoverdelay: 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
-	collapseprev: true, //Collapse previous content (so only one open at any time)? true/false 
-	defaultexpanded: [0], //index of content(s) open by default [index1, index2, etc]. [] denotes no content
-	onemustopen: false, //Specify whether at least one header should be open always (so never all headers closed)
-	animatedefault: false, //Should contents open by default be animated into view?
-	persiststate: true, //persist state of opened contents within browser session?
-	toggleclass: ["", "openheader"], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
-	togglehtml: ["prefix", "", ""], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
-	animatespeed: "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
-	oninit:function(headers, expandedindices){ //custom code to run when headers have initalized
-		//do nothing
-	},
-	onopenclose:function(header, index, state, isuseractivated){ //custom code to run whenever a header is opened or closed
-		//do nothing
-	}
-})
-</script>-->
-<!--<script type="text/javascript">
-ddaccordion.init({
-	headerclass: "expandable", //Shared CSS class name of headers group that are expandable
-	contentclass: "categoryitems", //Shared CSS class name of contents group
-	revealtype: "click", //Reveal content when user clicks or onmouseover the header? Valid value: "click", "clickgo", or "mouseover"
-	mouseoverdelay: 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
-	collapseprev: true, //Collapse previous content (so only one open at any time)? true/false 
-	defaultexpanded: [0], //index of content(s) open by default [index1, index2, etc]. [] denotes no content
-	onemustopen: false, //Specify whether at least one header should be open always (so never all headers closed)
-	animatedefault: false, //Should contents open by default be animated into view?
-	persiststate: true, //persist state of opened contents within browser session?
-	toggleclass: ["", "openheader"], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
-	togglehtml: ["prefix", "", ""], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
-	animatespeed: "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
-	oninit:function(headers, expandedindices){ //custom code to run when headers have initalized
-		//do nothing
-	},
-	onopenclose:function(header, index, state, isuseractivated){ //custom code to run whenever a header is opened or closed
-		//do nothing
-	}
-})
-</script>-->
 <style type="text/css">
-	<!--
+
 	.style3 {
 		color: #FFFFFF
 	}
-	-->
+	
 </style>
 <td vAlign=top align="center" width="99%"><!-- Start Body Here -->
 	<table width="100%" border="0" align="center" cellpadding="2" cellspacing="0">
@@ -107,16 +63,13 @@ ddaccordion.init({
 							&nbsp;&nbsp;&nbsp;
 							<a href="login.php?act=<?=md5("logout")?>"><img src="images/lock.png" height="24" width="24" border="0" style="vertical-align: middle;" /></a>&nbsp;&nbsp;
 						</td>
-            <?php /*?><!--<td width="658" align="left" valign="middle">&nbsp;&nbsp;<span class="style1">Welcome
-              <?=$_SESSION['admin_user_name']?>
-              </span></td>
-              <td  width="56"align="right" valign="middle"><a href="login.php?act=<?=md5("logout")?>"><img src="images/lock.png" title="Logout" width="24" height="24" border="0" /></a>&nbsp;&nbsp;&nbsp;&nbsp;</td>--><?php */?>
-          </tr>
-          <tr height="16">
-          	<td colspan="2" align="left" valign="middle" style="background-color:#eee8e8;">&nbsp;</td>
-          </tr>
-          <tr>
-          	<td colspan="2" style="background-color:#eee8e8;" align="center">
+
+					</tr>
+					<tr height="16">
+						<td colspan="2" align="left" valign="middle" style="background-color:#eee8e8;">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="background-color:#eee8e8;" align="center">
 			<? //show all record
 			if($_REQUEST['show']==''){
 				?>
@@ -492,124 +445,124 @@ ddaccordion.init({
 																				<?
 																			} 
 
-					}//if	
-					
-				}
-				?>
+																		}//if	
+																		
+																	}
+																	?>
 
-			</tr>
+																</tr>
 
 
-			<tr class="row1">
-				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Name</span> <span class="redstar">*</span></td>
-				<td width="70%" colspan="4" align="left"><table>
-					<tr>
-						<td><input name="prod_pname_add" type="text" class="forminputelement" id="prod_pname_add"  value="" />
-						&nbsp;&nbsp;&nbsp; </td>
-						<td><input type="checkbox" name="fp" id="fp" value="1" />
-							&nbsp;<span class="leftBarText_new">Featured Product</span> </td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td><? if(countRightbar() < 8){?>
-								<input type="checkbox" name="rp" id="rp" value="1" />
-								&nbsp;<span class="leftBarText_new">Show in rightbar</span>
-								<? }?></td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-								<td><input type="checkbox" name="bp" id="bp" value="1" />
-									&nbsp;<span class="leftBarText_new">Best Seller</span></td>
-								</tr>
-							</table></td>
-						</tr>
-						<tr class="row2">
-							<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Price</span> <span class="redstar">*</span></td>
-							<td width="70%" colspan="4" align="left"><input name="prod_price_add" type="text" class="forminputelement" id="prod_price_add" value=""/></td>
-						</tr>
-						<tr class="row1">
-							<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Unit Price</span> <span class="redstar" style="font-size: 9px;">*Fill Up This In Case The Product Is Cake</span></td>
-							<td width="70%" colspan="4" align="left"><input name="prod_unit_price_add" type="text" class="forminputelement" id="prod_unit_price_add" value=""/></td>
-						</tr>
-						<tr class="row1">
-							<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Cost of Double Flowers</span> <span class="redstar" style="font-size: 9px;">*Fill Up This In Case The Product Is Flower</span></td>
-							<td width="70%" colspan="4" align="left"><input name="prod_double_flower_price" type="text" class="forminputelement" id="prod_double_flower_price" value=""/></td>
-						</tr>
-						<tr class="row2">
-							<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Strik Through Price</span> </td>
-							<td width="70%" colspan="4" align="left"><input name="sprod_price_add" type="text" class="forminputelement" id="sprod_price_add" value=""/></td>
-						</tr>
-						<tr class="row1">
-							<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Discount</span> </td>
-							<td width="70%" colspan="4" align="left"><input name="discount" type="text" class="forminputelement" id="discount" value=""/></td>
-						</tr>
-						<tr class="row2">
-							<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Disclaimer</span> <span class="redstar">*</span></td>
-							<td width="70%" colspan="4" align="left"><select name="prod_dis" id="prod_dis" class="forminputelement" >
-								<option value="0" >Select Disclaimer</option>
-								<?
-								$sqlloc2="SELECT * FROM ".$cfg['DB_DISCLAIMER']." WHERE  `status`='A' AND `siteId`= '".$cfg['SESSION_SITE']."' ";
-								$resloc2=$heart->sql_query($sqlloc2);
-								while($rowloc2=$heart->sql_fetchrow($resloc2))
-									{  ?>
-										<option value=<?=$rowloc2['d_id']?> >
-											<?=stripslashes($rowloc2['title'])?>
-										</option>
-									<? } ?>
-								</select>
-							</td>
-						</tr>
-						<tr class="row2">
-							<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Notes</span> <span class="redstar">*</span></td>
-							<td width="70%" colspan="4" align="left"><!--<input name="prod_loc" type="text" class="forminputelement" id="prod_loc" value=""/>-->
-								<select name="prod_note" id="prod_note" class="forminputelement" >
-									<option value="0" >Select Notes</option>
-									<?
-									$sqlloc1="SELECT * FROM ".$cfg['DB_NOTES']." WHERE  `status`='A' AND `siteId`= '".$cfg['SESSION_SITE']."' ";
-									$resloc1=$heart->sql_query($sqlloc1);
-									while($rowloc1=$heart->sql_fetchrow($resloc1))
-										{  ?>
-											<option value=<?=$rowloc1['n_id']?> >
-												<?=stripslashes($rowloc1['title'])?>
-											</option>
-										<? } ?>
-									</select>
-								</td>
-							</tr>
-							<tr class="row1">
-								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Location</span> <span class="redstar">*</span></td>
-								<td width="70%" colspan="4" align="left"><select name="prod_loc" id="prod_loc" class="forminputelement">
-									<option value="">Select Location</option>
-									<?
-									$sqlloc="SELECT * FROM ".$cfg['DB_CITY']." WHERE  `parent_id`='0'  ";
-									$resloc=$heart->sql_query($sqlloc);
-									while($rowloc=$heart->sql_fetchrow($resloc))
-										{  ?>
-											<option value=<?=$rowloc['id']?> >
-												<?=stripslashes($rowloc['name'])?>
-											</option>
-										<? } ?>
-									</select>
-								</td>
-							</tr>
-							<tr class="row2">
-								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Code</span> <span class="redstar">*</span></td>
-								<td width="70%" colspan="4" align="left"><input name="prod_code" type="text" class="forminputelement" id="prod_code" value=""/></td>
-							</tr>
-							<tr class="row2">
-								<td  align="left" class="leftBarText"><span class="leftBarText_new">Description</span></td>
-								<td  width="70%" colspan="4" align="left"><textarea name="prod_desc_add" ></textarea></td>
-							</tr>
-							<tr class="row1">
-								<td  align="left" class="leftBarText"><span class="leftBarText_new">Delivery Information</span><span class="redstar"> Fill This In Case Of Special Product</span></td>
-								<td  width="70%" colspan="4" align="left"><textarea name="prod_del_info" ></textarea></td>
-							</tr>
-							<tr class="row2">
-								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Image </span> <span class="redstar">*</span> </td>
-								<td width="70%" colspan="4" align="left"><input name="image_add" id="image_add" type="file" class="forminputelement"/></td>
-							</tr>                    <tr class="row1">			    		<td colspan="6" align="left" valign="top"><span class="leftBarText_new">Keywords Category List</span></td>			    	</tr>
-							<tr class="row2">						<?								$n = 0;																				                $sqlcatkey="SELECT * FROM ".$cfg['DB_KEYWORD_CATEGORY']." WHERE `status`='A'";								                $rescatkey=$heart->sql_query($sqlcatkey);												$numrowskey=$heart->sql_numrows($rescatkey);								                while($rowcatkey=$heart->sql_fetchrow($rescatkey))												{													$n++;																															?>						<td align="left" valign="top">								<input type="checkbox" name="catkey_id[]" target='catkey'  id="catkey_id_<?=$rowcatkey['id']?>" value="<?=$rowcatkey['id']?>" onclick="check_key()"  />											<?=stripslashes($rowcatkey['name'])?>											</td>											<? if($n%3==0 && $n>0)												{													echo '</tr>'.(($n<$numrowskey)?'<tr class="row2">':'');												}																						}																					if($n%3>0)											{										 ?>											 <td colspan="<?=($n%3)+1 ?>">&nbsp;</td>										<?											} 																			?>                    </tr>
-							<tr class="row1">
+																<tr class="row1">
+																	<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Name</span> <span class="redstar">*</span></td>
+																	<td width="70%" colspan="4" align="left"><table>
+																		<tr>
+																			<td><input name="prod_pname_add" type="text" class="forminputelement" id="prod_pname_add"  value="" />
+																			&nbsp;&nbsp;&nbsp; </td>
+																			<td><input type="checkbox" name="fp" id="fp" value="1" />
+																				&nbsp;<span class="leftBarText_new">Featured Product</span> </td>
+																			</tr>
+																			<tr>
+																				<td>&nbsp;</td>
+																				<td><? if(countRightbar() < 8){?>
+																					<input type="checkbox" name="rp" id="rp" value="1" />
+																					&nbsp;<span class="leftBarText_new">Show in rightbar</span>
+																					<? }?></td>
+																				</tr>
+																				<tr>
+																					<td>&nbsp;</td>
+																					<td><input type="checkbox" name="bp" id="bp" value="1" />
+																						&nbsp;<span class="leftBarText_new">Best Seller</span></td>
+																					</tr>
+																				</table></td>
+																			</tr>
+																			<tr class="row2">
+																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Price</span> <span class="redstar">*</span></td>
+																				<td width="70%" colspan="4" align="left"><input name="prod_price_add" type="text" class="forminputelement" id="prod_price_add" value=""/></td>
+																			</tr>
+																			<tr class="row1">
+																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Unit Price</span> <span class="redstar" style="font-size: 9px;">*Fill Up This In Case The Product Is Cake</span></td>
+																				<td width="70%" colspan="4" align="left"><input name="prod_unit_price_add" type="text" class="forminputelement" id="prod_unit_price_add" value=""/></td>
+																			</tr>
+																			<tr class="row1">
+																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Cost of Double Flowers</span> <span class="redstar" style="font-size: 9px;">*Fill Up This In Case The Product Is Flower</span></td>
+																				<td width="70%" colspan="4" align="left"><input name="prod_double_flower_price" type="text" class="forminputelement" id="prod_double_flower_price" value=""/></td>
+																			</tr>
+																			<tr class="row2">
+																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Strik Through Price</span> </td>
+																				<td width="70%" colspan="4" align="left"><input name="sprod_price_add" type="text" class="forminputelement" id="sprod_price_add" value=""/></td>
+																			</tr>
+																			<tr class="row1">
+																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Discount</span> </td>
+																				<td width="70%" colspan="4" align="left"><input name="discount" type="text" class="forminputelement" id="discount" value=""/></td>
+																			</tr>
+																			<tr class="row2">
+																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Disclaimer</span> <span class="redstar">*</span></td>
+																				<td width="70%" colspan="4" align="left"><select name="prod_dis" id="prod_dis" class="forminputelement" >
+																					<option value="0" >Select Disclaimer</option>
+																					<?
+																					$sqlloc2="SELECT * FROM ".$cfg['DB_DISCLAIMER']." WHERE  `status`='A' AND `siteId`= '".$cfg['SESSION_SITE']."' ";
+																					$resloc2=$heart->sql_query($sqlloc2);
+																					while($rowloc2=$heart->sql_fetchrow($resloc2))
+																						{  ?>
+																							<option value=<?=$rowloc2['d_id']?> >
+																								<?=stripslashes($rowloc2['title'])?>
+																							</option>
+																						<? } ?>
+																					</select>
+																				</td>
+																			</tr>
+																			<tr class="row2">
+																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Notes</span> <span class="redstar">*</span></td>
+																				<td width="70%" colspan="4" align="left"><!--<input name="prod_loc" type="text" class="forminputelement" id="prod_loc" value=""/>-->
+																					<select name="prod_note" id="prod_note" class="forminputelement" >
+																						<option value="0" >Select Notes</option>
+																						<?
+																						$sqlloc1="SELECT * FROM ".$cfg['DB_NOTES']." WHERE  `status`='A' AND `siteId`= '".$cfg['SESSION_SITE']."' ";
+																						$resloc1=$heart->sql_query($sqlloc1);
+																						while($rowloc1=$heart->sql_fetchrow($resloc1))
+																							{  ?>
+																								<option value=<?=$rowloc1['n_id']?> >
+																									<?=stripslashes($rowloc1['title'])?>
+																								</option>
+																							<? } ?>
+																						</select>
+																					</td>
+																				</tr>
+																				<tr class="row1">
+																					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Location</span> <span class="redstar">*</span></td>
+																					<td width="70%" colspan="4" align="left"><select name="prod_loc" id="prod_loc" class="forminputelement">
+																						<option value="">Select Location</option>
+																						<?
+																						$sqlloc="SELECT * FROM ".$cfg['DB_CITY']." WHERE  `parent_id`='0'  ";
+																						$resloc=$heart->sql_query($sqlloc);
+																						while($rowloc=$heart->sql_fetchrow($resloc))
+																							{  ?>
+																								<option value=<?=$rowloc['id']?> >
+																									<?=stripslashes($rowloc['name'])?>
+																								</option>
+																							<? } ?>
+																						</select>
+																					</td>
+																				</tr>
+																				<tr class="row2">
+																					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Code</span> <span class="redstar">*</span></td>
+																					<td width="70%" colspan="4" align="left"><input name="prod_code" type="text" class="forminputelement" id="prod_code" value=""/></td>
+																				</tr>
+																				<tr class="row2">
+																					<td  align="left" class="leftBarText"><span class="leftBarText_new">Description</span></td>
+																					<td  width="70%" colspan="4" align="left"><textarea name="prod_desc_add" ></textarea></td>
+																				</tr>
+																				<tr class="row1">
+																					<td  align="left" class="leftBarText"><span class="leftBarText_new">Delivery Information</span><span class="redstar"> Fill This In Case Of Special Product</span></td>
+																					<td  width="70%" colspan="4" align="left"><textarea name="prod_del_info" ></textarea></td>
+																				</tr>
+																				<tr class="row2">
+																					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Image </span> <span class="redstar">*</span> </td>
+																					<td width="70%" colspan="4" align="left"><input name="image_add" id="image_add" type="file" class="forminputelement"/></td>
+																				</tr>                    <tr class="row1">			    		<td colspan="6" align="left" valign="top"><span class="leftBarText_new">Keywords Category List</span></td>			    	</tr>
+																				<tr class="row2">						<?								$n = 0;																				                $sqlcatkey="SELECT * FROM ".$cfg['DB_KEYWORD_CATEGORY']." WHERE `status`='A'";								                $rescatkey=$heart->sql_query($sqlcatkey);												$numrowskey=$heart->sql_numrows($rescatkey);								                while($rowcatkey=$heart->sql_fetchrow($rescatkey))												{													$n++;																															?>						<td align="left" valign="top">								<input type="checkbox" name="catkey_id[]" target='catkey'  id="catkey_id_<?=$rowcatkey['id']?>" value="<?=$rowcatkey['id']?>" onclick="check_key()"  />											<?=stripslashes($rowcatkey['name'])?>											</td>											<? if($n%3==0 && $n>0)												{													echo '</tr>'.(($n<$numrowskey)?'<tr class="row2">':'');												}																						}																					if($n%3>0)											{										 ?>											 <td colspan="<?=($n%3)+1 ?>">&nbsp;</td>										<?											} 																			?>                    </tr>
+																				<tr class="row1">
                      <!-- <td colspan="5" align="left" class="leftBarText"><span class="leftBarText_new">Add on Product</span>
                      	<input type="checkbox" name="addon" id="addon" value="yes" onclick="addopen();" /></td>-->
 
