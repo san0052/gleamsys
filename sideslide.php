@@ -226,6 +226,87 @@
                 </div>
             </form>
         </div>
+        <div class="login-box" id="cartbox">
+            <div class="book-header">
+                <p>CART</p>
+                <button onclick="bookcls()"><i class="fas fa-grip-lines"></i></button>
+            </div>
+            <form class="book-content">
+                <div class="book-content-inner">
+                    <div class="order-list">
+                        <div class="item-details">
+                            <p class="prd-name">Product name</p>
+                            <p class="prd-id">product id</p>
+                            <p class="deliver-date">Delivery by Sun 21 Jun | Free</p>
+                            <p class="prd-price">$200</p>
+                            <button class="rmv-btn">Remove</button>
+                        </div>
+                        <div class="item-pic">
+                            <img src="images/prd-1.png">
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                    </div>
+                    <div class="order-list">
+                        <div class="item-details">
+                            <p class="prd-name">Product name</p>
+                            <p class="prd-id">product id</p>
+                            <p class="deliver-date">Delivery by Sun 21 Jun | Free</p>
+                            <p class="prd-price">$200</p>
+                            <button class="rmv-btn">Remove</button>
+                        </div>
+                        <div class="item-pic">
+                            <img src="images/prd-1.png">
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
+                    </div>
+                    <table class="table totalpayble">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Price Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Price( 2 Items )
+                                </td>
+                                <td>
+                                    $400
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Delivery Charge
+                                </td>
+                                <td>
+                                   Free
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>
+                                    Total Payble
+                                </td>
+                                <td>
+                                    $400
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="book-footer">
+                    <div class="total">
+                        <h5>Total Payble</h5>
+                        <p class="prd-price">$200 <a>view details</a></p>
+                        
+                    </div>
+                    <div style="float:right;">
+                        <button type="button" id="nextBtn" class="demo-class" onclick="return validate();">Procceed</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 <script>

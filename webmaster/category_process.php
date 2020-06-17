@@ -14,11 +14,6 @@ $act=@$_REQUEST['act'];
 switch($act){
 
 case 'insert':
-
-
-
-
-
 if($_REQUEST['pId']==0)
 
 {
@@ -43,22 +38,18 @@ $sql="INSERT INTO " .$cfg['DB_CATEGORY']. " (`name`,`status`,`cat_parent_id`,`si
 
 }  
 
- 
-
-
-
-	$heart->sql_query($sql);
-
-	$ids = mysql_insert_id();
+	$re=$heart->sql_query($sql);
+	$ids = $heart->inserted_id();
+//echo "<pre>"; print_r($ids); die;
 
 	$ch=($_REQUEST['ch1']!="")?'Y':'N';
 
-	 $sql1="UPDATE ".$cfg['DB_CATEGORY']."
+	$sql1="UPDATE ".$cfg['DB_CATEGORY']."
 
 	 SET 
 
 	`order` = ".$ids.",`show_in_top_menu` = '".$ch."' WHERE `id` =".$ids." AND `siteId`='".$cfg['SESSION_SITE']."'" ;
-
+	//echo $sql1; die;
 	 $heart->sql_query($sql1);
 
 
