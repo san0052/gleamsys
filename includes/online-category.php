@@ -60,7 +60,7 @@
                                     </g>
                                 </svg></p>
                             <article>
-                                <b>Used<br>Laptops</b>
+                                <b><?php echo getShopCategory('140');?></b>
                             </article>
                         </li>
                         <li onclick="window.location.href='tech-support.php'">
@@ -124,7 +124,7 @@
                                     </g>
                                 </svg></p>
                             <article>
-                                <b>Used<br>Computer</b>
+                                <b><?php echo getShopCategory('137');?></b>
                             </article>
                         </li>
                         <li onclick="window.location.href='it-service.php'">
@@ -156,7 +156,7 @@
                                     </g>
                                 </svg></p>
                             <article>
-                                <b>Refurbished<br>Computer</b>
+                                <b><?php echo getShopCategory('132');?></b>
                             </article>
                         </li>
                         <li onclick="window.location.href='computer-training.php'">
@@ -205,7 +205,7 @@
                                     </g>
                                 </svg></p>
                             <article>
-                                <b>Clearance<br>Stock</b>
+                                <b><?php echo getShopCategory('286');?></b>
                             </article>
                         </li>
 

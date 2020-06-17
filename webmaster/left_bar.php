@@ -88,10 +88,10 @@ ddaccordion.init({
 			 	<li><a href="computer-training.php">Manage Computer Training</a></li>
 			 </ul>
 
-			  <h3 class="menuheader expandable">Category Management</h3>
-			  <ul class="categoryitems">
+			<h3 class="menuheader expandable">Shop Category Management</h3>
+			<ul class="categoryitems">
 				<li><a href="category.php?pId=0">Manage Category</a></li>
-			  </ul>
+			</ul>
 			  <h3 class="menuheader expandable">Keyword Management</h3>
 			  <ul class="categoryitems">
 				<li><a href="keyword.php">Manage Keyword</a></li>

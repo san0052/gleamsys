@@ -1,10 +1,9 @@
-<?
-include_once("includes/function.php");
-?>
+<?php
+    include_once("includes/links_frontend.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<? pagesource() ?>
+<?php include_once('includes/pagesources.php');?>
 
 <body class="online-store">
     <? include_once('includes/header.php') ?>
