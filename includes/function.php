@@ -120,6 +120,21 @@ function computer_desc($pageid,$flag = null)
 		return ''; 
 }
 
+
+function getShopCategory($pageid)
+{
+	global  $mycms,$cfg;
+
+	$sql	=	"SELECT * FROM ".$cfg['DB_CATEGORY']." WHERE `id` = '".$pageid."'  AND `status`= 'A' ";
+	$res	=	$mycms->sql_query($sql);
+	$row	=	$mycms->sql_fetchrow($res);
+	if($row['status']=='A')
+		return stripslashes($row['name']);
+	else
+		return ''; 
+}
+
+
 function roundup($val,$pressision=2)
 
 {

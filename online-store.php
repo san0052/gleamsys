@@ -1,10 +1,9 @@
-<?
-include_once("includes/function.php");
-?>
+<?php
+    include_once("includes/links_frontend.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<? pagesource() ?>
+<?php include_once('includes/pagesources.php');?>
 
 <body class="online-store">
     <? include_once('includes/header.php') ?>
@@ -16,17 +15,24 @@ include_once("includes/function.php");
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner">
-                        <div class="item">
-                            <img src="images/banner-financial-services-1600px.jpg">
+                        <?php 
+                            $sql =   "SELECT * FROM ".$cfg['DB_ONLINESTORE_BANNER']."
+                                                     WHERE  
+                                                    `status` ='A'  AND `bannerUseFor`= 'slider image'
+                                                    ORDER BY `id` DESC";
+                            $res    =   $mycms->sql_query($sql);
+                            $counter = 0;
+                            while($row    =   $mycms->sql_fetchrow($res)) { ?>
+                            <?php if ($counter == 0) { ?>
+                                  <div class="item active">
+                            <?php } else { ?>
+                                  <div class="item">
+                            <?php } ?>
+                       
+                            <img src="uploads/online_store_banner/<?php echo $row['bannerImg']?>" alttag="<?php echo $row['altTag']?>">
                         </div>
-
-                        <div class="item">
-                            <img src="images/it-service-banner.jpg">
-                        </div>
-
-                        <div class="item active">
-                            <img src="images/banner-1.jpg">
-                        </div>
+                    <?php $counter++ ;} ?>
+                        
                     </div>
 
                     <!-- Left and right controls -->
@@ -91,24 +97,20 @@ include_once("includes/function.php");
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 products-specility-box">
+                    <?php 
+                        $sql =   "SELECT * FROM ".$cfg['DB_SHOP_CONTENT']."
+                                                 WHERE  
+                                                `status` ='A' ";
+                        $res    =   $mycms->sql_query($sql);
+                        while($row    =   $mycms->sql_fetchrow($res)){ 
+                    ?>
                     <div>
-                        <img src="https://constant.myntassets.com/web/assets/img/ef05d6ec-950a-4d01-bbfa-e8e5af80ffe31574602902427-30days.png" style="width: 48px; height: 49px;">
-                        <p>
-                            <b>Return within 30days</b> of receiving your order
-                        </p>
+                        <img src="images/<?php echo $row['image']?>" alttat="<?php echo $row['altTag'];?>" style="width: 48px; height: 45px;">
+                        <?php echo $row['description'];?>
+                       
                     </div>
-                    <div>
-                        <img src="https://constant.myntassets.com/web/assets/img/cafa8f3c-100e-47f1-8b1c-1d2424de71041574602902399-truck.png" style="width: 48px; height: 43px;">
-                        <p>
-                            <b>Get free delivery</b> for every order above Rs. 799
-                        </p>
-                    </div>
-                    <div>
-                        <img src="https://constant.myntassets.com/web/assets/img/6c3306ca-1efa-4a27-8769-3b69d16948741574602902452-original.png" style="width: 48px; height: 40px;">
-                        <p>
-                            <b>100% ORIGINAL</b> guarantee for all products at theteacherhub.com
-                        </p>
-                    </div>
+                <?php } ?>
+                  
                 </div>
             </div>
         </div>
@@ -119,9 +121,16 @@ include_once("includes/function.php");
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 specility-box">
-                    <div class="specility-iamge-box"><img src="images/banner-1.jpg"></div>
-                    <div class="specility-iamge-box"><img src="images/banner-1.jpg"></div>
-                    <div class="specility-iamge-box"><img src="images/banner-1.jpg"></div>
+                   <?php    
+                    $sql =   "SELECT * FROM ".$cfg['DB_ONLINESTORE_BANNER']."
+                                     WHERE  
+                                    `status` ='A' AND `bannerUseFor`='single image' ";
+                    $res    =   $mycms->sql_query($sql);
+                  
+                    while($row    =   $mycms->sql_fetchrow($res)) { ?>
+
+                    <div class="specility-iamge-box"><img src="uploads/online_store_banner/<?php echo $row['bannerImg']?>" alttag="<?php echo $row['altTag']?>"></div>
+                   <?php }?>
                 </div>
             </div>
         </div>
