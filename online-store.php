@@ -18,7 +18,8 @@
                         <?php 
                             $sql =   "SELECT * FROM ".$cfg['DB_ONLINESTORE_BANNER']."
                                                      WHERE  
-                                                    `status` ='A' ORDER BY `id` DESC";
+                                                    `status` ='A'  AND `bannerUseFor`= 'slider image'
+                                                    ORDER BY `id` DESC";
                             $res    =   $mycms->sql_query($sql);
                             $counter = 0;
                             while($row    =   $mycms->sql_fetchrow($res)) { ?>
@@ -120,9 +121,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 specility-box">
-                    <div class="specility-iamge-box"><img src="images/banner-1.jpg"></div>
-                    <div class="specility-iamge-box"><img src="images/banner-1.jpg"></div>
-                    <div class="specility-iamge-box"><img src="images/banner-1.jpg"></div>
+                   <?php    
+                    $sql =   "SELECT * FROM ".$cfg['DB_ONLINESTORE_BANNER']."
+                                     WHERE  
+                                    `status` ='A' AND `bannerUseFor`='single image' ";
+                    $res    =   $mycms->sql_query($sql);
+                  
+                    while($row    =   $mycms->sql_fetchrow($res)) { ?>
+
+                    <div class="specility-iamge-box"><img src="uploads/online_store_banner/<?php echo $row['bannerImg']?>" alttag="<?php echo $row['altTag']?>"></div>
+                   <?php }?>
                 </div>
             </div>
         </div>
