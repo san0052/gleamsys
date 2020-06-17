@@ -95,6 +95,10 @@ case'view':
 	{
 		$heart->redirect('content.php?show=viewGps-location-app&id='.$_REQUEST['id']);
 	}
+	if($_REQUEST['page']=='Domain-registration-app')
+	{
+		$heart->redirect('content.php?show=viewDomain-registration&id='.$_REQUEST['id']);
+	}
 
 exit();
 break;
@@ -184,6 +188,10 @@ case'edit':
 	if($_REQUEST['id']==132 || $_REQUEST['id']==22)
 	{
 		$heart->redirect('content.php?show=editGps-location-app&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['id']==133 || $_REQUEST['id']==23)
+	{
+		$heart->redirect('content.php?show=editDomain-registration&id='.$_REQUEST['id']);
 	}
 	
 exit();
@@ -997,6 +1005,45 @@ case 'update_Gpslocationapp_banner':
        
 	$heart->redirect('content.php?show=viewGps-location-app&m=2&id='.$_REQUEST['redirect_id']);
 break;
+
+case 'update_UpdateDomain_registration_banner':
+       $BannerTitle=addslashes($_REQUEST['BannerTitle']);
+       $altTag=addslashes($_REQUEST['altTag']);
+       $ph1 = $_FILES['image']['name'];
+	   $a31 = $_FILES['image']['tmp_name'];
+	   $last_id = 'domain_reg';
+	if($ph1!='')
+	{
+
+			$file_ext1=explode(".",$ph1);
+			$ext1= strtolower($file_ext1[count($file_ext1)-1]);
+			$value1=$last_id."_".$last_id.".".$ext1;
+			$path1="../images/".$value1;
+				
+				//echo $value;
+				chmod($path1,0777);
+				copy($a31,$path1);
+				chmod($path1,0777);
+
+		   	
+	 	$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+	       `BannerTitle` = '".$BannerTitle."',
+	       `altTag` 	= '".$altTag."',
+	       `bannerImg` 	= '".$value1."'
+	        WHERE `id` 	= '".$_REQUEST['id']."' ";
+	$heart->sql_query($sql1);
+	}else{
+		$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+		       `BannerTitle` = '".$BannerTitle."',
+		     	`altTag` 	= '".$altTag."'
+		        WHERE `id` = '".$_REQUEST['id']."' ";
+		$heart->sql_query($sql1);
+	}
+       
+	$heart->redirect('content.php?show=viewDomain-registration&m=2&id='.$_REQUEST['redirect_id']);
+break;
+
+
 //show add window
 case'add':
 	$heart->redirect('content.php?show=add');	

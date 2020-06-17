@@ -9,7 +9,7 @@
          <div class="item">
             <?php if (!empty($banner['bannerImg'])) { ?>
             <!-- <img src="images/web-development.jpg"> -->
-            <img src="<?php echo 'images/'.$banner['bannerImg'];?>">
+            <img src="<?php echo 'images/'.$banner['bannerImg'];?>" alt="<?php echo !empty($banner['altTag'])?$banner['altTag']:''; ?>">
             <?php } ?>
             <div class="banner-text">
                <!-- SSL certificate -->

@@ -8,7 +8,7 @@
          <?php $banner = ItBanners('5'); ?>
          <div class="item">
             <?php if (!empty($banner['bannerImg'])) { ?>
-            <img src="<?php echo 'images/'.$banner['bannerImg'];?>">
+            <img src="<?php echo 'images/'.$banner['bannerImg'];?>" alt="<?php echo !empty($banner['altTag'])?$banner['altTag']:''; ?>">
             <!-- <img src="images/ecommers-banner.jpg"> -->
             <?php } ?>
             <div class="banner-text">

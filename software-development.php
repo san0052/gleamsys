@@ -9,7 +9,7 @@
         <?php $banner = ItBanners('8'); ?>
         <div class="item">
            <?php if (!empty($banner['bannerImg'])) { ?>
-            <img src="<?php echo 'images/'.$banner['bannerImg'];?>">
+            <img src="<?php echo 'images/'.$banner['bannerImg'];?>" alt="<?php echo !empty($banner['altTag'])?$banner['altTag']:''; ?>">
              <!-- <img src="images/mb-app-banner.jpg"> -->
             <?php } ?>
             <div class="banner-text">
