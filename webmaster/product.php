@@ -94,7 +94,7 @@ $show=$_REQUEST['show'];
 											$res1=$heart->sql_query($sql1);
 											while($row1=$heart->sql_fetchrow($res1))
 											{
-				//Parent Category
+											//Parent Category
 												?>
 												<option value="<?=$row1['id']?>" <?=(getcatid(getcatid($_REQUEST['category']))==$row1['id'])?'selected="selected"':''?>>
 													<?=ucfirst($row1['name'])?>
@@ -160,8 +160,6 @@ $show=$_REQUEST['show'];
 														<input type="image" src="images/1308660287_order.png"  name="save" value="Save" title="Save" align="absmiddle" />
 													</td>
 													<td width="10%" align="center" class="leftBarText_new1">Price</td>
-													<td width="10%" align="center" class="leftBarText_new1">Unit Price</td>
-													<!-- <td width="10%" align="center" class="leftBarText_new1">Unit Price</td> -->
 													<td width="10%" align="center" class="leftBarText_new1">Earliest Delivery</td>
 													<td width="9%" align="center" class="leftBarText_new1">Status</td>
 													<td width="14%" align="center" class="leftBarText_new1">Action</td>
@@ -229,8 +227,7 @@ $show=$_REQUEST['show'];
 														$sqlTime = "SELECT * FROM ".$cfg['DB_EARLIEST_DELIVERYBY']."
 														WHERE `id` = '".$row['earliest_deliveryId']."' ";
 														$resTime=$heart->sql_query($sqlTime);
- 			// print_r($resTime);
- 			//echo $rowTime = $resTime[0];
+ 		
 														?>
 														<tr class="<?=($i%2==0)?'row1':'row2'?>">
 															<td align="center" valign="top"><input  name="checkvalue" id="checkvalue"  value="<?=$row['pd_id']?>" type="checkbox" /></td>
@@ -242,7 +239,7 @@ $show=$_REQUEST['show'];
 															<td colspan="3" align="center" valign="top" ><img src="../<?=$cfg['PRODUCT_IMAGES'].$row['pd_image']?>"  width="70" align="top"/></td>
 															<td align="center" valign="top" class="leftBarText"><input name="catorder[<?=$row['pd_id'];?>]" type="text" class="forminputelement" id="catorder[<?=$row['pd_id'];?>]"  size="2" value="<?=$row['order'];?>" style="text-align:center;"/></td>
 															<td align="center" valign="top"><?=$row['pd_price']?></td>
-															<td align="center" valign="top"><?=$row['pd_unit_price']?></td>
+													
 															<?
 															while($rowTime=$heart->sql_fetchrow($resTime))
 															{
@@ -491,14 +488,14 @@ $show=$_REQUEST['show'];
 																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Price</span> <span class="redstar">*</span></td>
 																				<td width="70%" colspan="4" align="left"><input name="prod_price_add" type="text" class="forminputelement" id="prod_price_add" value=""/></td>
 																			</tr>
-																			<tr class="row1">
+																			<!-- <tr class="row1">
 																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Unit Price</span> <span class="redstar" style="font-size: 9px;">*Fill Up This In Case The Product Is Cake</span></td>
 																				<td width="70%" colspan="4" align="left"><input name="prod_unit_price_add" type="text" class="forminputelement" id="prod_unit_price_add" value=""/></td>
-																			</tr>
-																			<tr class="row1">
+																			</tr> -->
+																			<!-- <tr class="row1">
 																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Cost of Double Flowers</span> <span class="redstar" style="font-size: 9px;">*Fill Up This In Case The Product Is Flower</span></td>
 																				<td width="70%" colspan="4" align="left"><input name="prod_double_flower_price" type="text" class="forminputelement" id="prod_double_flower_price" value=""/></td>
-																			</tr>
+																			</tr> -->
 																			<tr class="row2">
 																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Strik Through Price</span> </td>
 																				<td width="70%" colspan="4" align="left"><input name="sprod_price_add" type="text" class="forminputelement" id="sprod_price_add" value=""/></td>
@@ -507,7 +504,7 @@ $show=$_REQUEST['show'];
 																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Discount</span> </td>
 																				<td width="70%" colspan="4" align="left"><input name="discount" type="text" class="forminputelement" id="discount" value=""/></td>
 																			</tr>
-																			<tr class="row2">
+																			<!-- <tr class="row2">
 																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Disclaimer</span> <span class="redstar">*</span></td>
 																				<td width="70%" colspan="4" align="left"><select name="prod_dis" id="prod_dis" class="forminputelement" >
 																					<option value="0" >Select Disclaimer</option>
@@ -522,10 +519,10 @@ $show=$_REQUEST['show'];
 																						<? } ?>
 																					</select>
 																				</td>
-																			</tr>
-																			<tr class="row2">
+																			</tr> -->
+																			<!-- <tr class="row2">
 																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Notes</span> <span class="redstar">*</span></td>
-																				<td width="70%" colspan="4" align="left"><!--<input name="prod_loc" type="text" class="forminputelement" id="prod_loc" value=""/>-->
+																				<td width="70%" colspan="4" align="left">
 																					<select name="prod_note" id="prod_note" class="forminputelement" >
 																						<option value="0" >Select Notes</option>
 																						<?
@@ -539,8 +536,8 @@ $show=$_REQUEST['show'];
 																							<? } ?>
 																						</select>
 																					</td>
-																				</tr>
-																				<tr class="row1">
+																			</tr> -->
+																			<tr class="row1">
 																					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Location</span> <span class="redstar">*</span></td>
 																					<td width="70%" colspan="4" align="left"><select name="prod_loc" id="prod_loc" class="forminputelement">
 																						<option value="">Select Location</option>
@@ -1215,12 +1212,36 @@ if($show=='edit_addon'){
 					<? } ?></td>
 				</tr>
 				<tr class="row1">
-					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Price</span> </td>
-					<td colspan="4" align="left"><?=$row1['pd_price']?></td>
+					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Category Type</span> </td>
+					<td colspan="4" align="left">
+						<?php if($row1['pd_featured']=='A'){ 
+							echo 'Feacture Product';
+						}else if($row1['pd_bestseller']=='Y'){
+							echo 'Best Selling Product';
+						}else if($row1['today_Spcial_product']=='Y'){
+							echo 'Todays Special Product';
+						}else if($row1['new_arrival_pro']=='A'){
+							echo 'New Arrival Product';
+
+						}else if($row1['pd_featured']=='A' && $row1['pd_bestseller']=='Y'){
+							echo 'Feacture Product'.','.'Best Selling Product';
+						}else if($row1['today_Spcial_product']=='Y' && $row1['new_arrival_pro']=='A'){
+							echo 'Todays Special Product'.','.'New Arrival Product';
+						}
+						else if($row1['pd_featured']=='A' && $row1['today_Spcial_product']=='Y'){
+							echo 'Feacture Product'.','.'Todays Special Product';
+						}else if($row1['pd_bestseller']=='Y' && $row1['new_arrival_pro']=='A'){
+							echo 'Best Selling Product'.','.'New Arrival Product';
+						}else if($row1['pd_bestseller']=='Y' && $row1['today_Spcial_product']=='Y'){
+							echo 'Best Selling Product'.','.'Todays Special Product';
+						}else{
+							echo 'Feacture Product'.','.'Best Selling Product'.','.'Todays Special Product'.','.'New Arrival Product';
+						}?>
+					</td>
 				</tr>
 				<tr class="row1">
-					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Unit Price</span> </td>
-					<td colspan="4" align="left"><?=$row1['pd_unit_price']?></td>
+					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new"></span>Price</td>
+					<td colspan="4" align="left"><?=$row1['pd_price']?></td>
 				</tr>
 				<tr class="row2">
 					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Delivery By</span> </td>
@@ -1229,7 +1250,7 @@ if($show=='edit_addon'){
 				<? if($row1['strike_price']){?>
 					<tr class="row2">
 						<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Strike Price</span> </td>
-						<td colspan="4" align="left"><?=$row1['pd_price']?></td>
+						<td colspan="4" align="left"><?=$row1['strike_price']?></td>
 					</tr>
 					<tr class="row1">
 					<? }else{?>
@@ -1238,34 +1259,34 @@ if($show=='edit_addon'){
 						<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Code</span> </td>
 						<td colspan="4" align="left"><?=stripslashes($row1['pd_code'])?></td>
 					</tr>
-					<tr class="row1">
-						<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Location</span> </td>
+					<!-- <tr class="row1">
+						<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Location</span> </td> -->
 						<?
-						$sql_l="SELECT * FROM ".$cfg['DB_CITY']." WHERE  `id` =".$row1['location']."  ";
+						/*$sql_l="SELECT * FROM ".$cfg['DB_CITY']." WHERE  `id` =".$row1['location']."  ";
 						$res_l=$heart->sql_query($sql_l);
-						$row_l=$heart->sql_fetchrow($res_l);
+						$row_l=$heart->sql_fetchrow($res_l);*/
 
 
 						?>
-						<td colspan="4" align="left"><?=getlocationname($row_l['city_id'])?></td>
-					</tr>
-					<tr class="row2">
+						<!-- <td colspan="4" align="left"><?//=getlocationname($row_l['city_id'])?></td>
+					</tr> -->
+					<!-- <tr class="row2">
 						<td width="30%" valign="top" align="left" class="leftBarText"><span class="leftBarText_new">Product Disclaimer</span></td>
-						<td colspan="4" align="left"><? if($row1['disclaimer']!='') { ?>
-							<?=getdisclaimer($row1['disclaimer'])?>
-						<? } else { ?>
+						<td colspan="4" align="left"><? //if($row1['disclaimer']!='') { ?>
+							<?//=getdisclaimer($row1['disclaimer'])?>
+						<? //} else { ?>
 							None
-						<? } ?>
+						<? //} ?>
 					</td>
-				</tr>
-				<tr class="row1">
+				</tr> -->
+				<!-- <tr class="row1">
 					<td width="30%" valign="top" align="left" class="leftBarText"><span class="leftBarText_new">Product Notes</span></td>
-					<td colspan="4" align="left"><? if($row1['notes']!='') { ?>
-						<?=getnotes($row1['notes'])?>
-					<? } else { ?>
+					<td colspan="4" align="left"><?// if($row1['notes']!='') { ?>
+						<?//=getnotes($row1['notes'])?>
+					<? //} else { ?>
 						None
-					<? } ?>
-				</td>
+					<? //} ?>
+				</td> -->
 			</tr>
 			<tr class="row2">
 				<td colspan="5" align="left" class="leftBarText"><span class="leftBarText_new">Description</span></td>

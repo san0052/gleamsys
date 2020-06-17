@@ -55,6 +55,7 @@ case 'insert':
 	$sprice=addslashes($_REQUEST['sprod_price_add']);
 	$desc=(addslashes($_REQUEST['prod_desc_add']!=""))?addslashes($_REQUEST['prod_desc_add']):'';
 	$deliInfo=(addslashes($_REQUEST['prod_del_info']!=""))?addslashes($_REQUEST['prod_del_info']):'';
+	
 	$pf=addslashes(($_REQUEST['fp']!=""))?'A':'I';
 	//$pr=addslashes(($_REQUEST['rp']!=""))?'A':'I';
 	$bp=addslashes(($_REQUEST['bp']!=""))?'Y':'N';
