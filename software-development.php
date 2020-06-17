@@ -1,15 +1,20 @@
-<? include_once("includes/function.php"); ?>
+<?php include_once("includes/links_frontend.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
-<? pagesource() ?>
+   <?php include_once('includes/pagesources.php'); ?>
 
 <body>
     <? include_once('includes/header.php') ?>
     <div class="container-fluid slide_container">
+        <?php $banner = ItBanners('8'); ?>
         <div class="item">
-           <img src="images/mb-app-banner.jpg">
+           <?php if (!empty($banner['bannerImg'])) { ?>
+            <img src="<?php echo 'images/'.$banner['bannerImg'];?>">
+             <!-- <img src="images/mb-app-banner.jpg"> -->
+            <?php } ?>
             <div class="banner-text">
-                software development
+                <!-- software development -->
+                <?php echo !empty($banner['BannerTitle'])?strtoupper($banner['BannerTitle']):''; ?>
             </div>
         </div>
     </div>

@@ -10,6 +10,15 @@ function pageContentTitle($pageid)
 	else
 		return ''; 
 }
+
+function ItBanners($banner_id) {
+
+	global  $mycms,$cfg;
+	$sql	=	"SELECT * FROM ".$cfg['DB_SERVICE_BANNER']." WHERE `id` = '".$banner_id."'  AND `status`= 'A' ";
+	$res	=	$mycms->sql_query($sql);
+	$row	=	$mycms->sql_fetchrow($res);
+	return 		!empty($row) ? $row : array(); 
+}
 	
 
 function content($pageid,$flag = null)
