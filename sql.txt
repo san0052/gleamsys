@@ -2,5 +2,17 @@ INSERT INTO `gleam_cms` (`cmsId`, `siteId`, `pCatId`, `cmsName`, `content`, `cms
 (121, 2, 0, 'Mobile-development', NULL, 'A');
 
 INSERT INTO `gleam_services_banner` (`id`, `siteId`, `bannerType`, `pageHeading`, `BannerTitle`, `bannerImg`, `altTag`, `status`, `modifiedDateTime`) VALUES
-(4, 2, 'mobile-development', 'mobile-development', 'Mobile Development 33', 'mobileDevelopment_mobileDevelopment.jpg', 'mobile development12', 'A', '2020-06-16 23:59:42');
+(4, 2, 'mobile-development', 'mobile-development', 'Mobile Apps Development', 'mobileDevelopment_mobileDevelopment.jpg', 'mobile development', 'A', '2020-06-16 23:59:42');
 
+INSERT INTO `gleam_cms` (`cmsId`, `siteId`, `pCatId`, `cmsName`, `content`, `cmsStatus`) VALUES (NULL, '1', '0', 'Ecommerce-development', NULL, 'A'), (NULL, '1', '0', 'Web-designing', NULL, 'A');
+
+INSERT INTO `gleam_cms` (`cmsId`, `siteId`, `pCatId`, `cmsName`, `content`, `cmsStatus`) VALUES (NULL, '1', '0', 'Ecommerce-development', NULL, 'A'), (NULL, '1', '0', 'Web-designing', NULL, 'A');
+
+INSERT INTO `gleam_services_banner` (`id`, `siteId`, `bannerType`, `pageHeading`, `BannerTitle`, `bannerImg`, `altTag`, `status`, `modifiedDateTime`) VALUES (NULL, '2', 'ecommerce-development', NULL, NULL, NULL, NULL, 'A', CURRENT_TIMESTAMP);
+
+
+INSERT INTO `gleam_cms` (`cmsId`, `siteId`, `pCatId`, `cmsName`, `content`, `cmsStatus`) VALUES (NULL, '2', '0', 'web-development', NULL, 'A');
+
+INSERT INTO `gleam_cms` (`cmsId`, `siteId`, `pCatId`, `cmsName`, `content`, `cmsStatus`) VALUES (NULL, '2', '0', 'Software-development', NULL, 'A'), (NULL, '2', '0', 'Codeigniter-development', NULL, 'A');
+
+INSERT INTO `gleam_services_banner` (`id`, `siteId`, `bannerType`, `pageHeading`, `BannerTitle`, `bannerImg`, `altTag`, `status`, `modifiedDateTime`) VALUES (NULL, '2', 'software-development', 'software-development', NULL, NULL, NULL, 'A', CURRENT_TIMESTAMP), (NULL, '2', 'codeigniter-development', 'codeigniter-development', NULL, NULL, NULL, 'A', CURRENT_TIMESTAMP);

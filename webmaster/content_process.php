@@ -51,6 +51,26 @@ case'view':
 	{
 		$heart->redirect('content.php?show=viewMobile-development&id='.$_REQUEST['id']);
 	}
+	if($_REQUEST['page']=='Ecommerce-development')
+	{
+		$heart->redirect('content.php?show=viewEcommerce-development&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['page']=='Web-designing')
+	{
+		$heart->redirect('content.php?show=viewWeb-designing&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['page']=='Web-development')
+	{
+		$heart->redirect('content.php?show=viewWeb-development&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['page']=='Software-development')
+	{
+		$heart->redirect('content.php?show=viewSoftware-development&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['page']=='Codeigniter-development')
+	{
+		$heart->redirect('content.php?show=viewCodeigniter-development&id='.$_REQUEST['id']);
+	}
 exit();
 break;
 // show edit window
@@ -95,6 +115,26 @@ case'edit':
 	if($_REQUEST['id']==121 || $_REQUEST['id']==11)
 	{
 		$heart->redirect('content.php?show=editMobile-development&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['id']==122 || $_REQUEST['id']==12)
+	{
+		$heart->redirect('content.php?show=editEcommerce-development&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['id']==123 || $_REQUEST['id']==13)
+	{
+		$heart->redirect('content.php?show=editWeb-designing&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['id']==124 || $_REQUEST['id']==14)
+	{
+		$heart->redirect('content.php?show=editWeb-development&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['id']==125 || $_REQUEST['id']==15)
+	{
+		$heart->redirect('content.php?show=editSoftware-development&id='.$_REQUEST['id']);
+	}
+	if($_REQUEST['id']==126 || $_REQUEST['id']==16)
+	{
+		$heart->redirect('content.php?show=editCodeigniter-development&id='.$_REQUEST['id']);
 	}
 	
 exit();
@@ -148,7 +188,6 @@ case'updatePrivacy':
 exit();
 break;
 case'updateContact':
-//print_r($_REQUEST); die();
 		$pageheading=addslashes($_REQUEST['pageheading']);
 		$address=addslashes($_REQUEST['address']);
 		$address2=addslashes($_REQUEST['address2']);
@@ -536,6 +575,192 @@ case 'update_MobileDevelopment_banner':
 	}
        
 	$heart->redirect('content.php?show=viewMobile-development&m=2&id='.$_REQUEST['redirect_id']);
+break;
+
+case 'update_EcommerceDevelopment_banner':
+       $BannerTitle=addslashes($_REQUEST['BannerTitle']);
+       $altTag=addslashes($_REQUEST['altTag']);
+       $ph1 = $_FILES['image']['name'];
+	   $a31 = $_FILES['image']['tmp_name'];
+	   $last_id = 'ecommerceDevelopment';
+	if($ph1!='')
+	{
+
+			$file_ext1=explode(".",$ph1);
+			$ext1= strtolower($file_ext1[count($file_ext1)-1]);
+			$value1=$last_id."_".$last_id.".".$ext1;
+			$path1="../images/".$value1;
+				
+				//echo $value;
+				chmod($path1,0777);
+				copy($a31,$path1);
+				chmod($path1,0777);
+
+		   	
+	 	$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+	       `BannerTitle` = '".$BannerTitle."',
+	       `altTag` 	= '".$altTag."',
+	       `bannerImg` 	= '".$value1."'
+	        WHERE `id` 	= '".$_REQUEST['id']."' ";
+	$heart->sql_query($sql1);
+	}else{
+		$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+		       `BannerTitle` = '".$BannerTitle."',
+		     	`altTag` 	= '".$altTag."'
+		        WHERE `id` = '".$_REQUEST['id']."' ";
+		$heart->sql_query($sql1);
+	}
+       
+	$heart->redirect('content.php?show=viewEcommerce-development&m=2&id='.$_REQUEST['redirect_id']);
+break;
+
+case 'update_WebDesigning_banner':
+       $BannerTitle=addslashes($_REQUEST['BannerTitle']);
+       $altTag=addslashes($_REQUEST['altTag']);
+       $ph1 = $_FILES['image']['name'];
+	   $a31 = $_FILES['image']['tmp_name'];
+	   $last_id = 'webDesigning';
+	if($ph1!='')
+	{
+
+			$file_ext1=explode(".",$ph1);
+			$ext1= strtolower($file_ext1[count($file_ext1)-1]);
+			$value1=$last_id."_".$last_id.".".$ext1;
+			$path1="../images/".$value1;
+				
+				//echo $value;
+				chmod($path1,0777);
+				copy($a31,$path1);
+				chmod($path1,0777);
+
+		   	
+	 	$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+	       `BannerTitle` = '".$BannerTitle."',
+	       `altTag` 	= '".$altTag."',
+	       `bannerImg` 	= '".$value1."'
+	        WHERE `id` 	= '".$_REQUEST['id']."' ";
+	$heart->sql_query($sql1);
+	}else{
+		$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+		       `BannerTitle` = '".$BannerTitle."',
+		     	`altTag` 	= '".$altTag."'
+		        WHERE `id` = '".$_REQUEST['id']."' ";
+		$heart->sql_query($sql1);
+	}
+       
+	$heart->redirect('content.php?show=viewWeb-designing&m=2&id='.$_REQUEST['redirect_id']);
+break;
+
+case 'update_WebDevelopment_banner':
+       $BannerTitle=addslashes($_REQUEST['BannerTitle']);
+       $altTag=addslashes($_REQUEST['altTag']);
+       $ph1 = $_FILES['image']['name'];
+	   $a31 = $_FILES['image']['tmp_name'];
+	   $last_id = 'webDevelopment';
+	if($ph1!='')
+	{
+
+			$file_ext1=explode(".",$ph1);
+			$ext1= strtolower($file_ext1[count($file_ext1)-1]);
+			$value1=$last_id."_".$last_id.".".$ext1;
+			$path1="../images/".$value1;
+				
+				//echo $value;
+				chmod($path1,0777);
+				copy($a31,$path1);
+				chmod($path1,0777);
+
+		   	
+	 	$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+	       `BannerTitle` = '".$BannerTitle."',
+	       `altTag` 	= '".$altTag."',
+	       `bannerImg` 	= '".$value1."'
+	        WHERE `id` 	= '".$_REQUEST['id']."' ";
+	$heart->sql_query($sql1);
+	}else{
+		$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+		       `BannerTitle` = '".$BannerTitle."',
+		     	`altTag` 	= '".$altTag."'
+		        WHERE `id` = '".$_REQUEST['id']."' ";
+		$heart->sql_query($sql1);
+	}
+       
+	$heart->redirect('content.php?show=viewWeb-development&m=2&id='.$_REQUEST['redirect_id']);
+break;
+
+case 'update_SoftwareDevelopment_banner':
+       $BannerTitle=addslashes($_REQUEST['BannerTitle']);
+       $altTag=addslashes($_REQUEST['altTag']);
+       $ph1 = $_FILES['image']['name'];
+	   $a31 = $_FILES['image']['tmp_name'];
+	   $last_id = 'softDevelopment';
+	if($ph1!='')
+	{
+
+			$file_ext1=explode(".",$ph1);
+			$ext1= strtolower($file_ext1[count($file_ext1)-1]);
+			$value1=$last_id."_".$last_id.".".$ext1;
+			$path1="../images/".$value1;
+				
+				//echo $value;
+				chmod($path1,0777);
+				copy($a31,$path1);
+				chmod($path1,0777);
+
+		   	
+	 	$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+	       `BannerTitle` = '".$BannerTitle."',
+	       `altTag` 	= '".$altTag."',
+	       `bannerImg` 	= '".$value1."'
+	        WHERE `id` 	= '".$_REQUEST['id']."' ";
+	$heart->sql_query($sql1);
+	}else{
+		$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+		       `BannerTitle` = '".$BannerTitle."',
+		     	`altTag` 	= '".$altTag."'
+		        WHERE `id` = '".$_REQUEST['id']."' ";
+		$heart->sql_query($sql1);
+	}
+       
+	$heart->redirect('content.php?show=viewSoftware-development&m=2&id='.$_REQUEST['redirect_id']);
+break;
+
+
+case 'update_CodeigniterDevelopment_banner':
+       $BannerTitle=addslashes($_REQUEST['BannerTitle']);
+       $altTag=addslashes($_REQUEST['altTag']);
+       $ph1 = $_FILES['image']['name'];
+	   $a31 = $_FILES['image']['tmp_name'];
+	   $last_id = 'codeDevelopment';
+	if($ph1!='')
+	{
+
+			$file_ext1=explode(".",$ph1);
+			$ext1= strtolower($file_ext1[count($file_ext1)-1]);
+			$value1=$last_id."_".$last_id.".".$ext1;
+			$path1="../images/".$value1;
+				
+				//echo $value;
+				chmod($path1,0777);
+				copy($a31,$path1);
+				chmod($path1,0777);
+
+		   	
+	 	$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+	       `BannerTitle` = '".$BannerTitle."',
+	       `altTag` 	= '".$altTag."',
+	       `bannerImg` 	= '".$value1."'
+	        WHERE `id` 	= '".$_REQUEST['id']."' ";
+	$heart->sql_query($sql1);
+	}else{
+		$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+		       `BannerTitle` = '".$BannerTitle."',
+		     	`altTag` 	= '".$altTag."'
+		        WHERE `id` = '".$_REQUEST['id']."' ";
+		$heart->sql_query($sql1);
+	}
+       
+	$heart->redirect('content.php?show=viewCodeigniter-development&m=2&id='.$_REQUEST['redirect_id']);
 break;
 
 //show add window
