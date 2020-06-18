@@ -37,35 +37,19 @@
                                 <li onclick="window.location.href='computer-training.php'">Computer Training</li>
                             </ul>
                         </li>
-                        <!-- <li>
-                            <button class="drop-btn">Product Category
-                                <span class="carret" style="color:white;">
-                                    <i class="fas fa-caret-down"></i>
-                                </span>
-                            </button>
-                            <ul class="drop-menu hide">
-                                <li>Refurbished Computer</li>
-
-                                <li>Used Laptop</li>
-
-                                <li>Clearence</li>
-                            </ul>
-                        </li> -->
+                       
                         <li onclick="window.location.href='portfolio.php'">Portfolio</li>
                         <li onclick="window.location.href='client.php'">Clients</li>
                         <li onclick="window.location.href='contact.php'">Contact</li>
+
                         <hr class="hidden-md hidden-lg" style="margin: 10px 0;">
-                        <li class="hidden-xs hidden-sm" onclick="window.location.href='profile.php'">Profile</li>
-                        <li class="hidden-xs hidden-sm" onclick="window.location.href='wishlist.php'">Wishlist</li>
-                        <li class="hidden-xs hidden-sm" onclick="window.location.href='orderlist.php'">My Orders</li>
-                        <li class="hidden-xs hidden-sm" onclick="logout()">Log Out</li>
-                        <!-- <li class="drop-btn">
-                            <button class="drop-btn">My Account<span class="carret" style="color:white;"><i class="fas fa-caret-down"></i></span></button>
-                            <ul class="drop-menu hide">
-                                <li>Profile</li>
-                                <li>Wishlist</li>
-                            </ul>
-                        </li> -->
+                        <?php if (!empty($_SESSION['gleam_users_session'])) { ?>
+                            <li class="hidden-xs hidden-sm" onclick="window.location.href='profile.php'">Profile</li>
+                           <!--  <li class="hidden-xs hidden-sm" onclick="window.location.href='wishlist.php'">Wishlist</li> -->
+                            <li class="hidden-xs hidden-sm" onclick="window.location.href='orderlist.php'">My Orders</li>
+                            <li class="hidden-xs hidden-sm" onclick="logout()">Log Out</li>
+                        <?php } ?>
+                        
 
                     </ul>
                     <ul class="cart-box">
@@ -77,7 +61,7 @@
                                     <span>Swarnendu</span></button>
                                 <ul class="my-account-drop">
                                     <li onclick="window.location.href='profile.php'">Profile</li>
-                                    <li onclick="window.location.href='wishlist.php'">Wishlist</li>
+                                   <!--  <li onclick="window.location.href='wishlist.php'">Wishlist</li> -->
                                     <li onclick="window.location.href='orderlist.php'">My Orders</li>
                                     <li onclick="logout()">Log Out</li>
                                 </ul>
@@ -343,7 +327,7 @@
             window.location.href = "product.php";
         }
 
-
+    }
         function logout() {
             $.ajax({
                 url: "<?php echo 'mail-process.php?act=logout'; ?>",
@@ -355,7 +339,5 @@
                     location.reload();
                 }
             });
-
-    }
         }
 </script>
