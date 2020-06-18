@@ -138,7 +138,10 @@ include_once('includes/pagesources.php'); ?>
                                 <ul class="order-summery">
                                     <li>
                                         <div class="order-list">
-                                            
+                                        <div class="item-pic">
+                                                <img src="images/prd-1.png">
+                                                <input type="number" min="1" max="10" value="1">
+                                            </div>
                                             <div class="item-details">
                                                 <p class="prd-name">Product name</p>
                                                 <p class="prd-id">product id</p>
@@ -146,15 +149,15 @@ include_once('includes/pagesources.php'); ?>
                                                 <p class="prd-price">$200</p>
                                                 <button class="rmv-btn">Remove</button>
                                             </div>
-                                            <div class="item-pic">
-                                                <img src="images/prd-1.png">
-                                                <input type="number" min="1" max="10" value="1">
-                                            </div>
+                                            
                                         </div>
                                     </li>
                                     <li>
                                         <div class="order-list">
-                                           
+                                        <div class="item-pic">
+                                                <img src="images/prd-1.png">
+                                                <input type="number" min="1" max="10" value="1">
+                                            </div>
                                             <div class="item-details">
                                                 <p class="prd-name">Product name</p>
                                                 <p class="prd-id">product id</p>
@@ -162,10 +165,7 @@ include_once('includes/pagesources.php'); ?>
                                                 <p class="prd-price">$200</p>
                                                 <button class="rmv-btn ">Remove</button>
                                             </div>
-                                            <div class="item-pic">
-                                                <img src="images/prd-1.png">
-                                                <input type="number" min="1" max="10" value="1">
-                                            </div>
+                                            
                                         </div>
                                     </li>
                                     <button class="change-btn payment-procc">Procced to Payment</button>

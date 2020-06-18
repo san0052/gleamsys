@@ -381,8 +381,6 @@ include_once("includes/function.php");
                 <div class="banner-btn-box hidden-md hidden-lg">
                     <button id="searchbtn" class="hidden-md hidden-lg" onclick="openbannerform()"><i class="fas fa-filter"></i></button>
                 </div>
-
-
             </div>
         </div>
     </div>
