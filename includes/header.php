@@ -57,15 +57,14 @@
                     <?php if(empty($_SESSION['gleam_users_session'])) {?>
                     <li onclick="openlogin()">Login</li>
                     <?php } else { ?>
-                        <li onclick="logout()">Logout</li>
                         <li class="profileheaderbtn hidden-xs hidden-sm">
                             <button onclick="myaccntdrpopen()"><img src="images/client-1.png">
                                 <span>Swarnendu</span></button>
                             <ul class="my-account-drop">
-                                <li>Profile</li>
-                                <li>Wishlist</li>
-                                <li>My Orders</li>
-                                <li>Log Out</li>
+                                <li onclick="window.location.href='profile.php'">Profile</li>
+                                <li onclick="window.location.href='wishlist.php'">Wishlist</li>
+                                <li onclick="window.location.href='orderlist.php'">My Orders</li>
+                                <li onclick="logout()">Log Out</li>
                             </ul>
                         </li>
                     <?php } ?>
