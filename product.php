@@ -180,7 +180,7 @@ include_once("includes/links_frontend.php"); ?>
                     </div>
                     <div class="col-xs-12 product-more-box">
                         <!-- <button id="myBtn" onclick="getMore('3','','','')" class="product-more">View More</button> -->
-                        <button onclick="getMoreProducts(<?php echo $previousId ?>)" class="product-more hide_view_more">View More</button>
+                        <button data-id="<?php echo $previousId ?>" onclick="getMoreProducts(<?php echo $previousId ?>)" class="product-more hide_view_more">View More</button>
                     </div>
                 </div>
                 <div class="banner-btn-box hidden-md hidden-lg">
@@ -232,9 +232,18 @@ include_once("includes/links_frontend.php"); ?>
         let sub_category_array = [];
         $(document.body).on('change', '.select_sub_category', function(event) {
             let sub_category = $(this).attr('data-subcategory');
-            
+            sub_category_array.push(sub_category);
+            let counter_id = $('.hide_view_more').attr('data-id');
+            getMoreProducts(counter_id);
         });
 
+        function unique(list) {
+          var result = [];
+          $.each(list, function(i, e) {
+            if ($.inArray(e, result) == -1) result.push(e);
+          });
+          return result;
+        }
 
         function getMoreProducts(count = 0) {
             let type = "<?php echo $type ?>";
@@ -242,10 +251,19 @@ include_once("includes/links_frontend.php"); ?>
         }
 
         function getProducts(count, type) {
+
+            sub_category_array = unique(sub_category_array);
+            
             $.ajax({
                 url : "getProductData.php",
                 type : "POST",
-                data : { offset : count, type : type, 'is_more' : true },
+                data : { 
+                    offset     : count, 
+                    type       : type, 
+                    is_more    : true,
+                    sub_category    :   sub_category_array.toString()
+
+                },
                 dataType : 'JSON',
                 success : function(response) {
 
@@ -262,7 +280,7 @@ include_once("includes/links_frontend.php"); ?>
         }
 
         function viewMore(next_id) {
-           let htmlmore = '<button onclick="getMoreProducts('+next_id+')" class="product-more hide_view_more">View More</button>';
+           let htmlmore = '<button data-id="'+next_id+'" onclick="getMoreProducts('+next_id+')" class="product-more hide_view_more">View More</button>';
            $('.product-more-box').html(htmlmore);
         }
     </script>

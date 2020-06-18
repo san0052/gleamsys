@@ -31,7 +31,7 @@
                                 </span>
                             </button>
                             <ul class="drop-menu hide">
-                                <li>Buy Online</li>
+                                <li onclick="window.location.href='online-store.php'">Buy Online</li>
                                 <li onclick="window.location.href='tech-support.php'">Tech Support</li>
                                 <li onclick="window.location.href='it-service.php'">IT Services</li>
                                 <li onclick="window.location.href='computer-training.php'">Computer Training</li>
