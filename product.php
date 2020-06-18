@@ -233,8 +233,8 @@ include_once("includes/links_frontend.php"); ?>
         $(document.body).on('change', '.select_sub_category', function(event) {
             let sub_category = $(this).attr('data-subcategory');
             sub_category_array.push(sub_category);
-            let counter_id = $('.hide_view_more').attr('data-id');
-            getMoreProducts(counter_id);
+            // let counter_id = $('.hide_view_more').attr('data-id');
+            getMoreProducts();
         });
 
         function unique(list) {
@@ -242,7 +242,13 @@ include_once("includes/links_frontend.php"); ?>
           $.each(list, function(i, e) {
             if ($.inArray(e, result) == -1) result.push(e);
           });
-          return result;
+            if ($('input[type=checkbox]').is(":checked")) {
+            //any one is checked
+                return result;
+            } else {
+                //none is checked
+              return [];
+            }
         }
 
         function getMoreProducts(count = 0) {
@@ -269,9 +275,21 @@ include_once("includes/links_frontend.php"); ?>
 
                     if (response !='') {
                         if (response.status) {
-                            $(".productItem:last").after(response.details);
-                            viewMore(response.nextOffset);
+                            if(response.sidebarCounter) {
+                                $(".product-item-box").html(response.details);
+                            } else  {
+                                if($('.productItem').length>0) {
+                                    $(".productItem:last").after(response.details); 
+                                } else {
+                                    $(".product-item-box").html(response.details);
+                                }
+                                viewMore(response.nextOffset);
+                            }
+                            
                         } else {
+                            if(response.sidebarCounter) {
+                                $(".product-item-box").html(response.details);
+                            }
                             $('.hide_view_more').hide();
                         }
                     }
