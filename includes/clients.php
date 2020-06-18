@@ -6,41 +6,21 @@
 
             </div>
             <div class="col-xs-12 owl-carousel owl-theme client">
-                <div class="item">
-                    <div class="col-xs-12 team-image">
-                        <img src="images/client-1.png">
+                <?php 
+                    $sql    =   "SELECT * FROM ".$cfg['DB_CLIENT_INFO']."
+                                WHERE  
+                                `status` ='A' ";
+                    $res      =   $mycms->sql_query($sql);
+                    $num      =   $mycms->sql_numrows($res);
+                    if($num >0){
+                        while($row    =   $mycms->sql_fetchrow($res)){ ?>
+                    <div class="item">
+                        <div class="col-xs-12 team-image">
+                            <img src="uploads/client_logo/<?php echo $row['projectLogo']?>" alt="<?php echo $row['altTag']?>">
+                        </div>
                     </div>
-                </div>
-                <div class="item">
-                    <div class="col-xs-12 team-image">
-                    <img src="images/client-2.png">
-                    </div>
-                </div>
-                <!-- <div class="item">
-                    <div class="col-xs-12 team-image">
-                    <img src="images/client-3.png">
-                    </div>
-                </div> -->
-                <div class="item">
-                    <div class="col-xs-12 team-image">
-                    <img src="images/client-4.png">
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="col-xs-12 team-image">
-                    <img src="images/client-5.png">
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="col-xs-12 team-image">
-                    <img src="images/client-6.png">
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="col-xs-12 team-image">
-                    <img src="images/client-7.png">
-                    </div>
-                </div>
+                <?php } }?>
+                
             </div>
             <div class="col-xs-12 btn-box">
                 <button onclick="window.location.href='client.php'">view all clients</button>

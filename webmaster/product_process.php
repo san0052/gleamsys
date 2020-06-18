@@ -55,14 +55,17 @@ case 'insert':
 	$sprice=addslashes($_REQUEST['sprod_price_add']);
 	$desc=(addslashes($_REQUEST['prod_desc_add']!=""))?addslashes($_REQUEST['prod_desc_add']):'';
 	$deliInfo=(addslashes($_REQUEST['prod_del_info']!=""))?addslashes($_REQUEST['prod_del_info']):'';
+	
 	$pf=addslashes(($_REQUEST['fp']!=""))?'A':'I';
-	$pr=addslashes(($_REQUEST['rp']!=""))?'A':'I';
+	//$pr=addslashes(($_REQUEST['rp']!=""))?'A':'I';
 	$bp=addslashes(($_REQUEST['bp']!=""))?'Y':'N';
-		
-$sql="INSERT INTO ".$cfg['DB_PRODUCT']." SET `pd_name` = '".$pname."',`pd_price` = '".$price."',`pd_unit_price` = '".$Unitprice."',`pd_double_cost`= '".$doubleCost."',	`strike_price` = '".$sprice."',	`pd_description` = '".$desc."',`pd_deliveryinformation` = '".$deliInfo."',`category`='".$cat."',`disclaimer` = '".$prod_dis."',`notes` = '".$prod_note."',`location` = '".$prod_loc."',`pd_date`=NOW(),`pd_featured`='".$pf."',`pd_rightbar`='".$pr."',`pd_bestseller`='".$bp."',`status`='A',`keyword`='".$key."',`siteId`= '".$cfg['SESSION_SITE']."' " ;	
+	$today_Spcial_product =	addslashes(($_REQUEST['today_Spcial_product']!=""))?'Y':'N';
+	$new_arrival_pro =addslashes(($_REQUEST['new_arrival_pro']!=""))?'A':'I';
+
+	 $sql="INSERT INTO ".$cfg['DB_PRODUCT']." SET `pd_name` = '".$pname."',`pd_price` = '".$price."',`pd_unit_price` = '".$Unitprice."',`pd_double_cost`= '".$doubleCost."',	`strike_price` = '".$sprice."',	`pd_description` = '".$desc."',`pd_deliveryinformation` = '".$deliInfo."',`category`='".$cat."',`disclaimer` = '".$prod_dis."',`notes` = '".$prod_note."',`location` = '".$prod_loc."',`pd_date`=NOW(),`pd_featured`='".$pf."',`today_Spcial_product`='".$today_Spcial_product."', `new_arrival_pro` = '".$new_arrival_pro."' ,`pd_bestseller`='".$bp."',`status`='A',`keyword`='".$key."',`siteId`= '".$cfg['SESSION_SITE']."' " ;	
 	$heart->sql_query($sql);
 			 
-	 $last_id=mysql_insert_id();
+	 $last_id=$heart->inserted_id();
 	 
 	 //insert category in the another table
 	 
