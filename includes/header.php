@@ -12,9 +12,19 @@
             <div class="col-xs-10 col-xs-offset-2 navigation-bar">
                 <nav>
                     <ul id="myDIV">
+                    <button class="hidden-md hidden-lg" onclick="navcls()" style="float: right;
+    background: transparent;
+    border: 0;
+    color: white;
+    padding: 0;
+    padding-bottom: 9px;"><i class="fas fa-grip-lines"></i></button>
+                    <li class="profileheaderbtn hidden-md hidden-lg">
+                            <button><img src="images/client-1.png"><span>Swarnendu</span></button>
+                        </li>
+                        <li class="profileheaderbtn hidden-md hidden-lg" onclick="openlogin()">Login</li>
                         <li onclick="window.location.href='index.php'">Home</li>
                         <li onclick="window.location.href='about.php'">About</li>
-                        <li >
+                        <li>
                             <button class="drop-btn">Services
                                 <span class="carret" style="color:white;">
                                     <i class="fas fa-caret-down"></i>
@@ -44,6 +54,11 @@
                         <li onclick="window.location.href='portfolio.php'">Portfolio</li>
                         <li onclick="window.location.href='client.php'">Clients</li>
                         <li onclick="window.location.href='contact.php'">Contact</li>
+                        <hr class="hidden-md hidden-lg" style="margin: 10px 0;">
+                        <li class="hidden-xs hidden-sm" onclick="window.location.href='profile.php'">Profile</li>
+                        <li class="hidden-xs hidden-sm" onclick="window.location.href='wishlist.php'">Wishlist</li>
+                        <li class="hidden-xs hidden-sm" onclick="window.location.href='orderlist.php'">My Orders</li>
+                        <li class="hidden-xs hidden-sm" onclick="logout()">Log Out</li>
                         <!-- <li class="drop-btn">
                             <button class="drop-btn">My Account<span class="carret" style="color:white;"><i class="fas fa-caret-down"></i></span></button>
                             <ul class="drop-menu hide">
@@ -51,27 +66,26 @@
                                 <li>Wishlist</li>
                             </ul>
                         </li> -->
-                        
+
                     </ul>
-                    <ul class="cart-box" >
-                    <?php if(empty($_SESSION['gleam_users_session'])) {?>
-                    <li onclick="openlogin()">Login</li>
-                    <?php } else { ?>
-                        <li onclick="logout()">Logout</li>
-                        <li class="profileheaderbtn hidden-xs hidden-sm">
-                            <button onclick="myaccntdrpopen()"><img src="images/client-1.png">
-                                <span>Swarnendu</span></button>
-                            <ul class="my-account-drop">
-                                <li>Profile</li>
-                                <li>Wishlist</li>
-                                <li>My Orders</li>
-                                <li>Log Out</li>
-                            </ul>
-                        </li>
-                    <?php } ?>
+                    <ul class="cart-box">
+                        <?php if (empty($_SESSION['gleam_users_session'])) { ?>
+                            <li class="hidden-xs hidden-sm" onclick="openlogin()">Login</li>
+                        <?php } else { ?>
+                            <li class="profileheaderbtn hidden-xs hidden-sm">
+                                <button onclick="myaccntdrpopen()"><img src="images/client-1.png">
+                                    <span>Swarnendu</span></button>
+                                <ul class="my-account-drop">
+                                    <li onclick="window.location.href='profile.php'">Profile</li>
+                                    <li onclick="window.location.href='wishlist.php'">Wishlist</li>
+                                    <li onclick="window.location.href='orderlist.php'">My Orders</li>
+                                    <li onclick="logout()">Log Out</li>
+                                </ul>
+                            </li>
+                        <?php } ?>
                         <li class="cart" onclick="cartopen()">
-                        <sub>0</sub>    
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 437.812 437.812" style="enable-background:new 0 0 437.812 437.812;" xml:space="preserve">
+                            <sub>0</sub>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 437.812 437.812" style="enable-background:new 0 0 437.812 437.812;" xml:space="preserve">
                                 <g>
                                     <g>
                                         <g>
@@ -113,7 +127,7 @@
                                 </g>
                             </svg></li>
                         <!-- <li class="drop-btn">0.00<span class="carret" style="color:white;"><i class="fas fa-caret-down"></i></span> -->
-                        
+
                         </li>
                         <li onclick="navsideopen()" class="hidden-md hidden-lg cart">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -271,21 +285,23 @@
             'overflow': 'hidden'
         });
     }
-    function enqueryslide(type=null) {
+
+    function enqueryslide(type = null) {
         $("#side-modal").addClass("open-side-modal");
         $("#enquery").slideDown();
         $("body").css({
             'overflow': 'hidden'
         });
-       
-        if (type=='prof') {
+
+        if (type == 'prof') {
             $('#PROFESSIONAL').prop('checked', true);
-        }else if (type=='begin') {
+        } else if (type == 'begin') {
             $('#BEGINNER').prop('checked', true);
         } else {
             $('#ADVANCED').prop('checked', true);
         }
     }
+
     function techbookopen() {
         $("#side-modal").addClass("open-side-modal");
         $("#techbook").slideDown();
@@ -320,23 +336,26 @@
 
     }
 
-    function showProducts(type=null) {
+    function showProducts(type = null) {
         if (type != null) {
-            window.location.href="product.php?type="+type;
+            window.location.href = "product.php?type=" + type;
         } else {
-            window.location.href="product.php";
+            window.location.href = "product.php";
         }
-    }
-    
-    function logout() {
-        $.ajax({
-            url : "<?php echo 'mail-process.php?act=logout'; ?>",
-            type : 'POST',
-            data : { 'logout':"logout" },
-            success : function(response) {
-                location.reload();
-            }
-        });
+
+
+        function logout() {
+            $.ajax({
+                url: "<?php echo 'mail-process.php?act=logout'; ?>",
+                type: 'POST',
+                data: {
+                    'logout': "logout"
+                },
+                success: function(response) {
+                    location.reload();
+                }
+            });
 
     }
+        }
 </script>
