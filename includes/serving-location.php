@@ -10,7 +10,7 @@
 
             </div>
 
-            <div class="col-xs-6 col-xs-offset-3 team-box" style="text-align: center;">
+            <div class="col-xs-12 col-md-6 col-md-offset-3 team-box" style="text-align: center;">
 
                 <form >
 

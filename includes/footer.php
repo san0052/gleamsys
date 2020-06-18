@@ -182,7 +182,7 @@
 
            <div class="row">
 
-               <div class="col-xs-3 footer-link">
+               <div class="col-xs-12 col-md-3 footer-link">
 
                    <ul>
 
@@ -210,7 +210,7 @@
 
                </div>
 
-               <div class="col-xs-3 footer-link">
+               <div class="col-xs-12 col-md-3 footer-link">
 
                    <ul>
 
@@ -228,7 +228,7 @@
 
                </div>
 
-               <div class="col-xs-3 footer-link contact-list">
+               <div class="col-xs-12 col-md-3 footer-link contact-list">
 
                    <ul>
 
@@ -246,7 +246,7 @@
 
                </div>
 
-               <div class="col-xs-3 footer-link">
+               <div class="col-xs-12 col-md-3 footer-link">
 
                    <ul>
 
@@ -277,17 +277,9 @@
                    </ul>
 
                </div>
-
                <p class="copy">&copy; 2020 Gleamsys All Rights Reserved - ABN : 37 804 155 992</p>
-
-
-
                <div class="clearfix"></div>
-
            </div>
-
        </div>
-
    </footer>
-
    <script src="//code.tidio.co/t6vivnuwfi76jl2shg2r4ehymsoe06rv.js"></script>

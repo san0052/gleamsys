@@ -246,6 +246,10 @@
             <form class="book-content">
                 <div class="book-content-inner">
                     <div class="order-list">
+                    <div class="item-pic">
+                            <img src="images/prd-1.png">
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
                         <div class="item-details">
                             <p class="prd-name">Product name</p>
                             <p class="prd-id">product id</p>
@@ -253,12 +257,13 @@
                             <p class="prd-price">$200</p>
                             <button class="rmv-btn">Remove</button>
                         </div>
-                        <div class="item-pic">
-                            <img src="images/prd-1.png">
-                            <input type="number" min="1" max="10" value="1">
-                        </div>
+                        
                     </div>
                     <div class="order-list">
+                    <div class="item-pic">
+                            <img src="images/prd-1.png">
+                            <input type="number" min="1" max="10" value="1">
+                        </div>
                         <div class="item-details">
                             <p class="prd-name">Product name</p>
                             <p class="prd-id">product id</p>
@@ -266,10 +271,7 @@
                             <p class="prd-price">$200</p>
                             <button class="rmv-btn">Remove</button>
                         </div>
-                        <div class="item-pic">
-                            <img src="images/prd-1.png">
-                            <input type="number" min="1" max="10" value="1">
-                        </div>
+                        
                     </div>
                     <table class="table totalpayble">
                         <thead>

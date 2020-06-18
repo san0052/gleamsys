@@ -1,10 +1,7 @@
 <div class="container-fluid page-content-sec">
-
   <div class="container">
-
     <div class="row">
-
-      <div class="col-xs-7 index-left">
+      <div class="col-xs-12 col-md-7 index-left">
 
         <div class="col-xs-12 welcome">
 
@@ -33,41 +30,24 @@
         </div>
 
       </div>
-
-      <aside class="col-xs-5 index-right">
-
+      <aside class="col-xs-12 col-md-5 index-right">
         <div class="col-xs-12 requer-form-box">
-
           <div class="col-xs-12 heading">
-
             <h2>Quick Quote</h2>
-
           </div>
-
           <form method="post" action="<?php echo $cfg['base_url']?>mail-process.php" onsubmit="return validate();">
             <input type="hidden" name="act" value="QuickContact"/>
             <div class="col-xs-12 form-group">
-
               <!-- <label>Full Name</label> -->
-
               <input type="text" placeholder="Full Name" name="name" id="name">
-
             </div>
-
             <div class="col-xs-12 form-group">
-
               <!-- <label>Full Name</label> -->
-
               <input type="text" placeholder="Email" name="email" id="email">
-
             </div>
-
             <div class="col-xs-12 form-group">
-
               <!-- <label>Full Name</label> -->
-
               <input type="text" placeholder="Mobile Number" name="mobileno" id="mobileno">
-
             </div>
 
             <div class="col-xs-12 form-group">
