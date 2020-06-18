@@ -1,5 +1,12 @@
 <?php
-include_once("includes/links_frontend.php"); ?>
+include_once("includes/links_frontend.php");
+if (empty($_SESSION['gleam_users_session'])) { 
+     $returnLink  =   $cfg['base_url'];
+     $mycms->redirect($cfg['base_url']);
+}else{
+    $userId = $_SESSION['gleam_users_session']['user_id'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include_once('includes/pagesources.php'); ?>
@@ -10,6 +17,12 @@ include_once("includes/links_frontend.php"); ?>
         <div class="container">
             <div class="row">
             <?php include_once('includes/profile-left-menu.php'); ?>
+            <?php 
+                $sqlgetUser = "SELECT * FROM ".$cfg['DB_USERS']."  WHERE `status`='A' AND `id` = ".$userId."  ";
+                $res    =   $mycms->sql_query($sqlgetUser);
+                $row    =   $mycms->sql_fetchrow($res);
+
+            ?>
                 <div class="col-xs-12 col-md-9 prf-right-box">
                     <div class="prf-right-content">
                         <div class="applied-box">
@@ -22,34 +35,38 @@ include_once("includes/links_frontend.php"); ?>
                                     <div class="teacherlisting-class">
                                         <table class="table">
                                             <tbody>
-                                            
                                                 <tr>
                                                     <td>Full Name<span class="colon">:</span></td>
-                                                    <td></td>
+                                                    <td><?php echo $row['name']; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Email Id<span class="colon">:</span></td>
-                                                    <td style="text-transform: lowercase;"></td>
+                                                    <td style="text-transform: lowercase;">
+                                                        <?php echo $row['email']; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Number<span class="colon">:</span></td>
-                                                    <td></td>
+                                                    <td><?php echo $row['mobile']; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>State<span class="colon">:</span></td>
-                                                    <td></td>
+                                                    <td><?php echo $row['state']; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>City<span class="colon">:</span></td>
-                                                    <td></td>
+                                                    <td><?php echo $row['city']; ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Country<span class="colon">:</span></td>
+                                                    <td><?php echo $row['country']; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Pincode<span class="colon">:</span></td>
-                                                    <td></td>
+                                                    <td><?php echo $row['pincode'] ;?></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Address<span class="colon">:</span></td>
-                                                    <td></td>
+                                                    <td><?php echo $row['location'] ;?></td>
                                                 </tr>
                                                 
                                             </tbody>
@@ -73,72 +90,37 @@ include_once("includes/links_frontend.php"); ?>
                                                 </tr>
                                                     <tr>
                                                         <td>Full Name<span class="colon">:</span></td>
-                                                        <td><input type="text" id="name" onkeypress="return /^[a-zA-Z ]*$/i.test(event.key)" style="text-transform: capitalize;" name="name" value=""></td>
+                                                        <td><input type="text" id="name" onkeypress="return /^[a-zA-Z ]*$/i.test(event.key)" style="text-transform: capitalize;" name="name" value="<?php echo $row['name']; ?>"></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Email Id<span class="colon">:</span></td>
-                                                        <td><input type="text" id="email" onkeypress="return /^[a-zA-Z0-9.@]*$/i.test(event.key)" name="email" value=""></td>
+                                                        <td><input type="text" id="email" onkeypress="return /^[a-zA-Z0-9.@]*$/i.test(event.key)" name="email" value="<?php echo $row['email']; ?>"></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Mobile Number<span class="colon">:</span></td>
-                                                        <td><input type="text" id="mobile" name="mobile" maxlength="10" onkeypress="return /^[0-9]*$/i.test(event.key)" value=""></td>
+                                                        <td><input type="text" id="mobile" name="mobile" maxlength="10" onkeypress="return /^[0-9]*$/i.test(event.key)" value="<?php echo $row['mobile'] ;?>"></td>
                                                     </tr>
                                                     <tr>
                                                         <td>State<span class="colon">:</span></td>
                                                         <td>
-                                                            <select name="state" id="state" onchange="getCity()">
-                                                                <option value="" selected="" disabled="disabled">-- Select --</option>
-                                                                <option value="5">Delhi</option>
-                                                                <option value="2">Gujarat</option>
-                                                                <option value="3">Karnataka</option>
-                                                                <option value="7">Rajasthan</option>
-                                                                <option value="4">Tamil Nadu</option>
-                                                                <option value="6">Telangana</option>
-                                                                <option value="8">Uttar Pradesh</option>
-                                                                <option value="1">West Bengal</option>
-                                                            </select>
+                                                            <input type="text" id="state" name="state"  value="<?php echo $row['state'] ;?>">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>City<span class="colon">:</span></td>
-                                                        <td><select name="city" id="city" onchange="getPincode()">
-                                                                <option value=""></option>
-                                                            </select></td>
+                                                        <td><input type="text" id="city" name="city"  value="<?php echo $row['city']; ?>"></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Pin Code<span class="colon">:</span></td>
                                                         <td>
-                                                            <select name="pincode" id="pincode">
-                                                            </select>
+                                                            <input type="text" id="pincode" name="pincode"  value="<?php echo $row['pincode']; ?>">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Address<span class="colon">:</span></td>
-                                                        <td><input type="text" id="address" name="address" style="text-transform: capitalize;" value=""></td>
+                                                        <td><input type="text" id="address" name="address" style="text-transform: capitalize;" value="<?php echo $row['location'] ;?>"></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>Class<span class="colon">:</span></td>
-                                                        <td>
-                                                            <select name="class" id="class">
-                                                                <option value="" selected="" disabled="">Select Class</option>
-                                                                <option value="1">Class 10</option>
-                                                                <option value="2">class 12</option>
-                                                                <option value="3">Class 11</option>
-                                                                <option value="4">Class 9</option>
-                                                                <option value="5">Class 8</option>
-                                                                <option value="6">Class 7</option>
-                                                                <option value="7">Class 6</option>
-                                                                <option value="8">Class 5</option>
-                                                                <option value="9">Class 4</option>
-                                                                <option value="10">Class 3</option>
-                                                                <option value="12">Class 2</option>
-                                                                <option value="13">Class 1</option>
-                                                                <option value="14">Class UKG</option>
-                                                                <option value="15">Class LKG</option>
-                                                                <option value="16">Class Nursery</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
+                                                   
                                                 </tbody>
                                             </table>
                                         </div>

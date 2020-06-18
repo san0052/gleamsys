@@ -13,11 +13,11 @@
                 <nav>
                     <ul id="myDIV">
                     <button class="hidden-md hidden-lg" onclick="navcls()" style="float: right;
-    background: transparent;
-    border: 0;
-    color: white;
-    padding: 0;
-    padding-bottom: 9px;"><i class="fas fa-grip-lines"></i></button>
+                        background: transparent;
+                        border: 0;
+                        color: white;
+                        padding: 0;
+                        padding-bottom: 9px;"><i class="fas fa-grip-lines"></i></button>
                     <li class="profileheaderbtn hidden-md hidden-lg">
                             <button><img src="images/client-1.png"><span>Swarnendu</span></button>
                         </li>

@@ -15,17 +15,7 @@
                        <input type="password" placeholder="Password" class="login_password" name="password" autocomplete="off">
                        <small class="login_error_password" style="color:red"></small>
                     </div>
-                    <!-- <div class="col-xs-12 form-group pl pr">
-                        <div class="col-xs-12 rc">
-                            <label>Remember Me
-                                <div>
-                                    <input type="checkbox" name="loginType" value="student">
-                                    <span class="checkmark"></span>
-                                </div>
-
-                            </label>
-                        </div>
-                    </div> -->
+                   
                     <div class="col-xs-12 form-group">
                         <a onclick="forgetpass()" style="cursor:pointer;">Forgot Password</a>
                     </div>
@@ -68,54 +58,44 @@
                 <div class="book-content-inner">
                
                         <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
                             <input type="text" placeholder="Full Name"  name="name" class="reg_fullname">
                             <small class="error_reg_fullname" style="color:red"></small>
                         </div>
                         <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
                             <input type="text" placeholder="Mobile Number" name="mobile" class="reg_mobile" onkeypress=" return isNumber(event)">
                             <small class="error_reg_mobile" style="color:red"></small>
                         </div>
                         <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
                             <input type="email" placeholder="Email Id" name="email" class="reg_email">
                             <small class="error_reg_email" style="color:red"></small>
 
                         </div>
                         <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
                             <input type="text" placeholder="Location" name="location" class="reg_location">
                             <small class="error_reg_location" style="color:red"></small>
 
                         </div>
                         <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
                             <input type="text" placeholder="City" name="city" class="reg_city">
                             <small class="error_reg_city" style="color:red"></small>
                         </div>
                         <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
                             <input type="text" placeholder="State" name="state" class="reg_state">
                             <small class="error_reg_state" style="color:red"></small>
                         </div>
                         <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
                             <input type="text" placeholder="Country" name="country" class="reg_country">
                             <small class="error_reg_country" style="color:red"></small>
                         </div>
                         <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
                             <input type="text" placeholder="Pin Code" name="pincode" class="reg_pincode" onkeypress=" return isNumber(event)">
                             <small class="error_reg_pincode" style="color:red"></small>
                         </div>
                         <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
                             <input type="password" placeholder="Password" name="password" class="reg_password">
                              <small class="error_reg_password" style="color:red"></small>
                         </div>
                         <div class="col-xs-12 form-group">
-                            <!-- <label>Full Name</label> -->
                             <input type="password" placeholder="Confirm Password" class="reg_confirm_password">
                             <small class="error_reg_confirm_password" style="color:red"></small>
                         </div>
