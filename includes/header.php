@@ -12,6 +12,16 @@
             <div class="col-xs-10 col-xs-offset-2 navigation-bar">
                 <nav>
                     <ul id="myDIV">
+                    <button class="hidden-md hidden-lg" onclick="navcls()" style="float: right;
+    background: transparent;
+    border: 0;
+    color: white;
+    padding: 0;
+    padding-bottom: 9px;"><i class="fas fa-grip-lines"></i></button>
+                    <li class="profileheaderbtn hidden-md hidden-lg">
+                            <button><img src="images/client-1.png"><span>Swarnendu</span></button>
+                        </li>
+                        <li class="profileheaderbtn hidden-md hidden-lg" onclick="openlogin()">Login</li>
                         <li onclick="window.location.href='index.php'">Home</li>
                         <li onclick="window.location.href='about.php'">About</li>
                         <li>
