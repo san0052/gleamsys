@@ -1,4 +1,4 @@
-<? include_once('sideslide.php') ?>
+<?php include_once('sideslide.php') ?>
 <header class="header">
     <div class="container">
         <div class="row">
@@ -18,8 +18,20 @@
                         color: white;
                         padding: 0;
                         padding-bottom: 9px;"><i class="fas fa-grip-lines"></i></button>
+                        <?php
+                            $userId     = $_SESSION['gleam_users_session']['user_id'];
+                            if($userId){
+                            $sqlgetUser = "SELECT image,name FROM ".$cfg['DB_USERS']."  WHERE `status`='A' AND `id` = ".$userId."  ";
+                            $res        =   $mycms->sql_query($sqlgetUser);
+                            $row        =   $mycms->sql_fetchrow($res);
+                            }
+                        ?>
                     <li class="profileheaderbtn hidden-md hidden-lg">
-                            <button><img src="images/client-1.png"><span>Swarnendu</span></button>
+                        <?php if (!empty($_SESSION['gleam_users_session'])) {?>
+                            <button><img src="uploads/userProfile/<?php echo $row['image'];?>"><span><?php echo ucfirst($row['name']);?></span></button>
+                        <?php }else{ ?>
+                              <button><img src="uploads/userProfile/man.png"><span></span></button>
+                        <?php } ?>
                         </li>
                         <li class="profileheaderbtn hidden-md hidden-lg" onclick="openlogin()">Login</li>
                         <li onclick="window.location.href='index.php'">Home</li>
@@ -57,8 +69,7 @@
                             <li class="hidden-xs hidden-sm" onclick="openlogin()">Login</li>
                         <?php } else { ?>
                             <li class="profileheaderbtn hidden-xs hidden-sm">
-                                <button onclick="myaccntdrpopen()"><img src="images/client-1.png">
-                                    <span>Swarnendu</span></button>
+                                <button onclick="myaccntdrpopen()"><img src="uploads/userProfile/<?php echo $row['image'];?>"><span><?php echo ucfirst($row['name']);?></button>
                                 <ul class="my-account-drop">
                                     <li onclick="window.location.href='profile.php'">Profile</li>
                                    <!--  <li onclick="window.location.href='wishlist.php'">Wishlist</li> -->

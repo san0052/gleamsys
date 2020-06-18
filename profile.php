@@ -78,15 +78,15 @@ if (empty($_SESSION['gleam_users_session'])) {
                                     <div id="successMessage"></div>
                                 </div>
                                 <div id="editbox" class="applied-items edit-details" style="display:none;">
-                                    <form enctype="multipart/form-data" method="post" onsubmit="return formValidator()" action="http://localhost/theteachershub/dev/student/model/student-model.php">
+                                    <form enctype="multipart/form-data" method="post" onsubmit="return formValidator()" action="profile-process.php">
+                                        <input type="hidden" name="act" value="updateUser_Profile">
                                         <div class="teacherlisting-class">
-                                            <input type="hidden" id="studentId" name="studentId" value="">
-                                            <input type="hidden" id="act" name="act" value="studentProfileEdit">
+                                            <input type="hidden" id="id" name="id" value="<?php echo $userId;?>">
                                             <table class="table">
                                                 <tbody>
                                                 <tr>
                                                     <td>Profile Image<span class="colon">:</span></td>
-                                                    <td><input type="file"></td>
+                                                    <td><input type="file" name="image" id="image"></td>
                                                 </tr>
                                                     <tr>
                                                         <td>Full Name<span class="colon">:</span></td>
@@ -111,6 +111,10 @@ if (empty($_SESSION['gleam_users_session'])) {
                                                         <td><input type="text" id="city" name="city"  value="<?php echo $row['city']; ?>"></td>
                                                     </tr>
                                                     <tr>
+                                                        <td>Country<span class="colon">:</span></td>
+                                                        <td><input type="text" id="country" name="country"  value="<?php echo $row['country']; ?>"></td>
+                                                    </tr>
+                                                    <tr>
                                                         <td>Pin Code<span class="colon">:</span></td>
                                                         <td>
                                                             <input type="text" id="pincode" name="pincode"  value="<?php echo $row['pincode']; ?>">
@@ -118,7 +122,7 @@ if (empty($_SESSION['gleam_users_session'])) {
                                                     </tr>
                                                     <tr>
                                                         <td>Address<span class="colon">:</span></td>
-                                                        <td><input type="text" id="address" name="address" style="text-transform: capitalize;" value="<?php echo $row['location'] ;?>"></td>
+                                                        <td><input type="text" id="address" name="location" style="text-transform: capitalize;" value="<?php echo $row['location'] ;?>"></td>
                                                     </tr>
                                                    
                                                 </tbody>
@@ -245,10 +249,7 @@ if (empty($_SESSION['gleam_users_session'])) {
                 $('#errorRegister').html('Please enter address').css('color', 'red');
                 $('#address').focus();
                 return false;
-            } else if (classId == '' || classId == null) {
-                $('#errorRegister').html('Please select class').css('color', 'red');
-                $('#class').focus();
-                return false;
+            
             } else {
                 return true;
             }
