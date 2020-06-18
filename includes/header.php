@@ -266,7 +266,8 @@
         } else {
             window.location.href="product.php";
         }
-
+    }
+    
     function logout() {
         $.ajax({
             url : "<?php echo 'mail-process.php?act=logout'; ?>",
