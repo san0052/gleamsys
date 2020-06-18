@@ -54,7 +54,11 @@
                         
                     </ul>
                     <ul class="cart-box">
+                    <?php if(empty($_SESSION['gleam_users_session'])) {?>
                     <li onclick="openlogin()">Login</li>
+                    <?php } else { ?>
+                        <li onclick="logout()">Logout</li>
+                    <?php } ?>
                         <li class="cart" onclick="cartopen()">
                         <sub>0</sub>    
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 437.812 437.812" style="enable-background:new 0 0 437.812 437.812;" xml:space="preserve">
@@ -255,12 +259,23 @@
         }, 'slow');
 
     }
+
     function showProducts(type=null) {
         if (type != null) {
             window.location.href="product.php?type="+type;
         } else {
             window.location.href="product.php";
         }
-        
+
+    function logout() {
+        $.ajax({
+            url : "<?php echo 'mail-process.php?act=logout'; ?>",
+            type : 'POST',
+            data : { 'logout':"logout" },
+            success : function(response) {
+                location.reload();
+            }
+        });
+
     }
 </script>

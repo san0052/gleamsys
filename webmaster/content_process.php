@@ -95,7 +95,7 @@ case'view':
 	{
 		$heart->redirect('content.php?show=viewGps-location-app&id='.$_REQUEST['id']);
 	}
-	if($_REQUEST['page']=='Domain-registration-app')
+	if($_REQUEST['page']=='Domain-registration')
 	{
 		$heart->redirect('content.php?show=viewDomain-registration&id='.$_REQUEST['id']);
 	}

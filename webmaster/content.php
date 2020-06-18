@@ -3559,6 +3559,7 @@ if($show=='editContact'){
       if($show=='viewDomain-registration') {
         // $cfg['SESSION_SITE'] = 2;
         $sql="SELECT * FROM ".$cfg['DB_SERVICE_BANNER']." WHERE `siteId`='".$cfg['SESSION_SITE']."' AND `status`='A' AND `id`= 16 AND `bannerType` = 'domain-registration'";
+
         $res=$heart->sql_query($sql);
         $row=$heart->sql_fetchrow($res);
 
