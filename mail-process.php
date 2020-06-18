@@ -4,7 +4,155 @@ $action = $_REQUEST['act'];
 switch($action)
 {
 	
-	case'Contact':
+	case 'login':
+
+		$email 		= stripslashes(strip_tags($_REQUEST['email']));
+		$password 	= stripslashes(strip_tags($_REQUEST['password']));
+
+		global  $mycms,$cfg;
+		// // check email exist
+		$checkSqlEmail = "SELECT `user_id`,`user_email`,`user_password` FROM ".$cfg['DB_USER_LOGIN']." WHERE `user_email` = '".$email."'";
+		$resEmail	=	$mycms->sql_query($checkSqlEmail);
+		$rowEmail	=	$mycms->sql_fetchrow($resEmail);
+		if (!empty($rowEmail)) {
+			if ($rowEmail['user_password'] == md5($password)) {
+				session_start();
+				$_SESSION['gleam_users_session'] = array(
+					'email' => $rowEmail['email'],
+					'user_id' => $rowEmail['user_id']
+				);
+				echo json_encode(array('status'=>true,'message'=>'Login successfull')); die;
+			} else {
+				echo json_encode(array('status'=>false,'message'=>'Invalid Credentials')); die;
+			}
+		} else {
+			echo json_encode(array('status'=>false,'message'=>'Invalid Credentials')); die;
+		}
+		
+	break;
+
+	case 'register':
+		$name 		= stripslashes(strip_tags($_REQUEST['name']));
+		$mobile 	= stripslashes(strip_tags($_REQUEST['mobile']));
+		$email 		= stripslashes(strip_tags($_REQUEST['email']));
+		$location 	= stripslashes(strip_tags($_REQUEST['location']));
+		$city 		= stripslashes(strip_tags($_REQUEST['city']));
+		$state 		= stripslashes(strip_tags($_REQUEST['state']));
+		$country 	= stripslashes(strip_tags($_REQUEST['country']));
+		$pincode 	= stripslashes(strip_tags($_REQUEST['pincode']));
+		$password 	= stripslashes(strip_tags($_REQUEST['password']));
+
+		global  $mycms,$cfg;
+		//check mobile exist
+		$checkSqlMobile = "SELECT `mobile` FROM ".$cfg['DB_USERS']." WHERE `mobile` = '".$mobile."'";
+		$resMobile	=	$mycms->sql_query($checkSqlMobile);
+		$rowMobile	=	$mycms->sql_fetchrow($resMobile);
+		if (!empty($rowMobile)) {
+			echo json_encode(array('status'=>false,'message'=>'Mobile already exist')); die;
+		}
+
+		// check email exist
+		$checkSqlEmail = "SELECT `email` FROM ".$cfg['DB_USERS']." WHERE `email` = '".$email."'";
+		$resEmail	=	$mycms->sql_query($checkSqlEmail);
+		$rowEmail	=	$mycms->sql_fetchrow($resEmail);
+		if (!empty($rowEmail)) {
+			echo json_encode(array('status'=>false,'message'=>'Email already exist')); die;
+		}
+		
+		$registerUsers = "INSERT INTO ".$cfg['DB_USERS']."
+							 SET
+							 	`name`		=   '".$name."',
+							    `mobile`	=   '".$mobile."',
+							    `email`		=	'".$email."', 
+								`location`	=	'".$location."',  
+								`city`		=	'".$city."',
+								`state`		=	'".$state."',
+								`country`	=	'".$country."',
+								`pincode`	=	'".$pincode."',
+								`password`	=	'".md5($password)."',
+								`session_id`=	'".session_id()."',
+								`created_at`=	'".date('Y-m-d H:i:s')."',
+								`ip`		=	'".$_SERVER['REMOTE_ADDR']."'";
+
+		$ins = $mycms->sql_insert($registerUsers);
+		if (!empty($ins)) {
+
+			$userLogin = "INSERT INTO ".$cfg['DB_USER_LOGIN']."
+							 SET
+							 	`user_id`		=	".$ins.",
+							    `user_email`	=	'".$email."', 
+								`user_password`	=	'".md5($password)."',
+								`session_id`	=	'".session_id()."',
+								`created_at`	=	'".date('Y-m-d H:i:s')."',
+								`ipAddress` 	=	'".$_SERVER['REMOTE_ADDR']."'
+								";
+			$ins1 = $mycms->sql_insert($userLogin);
+
+			//Send Email To Admin
+			$mail.='			<table width="100%" border="0" cellspacing="0" cellpadding="12" style="min-width: 700px;">';
+			$mail.='				<tr>';
+			$mail.='					<td height="9" colspan="3" align="left" valign="top" style="padding:1em 0 0 0;"><h2>New User Registration</h2></td>';
+			$mail.='				</tr>';
+			$mail.='					<tr>';
+			$mail.='						<td style="width:10%; padding:0;">Name</td>';
+			$mail.='						<td style="width:2%; padding:0;">:</td>';
+			$mail.='						<td style="width:88%; padding:0;">'.$name.'</td>';
+			$mail.='					</tr>';
+			$mail.='					<tr>';
+			$mail.='						<td style="width:10%; padding:0;">Contact</td>';
+			$mail.='						<td style="width:2%; padding:0;">:</td>';
+			$mail.='						<td style="width:88%; padding:0;">'.$mobile.'</td>';
+			$mail.='					</tr>';
+			$mail.='					<tr>';
+			$mail.='						<td style="width:10%; padding:0;">Email</td>';
+			$mail.='						<td style="width:2%; padding:0;">:</td>';
+			$mail.='						<td style="width:88%; padding:0;">'.$email.'</td>';
+			$mail.='					</tr>';
+			$mail.='					<tr>';
+			$mail.='						<td style="width:10%; padding:0;">Address</td>';
+			$mail.='						<td style="width:2%; padding:0;">:</td>';
+			$mail.='						<td style="width:88%; padding:0;">'.$location.','.$city.', '.$state.', '.$pincode.', '.$country.'</td>';
+			$mail.='					</tr>';
+			$mail.='					<tr>';
+			$mail.='						<td height="10" colspan="3" align="left" valign="top" style="padding:10px; border:1px solid #ccc; background:#f9f9f9;">';
+			$mail.='							<p style="font-weight:bold;">Query :</p>';
+			$mail.='							<p></p>';
+			$mail.='						</td>';
+			$mail.='					</tr>';
+			$mail.='				</table>';		
+			
+			$message		=	'New User Registration';
+			
+			$to_name 		=	'Admin';
+			$to_email 		=	$cfg['INFO_EMAIL'];
+			$form_name 		=	$cfg['ADMIN_NAME'];
+			$form_email		=	$cfg['ADMIN_EMAIL'];
+			$subject		=	"User Query";		
+			send_mail_contact($to_name, $to_email, $form_name, $form_email, $subject, $message);		
+				
+			/* ***** Send Email ***** */
+			$to_name 		=	$name;
+			$to_email 		=	$email;
+			$form_name 		=	$cfg['ADMIN_NAME'];
+			$form_email		=	$cfg['ADMIN_EMAIL'];
+			$subject		=	"Login Credentials";		
+			$message		.=	'Dear '.$name.',<br/><br/> your login credentials.<br>';
+			$message 		.= 	'Email - '.$email.'<br> Password - '.$password;
+			send_mail_contact($to_name, $to_email, $form_name, $form_email, $subject, $message, $bcc='');
+
+			echo json_encode(array('status'=>true,'message'=>'User registered successfully')); die;
+		} else {
+			echo json_encode(array('status'=>false,'message'=>'Failed to register user')); die;
+		}
+
+	break;
+
+	case 'logout':
+		unset($_SESSION['gleam_users_session']);
+		echo "done"; die;
+	break;
+
+	case 'Contact':
 		$contactName	=	$_REQUEST['name'];
 		$contactEmail	=	$_REQUEST['email'];
 		$contactPhone	=	$_REQUEST['mobileno'];

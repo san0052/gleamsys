@@ -5,17 +5,17 @@
                 <p>LOGIN</p>
                 <button onclick="bookcls()"><i class="fas fa-grip-lines"></i></button>
             </div>
-            <form class="book-content">
+            <form class="book-content" method="POST">
                 <div class="book-content-inner">
                     <div class="col-xs-12 form-group">
-                        <!-- <label>Full Name</label> -->
-                        <input type="text" placeholder="Email Id">
+                       <input type="email" placeholder="Email Id" class="login_email" name="email" autocomplete="off">
+                       <small class="login_error_email" style="color:red"></small>
                     </div>
                     <div class="col-xs-12 form-group">
-                        <!-- <label>Full Name</label> -->
-                        <input type="password" placeholder="Password">
+                       <input type="password" placeholder="Password" class="login_password" name="password" autocomplete="off">
+                       <small class="login_error_password" style="color:red"></small>
                     </div>
-                    <div class="col-xs-12 form-group pl pr">
+                    <!-- <div class="col-xs-12 form-group pl pr">
                         <div class="col-xs-12 rc">
                             <label>Remember Me
                                 <div>
@@ -25,9 +25,9 @@
 
                             </label>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-xs-12 form-group">
-                        <a onclick="forgetpass()" style="cursor:pointer;">Forget Password</a>
+                        <a onclick="forgetpass()" style="cursor:pointer;">Forgot Password</a>
                     </div>
                     <div class="col-xs-12 form-group forget-password-item" dep="forget-password">
                         <!-- <label>Full Name</label> -->
@@ -50,13 +50,13 @@
                     <div class="total">
 
                         <p class="prd-price">Do Not have Account?</p>
-                        <a onclick="openregi()">Register Now</a>
+                        <a onclick="openregi()" style="cursor: pointer;">Register Now</a>
                     </div>
                     <div style="float:right;">
-                        <button type="button" id="nextBtn" onclick="nextPrev(1)" class="demo-class">LOGIN</button>
+                        <!-- <button type="button" id="nextBtn" onclick="nextPrev(1)" class="demo-class">LOGIN</button> -->
+                        <button type="button" class="demo-class loginBtn">LOGIN</button>
                     </div>
                 </div>
-                
             </form>
         </div>
         <div class="regi-box" id="regi">
@@ -64,48 +64,60 @@
                 <p>REGISTRATION</p>
                 <button onclick="bookcls()"><i class="fas fa-grip-lines"></i></button>
             </div>
-            <form class="book-content">
+            <form class="book-content" method="POST">
                 <div class="book-content-inner">
                
                         <div class="col-xs-12 form-group">
                             <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Full Name">
+                            <input type="text" placeholder="Full Name"  name="name" class="reg_fullname">
+                            <small class="error_reg_fullname" style="color:red"></small>
                         </div>
                         <div class="col-xs-12 form-group">
                             <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Mobile Number">
+                            <input type="text" placeholder="Mobile Number" name="mobile" class="reg_mobile" onkeypress=" return isNumber(event)">
+                            <small class="error_reg_mobile" style="color:red"></small>
                         </div>
                         <div class="col-xs-12 form-group">
                             <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Email Id">
+                            <input type="email" placeholder="Email Id" name="email" class="reg_email">
+                            <small class="error_reg_email" style="color:red"></small>
+
                         </div>
                         <div class="col-xs-12 form-group">
                             <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Location">
+                            <input type="text" placeholder="Location" name="location" class="reg_location">
+                            <small class="error_reg_location" style="color:red"></small>
+
                         </div>
                         <div class="col-xs-12 form-group">
                             <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="City">
+                            <input type="text" placeholder="City" name="city" class="reg_city">
+                            <small class="error_reg_city" style="color:red"></small>
                         </div>
                         <div class="col-xs-12 form-group">
                             <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="State">
+                            <input type="text" placeholder="State" name="state" class="reg_state">
+                            <small class="error_reg_state" style="color:red"></small>
                         </div>
                         <div class="col-xs-12 form-group">
                             <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Country">
+                            <input type="text" placeholder="Country" name="country" class="reg_country">
+                            <small class="error_reg_country" style="color:red"></small>
                         </div>
                         <div class="col-xs-12 form-group">
                             <!-- <label>Full Name</label> -->
-                            <input type="text" placeholder="Pin Code">
+                            <input type="text" placeholder="Pin Code" name="pincode" class="reg_pincode" onkeypress=" return isNumber(event)">
+                            <small class="error_reg_pincode" style="color:red"></small>
                         </div>
                         <div class="col-xs-12 form-group">
                             <!-- <label>Full Name</label> -->
-                            <input type="password" placeholder="Password">
+                            <input type="password" placeholder="Password" name="password" class="reg_password">
+                             <small class="error_reg_password" style="color:red"></small>
                         </div>
                         <div class="col-xs-12 form-group">
                             <!-- <label>Full Name</label> -->
-                            <input type="password" placeholder="Confirm Password">
+                            <input type="password" placeholder="Confirm Password" class="reg_confirm_password">
+                            <small class="error_reg_confirm_password" style="color:red"></small>
                         </div>
                     
                 </div>
@@ -113,10 +125,10 @@
                     <div class="total">
 
                         <p class="prd-price">Already have Account?</p>
-                        <a onclick="openlogin()">Login Now</a>
+                        <a onclick="openlogin()" style="cursor: pointer;">Login Now</a>
                     </div>
                     <div style="float:right;">
-                        <button type="button" id="nextBtn" onclick="nextPrev(1)" class="demo-class">REGISTER</button>
+                        <button type="button" class="demo-class registerBtn">REGISTER</button>
                     </div>
                 </div>
             </form>
@@ -443,4 +455,165 @@
       }
       
     }
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.loginBtn').click(function(event){
+            let error = 0;
+            $('.login_error_email, .login_error_password').text('');
+            let login_email = $('.login_email').val().trim();
+            let login_password = $('.login_password').val().trim();
+
+            if(login_email == '') {
+                $('.login_error_email').text('Enter Email');
+                error++;
+            }
+
+            if(login_email != '' && (isEmail(login_email) == false)) {
+                $('.login_error_email').text('Invalid Email Format');
+                error++;   
+            }
+            if(login_password == '') {
+                $('.login_error_password').text('Enter Password');
+                error++;
+            }
+            if (error>0) {
+                event.preventDefault();
+            } else {
+                $.ajax({
+                    url : "<?php echo 'mail-process.php?act=login'; ?>",
+                    dataType : 'JSON',
+                    type : 'POST',
+                    data : { email : login_email, password : login_password },
+                    success : function(response) {
+                        if(response != '') {
+                            if(response.status) {
+                                // alert(response.message);
+                                // setTimeout(function() {
+                                //     location.reload();
+                                // },1200);
+                                location.reload();
+                            } else {
+                                alert(response.message);
+                            }
+                        } else {
+                            alert('Something went wrong. Please went wrong');
+                        }
+                    }
+                });
+            }
+        });
+
+        $('.registerBtn').click(function(event) {
+
+            let error = 0;
+            $('.error_reg_fullname, .error_reg_mobile, .error_reg_email, .error_reg_location, .error_reg_city, .error_reg_state, .error_reg_country, .error_reg_pincode, .error_reg_password, .error_reg_confirm_password').text('');
+            let reg_fullname            =   $('.reg_fullname').val().trim();
+            let reg_mobile              =   $('.reg_mobile').val().trim();
+            let reg_email               =   $('.reg_email').val().trim();
+            let reg_location            =   $('.reg_location').val().trim();
+            let reg_city                =   $('.reg_city').val().trim();
+            let reg_state               =   $('.reg_state').val().trim();
+            let reg_country             =   $('.reg_country').val().trim();
+            let reg_pincode             =   $('.reg_pincode').val().trim();
+            let reg_password            =   $('.reg_password').val().trim();
+            let reg_confirm_password    =   $('.reg_confirm_password').val().trim();
+
+            if(reg_fullname == '') {
+                $('.error_reg_fullname').text('Name is required');
+                error++;   
+            }
+            if(reg_mobile == '') {
+                $('.error_reg_mobile').text('Mobile number is required');
+                error++;   
+            }
+            if(reg_mobile != '' && reg_mobile.length != 10) {
+                $('.error_reg_mobile').text('Mobile number should be 10 digit');
+                error++;   
+            }
+            if(reg_email == '') {
+                $('.error_reg_email').text('Email address is required');
+                error++;  
+            }
+            if(reg_email != '' && (isEmail(reg_email) == false)) {
+                $('.error_reg_email').text('Email address is invalid');
+                error++;   
+            }
+            if(reg_location == '') {
+                $('.error_reg_location').text('Location is required');
+                error++;   
+            }
+            if(reg_city == '') {
+                $('.error_reg_city').text('City is required');
+                error++;   
+            }
+            if(reg_state == '') {
+                $('.error_reg_state').text('State is required');
+                error++;   
+            }
+            if(reg_country == '') {
+                $('.error_reg_country').text('Country is required');
+                error++;   
+            }
+            if(reg_pincode == '') {
+                $('.error_reg_pincode').text('Pincode is required');
+                error++;   
+            }
+            if(reg_password == '') {
+                $('.error_reg_password').text('Password is required');
+                error++;   
+            }
+            if(reg_confirm_password == '') {
+                $('.error_reg_confirm_password').text('Confirm password is required');
+                error++;   
+            }
+            if(reg_password != '' && reg_confirm_password != '' && (reg_confirm_password != reg_password)) {
+                $('.error_reg_password').text('Password and confirm password mismatch');
+                error++;   
+            }
+            if(error>0) {
+                event.preventDefault();
+            } else {
+                $.ajax({
+                    url : "<?php echo 'mail-process.php?act=register'; ?>",
+                    dataType : 'JSON',
+                    type : 'POST',
+                    data : { name:reg_fullname, mobile:reg_mobile, email:reg_email,
+                        location:reg_location, city:reg_city, state:reg_state,
+                        country: reg_country, pincode: reg_pincode, password: reg_password
+                    },
+                    success : function(response) {
+                        if(response != '') {
+                            if(response.status) {
+                                alert(response.message);
+                                setTimeout(function() {
+                                    location.reload();
+                                },1200);
+                            } else {
+                                alert(response.message);
+                            }
+                        } else {
+                            alert('Something went wrong. Please went wrong');
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+function isEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
+
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true; 
+}
+
 </script>
