@@ -229,9 +229,10 @@ include_once("includes/links_frontend.php"); ?>
             child_carret.toggleClass("rota");
         });
 
-
+        let sub_category_array = [];
         $(document.body).on('change', '.select_sub_category', function(event) {
             let sub_category = $(this).attr('data-subcategory');
+            
         });
 
 
