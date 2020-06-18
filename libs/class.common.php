@@ -34,6 +34,20 @@ class sql_db
 			}
 		}
 	}
+
+	// insert query
+	function sql_insert($query = "") {
+		unset($this->query_result);
+		if($query != "") {
+			$this->query_result = @mysqli_query($this->db_connect_id, $query);
+		}
+		if($this->query_result) {
+			return $this->db_connect_id->insert_id;
+		} else {
+			return die(mysqli_error($this->db_connect_id));
+		}
+	}
+
 			
 	function swapDB($dbServer, $userName, $password, $dbName, $persistence=false)
 	{

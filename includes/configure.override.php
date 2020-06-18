@@ -125,6 +125,8 @@ $cfg['DB_BLOCK_TIME']					= "`".$cfg['TABLE_PREFIX']."block_ordertime`";
 $cfg['DB_COMPUTER_TRAIN']				= "`".$cfg['TABLE_PREFIX']."computer_training`";
 $cfg['DB_SHOP_CONTENT']				    = "`".$cfg['TABLE_PREFIX']."shop_content`";
 $cfg['DB_ONLINESTORE_BANNER']			= "`".$cfg['TABLE_PREFIX']."onlinestore_banner`";
+$cfg['DB_USERS']						= "`".$cfg['TABLE_PREFIX']."users`";
+$cfg['DB_USER_LOGIN']					= "`".$cfg['TABLE_PREFIX']."user_login`";
 
 $cfg['SESSION_SITE']=2;
 
