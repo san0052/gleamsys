@@ -255,32 +255,36 @@ case 'update':
 	$sprice=addslashes($_REQUEST['sprod_price_add']);
 	$discount=addslashes($_REQUEST['discount']);
 	$desc=addslashes(($_REQUEST['prod_desc_add']!=""))?addslashes($_REQUEST['prod_desc_add']):'';
-	$pf=addslashes(($_REQUEST['fp']=="1"))?'A':'I';
-	$pr=addslashes(($_REQUEST['rp']=="1"))?'A':'I';
-	$bp=addslashes(($_REQUEST['bp']=="1"))?'Y':'N';		
+
+	$pf    = addslashes(($_REQUEST['fp']!=""))?'A':'I';
+	$bp    = addslashes(($_REQUEST['bp']!=""))?'Y':'N';
+	$today_Spcial_product =	addslashes(($_REQUEST['today_Spcial_product']!=""))?'Y':'N';
+	$new_arrival_pro 	  =  addslashes(($_REQUEST['new_arrival_pro']!=""))?'A':'I';		
 		
 	
 		 $sql="UPDATE ".$cfg['DB_PRODUCT']."
 			 SET 			
-			`pd_name` = '".$pname."',
-			`pd_price` = '".$price."',
-			`pd_unit_price` = '".$unitprice."',
-			`pd_double_cost`= '".$doubleCost."',
-			`earliest_deliveryId` = '".$prod_deliv."',
-			`strike_price` = '".$sprice."',
-			`discount`	=  '".$discount."',
-			`pd_description` = '".$desc."',	
-			`category`='".$cat."',		
-			`keyword`='".$key."',
-			`disclaimer` = '".$prod_dis."',
-			`notes` = '".$prod_note."',			
-			`location` = '".$prod_loc."',			
-			`pd_code` = '".$code."',
-			`pd_date`=NOW(),
-			`status`='A',`pd_last_update`=NOW(),
-			`pd_featured`='".$pf."',
-			`pd_rightbar`='".$pr."',
-			`pd_bestseller`='".$bp."'
+			`pd_name` 				= '".$pname."',
+			`pd_price` 				= '".$price."',
+			`pd_unit_price` 		= '".$unitprice."',
+			`pd_double_cost`		= '".$doubleCost."',
+			`earliest_deliveryId` 	= '".$prod_deliv."',
+			`strike_price` 			= '".$sprice."',
+			`discount`				= '".$discount."',
+			`pd_description` 		= '".$desc."',	
+			`category`				= '".$cat."',		
+			`keyword`				= '".$key."',
+			`disclaimer` 			= '".$prod_dis."',
+			`notes` 				= '".$prod_note."',			
+			`location` 				= '".$prod_loc."',			
+			`pd_code` 				= '".$code."',
+			`pd_date`				=  NOW(),
+			`status`				= 'A',`pd_last_update`=NOW(),
+			`pd_featured`			= '".$pf."',
+			`pd_bestseller`			= '".$bp."',
+			`today_Spcial_product`  = '".$today_Spcial_product."',
+			`new_arrival_pro` 		= '".$new_arrival_pro."'
+
 			WHERE `pd_id`=".$_REQUEST['pd_id']." AND `siteId`= '".$cfg['SESSION_SITE']."' ";
 	
 			
@@ -322,7 +326,7 @@ case 'update':
 					copy($a3,$path);
 					chmod($path,0777);
 					
-					 $sqlup="UPDATE ".$cfg['DB_PRODUCT']." SET `pd_image`='".$value."' WHERE `pd_id`=".$last_id." AND `siteId`= '".$cfg['SESSION_SITE']."' ";
+					 $sqlup = "UPDATE ".$cfg['DB_PRODUCT']." SET `pd_image`='".$value."' WHERE `pd_id`=".$last_id." AND `siteId`= '".$cfg['SESSION_SITE']."' ";
 					 $heart->sql_query($sqlup);
 			}
 			
