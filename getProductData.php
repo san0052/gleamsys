@@ -6,15 +6,37 @@ $limit = !empty($_REQUEST['limit']) ? trim($_REQUEST['limit']) : 3;
 $is_more = !empty($_REQUEST['is_more']) ? trim($_REQUEST['is_more']) : '';
 $offset_id = !empty($_REQUEST['offset']) ? trim($_REQUEST['offset']) : 0;
 
+$category_ids = !empty($_REQUEST['sub_category']) ? trim($_REQUEST['sub_category']):'';
+
 # if any condition occurs
 $anyCondition = 0;
+# if sidebar selected
+$sidebarCounter = false;
 
 $productSql = '';
 $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
 
 	if (!empty($offset_id)) {
-		$productSql .= " pro.pd_id < ";
+		$productSql .= " pro.`pd_id` < ";
 		$productSql .= $offset_id;
+		$anyCondition++;
+	}
+
+	if (!empty($category_ids)) {
+		if ($anyCondition > 0) {
+			$productSql .= " AND ";
+		}
+		$new_category_ids = explode(',', $category_ids);
+		$productSql .= ' (';
+		for($i=0; $i<count($new_category_ids); $i++) {
+			if ($i == (count($new_category_ids)-1)) {
+				$productSql .= ' pro.`category` LIKE "%'.$new_category_ids[$i].'%" ';
+			} else {
+				$productSql .= ' pro.`category` LIKE "%'.$new_category_ids[$i].'%" OR ';
+			}
+		}
+		$productSql .= ') ';
+		$sidebarCounter = true;
 		$anyCondition++;
 	}
 
@@ -37,7 +59,7 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
 				$productSql .= " pro.`today_Spcial_product` = 'Y' AND pro.`pd_date` LIKE CONCAT(CURDATE(),'','%')";
 				break;
 			default:
-				$productSql = str_replace('AND ', '', $productSql);
+				$productSql = str_replace('AND ','', $productSql);
 				break;
 		}
 
@@ -60,13 +82,21 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
     while($product    =   $mycms->sql_fetchrow($res)){
     	array_push($productArr, $product);
     }
+    // echo $productSql;
     if (!empty($is_more)) {
-    // echo "$productSql"; die;
     	if (!empty($productArr)) {
+    		// echo $productSql;
     		$htmlDetails = dynamicHTML($productArr);
-    		echo json_encode(array('status'=>true, 'details'=>$htmlDetails['html'], 'nextOffset'=>$htmlDetails['nextCounter'])); die;
+    		echo json_encode(
+    			array(
+    				'status'=>true,
+    				'details'=>$htmlDetails['html'],
+    				'nextOffset'=>$htmlDetails['nextCounter'],
+    				'sidebarCounter' => $sidebarCounter
+    			)
+    		); die;
     	} else {
-    		echo json_encode(array('status'=>false, 'details'=>array())); die;
+    		echo json_encode(array('status'=>false, 'details'=>array(),'sidebarCounter' => $sidebarCounter)); die;
     	}
     }
 
