@@ -255,4 +255,12 @@
         }, 'slow');
 
     }
+    function showProducts(type=null) {
+        if (type != null) {
+            window.location.href="product.php?type="+type;
+        } else {
+            window.location.href="product.php";
+        }
+        
+    }
 </script>
