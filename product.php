@@ -1,11 +1,28 @@
-<?
-include_once("includes/function.php");
-?>
+<?php
+include_once("includes/links_frontend.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
-
-<? pagesource() ?>
-
+<?php include_once('includes/pagesources.php');?>
+<?php 
+    global $productArr;
+    global $type;
+    include('getProductData.php');
+    $productType = null;
+    switch ($type) {
+        case 'feature':
+            $productType = 'Feature';
+            break;
+        case 'new-arrival':
+            $productType = 'New Arrival';
+            break;        
+        case 'best-selling':
+            $productType = 'Best Selling';
+            break;        
+        case 'todays-special':
+            $productType = 'Today Special';
+            break;
+    };
+?>
 <body>
 
     <? include_once('includes/header.php') ?>
@@ -228,84 +245,13 @@ include_once("includes/function.php");
                                     </li>
                                 </ul>
                             </li>
-
-                            <li>
-                                <button class="filter-btn">Age</button>
-                                <ul class="filter-menu">
-                                    <li>
-                                        <label>Up to 12 months
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>1 - 2 years
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>3 - 4 years
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>5 - 6 years
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>7 - 8 years
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-
-                                </ul>
-                            </li>
-                            <li>
-                                <button class="filter-btn">Colour</button>
-                                <ul class="filter-menu">
-                                    <li>
-                                        <label>Red
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>Yellow
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <button class="filter-btn">Vendor</button>
-                                <ul class="filter-menu">
-                                    <li>
-                                        <label>Vendor 1
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label>Vendor 2
-                                            <input type="checkbox">
-                                            <span class="checkmark"></span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </li>
                         </ul>
                     </div>
 
                 </div>
                 <div class="col-xs-12 col-md-9 right-section product-item-section ">
                     <div class="col-xs-12 heading inner-banner">
-                        <h2>feature products</h2>
+                        <h2><?php echo (!empty($productType)) ? $productType.' Products' : 'Products'; ?></h2>
                         <div>
                             <ul class="sort-by">
                                 <li class="active">All</li>
@@ -317,65 +263,49 @@ include_once("includes/function.php");
                         </div>
                     </div>
                     <div class="col-xs-12 product-item-box">
-                        <div class="item">
-                            <div class="main-prd-box" onclick="window.location.href='product-details.php'">
-                                <div class="box_img">
-                                    <img has="postloader" src="images/prd-3.png" alt="#">
-                                </div>
-                                <p class="product-name">Logitech B175 Wireless Optical Mouse</p>
-                            </div>
-                            <div class="price-box">
-                                <div class="price-content">
-                                    <p class="price">
-                                        <span class="main-price">
-                                            $15
-                                        </span>
-                                        <span class="offer-price">
-                                            $17
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="prd-box-fot">
-                                    <div class="quentity-frm">
-                                        <div class="check-delivery">
-                                            <input type="number" min="1" max="10" value="1">
+                        <?php
+                            $previousId = 0;
+                            $firstCounter = count($productArr);
+                            if (!empty($productArr)) {
+                                foreach ($productArr as $key => $product) { 
+                                    if (($firstCounter-1) == $key) {
+                                        $previousId = $product['pd_id'];
+                                    }
+                        ?>
+                                <div class="item productItem">
+                                    <div class="main-prd-box" onclick="window.location.href='product-details.php'">
+                                        <div class="box_img">
+                                            <img has="postloader" src="image_bank/product_image/<?=$product['pd_image'];?>" alt="<?php echo $product['pd_name']; ?>">
+                                        </div>
+                                        <p class="product-name"><?php echo $product['pd_name']; ?></p>
+                                    </div>
+                                    <div class="price-box">
+                                        <div class="price-content">
+                                            <p class="price">
+                                                <span class="main-price">
+                                                     $<?php echo $product['pd_price']; ?>
+                                                </span>
+                                                <span class="offer-price">
+                                                    $<?php echo $product['strike_price']; ?>
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div class="prd-box-fot">
+                                            <div class="quentity-frm">
+                                                <div class="check-delivery">
+                                                    <input type="number" min="1" max="10" value="1">
+                                                </div>
+                                            </div>
+                                            <button>Add to Cart</button>
                                         </div>
                                     </div>
-                                    <button>Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="main-prd-box">
-                                <div class="box_img">
-                                    <img has="postloader" src="images/prd-3.png" alt="#">
-                                </div>
-                                <p class="product-name">Logitech B175 Wireless Optical Mouse</p>
-                            </div>
-                            <div class="price-box">
-                                <div class="price-content">
-                                    <p class="price">
-                                        <span class="main-price">
-                                            $15
-                                        </span>
-                                        <span class="offer-price">
-                                            $17
-                                        </span>
-                                    </p>
-                                </div>
-                                <div class="prd-box-fot">
-                                    <div class="quentity-frm">
-                                        <div class="check-delivery">
-                                            <input type="number" min="1" max="10" value="1">
-                                        </div>
-                                    </div>
-                                    <button>Add to Cart</button>
-                                </div>
-                            </div>
-                        </div>
+                                </div>   
+                        <?php  } } ?>
+                        
                     </div>
                     <div class="col-xs-12 product-more-box">
-                        <button id="myBtn" onclick="getMore('3','','','')" class="product-more">View More</button>
+                        <!-- <button id="myBtn" onclick="getMore('3','','','')" class="product-more">View More</button> -->
+                        <button id="myBtn" onclick="getMoreProducts(<?php echo $previousId ?>)" class="product-more hide_view_more">View More</button>
                     </div>
                 </div>
                 <div class="banner-btn-box hidden-md hidden-lg">
@@ -385,7 +315,7 @@ include_once("includes/function.php");
         </div>
     </div>
     <? include_once('includes/footer.php') ?>
-    <script>
+    <script type="text/javascript">
         function openbannerform() {
             $("#filter-teacher").css({
                 'top': '0',
@@ -413,7 +343,7 @@ include_once("includes/function.php");
             child_inner_ul.hide();
             $(".carret").removeClass("rota");
 
-        })
+        });
         $(".inner-cat").click(function(event) {
             event.stopPropagation();
             var clicked = this;
@@ -422,10 +352,34 @@ include_once("includes/function.php");
             var child_carret = parent_li.find(".carret");
             child_ul.toggle();
             child_carret.toggleClass("rota");
-        })
+        });
+
+        function getMoreProducts(count = 0) {
+            let type = "<?php echo $type ?>";
+            getProducts(count, type);
+        }
+
+        function getProducts(count, type) {
+            $.ajax({
+                url : "getProductData.php",
+                type : "POST",
+                data : { offset : count, type : type, 'is_more' : true },
+                dataType : 'JSON',
+                success : function(response) {
+
+                    if (response !='') {
+                        if (response.status) {
+                            console.log('dddd', response);
+                            console.log('dddd', response.details);
+                            $('.productItem').after(response.details);
+                        } else {
+                            console.log('else');
+                            $('.hide_view_more').hide();
+                        }
+                    }
+                }
+            });
+        }
     </script>
 </body>
-
-
-
 </html>
