@@ -38,159 +38,34 @@ include_once("includes/links_frontend.php"); ?>
                             <li>
                                 <button class="filter-btn">Category</button>
                                 <ul class="filter-menu">
+                                <?php 
+                                    $sql =   "SELECT DISTINCT id, name, cat_parent_id  FROM ".$cfg['DB_CATEGORY']." WHERE  `status` ='A' AND `cat_parent_id` = 0 ORDER BY `id` DESC";
+                                    $res =   $mycms->sql_query($sql);
+                                    $count      =   $mycms->sql_numrows($res);
+                                    if ($count>0) {
+                                    while ($parent_cat    =   $mycms->sql_fetchrow($res)) {
+                                ?>
                                     <li>
-
-                                        <button class="inner-cat">Toys &amp; Games<span class="carret"><i class="fas fa-caret-down"></i></span></button>
+                                        <button class="inner-cat"><?php echo $parent_cat['name']; ?><span class="carret"><i class="fas fa-caret-down"></i></span></button>
+                                        <?php 
+                                            $sql =   "SELECT DISTINCT id, name, cat_parent_id  FROM ".$cfg['DB_CATEGORY']." WHERE  `status` ='A' AND `cat_parent_id` = ".$parent_cat['id']." ORDER BY `id` DESC";
+                                            $childres =   $mycms->sql_query($sql);
+                                            $childcount      =   $mycms->sql_numrows($childres);
+                                            if ($childcount>0) {
+                                            while ($sub_category    =   $mycms->sql_fetchrow($childres)) {
+                                        ?>
                                         <ul class="inner-filter-menu">
                                             <li>
-                                                <label>Diaries
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Wirebound Notebooks
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Pencil Cases
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Pencil Holders
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Desk Supplies Organisers
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Pencil Sharpeners
-                                                    <input type="checkbox">
+                                                <label><?php echo $sub_category['name']; ?>
+                                                    <input class="select_sub_category" type="checkbox" data-category="<?php echo $parent_cat['id'] ?>" data-subcategory="<?php echo $sub_category['id']; ?>">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
                                         </ul>
+                                    <?php }} ?>
                                     </li>
-                                    <li>
-                                        <button class="inner-cat">Toys &amp; Games<span class="carret"><i class="fas fa-caret-down"></i></span></button>
-                                        <ul class="inner-filter-menu">
-                                            <li>
-                                                <label>Pencil Cases
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>School Supply Sets
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Party Favours
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Glue, Paste &amp; Tape
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Party Table Covers &amp; Centrepieces
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <button class="inner-cat">Home &amp; Kitchen<span class="carret"><i class="fas fa-caret-down"></i></span></button>
-                                        <ul class="inner-filter-menu">
-                                            <li class="">
-                                                <label>Quilting Supplies
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Cube Erasers
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Arts &amp; Crafts Tape
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Bathroom Cosmetic Organizers
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Utensil Holders &amp; Organizers
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <button class="inner-cat">Books<span class="carret"><i class="fas fa-caret-down"></i></span></button>
-                                        <ul class="inner-filter-menu">
-                                            <li class="">
-                                                <label>Softball
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Sciences
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Technology
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Medicine
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Textbooks
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Study Guides
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                <?php } } ?>
+                                    
                                 </ul>
                             </li>
                             <li>
@@ -305,7 +180,7 @@ include_once("includes/links_frontend.php"); ?>
                     </div>
                     <div class="col-xs-12 product-more-box">
                         <!-- <button id="myBtn" onclick="getMore('3','','','')" class="product-more">View More</button> -->
-                        <button id="myBtn" onclick="getMoreProducts(<?php echo $previousId ?>)" class="product-more hide_view_more">View More</button>
+                        <button onclick="getMoreProducts(<?php echo $previousId ?>)" class="product-more hide_view_more">View More</button>
                     </div>
                 </div>
                 <div class="banner-btn-box hidden-md hidden-lg">
@@ -354,6 +229,12 @@ include_once("includes/links_frontend.php"); ?>
             child_carret.toggleClass("rota");
         });
 
+
+        $(document.body).on('change', '.select_sub_category', function(event) {
+            let sub_category = $(this).attr('data-subcategory');
+        });
+
+
         function getMoreProducts(count = 0) {
             let type = "<?php echo $type ?>";
             getProducts(count, type);
@@ -369,16 +250,19 @@ include_once("includes/links_frontend.php"); ?>
 
                     if (response !='') {
                         if (response.status) {
-                            console.log('dddd', response);
-                            console.log('dddd', response.details);
-                            $('.productItem').after(response.details);
+                            $(".productItem:last").after(response.details);
+                            viewMore(response.nextOffset);
                         } else {
-                            console.log('else');
                             $('.hide_view_more').hide();
                         }
                     }
                 }
             });
+        }
+
+        function viewMore(next_id) {
+           let htmlmore = '<button onclick="getMoreProducts('+next_id+')" class="product-more hide_view_more">View More</button>';
+           $('.product-more-box').html(htmlmore);
         }
     </script>
 </body>

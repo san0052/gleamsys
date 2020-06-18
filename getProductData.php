@@ -2,7 +2,7 @@
 include_once("includes/links_frontend.php");
 
 $type = !empty($_REQUEST['type']) ? trim($_REQUEST['type']) : '';
-$limit = !empty($_REQUEST['limit']) ? trim($_REQUEST['limit']) : 2;
+$limit = !empty($_REQUEST['limit']) ? trim($_REQUEST['limit']) : 3;
 $is_more = !empty($_REQUEST['is_more']) ? trim($_REQUEST['is_more']) : '';
 $offset_id = !empty($_REQUEST['offset']) ? trim($_REQUEST['offset']) : 0;
 
@@ -34,7 +34,7 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
 				$productSql .= " pro.`pd_bestseller` = 'Y'";
 				break;
 			case 'todays-special':
-				$productSql .= " pro.`today_Spcial_product` = 'Y' AND pro.`pd_date` LIKE CURDATE()";
+				$productSql .= " pro.`today_Spcial_product` = 'Y' AND pro.`pd_date` LIKE CONCAT(CURDATE(),'','%')";
 				break;
 			default:
 				$productSql = str_replace('AND ', '', $productSql);
@@ -63,8 +63,8 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
     if (!empty($is_more)) {
     // echo "$productSql"; die;
     	if (!empty($productArr)) {
-    		$html = dynamicHTML($productArr);
-    		echo json_encode(array('status'=>true, 'details'=>$html)); die;
+    		$htmlDetails = dynamicHTML($productArr);
+    		echo json_encode(array('status'=>true, 'details'=>$htmlDetails['html'], 'nextOffset'=>$htmlDetails['nextCounter'])); die;
     	} else {
     		echo json_encode(array('status'=>false, 'details'=>array())); die;
     	}
@@ -72,42 +72,49 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
 
 
     function dynamicHTML($productArr) {
+    	$returnArr = array();
     	$htmlData = '';
+    	$firstCounter = count($productArr);
+    	$previousId = '';
     	foreach ($productArr as $key => $value) { 
+    		if (($firstCounter-1) == $key) {
+                $previousId = $value['pd_id'];
+                 //echo "jfgj".$value['pd_id'];die;
+            }
     		$htmlData .= '<div class="item productItem">';
-	    		$htmlData .= '<div class="main-prd-box" onclick="window.location.href=\'product-details.php\'">';
-		    		$htmlData .= '<div class="item productItem">';
-		    			$htmlData .= '<div class="main-prd-box" onclick="window.location.href=\'product-details.php\'">';
-				    		$htmlData .= '<div class="box_img">';
-				    			$htmlData .= '<img has="postloader" src="image_bank/product_image/'.$value['pd_image'].'" alt="'.$value['pd_name'].'">';
-				    		$htmlData .= '</div>';
-				    		$htmlData .= '<p class="product-name">'.$value['pd_name'].'</p>';
-				    	$htmlData .= '</div>';
+    			$htmlData .= '<div class="main-prd-box" onclick="window.location.href=\'product-details.php\'">';
+		    		$htmlData .= '<div class="box_img">';
+		    			$htmlData .= '<img has="postloader" src="image_bank/product_image/'.$value['pd_image'].'" alt="'.$value['pd_name'].'">';
+		    		$htmlData .= '</div>';
+		    		$htmlData .= '<p class="product-name">'.$value['pd_name'].'</p>';
+		    	$htmlData .= '</div>';
 
-				    	$htmlData .= '<div class="price-box">';
-				    		$htmlData .= '<div class="price-content">';
-				    			$htmlData .= '<p class="price">';
-				    			$htmlData .= ' <span class="main-price">';
-					    			$htmlData .= '$'.$value['pd_price'];
-					    		$htmlData .= '</span>';
-				    			$htmlData .= '<span class="offer-price">';
-				    				$htmlData .= '$'.$value['strike_price'];
-				    			$htmlData .= '</span>';
-				    			$htmlData .= '</p>';
-				    		$htmlData .= '</div>';
+		    	$htmlData .= '<div class="price-box">';
+		    		$htmlData .= '<div class="price-content">';
+		    			$htmlData .= '<p class="price">';
+		    			$htmlData .= ' <span class="main-price">';
+			    			$htmlData .= '$'.$value['pd_price'];
+			    		$htmlData .= '</span>';
+		    			$htmlData .= '<span class="offer-price">';
+		    				$htmlData .= '$'.$value['strike_price'];
+		    			$htmlData .= '</span>';
+		    			$htmlData .= '</p>';
+		    		$htmlData .= '</div>';
 
-				    		$htmlData .= '<div class="prd-box-fot">';
-				    			$htmlData .= '<div class="quentity-frm">';
-				    				$htmlData .= '<div class="check-delivery">';
-				    					$htmlData .= '<input type="number" min="1" max="10" value="1">';
-				    					$htmlData .= '</div>';
-				    				$htmlData .= '</div>';
-				    				$htmlData .= '<button>Add to Cart</button>';
-				    			$htmlData .= '</div>';
-				    		$htmlData .= '</div>';
-				    	$htmlData .= '</div>';
-				    $htmlData .= '</div>';
+		    		$htmlData .= '<div class="prd-box-fot">';
+		    			$htmlData .= '<div class="quentity-frm">';
+		    				$htmlData .= '<div class="check-delivery">';
+		    					$htmlData .= '<input type="number" min="1" max="10" value="1">';
+		    					$htmlData .= '</div>';
+		    				$htmlData .= '</div>';
+		    				$htmlData .= '<button>Add to Cart</button>';
+		    			$htmlData .= '</div>';
+		    		$htmlData .= '</div>';
+		    	$htmlData .= '</div>';
+		    $htmlData .= '</div>';
     	}
-    	return $htmlData;
+
+    	$returnArr = array('html'=>$htmlData,'nextCounter'=>$previousId);
+    	return $returnArr;
     }
 ?>
