@@ -64,13 +64,13 @@
 				<!-- <li><a href="notes.php">Manage Notes</a></li> -->
 				<!-- <li><a href="disclaimer.php">Manage Disclaimer</a></li> -->
 				<li><a href="content.php">Manage Page Content</a></li>
-				<!-- <li><a href="zone.php">Manage Zone </a></li> -->
-				<!-- <li><a href="location.php">Manage Location</a></li> -->
-				<!-- <li><a href="country.php">Manage Country</a></li> -->
-				<!-- <li><a href="state.php">Manage State</a></li>
+				<li><a href="zone.php">Manage Zone </a></li> 
+				 <li><a href="location.php">Manage Location</a></li>
+				 <li><a href="country.php">Manage Country</a></li> 
+				 <li><a href="state.php">Manage State</a></li>
 				<li><a href="city.php">Manage City</a></li>	
 				<li><a href="currency_setting.php">Currency  Setting</a></li>
-				<li><a href="shipping_type.php">Manage Shipping Type Charges </a></li> -->
+				<li><a href="shipping_type.php">Manage Shipping Type Charges </a></li> 
 				
 				<li><a href="view_more.php">Manage View More Home Content </a></li>
 				<li><a href="homeCounter.php">Manage Home Page Counter</a></li>
@@ -103,7 +103,7 @@
 			<h3 class="menuheader expandable">Product Management</h3>
 			<ul class="categoryitems">
 				<li><a href="product.php">Manage Product</a></li>
-				<li><a href="addon.php">Manage Addon</a></li>
+				<!-- <li><a href="addon.php">Manage Addon</a></li> -->
 				<!--	<li><a href="cartView.php">View Cart</a></li> -->
 				<li><a href="delPincode.php">Manage Delivery Pincodes</a></li>
 				<li><a href="revieweb.php">Manage Reviews</a></li>

@@ -146,7 +146,7 @@ $show=$_REQUEST['show'];
 										<tbody>
 											<? if($_REQUEST['m']){ ?>
 												<tr class="row1">
-													<td colspan="12" align="right" class="redbuttonelements"><?=@$msg?></td>
+													<td colspan="17" align="right" class="redbuttonelements"><?=@$msg?></td>
 												</tr>
 											<? } ?>
 											<tr class="headercontent">
@@ -273,11 +273,11 @@ $show=$_REQUEST['show'];
 													else 
 														{?>
 															<tr class="row1">
-																<td colspan="12" align="center" class="msg">No Record.</td>
+																<td colspan="17" align="center" class="msg">No Record.</td>
 															</tr>
 														<? } ?>
 														<tr >
-															<td colspan="10" align="left" class="redbuttonelements"><? if($_REQUEST['main']!='')
+															<td colspan="17" align="left" class="redbuttonelements"><? if($_REQUEST['main']!='')
 															{
 																?>
 																<a style="color:#FFFFFF;" href="product.php?category=<?=$_REQUEST['category']?>&pageno=<?=$_REQUEST['page']?>" class="back">&lt;&lt;back</a>
@@ -858,12 +858,22 @@ $show=$_REQUEST['show'];
 									</tr>
 									<tr>
 										<td>&nbsp;</td>
-										<td><? if(countRightbar() < 8){?>
-											<input type="checkbox" name="rp" id="rp" value="1" <? if($row1['pd_rightbar']=='A'){?> checked="checked" <? } ?> />
+										<td><input type="checkbox" name="fp" id="fp" value="1" <? if($row1['today_Spcial_product']=='Y'){?> checked="checked" <? } ?> />
+										&nbsp;<span class="leftBarText_new">Today's Spcial Product</span> </td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td><input type="checkbox" name="fp" id="fp" value="1" <? if($row1['new_arrival_pro']=='A'){?> checked="checked" <? } ?> />
+										&nbsp;<span class="leftBarText_new">New Arrival Product</span> </td>
+									</tr>
+									<!-- <tr>
+										<td>&nbsp;</td>
+										<td><? //if(countRightbar() < 8){?>
+											<input type="checkbox" name="rp" id="rp" value="1" <? //if($row1['pd_rightbar']=='A'){?> checked="checked" <?// } ?> />
 											&nbsp;<span class="leftBarText_new">Show in rightbar</span>
-										<? }?>
+										<? //}?>
 									</td>
-								</tr>
+								</tr> -->
 								<tr>
 									<td>&nbsp;</td>
 									<td><input type="checkbox" name="bp" id="bp" value="1" <? if($row1['pd_bestseller']=='Y'){?> checked="checked" <? } ?>/>
@@ -875,14 +885,14 @@ $show=$_REQUEST['show'];
 								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Price</span> <span class="redstar">*</span></td>
 								<td width="70%" colspan="4" align="left"><input name="prod_price_add" type="text" class="forminputelement" id="prod_price_add" value="<?=$row1['pd_price']?>"/></td>
 							</tr>
-							<tr class="row2">
+							<!-- <tr class="row2">
 								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Unit Price</span> <span class="redstar">*</span></td>
 								<td width="70%" colspan="4" align="left"><input name="prod_unitprice_add" type="text" class="forminputelement" id="prod_unitprice_add" value="<?=$row1['pd_unit_price']?>"/></td>
-							</tr>
-							<tr class="row2">
+							</tr> -->
+							<!-- <tr class="row2">
 								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Double Flower Cost</span> <span class="redstar">*</span></td>
 								<td width="70%" colspan="4" align="left"><input name="double_flower_cost" type="text" class="forminputelement" id="double_flower_cost" value="<?=$row1['prod_double_flower_price']?>"/></td>
-							</tr>
+							</tr> -->
 							<tr class="row1">
 								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Strike Through Price</span> <span class="redstar">*</span></td>
 								<td width="70%" colspan="4" align="left"><input name="sprod_price_add" type="text" class="forminputelement" id="sprod_price_add" value="<?=$row1['strike_price']?>"/></td>
@@ -891,23 +901,24 @@ $show=$_REQUEST['show'];
 								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Discount</span> <span class="redstar">*</span></td>
 								<td width="70%" colspan="4" align="left"><input name="discount" type="text" class="forminputelement" id="discount" value="<?=$row1['discount']?>"/></td>
 							</tr>
-							<tr class="row1">
+							<!--  <tr class="row1">
 								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Disclaimer</span> <span class="redstar">*</span></td>
 								<td width="70%" colspan="4" align="left"><?php /*?><input name="prod_loc" type="text" class="forminputelement" id="prod_loc" value="<?=$row1['location']?>"/><?php */?>
 								<select name="prod_dis" id="prod_dis" class="forminputelement">
-									<option value="0">Select Any</option>
+									<option value="0">Select Any</option> -->
 									<?
-									$sqlloc2="SELECT * FROM ".$cfg['DB_DISCLAIMER']." WHERE  `status`='A' AND `siteId`= '".$cfg['SESSION_SITE']."' ";
+									/*$sqlloc2="SELECT * FROM ".$cfg['DB_DISCLAIMER']." WHERE  `status`='A' AND `siteId`= '".$cfg['SESSION_SITE']."' ";
 									$resloc2=$heart->sql_query($sqlloc2);
 									while($rowloc2=$heart->sql_fetchrow($resloc2))
-										{  ?>
-											<option value=<?=$rowloc2['d_id']?> <? if($row1['disclaimer']==$rowloc2['d_id']){?> selected="selected" <? } ?>>
-												<?=stripslashes($rowloc2['title'])?>
-											</option>
-										<? } ?>
-									</select>
+										{*/ ?>
+											<!--  <option value=<?//=$rowloc2['d_id']?> <? //if($row1['disclaimer']==$rowloc2['d_id']){?> selected="selected" <? //} ?>>
+												<?//=stripslashes($rowloc2['title'])?>
+											</option> -->
+										<?// } ?>
+									<!-- </select>
 								</td>
-							</tr>
+							</tr>  -->
+
 							<tr class="row1">
 								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Delivery By</span> <span class="redstar">*</span></td>
 								<td width="70%" colspan="4" align="left"><?php /*?><input name="prod_loc" type="text" class="forminputelement" id="prod_loc" value="<?=$row1['location']?>"/><?php */?>
@@ -925,23 +936,24 @@ $show=$_REQUEST['show'];
 									</select>
 								</td>
 							</tr>
-							<tr class="row1">
+							<!-- <tr class="row1">
 								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Notes</span> <span class="redstar">*</span></td>
 								<td width="70%" colspan="4" align="left"><?php /*?><input name="prod_loc" type="text" class="forminputelement" id="prod_loc" value="<?=$row1['location']?>"/><?php */?>
 								<select name="prod_note" id="prod_note" class="forminputelement">
 									<option value="0">Select Any</option>
 									<?
-									$sqlloc1="SELECT * FROM ".$cfg['DB_NOTES']." WHERE  `status`='A' AND `siteId`= '".$cfg['SESSION_SITE']."' ";
+									/*$sqlloc1="SELECT * FROM ".$cfg['DB_NOTES']." WHERE  `status`='A' AND `siteId`= '".$cfg['SESSION_SITE']."' ";
 									$resloc1=$heart->sql_query($sqlloc1);
 									while($rowloc1=$heart->sql_fetchrow($resloc1))
-										{  ?>
-											<option value=<?=$rowloc1['n_id']?> <? if($row1['notes']==$rowloc1['n_id']){?> selected="selected" <? } ?>>
-												<?=stripslashes($rowloc1['title'])?>
+										{*/  ?>
+											<option value=<?//=$rowloc1['n_id']?> <? //if($row1['notes']==$rowloc1['n_id']){?> selected="selected" <? //} ?>>
+												<?//=stripslashes($rowloc1['title'])?>
 											</option>
-										<? } ?>
+										<? //} ?>
 									</select>
 								</td>
-							</tr>
+							</tr> -->
+
 							<tr class="row2">
 								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Location</span> <span class="redstar">*</span></td>
 								<td width="70%" colspan="4" align="left"><?php /*?><input name="prod_loc" type="text" class="forminputelement" id="prod_loc" value="<?=$row1['location']?>"/><?php */?>
@@ -966,25 +978,55 @@ $show=$_REQUEST['show'];
 								<td colspan="5" align="left" class="leftBarText"><span class="leftBarText_new">Description</span></td>
 							</tr>
 							<tr class="row1">
-								<td colspan=5 width="30%" align="left" class="leftBarText">
-									<textarea name="prod_desc_add"><?=stripslashes($row1['pd_description'])?></textarea>
-
+								<td colspan=5 width="35%" align="left" class="leftBarText">
+									<textarea name="prod_desc_add" style="margin-left: 14px; margin-right: 0px;width: 94%; height: auto"><?=stripslashes($row1['pd_description'])?></textarea>
 								</td>
 							</tr>
 							<tr class="row2">
 								<td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Change Image </span> </td>
 								<td width="70%" colspan="4" align="left" valign="top"><input name="image_add[]" id="image_add" type="file" class="forminputelement"/>
 									&nbsp;&nbsp; <img src="../<?=$cfg['PRODUCT_IMAGES'].$row1['pd_image']?>"  width="70" align="top"/></td>
-								</tr>                                     <tr class="row1">			 <td colspan="6" align="left" valign="top"><span class="leftBarText_new">Keywords Category List</span>			    			<a onclick="display_catkey()" style="color:#ce0e0e; margin-left:10px; font-size:11px; font-weight:bold;">Show Category for change</a>			    			<input type="hidden" name="check_div" id="check_div" value="display">
+								
+								<!-- <tr class="row1">			 
+									<td colspan="6" align="left" valign="top"><span class="leftBarText_new">Keywords Category List</span>			    			
+									<a onclick="display_catkey()" style="color:#ce0e0e; margin-left:10px; font-size:11px; font-weight:bold;">Show Category for change</a>			    			
+									<input type="hidden" name="check_div" id="check_div" value="display">
 								</td>
-								</tr>										
-								<tr class="row2">						
-									<td colspan="6" align="left" valign="top">							<div id="show_keycat" style="display: none;">							<table width="100%">
+								</tr> -->										
+								<!-- <tr class="row2">						
+									<td colspan="6" align="left" valign="top">							
+									<div id="show_keycat" style="display: none;">							
+									<table width="100%">
 										<tr class="row2">						
-											<?php $n = 0;
+											<?php 
+											/*$n = 0;
 											$keycatselect=getcatgory_from_key($row1['keyword']);	
-											$sqlcatkey="SELECT * FROM ".$cfg['DB_KEYWORD_CATEGORY']." WHERE `status`='A'";								  $rescatkey=$heart->sql_query($sqlcatkey);			
-											    $numrowskey=$heart->sql_numrows($rescatkey);		while($rowcatkey=$heart->sql_fetchrow($rescatkey))												{													$n++;									$slt='';									if(in_array($rowcatkey['id'],$keycatselect)){										$slt='checked=checked';									}																		?>								<td align="left" valign="top">										<input type="checkbox" name="catkey_id[]" target='catkey'  id="catkey_id_<?=$rowcatkey['id']?>" value="<?=$rowcatkey['id']?>" onclick="check_key()" <?=$slt?> />													<?=stripslashes($rowcatkey['name'])?>													</td>													<? if($n%3==0 && $n>0)														{															echo '</tr>'.(($n<$numrowskey)?'<tr class="row2">':'');														}																										}																									if($n%3>0)													{												 ?>													 <td colspan="<?=($n%3)+1 ?>">&nbsp;</td>												<?													} 																							?>		                    	</tr>                    </table>                  </div>                 </td>                </tr>
+											$sqlcatkey="SELECT * FROM ".$cfg['DB_KEYWORD_CATEGORY']." WHERE `status`='A'";								  
+											$rescatkey=$heart->sql_query($sqlcatkey);			
+											    $numrowskey=$heart->sql_numrows($rescatkey);		
+											    while($rowcatkey=$heart->sql_fetchrow($rescatkey)){	*/												
+											    //$n++;									$slt='';									
+											    //if(in_array($rowcatkey['id'],$keycatselect)){										
+											    //$slt='checked=checked';									
+											    //}																		?>								
+											    <td align="left" valign="top">										
+											    <input type="checkbox" name="catkey_id[]" target='catkey'  id="catkey_id_<?//=$rowcatkey['id']?>" value="<?//=$rowcatkey['id']?>" onclick="check_key()" <?//=$slt?> />											
+											    <?//=stripslashes($rowcatkey['name'])?>													
+											    </td>													
+											    <?// if($n%3==0 && $n>0){															
+											    //echo '</tr>'.(($n<$numrowskey)?'<tr class="row2">':'');														
+											    //}																										
+											    //}																									
+											    //if($n%3>0)													
+											    //{	?>													 
+											    <td colspan="<?//=($n%3)+1 ?>">&nbsp;</td>												
+											    <?//} 																							
+											    ?>		                    	
+											    </tr>                    
+											    </table>                  
+											    </div>                 
+											    </td>               
+											     </tr>
 											<tr class="row2">
 												<td width="30%" align="left" class="leftBarText" colspan="3"><span class="leftBarText_new">Keywords <input name="check_all" id="check_all" class="check-all" type="checkbox" onclick="checkall_edit(this.id,'key_id');"/>(Select All)</span></td>
 
@@ -992,37 +1034,37 @@ $show=$_REQUEST['show'];
 											<tr class="row2">
 
 												<?
-												$n = 0;
+												/*$n = 0;
 
 												$sqlcat="SELECT * FROM ".$cfg['DB_KEYWORD']." WHERE `status`='A'";
 												$rescat=$heart->sql_query($sqlcat);
 												$numrows=$heart->sql_numrows($rescat);
 												while($rowcat=$heart->sql_fetchrow($rescat))
-												{
-													$n++;
+												{*/
+													//$n++;
 
 													?>
 													<td align="left" valign="top">
-														<input type="checkbox" name="key_id[]"  id="key_id_<?=$rowcat['id']?>" target="key" value="<?=$rowcat['id']?>"  <? if(in_array($rowcat['id'],$key)){?> checked="checked"<? }?>/>
-														<?=stripslashes($rowcat['key_name'])?>
+														<input type="checkbox" name="key_id[]"  id="key_id_<?//=$rowcat['id']?>" target="key" value="<?//=$rowcat['id']?>"  <? //if(in_array($rowcat['id'],$key)){?> checked="checked"<? //}?>/>
+														<?//=stripslashes($rowcat['key_name'])?>
 													</td>
-													<? if($n%3==0 && $n>0)
-													{
+													<? //if($n%3==0 && $n>0)
+													/*{
 														echo '</tr>'.(($n<$numrows)?'<tr class="row2">':'');
-													}
+													}*/
 
-												}
+												//}
 
-												if(($n)%3>0)
+												/*if(($n)%3>0)
 												{
 													?>
 													<td colspan="<?=($n%3)+1 ?>">&nbsp;</td>
 													<?
-												} 
+												}*/ 
 
 												?>
 
-											</tr>
+											</tr> -->
 
 
                   <? /* if($row1['mainaddon']==0){ ?>
@@ -1259,17 +1301,17 @@ if($show=='edit_addon'){
 						<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Code</span> </td>
 						<td colspan="4" align="left"><?=stripslashes($row1['pd_code'])?></td>
 					</tr>
-					<!-- <tr class="row1">
+					 <tr class="row1">
 						<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Location</span> </td> -->
 						<?
-						/*$sql_l="SELECT * FROM ".$cfg['DB_CITY']." WHERE  `id` =".$row1['location']."  ";
+						$sql_l="SELECT * FROM ".$cfg['DB_CITY']." WHERE  `id` =".$row1['location']."  ";
 						$res_l=$heart->sql_query($sql_l);
-						$row_l=$heart->sql_fetchrow($res_l);*/
+						$row_l=$heart->sql_fetchrow($res_l);
 
 
 						?>
-						<!-- <td colspan="4" align="left"><?//=getlocationname($row_l['city_id'])?></td>
-					</tr> -->
+						<td colspan="4" align="left"><?=getlocationname($row_l['city_id'])?></td>
+					</tr>
 					<!-- <tr class="row2">
 						<td width="30%" valign="top" align="left" class="leftBarText"><span class="leftBarText_new">Product Disclaimer</span></td>
 						<td colspan="4" align="left"><? //if($row1['disclaimer']!='') { ?>
