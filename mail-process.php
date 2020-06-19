@@ -31,6 +31,97 @@ switch($action)
 		
 	break;
 
+		case 'forgotPassword':
+
+				$email = !empty($_POST['email'])?trim($_POST['email']):'';
+
+				if (empty($email)) {
+					echo 'email_not_found'; die;
+				}
+
+				$sql 		=   "SELECT * FROM ".$cfg['DB_USERS']."
+                                        WHERE  
+                                        `status` ='A' 
+                                       AND`email` = '".$email."' ";
+    			$res        =   $mycms->sql_query($sql);
+    			$row        =   $mycms->sql_fetchrow($res);
+				$name    	= $row['name'];
+				if (empty($row['email'])) {
+					echo "email_not_exist";die;
+				}
+
+				$alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+			    $pass = array(); //remember to declare $pass as an array
+			    $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+			    for ($i = 0; $i < 5; $i++) {
+			        $n = rand(0, $alphaLength);
+			        $pass[] = $alphabet[$n];
+			    }
+			    $password = implode($pass);
+
+			    $sql1   =	"UPDATE ".$cfg['DB_USER_LOGIN']." SET
+				       		`user_password` 	= '".md5($password)."'
+				       		WHERE `user_email` 	= '".$email."' ";
+				$updateUserLogin = $mycms->sql_query($sql1);
+
+				$sql2   =	"UPDATE ".$cfg['DB_USERS']." SET
+				       		`password` 		= '".md5($password)."'
+				       		WHERE `email` 	= '".$email."' ";
+				$updateUserReg = $mycms->sql_query($sql2);
+
+
+		if ($updateUserLogin && $updateUserReg) {
+			
+				//Send Email To Admin
+			$mail.='			<table width="100%" border="0" cellspacing="0" cellpadding="12" style="min-width: 700px;">';
+			$mail.='				<tr>';
+			$mail.='					<td height="9" colspan="3" align="left" valign="top" style="padding:1em 0 0 0;"><h2>New User Registration</h2></td>';
+			$mail.='				</tr>';
+			$mail.='					<tr>';
+			$mail.='						<td style="width:10%; padding:0;">Name</td>';
+			$mail.='						<td style="width:2%; padding:0;">:</td>';
+			$mail.='						<td style="width:88%; padding:0;">'.$name.'</td>';
+			$mail.='					</tr>';
+
+			
+
+			$mail.='					<tr>';
+			$mail.='						<td style="width:10%; padding:0;">New Password</td>';
+			$mail.='						<td style="width:2%; padding:0;">:</td>';
+			$mail.='						<td style="width:88%; padding:0;">'.$password.'</td>';
+			$mail.='					</tr>';
+
+			
+
+			$mail.='					<tr>';
+			$mail.='						<td height="10" colspan="3" align="left" valign="top" style="padding:10px; border:1px solid #ccc; background:#f9f9f9;">';
+			$mail.='							<p style="font-weight:bold;">Query :</p>';
+			$mail.='							<p></p>';
+			$mail.='						</td>';
+			$mail.='					</tr>';
+			$mail.='				</table>';		
+			
+			$message		=	'Updated Credential <br/><br/>';
+			
+			
+			/* ***** Send Email ***** */
+			$to_name 		=	$name;
+			$to_email 		=	$email;
+			$form_name 		=	$cfg['ADMIN_NAME'];
+			$form_email		=	$cfg['ADMIN_EMAIL'];
+			$subject		=	"Your Updated Login Credentials";		
+			$message		.=	'Dear '.$name.',<br/><br/> Your updated login credential.<br>';
+			$message 		.= 	'New Password - '.$password;
+			
+			send_mail_contact($to_name, $to_email, $form_name, $form_email, $subject, $message, $bcc='');
+			echo "email_send";die;
+			} else {
+				echo 'failed_update';die;
+			}
+
+			
+		break;
+
 	case 'register':
 		$name 		= stripslashes(strip_tags($_REQUEST['name']));
 		$mobile 	= stripslashes(strip_tags($_REQUEST['mobile']));
