@@ -18,7 +18,7 @@ switch($action) {
 			$database_count = $rows['pd_qty'];
 			if ($rows['pd_qty']<$product_count) {
 				if ($rows['pd_qty'] == 0) {
-					echo json_encode(array('status'=>false, 'message'=>$rows['pd_name'].' is out of stock')); die;
+					echo json_encode(array('status'=>false, 'message'=>$rows['pd_name'].' is out of stockg')); die;
 				}
 				echo json_encode(array('status'=>false, 'message'=>$rows['pd_qty'].' quantity of '.$rows['pd_name'].' are available only')); die;
 			} else {
