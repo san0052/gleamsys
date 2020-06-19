@@ -327,7 +327,7 @@ include_once("includes/links_frontend.php"); ?>
             let cat_id = $(this).attr('data-cartCatId');
             let product_count = $('.cart_counter_'+cat_id).val();
             $.ajax({
-                url : 'cart-process.php?act=add_to_cart';
+                url : 'cart-process.php?act=add_to_cart',
                 method : 'POST',
                 data : { category_id : cat_id, product_count : product_count },
                 dataType : 'JSON',

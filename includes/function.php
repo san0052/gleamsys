@@ -6708,7 +6708,7 @@ function pagesource()
 
 
 	<script src="js/simplyscroll.js"></script>
-	<script src="ls/price_range_script.js"></script>
+	<!-- <script src="ls/price_range_script.js"></script> -->
 
     <script>
 
