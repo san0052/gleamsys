@@ -45,7 +45,7 @@ include_once("includes/links_frontend.php"); ?>
 
                     </ul>
                 </div>
-                <div class="col-xs-12 col-md-7 right-section  ">
+                <div class="col-xs-12 col-md-7 right-section prd-detail-rt">
                     <p class="prd-name"><?php echo $row['pd_name'] ?></p>
                     <p class="prd-id"><?php echo $row['pd_code'] ?></p>
                     <p class="include-tax">Quentity</p>

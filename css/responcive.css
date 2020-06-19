@@ -445,6 +445,10 @@ width: 9% !important;
 {
   box-shadow: none;
 }
+.prd-detail-rt
+{
+  padding: 15px 0;
+}
 .pos
 {
   position: sticky;
