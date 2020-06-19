@@ -1,3 +1,12 @@
+<?php 
+$sql =   "SELECT * FROM ".$cfg['DB_PRODUCT']."
+                                        WHERE  
+                                        `status` ='A' 
+                                        AND `pd_bestseller` = 'Y' ORDER BY `pd_id` DESC LIMIT 4";
+$res        =   $mycms->sql_query($sql);
+$count      =   $mycms->sql_numrows($res);
+    if ($count>0) {
+ ?>
 <div class="container-fluid fprd clients">
     <div class="container">
         <div class="row">
@@ -7,11 +16,7 @@
             <div class="col-xs-12 prd-listing-scrol">
                 <div class="col-xs-12 owl-carousel owl-theme bestproduct">
                     <?php 
-                        $sql =   "SELECT * FROM ".$cfg['DB_PRODUCT']."
-                                        WHERE  
-                                        `status` ='A' 
-                                        AND `pd_bestseller` = 'Y' ";
-                        $res        =   $mycms->sql_query($sql);
+                        
                        while($row    =   $mycms->sql_fetchrow($res)){ 
                     ?>
                     <div class="item">
@@ -49,7 +54,7 @@
             </div>
 
             <div class="col-xs-12 btn-box">
-                <button>view all products</button>
+                <button style="cursor: pointer;" onclick="showProducts('best-selling')">view all products</button>
             </div>
         </div>
     </div>
@@ -80,3 +85,4 @@
         }
     });
 </script>
+<?php } ?>

@@ -1,3 +1,14 @@
+<?php 
+    $sql =   "SELECT * FROM ".$cfg['DB_PRODUCT']."
+                        WHERE  
+                        `status` ='A' 
+                        AND `today_Spcial_product` = 'Y' AND `pd_date` LIKE CONCAT(CURDATE(),'','%') 
+                        ORDER BY `pd_id` DESC LIMIT 4";
+            $res        =   $mycms->sql_query($sql);
+            $count      =   $mycms->sql_numrows($res);
+            if ($count>0) {
+
+ ?>
 <div class="container-fluid fprd">
     <div class="container">
         <div class="row">
@@ -7,11 +18,6 @@
             <div class="col-xs-12 prd-listing-scrol">
                 <div class="col-xs-12 owl-carousel owl-theme todayproduct">
                     <?php 
-                        $sql =   "SELECT * FROM ".$cfg['DB_PRODUCT']."
-                                        WHERE  
-                                        `status` ='A' 
-                                        AND `today_Spcial_product` = 'Y' ";
-                        $res        =   $mycms->sql_query($sql);
                        while($row    =   $mycms->sql_fetchrow($res)){ 
                     ?>
                     <div class="item">
@@ -39,7 +45,7 @@
                                         <input type="number" min="1" max="10" value="1">
                                     </div>
                                 </div>
-                                <button>Add to Cart</button>
+                                <button >Add to Cart</button>
                             </div>
                         </div>
                     </div>
@@ -49,9 +55,10 @@
             </div>
 
             <div class="col-xs-12 btn-box">
-                <button>view all products</button>
+                <button style="cursor: pointer;" onclick="showProducts('todays-special')" >view all products</button>
             </div>
         </div>
+ 
     </div>
 </div>
 <script>
@@ -80,3 +87,4 @@
         }
     });
 </script>
+   <?php } ?>

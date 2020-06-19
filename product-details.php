@@ -1,14 +1,13 @@
-<?
-include_once("includes/function.php");
-?>
+<?php
+include_once("includes/links_frontend.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
-<? pagesource() ?>
+<?php include_once('includes/pagesources.php');?>
 
 <body>
-
-    <? include_once('includes/header.php') ?>
+    <?php include_once('includes/header.php') ?>
     <div class="container-fluid product-main-box">
         <div class="container">
             <div class="row">
@@ -30,15 +29,15 @@ include_once("includes/function.php");
                     <ul class="col-xs-12 col-md-2 detailtab">
                         <li class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen" style="height: 50.0781px;">
                             <img src="images/prd-1.png">
-</li>
+                        </li>
                         <li class="tablinks active" onclick="openCity(event, 'Paris')" style="height: 50.0781px;">
                             <img src="images/prd-2.png">
-</li>
+                        </li>
                         <li class="tablinks" onclick="openCity(event, 'Tokyo')" style="height: 50.0781px;">
                             <img src="images/prd-3.png">
-</li>
+                        </li>
 
-</ul>
+                    </ul>
                 </div>
                 <div class="col-xs-12 col-md-7 right-section item-details ">
                     <p class="prd-name">Creative Teaching Press</p>

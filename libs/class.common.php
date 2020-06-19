@@ -120,6 +120,9 @@ class sql_db
 		}
 	}
 	
+	function inserted_id() {
+		return $this->db_connect_id->insert_id;
+	}
 	/**
 	*
 	*	sql_numrows methods

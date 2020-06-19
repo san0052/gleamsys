@@ -38,159 +38,34 @@ include_once("includes/links_frontend.php"); ?>
                             <li>
                                 <button class="filter-btn">Category</button>
                                 <ul class="filter-menu">
+                                <?php 
+                                    $sql =   "SELECT DISTINCT id, name, cat_parent_id  FROM ".$cfg['DB_CATEGORY']." WHERE  `status` ='A' AND `cat_parent_id` = 0 ORDER BY `id` DESC";
+                                    $res =   $mycms->sql_query($sql);
+                                    $count      =   $mycms->sql_numrows($res);
+                                    if ($count>0) {
+                                    while ($parent_cat    =   $mycms->sql_fetchrow($res)) {
+                                ?>
                                     <li>
-
-                                        <button class="inner-cat">Toys &amp; Games<span class="carret"><i class="fas fa-caret-down"></i></span></button>
+                                        <button class="inner-cat"><?php echo $parent_cat['name']; ?><span class="carret"><i class="fas fa-caret-down"></i></span></button>
+                                        <?php 
+                                            $sql =   "SELECT DISTINCT id, name, cat_parent_id  FROM ".$cfg['DB_CATEGORY']." WHERE  `status` ='A' AND `cat_parent_id` = ".$parent_cat['id']." ORDER BY `id` DESC";
+                                            $childres =   $mycms->sql_query($sql);
+                                            $childcount      =   $mycms->sql_numrows($childres);
+                                            if ($childcount>0) {
+                                            while ($sub_category    =   $mycms->sql_fetchrow($childres)) {
+                                        ?>
                                         <ul class="inner-filter-menu">
                                             <li>
-                                                <label>Diaries
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Wirebound Notebooks
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Pencil Cases
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Pencil Holders
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Desk Supplies Organisers
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Pencil Sharpeners
-                                                    <input type="checkbox">
+                                                <label><?php echo $sub_category['name']; ?>
+                                                    <input class="select_sub_category" type="checkbox" data-category="<?php echo $parent_cat['id'] ?>" data-subcategory="<?php echo $sub_category['id']; ?>">
                                                     <span class="checkmark"></span>
                                                 </label>
                                             </li>
                                         </ul>
+                                    <?php }} ?>
                                     </li>
-                                    <li>
-                                        <button class="inner-cat">Toys &amp; Games<span class="carret"><i class="fas fa-caret-down"></i></span></button>
-                                        <ul class="inner-filter-menu">
-                                            <li>
-                                                <label>Pencil Cases
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>School Supply Sets
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Party Favours
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Glue, Paste &amp; Tape
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Party Table Covers &amp; Centrepieces
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <button class="inner-cat">Home &amp; Kitchen<span class="carret"><i class="fas fa-caret-down"></i></span></button>
-                                        <ul class="inner-filter-menu">
-                                            <li class="">
-                                                <label>Quilting Supplies
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Cube Erasers
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Arts &amp; Crafts Tape
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Bathroom Cosmetic Organizers
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Utensil Holders &amp; Organizers
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <button class="inner-cat">Books<span class="carret"><i class="fas fa-caret-down"></i></span></button>
-                                        <ul class="inner-filter-menu">
-                                            <li class="">
-                                                <label>Softball
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Sciences
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Technology
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Medicine
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Textbooks
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                            <li>
-                                                <label>Study Guides
-                                                    <input type="checkbox">
-                                                    <span class="checkmark"></span>
-                                                </label>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                <?php } } ?>
+                                    
                                 </ul>
                             </li>
                             <li>
@@ -198,7 +73,8 @@ include_once("includes/links_frontend.php"); ?>
                                 <ul class="filter-menu">
                                     <div style="margin-bottom:30px;">
                                         <input type="number" min="0" max="9900" oninput="validity.valid||(value='0');" id="min_price" class="price-range-field">
-                                        <input type="number" min="0" max="10000" oninput="validity.valid||(value='10000');" id="max_price" class="price-range-field">
+                                        <input type="number" min="1" max="10000" oninput="validity.valid||(value='10000');" id="max_price" class="price-range-field">
+                                        <button class="priceBtn" style="color:white; background-color:#2b7ca3">Submit</button>
                                     </div>
 
                                     <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
@@ -305,7 +181,8 @@ include_once("includes/links_frontend.php"); ?>
                     </div>
                     <div class="col-xs-12 product-more-box">
                         <!-- <button id="myBtn" onclick="getMore('3','','','')" class="product-more">View More</button> -->
-                        <button id="myBtn" onclick="getMoreProducts(<?php echo $previousId ?>)" class="product-more hide_view_more">View More</button>
+                        <!-- <button data-id="<?php echo $previousId ?>" onclick="getMoreProducts(<?php echo $previousId ?>)" class="product-more hide_view_more">View More</button> -->
+                        <button data-id="1" onclick="getMoreProducts(1)" class="product-more hide_view_more">View More</button>
                     </div>
                 </div>
                 <div class="banner-btn-box hidden-md hidden-lg">
@@ -354,31 +231,97 @@ include_once("includes/links_frontend.php"); ?>
             child_carret.toggleClass("rota");
         });
 
-        function getMoreProducts(count = 0) {
-            let type = "<?php echo $type ?>";
-            getProducts(count, type);
+        var sub_category_array = [];
+        var min_amount = 0;
+        var max_amount = 0;
+        var see_more = 0;
+        // let offset = 0;
+        $(document.body).on('change', '.select_sub_category', function(event) {
+            let sub_category = $(this).attr('data-subcategory');
+            sub_category_array.push(sub_category);
+            let counter_id = $('.hide_view_more').attr('data-id');
+            if(counter_id == 1) {
+                counter_id = 0;
+                let type = "<?php echo $type ?>";
+                getProducts(counter_id, type, 1);
+            } else {
+                getMoreProducts(counter_id);
+            }
+        });
+
+
+        $('.priceBtn').click(function() {
+            min_amount = $('#min_price').val();
+            max_amount = $('#max_price').val();
+            // let counter_id = $('.hide_view_more').attr('data-id');
+            // getMoreProducts(counter_id);
+            getMoreProducts();
+        });
+
+        function unique(list) {
+          var result = [];
+          $.each(list, function(i, e) {
+            if ($.inArray(e, result) == -1) result.push(e);
+          });
+            if ($('input[type=checkbox]').is(":checked")) {
+            //any one is checked
+                return result;
+            } else {
+                //none is checked
+                return [];
+            }
         }
 
-        function getProducts(count, type) {
+        function getMoreProducts(count = 0) {
+            let type = "<?php echo $type ?>";
+            getProducts(count, type, 1);
+        }
+
+        function getProducts(count, type, see_more=0) {
+            console.log(see_more);
+            sub_category_array = unique(sub_category_array);
+            
             $.ajax({
                 url : "getProductData.php",
                 type : "POST",
-                data : { offset : count, type : type, 'is_more' : true },
+                data : { 
+                    offset     : count, 
+                    type       : type, 
+                    is_more    : see_more,
+                    min_amount : min_amount,
+                    max_amount : max_amount,
+                    sub_category    :   sub_category_array.toString()
+                },
                 dataType : 'JSON',
                 success : function(response) {
 
                     if (response !='') {
                         if (response.status) {
-                            console.log('dddd', response);
-                            console.log('dddd', response.details);
-                            $('.productItem').after(response.details);
+                            if(response.sidebarCounter) {
+                                $(".product-item-box").html(response.details);
+                            } else  {
+                                if($('.productItem').length>0) {
+                                    $(".productItem:last").after(response.details); 
+                                } else {
+                                    $(".product-item-box").html(response.details);
+                                }
+                                viewMore(response.nextOffset);
+                            }
+                            
                         } else {
-                            console.log('else');
+                            if(response.sidebarCounter) {
+                                $(".product-item-box").html(response.details);
+                            }
                             $('.hide_view_more').hide();
                         }
                     }
                 }
             });
+        }
+
+        function viewMore(next_id) {
+           let htmlmore = '<button data-id="'+next_id+'" onclick="getMoreProducts('+next_id+')" class="product-more hide_view_more">View More</button>';
+           $('.product-more-box').html(htmlmore);
         }
     </script>
 </body>

@@ -1,3 +1,12 @@
+<?php 
+    $sql =   "SELECT * FROM ".$cfg['DB_PRODUCT']."
+                                        WHERE  
+                                        `status` ='A' 
+                                        AND `pd_featured` = 'A'  ORDER BY `pd_id` DESC LIMIT 4";
+    $res        =   $mycms->sql_query($sql);
+    $count      =   $mycms->sql_numrows($res);
+    if ($count>0) {
+    ?>
 <div class="container-fluid fprd">
     <div class="container">
         <div class="row">
@@ -8,20 +17,18 @@
             <div class="col-xs-12 prd-listing-scrol">
                 <div class="col-xs-12 owl-carousel owl-theme featureproduct">
                     <?php 
-                        $sql =   "SELECT * FROM ".$cfg['DB_PRODUCT']."
-                                        WHERE  
-                                        `status` ='A' 
-                                        AND `pd_featured` = 'A' ";
-                        $res        =   $mycms->sql_query($sql);
+                        
                        while($row    =   $mycms->sql_fetchrow($res)){ 
                     ?>
                     <div class="item">
-                        <div class="main-prd-box">
-                            <div class="box_img">
-                                <img has="postloader" src="image_bank/product_image/<?=$row['pd_image'];?>" alt="#">
+                        <a href="<?=$cfg['base_url']?>product-details.php?category=<?=base64_encode($row['pd_id'])?>">
+                            <div class="main-prd-box"> 
+                                <div class="box_img">
+                                    <img has="postloader" src="image_bank/product_image/<?=$row['pd_image'];?>" alt="#">
+                                </div>
+                                <p class="product-name"><?php echo $row['pd_name']?></p>
                             </div>
-                            <p class="product-name"><?php echo $row['pd_name']?></p>
-                        </div>
+                        </a>
                         <div class="price-box">
                             <div class="price-content">
                                 <p class="price">
@@ -57,7 +64,7 @@
 </div>
 <script>
 
-    
+
     $('.featureproduct').owlCarousel({
 
         items: 2,
@@ -83,3 +90,4 @@
         }
     });
 </script>
+<?php } ?>
