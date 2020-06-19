@@ -14,7 +14,7 @@ include_once('includes/pagesources.php'); ?>
                     <img src="images/logo.png">
                 </div>
                 <div class="chk-head-rt">
-                    <button>Back to Home</button>
+                    <button onclick="window.location.href='index.php'">Back to Home</button>
                 </div>
             </div>
         </div>
@@ -22,7 +22,7 @@ include_once('includes/pagesources.php'); ?>
     <div class="container-fluid chk-body">
         <div class="container">
             <div class="row">
-                <div class="col-xs-8 checkout-items">
+                <div class="col-xs-12 col-md-8 checkout-items">
                     <ul class="chkout-accr">
                         <li>
                             <div>
@@ -30,8 +30,9 @@ include_once('includes/pagesources.php'); ?>
                             </div>
                             <div class="chk-inner-rt">
                                 <button>LOGIN</button>
-                                <ul id="chklogin">
-                                    <li class="address">Swarnnedu Ghosh<span class="chk-email">Swarnendu@abc.com</span></li>
+                                <ul id="chklogin" class="show">
+                                    <li class="address">
+                                        <p>Swarnnedu Ghosh</p><p class="chk-email">Swarnendu@abc.com</p></li>
                                     <button class="change-btn" onclick="changelogin()">Change</button>
                                     <div class="edit-frm">
                                         <p>Change Login</p>
@@ -70,7 +71,7 @@ include_once('includes/pagesources.php'); ?>
                             </div>
                             <div class="chk-inner-rt">
                                 <button>Delivery Address</button>
-                                <ul id="edit-address">
+                                <ul id="edit-address" class="show">
                                     <li class="address">
                                         <p>Swarnnedu Ghosh, 9874563210</p>
                                         <p>address</p>
@@ -135,7 +136,7 @@ include_once('includes/pagesources.php'); ?>
                             </div>
                             <div class="chk-inner-rt">
                                 <button>Order Summery</button>
-                                <ul class="order-summery">
+                                <ul class="order-summery show">
                                     <li>
                                         <div class="order-list">
                                         <div class="item-pic">
@@ -168,14 +169,14 @@ include_once('includes/pagesources.php'); ?>
                                             
                                         </div>
                                     </li>
-                                    <button class="change-btn payment-procc">Procced to Payment</button>
+                                    
                                 </ul>
 
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div class="col-xs-4 total-checkout-items">
+                <div class="col-xs-12 col-md-4 total-checkout-items">
                     <table class="table totalpayble">
                         <thead>
                             <tr>
@@ -211,10 +212,12 @@ include_once('includes/pagesources.php'); ?>
                             </tr>
                         </tfoot>
                     </table>
+                    <button class="change-btn payment-procc">Procced to Payment</button>
                 </div>
             </div>
         </div>
     </div>
+    <? include_once('includes/footer.php') ?>
 </body>
 
 </html>

@@ -133,7 +133,15 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
     			)
     		); die;
     	} else {
-    		echo json_encode(array('status'=>false,'query'=>$productSql, 'details'=>array(),'sidebarCounter' => $sidebarCounter)); die;
+    		echo json_encode(
+    			array(
+    				'status'=>false,
+    				'query'=>$productSql,
+    				'nextOffset'=>$offset,
+    				'details'=>array(),
+    				'sidebarCounter'=>$sidebarCounter
+    			)
+    		); die;
     	}
     }
 

@@ -44,7 +44,7 @@
                     </a>
                 </div>
             </div>
-            <div class="online-store-banner-right">
+            <!-- <div class="online-store-banner-right">
                 <div class="online-store-banner-right-up" id="slideshow">
                     <div>
                         <img src="images/banner-1.jpg">
@@ -67,7 +67,7 @@
                         <img src="images/banner-1.jpg">
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <script>
