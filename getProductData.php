@@ -11,7 +11,7 @@ $max_amount = !empty($_REQUEST['max_amount']) ? trim($_REQUEST['max_amount']) : 
 $category_ids = !empty($_REQUEST['sub_category']) ? trim($_REQUEST['sub_category']):'';
 
 # if any condition occurs
-$anyCondition = 0;
+$anyCondition = 1;
 # if sidebar selected
 $sidebarCounter = false;
 
@@ -106,7 +106,7 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE pro.`status` =
 
 	# limit
 	$productSql .= " LIMIT ".$limit." OFFSET ".$nextOffset;
-	// echo $productSql;die;	
+	// echo $productSql;die;
 	$res    =   $mycms->sql_query($productSql);
 	$productArr	=	array();
     while($product    =   $mycms->sql_fetchrow($res)){
