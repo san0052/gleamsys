@@ -1,3 +1,4 @@
+<?php include_once("includes/links_frontend.php"); ?>
 <div class="col-xs-12 side-modal-box" id="side-modal">
     <div class="col-xs-12 side-modal-main-box">
         <div class="login-box" id="login">
@@ -19,15 +20,11 @@
                     <div class="col-xs-12 form-group">
                         <a onclick="forgetpass()" style="cursor:pointer;">Forgot Password</a>
                     </div>
-                     <h4 style="display:none; color:red; text-align: center;" class="error_login"></h4>
                     <div class="col-xs-12 form-group forget-password-item" dep="forget-password">
-                        <span class="error-msg" id="error-loginEmail"></span>
-                        <input type="text" placeholder="Email Id" id="emailLogin"><br>
-                        
-                         <button type="button" onclick="return submitForgotPassword();">SUBMIT</button>
+                        <!-- <label>Full Name</label> -->
+                        <input type="text" placeholder="Email Id">
+                        <button type="button">SUBMIT</button>
                     </div>
-                      
-                   
                     <style>
                         .forget-password-item
                         {
@@ -228,10 +225,11 @@
                 <p>CART</p>
                 <button onclick="bookcls()"><i class="fas fa-grip-lines"></i></button>
             </div>
+
             <form class="book-content">
-                <div class="book-content-inner">
-                    <div class="order-list">
-                    <div class="item-pic">
+                <div class="book-content-inner cartItems">
+<!--                     <div class="order-list">
+                        <div class="item-pic">
                             <img src="images/prd-1.png">
                             <input type="number" min="1" max="10" value="1">
                         </div>
@@ -242,10 +240,9 @@
                             <p class="prd-price">$200</p>
                             <button class="rmv-btn">Remove</button>
                         </div>
-                        
                     </div>
                     <div class="order-list">
-                    <div class="item-pic">
+                        <div class="item-pic">
                             <img src="images/prd-1.png">
                             <input type="number" min="1" max="10" value="1">
                         </div>
@@ -256,9 +253,8 @@
                             <p class="prd-price">$200</p>
                             <button class="rmv-btn">Remove</button>
                         </div>
-                        
-                    </div>
-                    <table class="table totalpayble">
+                    </div> -->
+      <!--               <table class="table totalpayble">
                         <thead>
                             <tr>
                                 <th colspan="2">Price Details</th>
@@ -292,7 +288,7 @@
                                 </td>
                             </tr>
                         </tfoot>
-                    </table>
+                    </table> -->
                 </div>
                 <div class="book-footer">
                     <div class="total">
@@ -444,6 +440,9 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+        // fetch cart items
+        cartItems();
+
         $('.loginBtn').click(function(event){
             let error = 0;
             $('.login_error_email, .login_error_password').text('');
@@ -587,69 +586,39 @@
         });
     });
 
-    function isEmail(email) {
-      var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-      return regex.test(email);
+function isEmail(email) {
+  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return regex.test(email);
+}
+
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
     }
+    return true; 
+}
 
-    function isNumber(evt) {
-        evt = (evt) ? evt : window.event;
-        var charCode = (evt.which) ? evt.which : evt.keyCode;
-        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-            return false;
+function cartItems() {
+    $.ajax({
+        url : "<?php echo 'cart-process.php?act=show_cart_details'; ?>",
+        dataType : 'JSON',
+        type : 'POST',
+        data : { cart_details:'cart_details'  },
+        success : function(response) {
+            if(response != '') {
+                console.log(response.details);
+                if(response.status) {
+                    $('.cartItems').html(response.details);
+                } else {
+                    $('.cartItems').html(response.details);
+                }
+            } else {
+                alert('Something went wrong. Please went wrong');
+            }
         }
-        return true; 
-    }
+    });
+}
 
-</script>
-
-<script>
-     function submitForgotPassword()
-        {
-          var email                 =   $('#emailLogin').val();
-          var flag = 0;
-          $('.error_login').text('').css('display','none');
-          if (email) {
-            $('#error-loginEmail').hide();
-          } else {
-            $('#error-loginEmail').show().html('Email is required.').css({'color' : 'red', 'float' : 'left','margin-top': '-20px'});
-            flag++;
-          }
-          
-          if(flag>0)
-          {
-            return false;
-          }else{
-                $.ajax({
-                    url :"<?php echo 'mail-process.php?act=forgotPassword'?>",
-                    type: "POST",
-                    data : { email : email },
-                    success : function(response){
-                        if (response !='') {
-                            response = response.trim();
-                           if(response == 'email_not_exist') {
-                                $('#error-loginEmail').show().html('Invalid credentials').css({'color' : 'red', 'float' : 'left','margin-top': '-20px'});
-                           }
-
-                           if(response == 'email_not_found') {
-                                $('#error-loginEmail').show().html('Email is required').css({'color' : 'red', 'float' : 'left','margin-top': '-20px'});
-                           }
-
-                           if(response == 'email_send') {
-                                $('#error-loginEmail').show().html('Password send to your email').css({'color' : 'green', 'float' : 'left','margin-top': '-20px'});
-                                setTimeout(function() {
-                                  window.location.href = "<?php echo $cfg['base_url'] ?>";
-                                },1500);
-                           }
-                           if(response == 'failed_update') {
-                                $('#error-loginEmail').show().html('Something wents wrong,Please try again later').css({'color' : 'red', 'float' : 'left','margin-top': '-20px'});
-                           }
-                        }
-                       
-                        event.preventDefault();
-                    }
-                });
-          }
-          
-        }
 </script>

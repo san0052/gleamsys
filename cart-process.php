@@ -42,8 +42,84 @@ switch($action) {
 			echo json_encode(array('status'=>false, 'message'=>'Something went wrong. Please try again later')); die;
 		}
 		break;
-}
 
+
+	case 'show_cart_details':
+		$cart_session = !empty($_SESSION['gleam_cart_session'])?$_SESSION['gleam_cart_session']:'';
+		if (!empty($cart_session)) {
+			$totalCount = 0;
+			$totalAmount = 0;
+			foreach ($cart_session as $cart) {
+				$sqlgetCartDet = "SELECT pd_id, pd_image, pd_price, pd_name, pd_qty FROM ".$cfg['DB_PRODUCT']." WHERE `status` ='A' AND `pd_id` = ".$cart['product_id']."";
+	            $resCart    =   $mycms->sql_query($sqlgetCartDet);
+	            $rowCart    =   $mycms->sql_fetchrow($resCart);
+	            if (!empty($rowCart)) {
+	            	  $totalCount++;
+	            	  $totalAmount += $rowCart['pd_price'];
+	                  $cartItems .= '<div class="order-list">';
+	                      $cartItems .= '<div class="item-pic">';
+	                          $cartItems .= '<img src="image_bank/product_image/'.$rowCart['pd_image'].'">';
+	                          // $cartItems .= '<p>1</p>';
+	                      $cartItems .= '</div>';
+	                      $cartItems .= '<div class="item-details">';
+	                          $cartItems .= '<p class="prd-name" style="font-weight:600">'.$rowCart['pd_name'].'</p>';
+
+	                                      // <p class="prd-id">product id</p> 
+	                                          // <p class="deliver-date">Delivery by Sun 21 Jun | Free</p>
+	                          $cartItems .= '<p class="prd-price">Price :- $'.$rowCart['pd_price'].'</p>';
+	                          $cartItems .= '<p class="prd-price">Quanity :- '.$rowCart['pd_qty'].'</p>';
+	                          $cartItems .= '<button class="rmv-btn rmv_cart_item" data-remove_prod_id="'.$rowCart['pd_id'].'">Remove</button>';
+	                      $cartItems .= '</div>';
+	                  $cartItems .= '</div>';
+	            }
+			}
+
+			if ($totalCount>0) {
+				$cartItems .= '<table class="table totalpayble">';
+					$cartItems .= '<thead>';
+						$cartItems .= '<tr>';
+							$cartItems .= '<th colspan="2">Price Details</th>';
+						$cartItems .= '</tr>';
+					$cartItems .= '</thead>';
+					$cartItems .= '<tbody>';
+						$cartItems .= '<tr>';
+							$cartItems .= '<td>';
+								$cartItems .= 'Price ('.$totalCount.' Items)';
+							$cartItems .= '</td>';
+							$cartItems .= '<td>';
+								$cartItems .= '$'.$totalAmount;
+							$cartItems .= '</td>';
+						$cartItems .= '</tr>';
+						$cartItems .= '<tr>';
+							$cartItems .= '<td>';
+								$cartItems .= 'Delivery Charge';
+							$cartItems .= '</td>';
+							$cartItems .= '<td>';
+								$cartItems .= 'Free';
+							$cartItems .= '</td>';
+						$cartItems .= '</tr>';
+					$cartItems .= '</tbody>';
+					$cartItems .= '<tfoot>';
+						$cartItems .= '<tr>';
+							$cartItems .= '<td>';
+								$cartItems .= 'Total Payble';
+							$cartItems .= '</td>';
+							$cartItems .= '<td>';
+								$cartItems .= '$'.$totalAmount;
+							$cartItems .= '</td>';
+						$cartItems .= '</tr>';
+					$cartItems .= '</tfoot>';
+				$cartItems .= '</table>';
+			}
+
+			echo json_encode(array('status'=>true, 'details'=>$cartItems)); die;
+		} else {
+			$noDataHtml = '<p style="text-align:center; margin-top:10px">Empty Cart</p>';
+     		echo json_encode(array('status'=>false, 'details'=>$noDataHtml)); die;
+		}
+
+		break;
+}
 
 // if product is already present then add product count only
 function checkProductExistInCart($product_id, $product_count, $user_id = 0) {

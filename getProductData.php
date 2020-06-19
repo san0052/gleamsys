@@ -22,7 +22,7 @@ if (!empty($is_more)) {
 }
 
 $productSql = '';
-$productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
+$productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE pro.`status` = 'A' ";
 
 
 	if (!empty($category_ids)) {
@@ -97,16 +97,16 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
 		$anyCondition++;
 	}
 
-	if (empty($anyCondition)) {
-		$productSql = str_replace('WHERE', '', $productSql);
-	}
+	// if (empty($anyCondition)) {
+	// 	$productSql = str_replace('WHERE', '', $productSql);
+	// }
 
 	# order by 
 	$productSql .= " ORDER BY pro.`pd_id` DESC ";
 
 	# limit
 	$productSql .= " LIMIT ".$limit." OFFSET ".$nextOffset;
-	// echo $productSql;	
+	// echo $productSql;die;	
 	$res    =   $mycms->sql_query($productSql);
 	$productArr	=	array();
     while($product    =   $mycms->sql_fetchrow($res)){
@@ -176,7 +176,6 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
 		    $htmlData .= '</div>';
     	}
 
-    	// $returnArr = array('html'=>$htmlData,'nextCounter'=>$previousId);
     	$returnArr = array('html'=>$htmlData,'nextCounter'=>$offset+1);
     	return $returnArr;
     }
