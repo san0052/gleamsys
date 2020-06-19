@@ -119,6 +119,23 @@ switch($action) {
 		}
 
 		break;
+
+	case 'remove_cart_item':
+		$data = $_SESSION['gleam_cart_session'];
+		$product_id = !empty($_REQUEST['product_id'])?trim($_REQUEST['product_id']) : '';
+
+		if (!empty($data) && !empty($product_id)) {
+			$product_id_list = array_column($data, 'product_id');
+			if (in_array($product_id, $product_id_list)) {
+				$key = key(array_column($data, 'product_id'));
+				unset($data[$key]);
+				$_SESSION['gleam_cart_session'] = $data;
+				echo json_encode(array('status'=>true)); die;
+			}
+		} else {
+			echo json_encode(array('status'=>false)); die;
+		}
+		break;
 }
 
 // if product is already present then add product count only
