@@ -68,8 +68,8 @@
                             <li class="hidden-xs hidden-sm" onclick="openlogin()">Login</li>
                         <?php } else { ?>
                             <li class="profileheaderbtn hidden-xs hidden-sm">
-                                <button onclick="myaccntdrpopen()"><img src="images/client-1.png">
-                                    <span>Swarnendu</span></button>
+                                <button onclick="myaccntdrpopen()"><img src="uploads/userProfile/<?php echo $row['image'];?>">
+                                    <span><?php echo ucfirst($row['name']);?></span></button>
                                 <ul class="my-account-drop">
                                     <li onclick="window.location.href='profile.php'">Profile</li>
                                     <li onclick="window.location.href='wishlist.php'">Wishlist</li>
@@ -350,6 +350,7 @@ function navcls()
         } else {
             window.location.href = "product.php";
         }
+    }
 
 
         function logout() {
@@ -365,5 +366,5 @@ function navcls()
             });
 
     }
-        }
+        
 </script>
