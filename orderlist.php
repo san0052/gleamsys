@@ -1,5 +1,12 @@
 <?php
-include_once("includes/links_frontend.php"); ?>
+include_once("includes/links_frontend.php"); 
+    if (empty($_SESSION['gleam_users_session'])) { 
+         $returnLink  =   $cfg['base_url'];
+         $mycms->redirect($cfg['base_url']);
+    }else{
+        $userId = $_SESSION['gleam_users_session']['user_id'];
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include_once('includes/pagesources.php'); ?>
