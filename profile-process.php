@@ -47,7 +47,7 @@ switch($action)
 	}else{
 		$sql1="UPDATE ".$cfg['DB_USERS']." SET
 		       	`name` 		= '".$name."',
-		     	`mobile` 	= '".$mobile."'
+		     	`mobile` 	= '".$mobile."',
 		     	`email` 	= '".$email."',
 		     	`location` 	= '".$location."',
 		     	`city` 		= '".$city."',

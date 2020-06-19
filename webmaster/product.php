@@ -577,10 +577,7 @@ $show=$_REQUEST['show'];
 																					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Image 3 </span> <span class="redstar"></td>
 																					<td width="70%" colspan="4" align="left"><input name="image_add3" id="image_add3" type="file" class="forminputelement"/></td>
 																				</tr>
-																				<tr class="row2">
-																					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Image 4</span> </td>
-																					<td width="70%" colspan="4" align="left"><input name="image_add4" id="image_add3" type="file" class="forminputelement"/></td>
-																				</tr>
+																				
 
 																			<!-- 	<tr class="row1"><td colspan="6" align="left" valign="top"><span class="leftBarText_new">Keywords Category List</span></td></tr> -->
 																				<!-- <tr class="row2">
@@ -997,16 +994,17 @@ $show=$_REQUEST['show'];
 								</tr>
 								<tr class="row2">
 									<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Image 2</span> </td>
-									<td width="70%" colspan="4" align="left"><input name="image_add2" id="image_add2" type="file" class="forminputelement"/></td>
+									<td width="70%" colspan="4" align="left"><input name="image_add2" id="image_add2" type="file" class="forminputelement"/>
+										&nbsp;&nbsp; <img src="../<?=$cfg['PRODUCT_IMAGES'].$row1['pd_image1']?>"  width="70" align="top"/>
+									</td>
 								</tr>
 								<tr class="row2">
 									<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Image 3 </span> </td>
-									<td width="70%" colspan="4" align="left"><input name="image_add3" id="image_add3" type="file" class="forminputelement"/></td>
+									<td width="70%" colspan="4" align="left"><input name="image_add3" id="image_add3" type="file" class="forminputelement"/>
+										&nbsp;&nbsp; <img src="../<?=$cfg['PRODUCT_IMAGES'].$row1['pd_image2']?>"  width="70" align="top"/>
+									</td>
 								</tr>
-								<tr class="row2">
-									<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Image 4</span> </td>
-									<td width="70%" colspan="4" align="left"><input name="image_add4" id="image_add4" type="file" class="forminputelement"/></td>
-								</tr>
+								
 								
 								
 								<!-- <tr class="row1">			 
@@ -1357,6 +1355,17 @@ if($show=='edit_addon'){
 			<td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Image </span> </td>
 			<td colspan="4" align="left" valign="top"><img src="../<?=$cfg['PRODUCT_IMAGES'].$row1['pd_image']?>"  width="70" align="top"/></td>
 		</tr>
+
+		<tr class="row2">
+			<td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Product Image1 </span> </td>
+			<td colspan="4" align="left" valign="top"><img src="../<?=$cfg['PRODUCT_IMAGES'].$row1['pd_image1']?>"  width="70" align="top"/></td>
+		</tr>
+
+		<tr class="row2">
+			<td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Product Image2 </span> </td>
+			<td colspan="4" align="left" valign="top"><img src="../<?=$cfg['PRODUCT_IMAGES'].$row1['pd_image2']?>"  width="70" align="top"/></td>
+		</tr>
+
 		<? $sql_addon="SELECT * FROM ".$cfg['DB_PRODUCT']." WHERE  `status`='A' AND `mainaddon` =".$_REQUEST['id']." AND `siteId`= '".$cfg['SESSION_SITE']."' ";
 		$res_addon=$heart->sql_query($sql_addon);
 		$maxrow=$heart->sql_numrows($res_addon);
@@ -1393,6 +1402,8 @@ if($show=='edit_addon'){
 					<td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Image </span> </td>
 					<td colspan="4" align="left" valign="top"><img src="../<?=$cfg['PRODUCT_IMAGES'].$row_addon['pd_image']?>"  width="70" align="top"/></td>
 				</tr>
+
+				
 			<? }
 		}
 		?>
