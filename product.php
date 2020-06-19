@@ -279,7 +279,7 @@ include_once("includes/links_frontend.php"); ?>
                 },
                 dataType : 'JSON',
                 success : function(response) {
-                    console.log(response);
+                    // console.log(response);
                     if (response !='') {
                         if (response.status) {
                             if(response.sidebarCounter) {
@@ -291,16 +291,19 @@ include_once("includes/links_frontend.php"); ?>
                                     viewMore(response.nextOffset);
                                 }
                             } else  {
-                                console.log('sds ',$('.productItem').length);
-                                if($('.productItem').length>0) {
-                                    console.log('dee');
-                                    $(".productItem:last").after(response.details); 
-                                    viewMore(response.nextOffset);
+                                if(response.nextOffset <= 1) {
+                                     $(".product-item-box").html(response.details);
+                                     viewMore(response.nextOffset);
                                 } else {
-                                    console.log('else');
-                                    $(".product-item-box").html(response.details);
-                                    viewMore(response.nextOffset);
+                                    if($('.productItem').length>0) {
+                                        $(".productItem:last").after(response.details); 
+                                        viewMore(response.nextOffset);
+                                    } else {
+                                        $(".product-item-box").html(response.details);
+                                        viewMore(response.nextOffset);
+                                    }
                                 }
+                                
                                 
                             }
                             
