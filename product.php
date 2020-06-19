@@ -79,10 +79,15 @@ switch ($type) {
                             <li>
                                 <button class="filter-btn">Price Range</button>
                                 <ul class="filter-menu">
-                                    <div style="margin-bottom:30px;">
+                                    <div >
                                         <input type="number" min="0" max="9900" oninput="validity.valid||(value='0');" id="min_price" class="price-range-field">
                                         <input type="number" min="1" max="10000" oninput="validity.valid||(value='10000');" id="max_price" class="price-range-field">
-                                        <button class="priceBtn" style="color:white; background-color:#2b7ca3">Submit</button>
+                                        <button class="priceBtn" style="color: white;
+    background-color: #2b7ca3;
+    border: 0;
+    padding: 8px 15px;
+    margin-top: 15px;
+    width: 100%;">Submit</button>
                                     </div>
 
                                     <div id="slider-range" class="price-filter-range" name="rangeInput"></div>

@@ -1,0 +1,47 @@
+
+
+.sliderText{
+    width:40%;
+    margin-bottom:30px;
+    border-bottom: 2px solid red;
+    padding: 10px 0 10px 0px;
+    font-weight:bold;
+}
+
+.ui-slider-horizontal {
+    
+    width:100%;
+}
+.ui-widget-header {
+    background: var(--main-color);
+}
+
+.price-range-search {
+    width:40.5%; 
+    background-color: #f9f9f9; 
+    border: 1px solid #6e6666;
+    min-width: 40%;
+    display: inline-block;
+    height: 32px;
+    border-radius: 5px;
+    float: left;
+    margin-bottom:20px;
+    font-size:16px;
+}
+.price-range-field{
+    width:49%; 
+    min-width: 16%;
+    background-color:#f9f9f9; 
+    border: 1px solid #6e6666; 
+    color: black; 
+    font-size:14px; 
+    border-radius: 0px; 
+    height:35px; 
+    padding:8px;
+}
+.search-results-block{
+    position: relative;
+    display: block;
+    clear: both;
+}
+
