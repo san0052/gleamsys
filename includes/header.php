@@ -399,27 +399,5 @@ $(".drop-menu").addClass("hide");
         });
     });
 
-function cartItems() {
-    $.ajax({
-        url : "<?php echo 'cart-process.php?act=show_cart_details'; ?>",
-        dataType : 'JSON',
-        type : 'POST',
-        data : { cart_details:'cart_details'  },
-        success : function(response) {
-            if(response != '') {
-                console.log('response ',response);
-                if(response.status) {
-                    $('.cartFooter').show();
-                    $('.totalPayableAmount').text('$'+response.totalAmount);
-                    $('.cartItems').html(response.details);
-                } else {
-                    $('.cartFooter').hide();
-                    $('.cartItems').html(response.details);
-                }
-            } else {
-                alert('Something went wrong. Please went wrong');
-            }
-        }
-    });
-}
+
 </script>

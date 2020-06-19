@@ -284,7 +284,44 @@
      </footer>
      <script src="//code.tidio.co/t6vivnuwfi76jl2shg2r4ehymsoe06rv.js"></script>
     <script type="text/javascript">
+      function cartItems() {
+    $.ajax({
+        url : "<?php echo 'cart-process.php?act=show_cart_details'; ?>",
+        dataType : 'JSON',
+        type : 'POST',
+        data : { cart_details:'cart_details'  },
+        success : function(response) {
+            if(response != '') {
+                console.log('response ',response);
+                if(response.status) {
+                    $('.cartFooter').show();
+                    $('.totalPayableAmount').text('$'+response.totalAmount);
+                    $('.cartItems').html(response.details);
+                } else {
+                    $('.cartFooter').hide();
+                    $('.cartItems').html(response.details);
+                }
+            } else {
+                alert('Something went wrong. Please went wrong');
+            }
+        }
+    });
+}
       $(document).ready(function (event) {
         cartItems();
       });
+
+      function isEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+      }
+
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true; 
+}
     </script>

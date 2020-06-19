@@ -31,21 +31,34 @@ include_once('includes/pagesources.php'); ?>
                             <div class="chk-inner-rt">
                                 <button>LOGIN</button>
                                 <ul id="chklogin" class="show">
+                                <?php 
+                                    $userId     = $_SESSION['gleam_users_session']['user_id'];
+                                    $sqlgetUser = "SELECT * FROM ".$cfg['DB_USERS']."  WHERE `status`='A' AND `id` = ".$userId."  ";
+                                    $res        =   $mycms->sql_query($sqlgetUser);
+                                    $row        =   $mycms->sql_fetchrow($res);
+                                
+                                if($userId){ ?>
                                     <li class="address">
-                                        <p>Swarnnedu Ghosh</p><p class="chk-email">Swarnendu@abc.com</p></li>
-                                    <button class="change-btn" onclick="changelogin()">Change</button>
+                                        <p><?php echo $row['name'];?></p><p class="chk-email"><?php echo $row['email'];?></p>
+                                    </li>
+                               <?php }else{ ?>
+                                <li class="address">
+                                        <p>Please Login / Register</p>
+                                    </li>
+                                <?php } ?>
+                                <button class="change-btn" onclick="changelogin()">Change</button>
                                     <div class="edit-frm">
                                         <p>Change Login</p>
                                         <div>
                                             <div class="col-xs-6 form-group">
-                                                <!-- <label>Full Name</label> -->
-                                                <input type="email" placeholder="Email Id">
+                                                <input type="email" placeholder="Email Id" class="login_email">
+                                                <small class="login_error_email" style="color:red"></small>
                                             </div>
                                             <div class="col-xs-6 form-group">
-                                                <!-- <label>Full Name</label> -->
-                                                <input type="password" placeholder="password">
+                                                <input type="password" placeholder="password" class="login_password">
+                                                <small class="login_error_password" style="color:red"></small>
                                             </div>
-                                            <p>Do Not Have Account? <a onclick="window.location.href='index.php'">Register Now</a></p>
+                                            <p>Do Not Have Account? <a onclick="window.location.href='index.php'" style="cursor: pointer;">Register Now</a></p>
                                             <div class="col-xs-12 form-group">
                                                 <button class="save-btn" onclick="logindone()">Login</button>
                                             </div>
@@ -57,25 +70,66 @@ include_once('includes/pagesources.php'); ?>
                                         }
 
                                         function logindone() {
+                                            let error = 0;
+                                            $('.login_error_email, .login_error_password').text('');
+                                            let login_email = $('.login_email').val().trim();
+                                            let login_password = $('.login_password').val().trim();
+
+                                            if(login_email == '') {
+                                                $('.login_error_email').text('Enter Email');
+                                                error++;
+                                            }
+
+                                            if(login_email != '' && (isEmail(login_email) == false)) {
+                                                $('.login_error_email').text('Invalid Email Format');
+                                                error++;   
+                                            }
+                                            if(login_password == '') {
+                                                $('.login_error_password').text('Enter Password');
+                                                error++;
+                                            }
+                                            if (error>0) {
+                                                event.preventDefault();
+                                            }else{
+                                                $.ajax({
+                                                    url : "<?php echo 'mail-process.php?act=login'; ?>",
+                                                    dataType : 'JSON',
+                                                    type : 'POST',
+                                                    data : { email : login_email, password : login_password },
+                                                    success : function(response) {
+                                                        if(response != '') {
+                                                            if(response.status) {
+                                                                location.reload();
+                                                            } else {
+                                                                alert(response.message);
+                                                            }
+                                                        } else {
+                                                            alert('Something went wrong. Please went wrong');
+                                                        }
+                                                    }
+                                                });
+                                            }
                                             $("#chklogin").removeClass("edit");
                                         }
                                     </script>
                                 </ul>
-
                             </div>
-
                         </li>
+
                         <li>
-                            <div>
-                                <span class="checkout-option-number">2</span>
-                            </div>
-                            <div class="chk-inner-rt">
-                                <button>Delivery Address</button>
+                        <div>
+                            <span class="checkout-option-number">2</span>
+                        </div>
+                        <div class="chk-inner-rt">
+                            <button>Delivery Address</button>
                                 <ul id="edit-address" class="show">
+                                <?php if($userId){ ?>
                                     <li class="address">
-                                        <p>Swarnnedu Ghosh, 9874563210</p>
-                                        <p>address</p>
+                                        <p><?php echo $row['name'].','.$row['mobile'];?> </p>
+                                        <p><?php echo $row['location']; ?></p>
+                                        <p><?php echo $row['city']; ?></p>
                                     </li>
+                                <?php } ?>
                                     <button class="change-btn" onclick="editaddress()">Edit</button>
                                     <div class="edit-frm">
                                         <p>Edit Address</p>

@@ -300,7 +300,7 @@
                         
                     </div>
                     <div style="float:right;">
-                        <button type="button" id="nextBtn" class="demo-class" onclick="return validate();">Proceed</button>
+                        <button type="button" id="nextBtn" class="demo-class" onclick="window.location.href='checkout.php'">Proceed</button>
                     </div>
                 </div>
             </form>
@@ -587,7 +587,7 @@
         });
     });
 
-function isEmail(email) {
+/*function isEmail(email) {
   var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   return regex.test(email);
 }
@@ -599,5 +599,5 @@ function isNumber(evt) {
         return false;
     }
     return true; 
-}
+}*/
 </script>
