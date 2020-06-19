@@ -391,9 +391,35 @@ $(".drop-menu").addClass("hide");
                         $('.cart_counter').text(response.cart_count);
                     }
                     alert(response.message);
+                    setTimeout(function() {
+                        location.reload();
+                    },1000);
                 }
             }
         });
     });
-        
+
+function cartItems() {
+    $.ajax({
+        url : "<?php echo 'cart-process.php?act=show_cart_details'; ?>",
+        dataType : 'JSON',
+        type : 'POST',
+        data : { cart_details:'cart_details'  },
+        success : function(response) {
+            if(response != '') {
+                console.log('response ',response);
+                if(response.status) {
+                    $('.cartFooter').show();
+                    $('.totalPayableAmount').text('$'+response.totalAmount);
+                    $('.cartItems').html(response.details);
+                } else {
+                    $('.cartFooter').hide();
+                    $('.cartItems').html(response.details);
+                }
+            } else {
+                alert('Something went wrong. Please went wrong');
+            }
+        }
+    });
+}
 </script>
