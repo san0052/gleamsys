@@ -80,7 +80,7 @@ include_once("includes/links_frontend.php"); ?>
                                     <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
                                 </ul>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <button class="filter-btn">Brand</button>
                                 <ul class="filter-menu">
                                     <li>
@@ -120,7 +120,7 @@ include_once("includes/links_frontend.php"); ?>
                                         </label>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
 
