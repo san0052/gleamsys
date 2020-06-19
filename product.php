@@ -73,7 +73,8 @@ include_once("includes/links_frontend.php"); ?>
                                 <ul class="filter-menu">
                                     <div style="margin-bottom:30px;">
                                         <input type="number" min="0" max="9900" oninput="validity.valid||(value='0');" id="min_price" class="price-range-field">
-                                        <input type="number" min="0" max="10000" oninput="validity.valid||(value='10000');" id="max_price" class="price-range-field">
+                                        <input type="number" min="1" max="10000" oninput="validity.valid||(value='10000');" id="max_price" class="price-range-field">
+                                        <button class="priceBtn" style="color:white; background-color:#2b7ca3">Submit</button>
                                     </div>
 
                                     <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
@@ -180,7 +181,8 @@ include_once("includes/links_frontend.php"); ?>
                     </div>
                     <div class="col-xs-12 product-more-box">
                         <!-- <button id="myBtn" onclick="getMore('3','','','')" class="product-more">View More</button> -->
-                        <button data-id="<?php echo $previousId ?>" onclick="getMoreProducts(<?php echo $previousId ?>)" class="product-more hide_view_more">View More</button>
+                        <!-- <button data-id="<?php echo $previousId ?>" onclick="getMoreProducts(<?php echo $previousId ?>)" class="product-more hide_view_more">View More</button> -->
+                        <button data-id="1" onclick="getMoreProducts(1)" class="product-more hide_view_more">View More</button>
                     </div>
                 </div>
                 <div class="banner-btn-box hidden-md hidden-lg">
@@ -229,11 +231,30 @@ include_once("includes/links_frontend.php"); ?>
             child_carret.toggleClass("rota");
         });
 
-        let sub_category_array = [];
+        var sub_category_array = [];
+        var min_amount = 0;
+        var max_amount = 0;
+        var see_more = 0;
+        // let offset = 0;
         $(document.body).on('change', '.select_sub_category', function(event) {
             let sub_category = $(this).attr('data-subcategory');
             sub_category_array.push(sub_category);
+            let counter_id = $('.hide_view_more').attr('data-id');
+            if(counter_id == 1) {
+                counter_id = 0;
+                let type = "<?php echo $type ?>";
+                getProducts(counter_id, type, 1);
+            } else {
+                getMoreProducts(counter_id);
+            }
+        });
+
+
+        $('.priceBtn').click(function() {
+            min_amount = $('#min_price').val();
+            max_amount = $('#max_price').val();
             // let counter_id = $('.hide_view_more').attr('data-id');
+            // getMoreProducts(counter_id);
             getMoreProducts();
         });
 
@@ -247,17 +268,17 @@ include_once("includes/links_frontend.php"); ?>
                 return result;
             } else {
                 //none is checked
-              return [];
+                return [];
             }
         }
 
         function getMoreProducts(count = 0) {
             let type = "<?php echo $type ?>";
-            getProducts(count, type);
+            getProducts(count, type, 1);
         }
 
-        function getProducts(count, type) {
-
+        function getProducts(count, type, see_more=0) {
+            console.log(see_more);
             sub_category_array = unique(sub_category_array);
             
             $.ajax({
@@ -266,9 +287,10 @@ include_once("includes/links_frontend.php"); ?>
                 data : { 
                     offset     : count, 
                     type       : type, 
-                    is_more    : true,
+                    is_more    : see_more,
+                    min_amount : min_amount,
+                    max_amount : max_amount,
                     sub_category    :   sub_category_array.toString()
-
                 },
                 dataType : 'JSON',
                 success : function(response) {

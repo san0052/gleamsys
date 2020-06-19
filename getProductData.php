@@ -2,9 +2,11 @@
 include_once("includes/links_frontend.php");
 
 $type = !empty($_REQUEST['type']) ? trim($_REQUEST['type']) : '';
-$limit = !empty($_REQUEST['limit']) ? trim($_REQUEST['limit']) : 3;
+$limit = !empty($_REQUEST['limit']) ? trim($_REQUEST['limit']) : 2;
 $is_more = !empty($_REQUEST['is_more']) ? trim($_REQUEST['is_more']) : '';
-$offset_id = !empty($_REQUEST['offset']) ? trim($_REQUEST['offset']) : 0;
+$offset = !empty($_REQUEST['offset']) ? trim($_REQUEST['offset']) : 0;
+$min_amount = !empty($_REQUEST['min_amount']) ? trim($_REQUEST['min_amount']) : 0;
+$max_amount = !empty($_REQUEST['max_amount']) ? trim($_REQUEST['max_amount']) : 0;
 
 $category_ids = !empty($_REQUEST['sub_category']) ? trim($_REQUEST['sub_category']):'';
 
@@ -13,14 +15,21 @@ $anyCondition = 0;
 # if sidebar selected
 $sidebarCounter = false;
 
+#next offset
+$nextOffset = 0;
+if (!empty($is_more)) {
+	if ($offset == 1) {
+		$nextOffset = $offset+$limit;
+	} else if($offset>1){
+		$nextOffset = ($offset - 1)*$limit+1;
+	}else{
+		$nextOffset = 0;
+	}
+}
+
 $productSql = '';
 $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
 
-	if (!empty($offset_id)) {
-		$productSql .= " pro.`pd_id` < ";
-		$productSql .= $offset_id;
-		$anyCondition++;
-	}
 
 	if (!empty($category_ids)) {
 		if ($anyCondition > 0) {
@@ -67,6 +76,33 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
 
 	} // end of type
 
+	if(!empty($min_amount) && empty($max_amount)) {
+		if ($anyCondition > 0) {
+			$productSql .= " AND ";
+		}
+		$productSql .= " pd_price >= ".$min_amount;
+		$sidebarCounter = true;
+		$anyCondition++;
+	}
+
+	if(!empty($max_amount) && empty($min_amount)) {
+		if ($anyCondition > 0) {
+			$productSql .= " AND ";
+		}
+		$productSql .= " pd_price <= ".$max_amount;
+		$sidebarCounter = true;
+		$anyCondition++;
+	}
+
+	if (!empty($min_amount) && !empty($max_amount)) {
+		if ($anyCondition > 0) {
+			$productSql .= " AND ";
+		}
+		$productSql .= " (pd_price BETWEEN ".$min_amount." AND ".$max_amount.")";
+		$sidebarCounter = true;
+		$anyCondition++;
+	}
+
 	if (empty($anyCondition)) {
 		$productSql = str_replace('WHERE', '', $productSql);
 	}
@@ -75,43 +111,37 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
 	$productSql .= " ORDER BY pro.`pd_id` DESC ";
 
 	# limit
-	$productSql .= " LIMIT ".$limit;
-
+	$productSql .= " LIMIT ".$limit." OFFSET ".$nextOffset;
+	// echo $productSql;	
 	$res    =   $mycms->sql_query($productSql);
 	$productArr	=	array();
     while($product    =   $mycms->sql_fetchrow($res)){
     	array_push($productArr, $product);
     }
-    // echo $productSql;
+
     if (!empty($is_more)) {
     	if (!empty($productArr)) {
-    		// echo $productSql;
-    		$htmlDetails = dynamicHTML($productArr);
+    		$htmlDetails = dynamicHTML($productArr,$nextOffset);
     		echo json_encode(
     			array(
     				'status'=>true,
+    				'query'=>$productSql,
     				'details'=>$htmlDetails['html'],
     				'nextOffset'=>$htmlDetails['nextCounter'],
     				'sidebarCounter' => $sidebarCounter
     			)
     		); die;
     	} else {
-    		echo json_encode(array('status'=>false, 'details'=>array(),'sidebarCounter' => $sidebarCounter)); die;
+    		echo json_encode(array('status'=>false,'query'=>$productSql, 'details'=>array(),'sidebarCounter' => $sidebarCounter)); die;
     	}
     }
 
 
-    function dynamicHTML($productArr) {
+    function dynamicHTML($productArr,$nextOffset) {
     	$returnArr = array();
     	$htmlData = '';
-    	$firstCounter = count($productArr);
-    	$previousId = '';
     	foreach ($productArr as $key => $value) { 
-    		if (($firstCounter-1) == $key) {
-                $previousId = $value['pd_id'];
-                 //echo "jfgj".$value['pd_id'];die;
-            }
-    		$htmlData .= '<div class="item productItem">';
+     		$htmlData .= '<div class="item productItem">';
     			$htmlData .= '<div class="main-prd-box" onclick="window.location.href=\'product-details.php\'">';
 		    		$htmlData .= '<div class="box_img">';
 		    			$htmlData .= '<img has="postloader" src="image_bank/product_image/'.$value['pd_image'].'" alt="'.$value['pd_name'].'">';
@@ -144,7 +174,8 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
 		    $htmlData .= '</div>';
     	}
 
-    	$returnArr = array('html'=>$htmlData,'nextCounter'=>$previousId);
+    	// $returnArr = array('html'=>$htmlData,'nextCounter'=>$previousId);
+    	$returnArr = array('html'=>$htmlData,'nextCounter'=>$nextOffset);
     	return $returnArr;
     }
 ?>
