@@ -140,13 +140,8 @@ include_once("includes/links_frontend.php"); ?>
                     </div>
                     <div class="col-xs-12 product-item-box">
                         <?php
-                            $previousId = 0;
-                            $firstCounter = count($productArr);
                             if (!empty($productArr)) {
                                 foreach ($productArr as $key => $product) { 
-                                    if (($firstCounter-1) == $key) {
-                                        $previousId = $product['pd_id'];
-                                    }
                         ?>
                                 <div class="item productItem">
                                     <div class="main-prd-box" onclick="window.location.href='product-details.php'">
@@ -169,10 +164,10 @@ include_once("includes/links_frontend.php"); ?>
                                         <div class="prd-box-fot">
                                             <div class="quentity-frm">
                                                 <div class="check-delivery">
-                                                    <input type="number" min="1" max="10" value="1">
+                                                    <input class="cart_counter_<?php echo $product['pd_id']; ?>" type="number" min="1" max="10" value="1">
                                                 </div>
                                             </div>
-                                            <button>Add to Cart</button>
+                                            <button class="add_to_cart" data-cartCatId="<?php echo $product['pd_id']; ?>">Add to Cart</button>
                                         </div>
                                     </div>
                                 </div>   
@@ -181,7 +176,6 @@ include_once("includes/links_frontend.php"); ?>
                     </div>
                     <div class="col-xs-12 product-more-box">
                         <!-- <button id="myBtn" onclick="getMore('3','','','')" class="product-more">View More</button> -->
-                        <!-- <button data-id="<?php echo $previousId ?>" onclick="getMoreProducts(<?php echo $previousId ?>)" class="product-more hide_view_more">View More</button> -->
                         <button data-id="1" onclick="getMoreProducts(1)" class="product-more hide_view_more">View More</button>
                     </div>
                 </div>
@@ -241,21 +235,12 @@ include_once("includes/links_frontend.php"); ?>
             sub_category_array.push(sub_category);
             let counter_id = $('.hide_view_more').attr('data-id');
             getMoreProducts();
-            // if(counter_id == 1) {
-            //     counter_id = 0;
-            //     let type = "<?php echo $type ?>";
-            //     getProducts(counter_id, type, 1);
-            // } else {
-            //     getMoreProducts(counter_id);
-            // }
         });
 
 
         $('.priceBtn').click(function() {
             min_amount = $('#min_price').val();
             max_amount = $('#max_price').val();
-            // let counter_id = $('.hide_view_more').attr('data-id');
-            // getMoreProducts(counter_id);
             getMoreProducts();
         });
 
@@ -279,7 +264,6 @@ include_once("includes/links_frontend.php"); ?>
         }
 
         function getProducts(count, type, see_more=0) {
-            console.log(see_more);
             sub_category_array = unique(sub_category_array);
             
             $.ajax({
@@ -336,6 +320,22 @@ include_once("includes/links_frontend.php"); ?>
            let htmlmore = '<button data-id="'+next_id+'" onclick="getMoreProducts('+next_id+')" class="product-more hide_view_more">View More</button>';
            $('.product-more-box').html(htmlmore);
         }
+
+
+        $(document.body).on('click', '.add_to_cart', function(event) {
+            console.log('dsd');
+            let cat_id = $(this).attr('data-cartCatId');
+            let product_count = $('.cart_counter_'+cat_id).val();
+            $.ajax({
+                url : 'cart-process.php?act=add_to_cart';
+                method : 'POST',
+                data : { category_id : cat_id, product_count : product_count },
+                dataType : 'JSON',
+                success : function(response) {
+                    console.log('response ',response);
+                }
+            });
+        });
     </script>
 </body>
 </html>
