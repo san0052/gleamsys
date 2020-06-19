@@ -12,38 +12,43 @@ include_once("includes/links_frontend.php"); ?>
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-md-5 left-section product-item-details">
-
+                     <?php 
+                        $sql =   "SELECT * FROM ".$cfg['DB_PRODUCT']."
+                                                 WHERE  
+                                                `status` ='A' 
+                                                AND `pd_id`= '".base64_decode($_GET['category'])."' ";
+                        $res    =   $mycms->sql_query($sql);
+                        $row    =   $mycms->sql_fetchrow($res);
+                    ?>
                     <div class="col-xs-12 col-md-10 box_img">
-                        <div id="London" class="tabcontent" style="display: none;">
-                            <img src="images/prd-1.png">
+                        <div id="London" class="tabcontent" style="display: block;">
+                            <img src="image_bank/product_image/<?php echo $row['pd_image'];?>">
                         </div>
 
-                        <div id="Paris" class="tabcontent" style="display: block;">
-                            <img src="images/prd-2.png">
-                        </div>
-
-                        <div id="Tokyo" class="tabcontent" style="display: none;">
-                            <img src="images/prd-3.png">
-                        </div>
+                         <div id="Paris" class="tabcontent" style="display: block;">
+                           <img src="image_bank/product_image/<?php echo $row['pd_image1'];?>">
+                        </div> 
+                         <div id="Tokyo" class="tabcontent" style="display: none;">
+                           <img src="image_bank/product_image/<?php echo $row['pd_image2'];?>">
+                        </div> 
                     </div>
-                    <ul class="col-xs-12 col-md-2 detailtab">
+                     <ul class="col-xs-12 col-md-2 detailtab">
                         <li class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen" style="height: 50.0781px;">
-                            <img src="images/prd-1.png">
+                           <img src="image_bank/product_image/<?php echo $row['pd_image'];?>">
                         </li>
                         <li class="tablinks active" onclick="openCity(event, 'Paris')" style="height: 50.0781px;">
-                            <img src="images/prd-2.png">
+                            <img src="image_bank/product_image/<?php echo $row['pd_image1'];?>">
                         </li>
                         <li class="tablinks" onclick="openCity(event, 'Tokyo')" style="height: 50.0781px;">
-                            <img src="images/prd-3.png">
+                            <img src="image_bank/product_image/<?php echo $row['pd_image2'];?>">
                         </li>
 
                     </ul>
                 </div>
                 <div class="col-xs-12 col-md-7 right-section item-details ">
-                    <p class="prd-name">Creative Teaching Press</p>
-                    <p class="prd-id">product id</p>
+                    <p class="prd-name"><?php echo $row['pd_name'] ?></p>
+                    <p class="prd-id"><?php echo $row['pd_code'] ?></p>
                     <p class="include-tax">Quentity</p>
-                   
                         <div class="check-delivery">
                         <input type="number" min="1" max="10" value="1">
                         </div>
@@ -52,19 +57,23 @@ include_once("includes/links_frontend.php"); ?>
                     <p class="prd-price">
                         Price:
                         <span>
-                            <i class="fas fa-rupee-sign"></i>
-                        </span>699
+                            $
+                        </span><?php echo $row['pd_price'];?>
                     <span class="offer-price">
                         MRP:
                         <span>
-                            <i class="fas fa-rupee-sign"></i>
+                           $
                         </span>
-                        899
+                        <?php echo $row['strike_price'];?>
                     </span>
                     <span class="saved-price">
-                        ( Save: <span><i class="fas fa-rupee-sign"></i>
+                        ( Save: <span>$</i>
                         </span>
-                        200 )
+                        <?php 
+                            $MRP = $row['strike_price'];
+                            $costPrice =  $row['pd_price'];
+                           echo $SaveAmount = $MRP-$costPrice;
+                        ?> )
                     </span>
                     </p>
                     
@@ -72,24 +81,25 @@ include_once("includes/links_frontend.php"); ?>
                     <p></p>
                     <hr>
                     <p class="prd-details intock">In Stock</p>
-                    <p class="include-tax"><b>Delivery Date:</b> Tue, Jun 2</p>
+                    <!-- <p class="include-tax"><b>Delivery Date:</b> Tue, Jun 2</p> -->
                     <p class="sold delivery-available">Delivery Charge <span>
-                            <i class="fas fa-rupee-sign"></i>
+                       <!--      <i class="fas fa-rupee-sign"></i> -->
+                       $
                         </span>50</p>
                         <hr>
                    
-                        <div class="check-delivery">
+                        <!-- div class="check-delivery">
                             <input placeholder="Enter Pincode">
                             <button>Check</button>
                         </div>
-                        <p class="sold delivery-available">** Delivery Available to 743222</p>
+                        <p class="sold delivery-available">** Delivery Available to 743222</p> -->
                     
                     <hr>
-                    <p class="sold">Sold by <u>Appario Retail Private Ltd</u></p>
+                   <!--  <p class="sold">Sold by <u>Appario Retail Private Ltd</u></p> -->
                     <hr>
                     <p class="prd-details">
                         <b>Description</b><br><br>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the</p>
+                        <?php echo $row['pd_description'];?></p>
                     <hr>
                     
                         <button class="addtocart">Add to Cart</button>

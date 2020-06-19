@@ -384,6 +384,43 @@ case 'update':
 			}
 			
 		}
+
+	
+ 			if (!empty($_FILES['image_add2']['name'])) {
+				$photo1 =$_FILES['image_add2']['name'];
+				// unlink("../".$cfg['PRODUCT_IMAGES'].''.pd_image_name($last_id));					
+				$file_ext=explode(".",$photo1);
+				$ext= strtolower($file_ext[count($file_ext)-1]);
+				$value=time()."_".rand(10,88888).".".$ext;
+				$path="../".$cfg['PRODUCT_IMAGES'].''.$value;
+				$a3 = $_FILES['image_add2']['tmp_name'];
+				// $value;
+				chmod($path,0777);
+				copy($a3,$path);
+				chmod($path,0777);
+				
+				$sqlup = "UPDATE ".$cfg['DB_PRODUCT']." SET `pd_image1`='".$value."' WHERE `pd_id`=".$last_id." AND `siteId`= '".$cfg['SESSION_SITE']."' ";
+				 $heart->sql_query($sqlup);
+ 			}
+
+ 			if (!empty($_FILES['image_add3']['name'])) {
+				$photo2 =$_FILES['image_add3']['name'];
+								
+				$file_ext=explode(".",$photo2);
+				$ext= strtolower($file_ext[count($file_ext)-1]);
+				$value=time()."_".rand(10,999999).".".$ext;
+				$path="../".$cfg['PRODUCT_IMAGES'].''.$value;
+				$a3 = $_FILES['image_add3']['tmp_name'];
+				
+				chmod($path,0777);
+				copy($a3,$path);
+				chmod($path,0777);
+				
+				$sqlup = "UPDATE ".$cfg['DB_PRODUCT']." SET `pd_image2`='".$value."' WHERE `pd_id`=".$last_id." AND `siteId`= '".$cfg['SESSION_SITE']."' ";
+				 $heart->sql_query($sqlup);
+ 			}
+
+
 		$sqlnew1="UPDATE ".$cfg['DB_PRODUCT']." SET `new_status` = 'n'";
 		$heart->sql_query($sqlnew1); 
 		$sqlnew2="UPDATE ".$cfg['DB_PRODUCT']." SET `new_status` = 'y' WHERE `status`='A' ORDER BY `pd_id` DESC LIMIT 10";
