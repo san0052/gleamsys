@@ -19,11 +19,15 @@
                     <div class="col-xs-12 form-group">
                         <a onclick="forgetpass()" style="cursor:pointer;">Forgot Password</a>
                     </div>
+                     <h4 style="display:none; color:red; text-align: center;" class="error_login"></h4>
                     <div class="col-xs-12 form-group forget-password-item" dep="forget-password">
-                        <!-- <label>Full Name</label> -->
-                        <input type="text" placeholder="Email Id">
-                        <button type="button">SUBMIT</button>
+                        <span class="error-msg" id="error-loginEmail"></span>
+                        <input type="text" placeholder="Email Id" id="emailLogin"><br>
+                        
+                         <button type="button" onclick="return submitForgotPassword();">SUBMIT</button>
                     </div>
+                      
+                   
                     <style>
                         .forget-password-item
                         {
@@ -583,18 +587,69 @@
         });
     });
 
-function isEmail(email) {
-  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-  return regex.test(email);
-}
-
-function isNumber(evt) {
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
+    function isEmail(email) {
+      var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      return regex.test(email);
     }
-    return true; 
-}
 
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true; 
+    }
+
+</script>
+
+<script>
+     function submitForgotPassword()
+        {
+          var email                 =   $('#emailLogin').val();
+          var flag = 0;
+          $('.error_login').text('').css('display','none');
+          if (email) {
+            $('#error-loginEmail').hide();
+          } else {
+            $('#error-loginEmail').show().html('Email is required.').css({'color' : 'red', 'float' : 'left','margin-top': '-20px'});
+            flag++;
+          }
+          
+          if(flag>0)
+          {
+            return false;
+          }else{
+                $.ajax({
+                    url :"<?php echo 'mail-process.php?act=forgotPassword'?>",
+                    type: "POST",
+                    data : { email : email },
+                    success : function(response){
+                        if (response !='') {
+                            response = response.trim();
+                           if(response == 'email_not_exist') {
+                                $('#error-loginEmail').show().html('Invalid credentials').css({'color' : 'red', 'float' : 'left','margin-top': '-20px'});
+                           }
+
+                           if(response == 'email_not_found') {
+                                $('#error-loginEmail').show().html('Email is required').css({'color' : 'red', 'float' : 'left','margin-top': '-20px'});
+                           }
+
+                           if(response == 'email_send') {
+                                $('#error-loginEmail').show().html('Password send to your email').css({'color' : 'green', 'float' : 'left','margin-top': '-20px'});
+                                setTimeout(function() {
+                                  window.location.href = "<?php echo $cfg['base_url'] ?>";
+                                },1500);
+                           }
+                           if(response == 'failed_update') {
+                                $('#error-loginEmail').show().html('Something wents wrong,Please try again later').css({'color' : 'red', 'float' : 'left','margin-top': '-20px'});
+                           }
+                        }
+                       
+                        event.preventDefault();
+                    }
+                });
+          }
+          
+        }
 </script>
