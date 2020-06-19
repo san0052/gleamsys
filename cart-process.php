@@ -112,7 +112,7 @@ switch($action) {
 				$cartItems .= '</table>';
 			}
 
-			echo json_encode(array('status'=>true, 'details'=>$cartItems)); die;
+			echo json_encode(array('status'=>true, 'details'=>$cartItems, 'totalAmount'=>$totalAmount)); die;
 		} else {
 			$noDataHtml = '<p style="text-align:center; margin-top:10px">Empty Cart</p>';
      		echo json_encode(array('status'=>false, 'details'=>$noDataHtml)); die;

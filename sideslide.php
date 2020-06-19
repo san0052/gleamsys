@@ -290,10 +290,12 @@
                         </tfoot>
                     </table> -->
                 </div>
-                <div class="book-footer">
+                <div class="book-footer cartFooter">
                     <div class="total">
                         <h5>Total Payble</h5>
-                        <p class="prd-price">$200 <a>view details</a></p>
+                        <p class="prd-price totalPayableAmount">$200 
+                            <!-- <a>view details</a>-->
+                        </p>
                         
                     </div>
                     <div style="float:right;">
@@ -608,10 +610,13 @@ function cartItems() {
         data : { cart_details:'cart_details'  },
         success : function(response) {
             if(response != '') {
-                console.log(response.details);
+                // console.log(response.details);
                 if(response.status) {
+                    $('.cartFooter').show();
+                    $('.totalPayableAmount').text('$'+response.totalAmount);
                     $('.cartItems').html(response.details);
                 } else {
+                    $('.cartFooter').hide();
                     $('.cartItems').html(response.details);
                 }
             } else {
@@ -620,5 +625,4 @@ function cartItems() {
         }
     });
 }
-
 </script>
