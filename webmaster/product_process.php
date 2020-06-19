@@ -328,7 +328,31 @@ case 'update':
 					copy($a2,$path);
 					chmod($path,0777);
 					
-					 $sqlup="UPDATE ".$cfg['DB_PRODUCT']." SET `pd_image1`='".$value."',`pd_code`='".$code."' WHERE `pd_id`=".$last_id." AND `siteId`= '".$cfg['SESSION_SITE']."' ";
+					 $sql="UPDATE ".$cfg['DB_PRODUCT']."
+						 SET 			
+						`pd_name` 				= '".$pname."',
+						`pd_price` 				= '".$price."',
+						`pd_unit_price` 		= '".$unitprice."',
+						`pd_double_cost`		= '".$doubleCost."',
+						`earliest_deliveryId` 	= '".$prod_deliv."',
+						`strike_price` 			= '".$sprice."',
+						`discount`				= '".$discount."',
+						`pd_description` 		= '".$desc."',	
+						`category`				= '".$cat."',		
+						`keyword`				= '".$key."',
+						`disclaimer` 			= '".$prod_dis."',
+						`notes` 				= '".$prod_note."',			
+						`location` 				= '".$prod_loc."',			
+						`pd_code` 				= '".$code."',
+						`pd_image1`       		= '".$value1."',
+						`pd_date`				=  NOW(),
+						`status`				= 'A',`pd_last_update`=NOW(),
+						`pd_featured`			= '".$pf."',
+						`pd_bestseller`			= '".$bp."',
+						`today_Spcial_product`  = '".$today_Spcial_product."',
+						`new_arrival_pro` 		= '".$new_arrival_pro."'
+
+			WHERE `pd_id`=".$_REQUEST['pd_id']." AND `siteId`= '".$cfg['SESSION_SITE']."' ";
 					 $heart->sql_query($sqlup);
 			}
 
@@ -343,10 +367,35 @@ case 'update':
 					
 					//echo $value;
 					chmod($path,0777);
-					copy($a4,$path);
+					copy($a3,$path);
 					chmod($path,0777);
 					
-					 $sqlup="UPDATE ".$cfg['DB_PRODUCT']." SET `pd_image2`='".$value."',`pd_code`='".$code."' WHERE `pd_id`=".$last_id." AND `siteId`= '".$cfg['SESSION_SITE']."' ";
+					
+					 $sql="UPDATE ".$cfg['DB_PRODUCT']."
+						 SET 			
+						`pd_name` 				= '".$pname."',
+						`pd_price` 				= '".$price."',
+						`pd_unit_price` 		= '".$unitprice."',
+						`pd_double_cost`		= '".$doubleCost."',
+						`earliest_deliveryId` 	= '".$prod_deliv."',
+						`strike_price` 			= '".$sprice."',
+						`discount`				= '".$discount."',
+						`pd_description` 		= '".$desc."',	
+						`category`				= '".$cat."',		
+						`keyword`				= '".$key."',
+						`disclaimer` 			= '".$prod_dis."',
+						`notes` 				= '".$prod_note."',			
+						`location` 				= '".$prod_loc."',			
+						`pd_code` 				= '".$code."',
+						`pd_image2`       		= '".$value2."',
+						`pd_date`				=  NOW(),
+						`status`				= 'A',`pd_last_update`=NOW(),
+						`pd_featured`			= '".$pf."',
+						`pd_bestseller`			= '".$bp."',
+						`today_Spcial_product`  = '".$today_Spcial_product."',
+						`new_arrival_pro` 		= '".$new_arrival_pro."'
+
+			WHERE `pd_id`=".$_REQUEST['pd_id']." AND `siteId`= '".$cfg['SESSION_SITE']."' ";
 					 $heart->sql_query($sqlup);
 			}
 
@@ -380,6 +429,65 @@ case 'update':
 						`notes` 				= '".$prod_note."',			
 						`location` 				= '".$prod_loc."',			
 						`pd_code` 				= '".$code."',
+						`pd_image3`       		= '".$value3."',
+						`pd_date`				=  NOW(),
+						`status`				= 'A',`pd_last_update`=NOW(),
+						`pd_featured`			= '".$pf."',
+						`pd_bestseller`			= '".$bp."',
+						`today_Spcial_product`  = '".$today_Spcial_product."',
+						`new_arrival_pro` 		= '".$new_arrival_pro."'
+
+			WHERE `pd_id`=".$_REQUEST['pd_id']." AND `siteId`= '".$cfg['SESSION_SITE']."' ";
+					 $heart->sql_query($sqlup);
+			}
+
+			$ph4 = $_FILES['image_add4']['name'];
+			$a5 = $_FILES['image_add4']['tmp_name'];
+
+			if($ph2!="" && $ph3!="" && $ph4!="")
+			{
+				$file_ext   = explode(".",$ph4);
+				$ext     	= strtolower($file_ext[count($file_ext)-1]);
+				$value3   	= $last_id."_".date('YmdHis').".".$ext;
+				$path    	= "../".$cfg['PRODUCT_IMAGES'].''.$value;
+				chmod($path,0777);
+				copy($a5,$path);
+				chmod($path,0777);	
+
+				$file_ext=explode(".",$ph2);
+				$ext= strtolower($file_ext[count($file_ext)-1]);
+				$value1=$last_id."_".date('YmdHis').".".$ext;
+				$path="../".$cfg['PRODUCT_IMAGES'].''.$value;
+				chmod($path,0777);
+				copy($a2,$path);
+				chmod($path,0777);
+
+				$file_ext=explode(".",$ph3);
+				$ext= strtolower($file_ext[count($file_ext)-1]);
+				$value2=$last_id."_".date('YmdHis').".".$ext;
+				$path="../".$cfg['PRODUCT_IMAGES'].''.$value;
+				//echo $value;
+				chmod($path,0777);
+				copy($a3,$path);
+				chmod($path,0777);
+
+					
+					$sql="UPDATE ".$cfg['DB_PRODUCT']."
+						 SET 			
+						`pd_name` 				= '".$pname."',
+						`pd_price` 				= '".$price."',
+						`pd_unit_price` 		= '".$unitprice."',
+						`pd_double_cost`		= '".$doubleCost."',
+						`earliest_deliveryId` 	= '".$prod_deliv."',
+						`strike_price` 			= '".$sprice."',
+						`discount`				= '".$discount."',
+						`pd_description` 		= '".$desc."',	
+						`category`				= '".$cat."',		
+						`keyword`				= '".$key."',
+						`disclaimer` 			= '".$prod_dis."',
+						`notes` 				= '".$prod_note."',			
+						`location` 				= '".$prod_loc."',			
+						`pd_code` 				= '".$code."',
 						`pd_image1`       		= '".$value1."',
 						`pd_image2`       		= '".$value2."',
 						`pd_image3`       		= '".$value3."',
@@ -393,7 +501,6 @@ case 'update':
 			WHERE `pd_id`=".$_REQUEST['pd_id']." AND `siteId`= '".$cfg['SESSION_SITE']."' ";
 					 $heart->sql_query($sqlup);
 			}
-
 
 		$sql="UPDATE ".$cfg['DB_PRODUCT']."
 			 SET 			
