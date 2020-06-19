@@ -279,7 +279,6 @@ include_once("includes/links_frontend.php"); ?>
                 },
                 dataType : 'JSON',
                 success : function(response) {
-                    // console.log(response);
                     if (response !='') {
                         if (response.status) {
                             if(response.sidebarCounter) {
@@ -303,10 +302,7 @@ include_once("includes/links_frontend.php"); ?>
                                         viewMore(response.nextOffset);
                                     }
                                 }
-                                
-                                
                             }
-                            
                         } else {
                             if(response.nextOffset==0) {
                                 $(".product-item-box").html(response.details);
@@ -324,25 +320,6 @@ include_once("includes/links_frontend.php"); ?>
            $('.product-more-box').html(htmlmore);
         }
 
-
-        $(document.body).on('click', '.add_to_cart', function(event) {
-            let product_id = $(this).attr('data-cartProductId');
-            let product_count = $(this).parent().find('.cart_counter_'+product_id).val();
-            $.ajax({
-                url : 'cart-process.php?act=add_to_cart',
-                method : 'POST',
-                data : { product_id : product_id, product_count : product_count },
-                dataType : 'JSON',
-                success : function(response) {
-                    if(response != '') {
-                        if(response.status) {
-                            $('.cart_counter').text(response.cart_count);
-                        }
-                        alert(response.message);
-                    }
-                }
-            });
-        });
     </script>
 </body>
 </html>

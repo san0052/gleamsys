@@ -293,7 +293,8 @@
                 <div class="book-footer cartFooter">
                     <div class="total">
                         <h5>Total Payble</h5>
-                        <p class="prd-price totalPayableAmount">$200 
+                        <p class="prd-price totalPayableAmount">
+                            <!-- $200  -->
                             <!-- <a>view details</a>-->
                         </p>
                         
@@ -443,8 +444,6 @@
 <script type="text/javascript">
     $(document).ready(function() {
         // fetch cart items
-        cartItems();
-
         $('.loginBtn').click(function(event){
             let error = 0;
             $('.login_error_email, .login_error_password').text('');
@@ -600,28 +599,5 @@ function isNumber(evt) {
         return false;
     }
     return true; 
-}
-
-function cartItems() {
-    $.ajax({
-        url : "<?php echo 'cart-process.php?act=show_cart_details'; ?>",
-        dataType : 'JSON',
-        type : 'POST',
-        data : { cart_details:'cart_details'  },
-        success : function(response) {
-            if(response != '') {
-                if(response.status) {
-                    $('.cartFooter').show();
-                    $('.totalPayableAmount').text('$'+response.totalAmount);
-                    $('.cartItems').html(response.details);
-                } else {
-                    $('.cartFooter').hide();
-                    $('.cartItems').html(response.details);
-                }
-            } else {
-                alert('Something went wrong. Please went wrong');
-            }
-        }
-    });
 }
 </script>
