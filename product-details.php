@@ -45,7 +45,7 @@ include_once("includes/links_frontend.php"); ?>
 
                     </ul>
                 </div>
-                <div class="col-xs-12 col-md-7 right-section item-details ">
+                <div class="col-xs-12 col-md-7 right-section prd-detail-rt">
                     <p class="prd-name"><?php echo $row['pd_name'] ?></p>
                     <p class="prd-id"><?php echo $row['pd_code'] ?></p>
                     <p class="include-tax">Quentity</p>
@@ -94,9 +94,9 @@ include_once("includes/links_frontend.php"); ?>
                         </div>
                         <p class="sold delivery-available">** Delivery Available to 743222</p> -->
                     
-                    <hr>
-                   <!--  <p class="sold">Sold by <u>Appario Retail Private Ltd</u></p> -->
-                    <hr>
+                    <!--<hr>
+                     <p class="sold">Sold by <u>Appario Retail Private Ltd</u></p> 
+                    <hr>-->
                     <p class="prd-details">
                         <b>Description</b><br><br>
                         <?php echo $row['pd_description'];?></p>

@@ -3261,7 +3261,7 @@ padding-right: 0px;
     padding-left: 0;
     padding-right: 25px;
     position: sticky;
-    top: 80px;
+    top: 20vh;
     margin-top: 0;
 }
 .filter-items-box {
@@ -3836,6 +3836,12 @@ display: none;
     text-transform: capitalize;
     position: relative;
     cursor: pointer;
+    padding-right: 15px;
+}
+
+.prf-menu-box ul li.active, .prf-menu-box ul li:hover
+{
+    border-right: 2px solid #f89a27;
 }
 .prf-menu-box ul li:last-child {
     margin-bottom: 0px;
@@ -3858,17 +3864,19 @@ display: none;
     margin: 0;
     margin-bottom: 25px;
 }
-.applied-items {
-    display: grid;
-    grid-template-columns: 80% 20%;
-   
-}
+
 .teacherlisting-class .table {
     margin-bottom: 0;
     font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1600 - 320)));
 }
 .applied-items .teacherlisting-class .table tr td:first-child {
     width: 30%;
+}
+.prf-side-icon svg
+{
+    width: 13px;
+    height: auto;
+    fill: #808184;
 }
 .applied-items .teacherlisting-class .table tr td {
     padding: 10px;
@@ -3949,6 +3957,10 @@ display: none;
 }
 .logo-box img{
     padding: 15px !important;
+}
+.prf-menu-box
+{
+    padding-right: 0;
 }
 /*online store*/
     

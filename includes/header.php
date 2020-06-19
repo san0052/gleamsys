@@ -55,10 +55,10 @@
                         <li onclick="window.location.href='contact.php'">Contact</li>
                         <?php if (!empty($_SESSION['gleam_users_session'])) { ?>
                         <hr class="hidden-md hidden-lg" style="margin: 10px 0;">
-                            <li class="hidden-xs hidden-sm" onclick="window.location.href='profile.php'">Profile</li>
+                            <li class="hidden-md hidden-lg" onclick="window.location.href='profile.php'">Profile</li>
                            <!--  <li class="hidden-xs hidden-sm" onclick="window.location.href='wishlist.php'">Wishlist</li> -->
-                            <li class="hidden-xs hidden-sm" onclick="window.location.href='orderlist.php'">My Orders</li>
-                            <li class="hidden-xs hidden-sm" onclick="logout()">Log Out</li>
+                            <li class="hidden-md hidden-lg" onclick="window.location.href='orderlist.php'">My Orders</li>
+                            <li class="hidden-md hidden-lg" onclick="logout()">Log Out</li>
                         <?php } ?>
                         
 
@@ -72,7 +72,7 @@
                                     <span><?php echo ucfirst($row['name']);?></span></button>
                                 <ul class="my-account-drop">
                                     <li onclick="window.location.href='profile.php'">Profile</li>
-                                    <li onclick="window.location.href='wishlist.php'">Wishlist</li>
+                                    <!-- <li onclick="window.location.href='wishlist.php'">Wishlist</li> -->
                                     <li onclick="window.location.href='orderlist.php'">My Orders</li>
                                     <li onclick="logout()">Log Out</li>
                                 </ul>
@@ -217,6 +217,7 @@
 </script>
 <script>
     $(".drop-btn").click(function(event) {
+        $(".my-account-drop").slideUp();
         event.stopPropagation();
         var clicked = this;
         var parent_li = $(clicked).parent("li");
@@ -334,6 +335,13 @@ function navcls()
         $("body").css({
             'overflow-y': 'auto'
         });
+    }
+
+    function myaccntdrpopen()
+    {
+$(".my-account-drop").slideToggle();
+$(".drop-menu").removeClass("show");
+$(".drop-menu").addClass("hide");
     }
 </script>
 <script type="text/javascript">

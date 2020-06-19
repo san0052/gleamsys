@@ -1,11 +1,11 @@
-<?php 
-    $userId     = $_SESSION['gleam_users_session']['user_id'];
-    if($userId ){
-        $sqlgetUser =  "SELECT `image`,`name` FROM ".$cfg['DB_USERS']."  WHERE `status`='A' AND `id` = ".$userId." ";
-        $res        =   $mycms->sql_query($sqlgetUser);
-        $row        =   $mycms->sql_fetchrow($res);
-    }
- ?>
+<?php
+$userId     = $_SESSION['gleam_users_session']['user_id'];
+if ($userId) {
+    $sqlgetUser =  "SELECT `image`,`name` FROM " . $cfg['DB_USERS'] . "  WHERE `status`='A' AND `id` = " . $userId . " ";
+    $res        =   $mycms->sql_query($sqlgetUser);
+    $row        =   $mycms->sql_fetchrow($res);
+}
+?>
 
 <div class="col-xs-12 col-md-3 prf-left-box profile-side-close slow" id="profile-side">
     <div class="pos">
@@ -14,20 +14,78 @@
         <button class="prf-side-btn hidden-md hidden-lg" onclick="prfsideopen()">></button>
         <div class="col-xs-12 prf-detail-box">
             <div class="col-xs-3 teacherlisting-pic">
-                <img src="uploads/userProfile/<?php echo $row['image']?>">
+                <img src="uploads/userProfile/<?php echo $row['image'] ?>">
             </div>
             <div class="col-xs-12 teacherlisting-about-text-left">
                 <h4>Hello</h4>
-                <h6><?php echo $row['name']?></h6>
+                <h6><?php echo $row['name'] ?></h6>
             </div>
         </div>
         <div class="col-xs-12 prf-menu-box">
             <ul>
-                <li class="active" onclick="window.location.href='profile.php'"><span class="prf-side-icon">1</span><span class="prf-side-menu">Profile</span></li>
-                <li onclick="window.location.href='orderlist.php'"><span class="prf-side-icon">2</span><span class="prf-side-menu">My Orders</span></li>
-                <li class="" onclick="window.location.href='cancelorder.php'"><span class="prf-side-icon">3</span><span class="prf-side-menu">Cancel Orders</span></li>
-               <!--  <li class="" onclick="window.location.href='wishlist.php'"><span class="prf-side-icon">4</span><span class="prf-side-menu">Wishlist</span></li> -->
-                <li><span class="prf-side-icon">5</span></span><span class="prf-side-menu" onclick="logout()">Log Out</span></li>
+                <li class="active" onclick="window.location.href='profile.php'"><span class="prf-side-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-42 0 512 512.002">
+                            <path d="m210.351562 246.632812c33.882813 0 63.222657-12.152343 87.195313-36.128906 23.972656-23.972656 36.125-53.304687 36.125-87.191406 0-33.875-12.152344-63.210938-36.128906-87.191406-23.976563-23.96875-53.3125-36.121094-87.191407-36.121094-33.886718 0-63.21875 12.152344-87.191406 36.125s-36.128906 53.308594-36.128906 87.1875c0 33.886719 12.15625 63.222656 36.132812 87.195312 23.976563 23.96875 53.3125 36.125 87.1875 36.125zm0 0" />
+                            <path d="m426.128906 393.703125c-.691406-9.976563-2.089844-20.859375-4.148437-32.351563-2.078125-11.578124-4.753907-22.523437-7.957031-32.527343-3.308594-10.339844-7.808594-20.550781-13.371094-30.335938-5.773438-10.15625-12.554688-19-20.164063-26.277343-7.957031-7.613282-17.699219-13.734376-28.964843-18.199219-11.226563-4.441407-23.667969-6.691407-36.976563-6.691407-5.226563 0-10.28125 2.144532-20.042969 8.5-6.007812 3.917969-13.035156 8.449219-20.878906 13.460938-6.707031 4.273438-15.792969 8.277344-27.015625 11.902344-10.949219 3.542968-22.066406 5.339844-33.039063 5.339844-10.972656 0-22.085937-1.796876-33.046874-5.339844-11.210938-3.621094-20.296876-7.625-26.996094-11.898438-7.769532-4.964844-14.800782-9.496094-20.898438-13.46875-9.75-6.355468-14.808594-8.5-20.035156-8.5-13.3125 0-25.75 2.253906-36.972656 6.699219-11.257813 4.457031-21.003906 10.578125-28.96875 18.199219-7.605469 7.28125-14.390625 16.121094-20.15625 26.273437-5.558594 9.785157-10.058594 19.992188-13.371094 30.339844-3.199219 10.003906-5.875 20.945313-7.953125 32.523437-2.058594 11.476563-3.457031 22.363282-4.148437 32.363282-.679688 9.796875-1.023438 19.964844-1.023438 30.234375 0 26.726562 8.496094 48.363281 25.25 64.320312 16.546875 15.746094 38.441406 23.734375 65.066406 23.734375h246.53125c26.625 0 48.511719-7.984375 65.0625-23.734375 16.757813-15.945312 25.253906-37.585937 25.253906-64.324219-.003906-10.316406-.351562-20.492187-1.035156-30.242187zm0 0" /></svg></span><span class="prf-side-menu">Profile</span></li>
+                <li onclick="window.location.href='orderlist.php'"><span class="prf-side-icon"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
+                            <g>
+                                <path d="" style="fill:none;stroke:rgb(0,0,0);stroke-width:32;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+                                <path d="" style="fill:none;stroke:rgb(0,0,0);stroke-width:32;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10" />
+                                <path d="m236.94 237.109-230-96.842c-3.295-1.388-6.94 1.032-6.94 4.608v258.899c0 6.542 3.983 12.426 10.058 14.855l223.085 89.234c3.284 1.314 6.857-1.105 6.857-4.642v-261.504c0-2.012-1.206-3.827-3.06-4.608z" />
+                                <path d="m257.94 209.596 222.315-93.606c3.996-1.682 4.103-7.306.174-9.139l-217.663-101.576c-4.289-2.001-9.243-2.001-13.532 0l-217.663 101.576c-3.929 1.833-3.822 7.457.174 9.139l222.315 93.606c1.24.523 2.64.523 3.88 0z" />
+                                <path d="m272 241.717v261.504c0 3.537 3.573 5.956 6.857 4.642l223.085-89.234c6.074-2.43 10.058-8.313 10.058-14.855v-258.899c0-3.576-3.645-5.996-6.94-4.608l-230 96.842c-1.854.781-3.06 2.596-3.06 4.608z" />
+                            </g>
+                        </svg></span><span class="prf-side-menu">My Orders</span></li>
+                <li class="" onclick="window.location.href='cancelorder.php'"><span class="prf-side-icon"><svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
+                            <g>
+                                <path d="m236.94 233.335-230-96.842c-3.295-1.388-6.94 1.032-6.94 4.608v258.899c0 6.542 3.983 12.426 10.058 14.855l223.085 89.234c3.284 1.314 6.857-1.105 6.857-4.642v-261.504c0-2.011-1.206-3.827-3.06-4.608z" />
+                                <path d="m257.94 205.823 222.315-93.606c3.996-1.682 4.103-7.306.174-9.139l-217.663-101.577c-4.289-2.001-9.243-2.001-13.532 0l-217.663 101.576c-3.929 1.833-3.822 7.457.174 9.139l222.315 93.606c1.24.523 2.64.523 3.88.001z" />
+                                <path d="m400 256c42.31 0 80.411 18.348 106.779 47.499 1.843 2.038 5.221.743 5.221-2.004v-160.394c0-3.576-3.645-5.996-6.94-4.608l-230 96.842c-1.854.781-3.06 2.596-3.06 4.608v84.794c0 3.018 3.95 4.143 5.54 1.579 25.414-40.972 70.802-68.316 122.46-68.316z" />
+                                <path d="m400 288c-61.757 0-112 50.243-112 112s50.243 112 112 112 112-50.243 112-112-50.243-112-112-112zm35.313 124.686c6.249 6.249 6.249 16.379 0 22.628-3.124 3.124-7.218 4.686-11.313 4.686s-8.189-1.562-11.313-4.686l-12.687-12.687-12.687 12.687c-3.124 3.124-7.218 4.686-11.313 4.686s-8.189-1.562-11.313-4.686c-6.249-6.249-6.249-16.379 0-22.628l12.686-12.686-12.686-12.686c-6.249-6.249-6.249-16.379 0-22.628 6.248-6.248 16.379-6.248 22.627 0l12.686 12.686 12.687-12.687c6.248-6.248 16.379-6.248 22.627 0 6.249 6.249 6.249 16.379 0 22.628l-12.687 12.687z" />
+                            </g>
+                        </svg></span><span class="prf-side-menu">Cancel Orders</span></li>
+                <!--  <li class="" onclick="window.location.href='wishlist.php'"><span class="prf-side-icon">4</span><span class="prf-side-menu">Wishlist</span></li> -->
+                <li onclick="logout()"><span class="prf-side-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 477.869 477.869" style="enable-background:new 0 0 477.869 477.869;" xml:space="preserve">
+                            <g>
+                                <g>
+                                    <path d="M153.602,221.868H58.251l56.201-56.201c6.448-6.875,6.101-17.676-0.775-24.123c-6.569-6.16-16.793-6.156-23.357,0.008    L4.986,226.885C0.115,231.767-1.339,239.1,1.3,245.471c0.853,2.073,2.105,3.958,3.686,5.547l85.333,85.333    c6.78,6.548,17.584,6.36,24.132-0.42c6.388-6.614,6.388-17.099,0-23.713l-56.201-56.218h95.352V221.868z" />
+                                </g>
+                            </g>
+                            <g>
+                                <g>
+                                    <path d="M426.669,17.068H204.803c-28.277,0-51.2,22.923-51.2,51.2v153.6h187.733c9.426,0,17.067,7.641,17.067,17.067    s-7.641,17.067-17.067,17.067H153.602v153.6c0,28.277,22.923,51.2,51.2,51.2h221.867c28.277,0,51.2-22.923,51.2-51.2V68.268    C477.869,39.991,454.946,17.068,426.669,17.068z" />
+                                </g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                        </svg></span></span><span class="prf-side-menu" >Log Out</span></li>
             </ul>
         </div>
     </div>
@@ -38,15 +96,15 @@
     }
 
     function logout() {
-            $.ajax({
-                url: "<?php echo 'mail-process.php?act=logout'; ?>",
-                type: 'POST',
-                data: {
-                    'logout': "logout"
-                },
-                success: function(response) {
-                    location.reload();
-                }
-            });
-        }
+        $.ajax({
+            url: "<?php echo 'mail-process.php?act=logout'; ?>",
+            type: 'POST',
+            data: {
+                'logout': "logout"
+            },
+            success: function(response) {
+                location.reload();
+            }
+        });
+    }
 </script>

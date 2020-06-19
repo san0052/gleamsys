@@ -73,7 +73,7 @@ if (empty($_SESSION['gleam_users_session'])) {
                                         </table>
                                     </div>
                                     <div class="applied">
-                                        <button class="hidden-xs hidden-sm" onclick="editopen()">Edit Details</button>
+                                        <button onclick="editopen()">Edit Details</button>
                                     </div>
                                     <div id="successMessage"></div>
                                 </div>
@@ -132,7 +132,7 @@ if (empty($_SESSION['gleam_users_session'])) {
                                             <div id="errorRegister" style="float: right;"></div>
                                         </div>
                                         <div class="applied">
-                                            <button type="submit" class="hidden-xs hidden-sm">Save Changes</button>
+                                            <button type="submit">Save Changes</button>
                                         </div>
                                     </form>
                                 </div>
