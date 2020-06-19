@@ -21,13 +21,14 @@
                        while($row    =   $mycms->sql_fetchrow($res)){ 
                     ?>
                     <div class="item">
+                        <a href="<?=$cfg['base_url']?>product-details.php?category=<?=base64_encode($row['pd_id'])?>">
                         <div class="main-prd-box">
                             <div class="box_img">
                                  <img has="postloader" src="image_bank/product_image/<?=$row['pd_image'];?>" alt="#">
                             </div>
                            <p class="product-name"><?php echo $row['pd_name']?></p>
                         </div>
-
+                    </a>
                         <div class="price-box">
                             <div class="price-content">
                                 <p class="price">
