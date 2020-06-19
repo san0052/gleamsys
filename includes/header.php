@@ -266,6 +266,13 @@
     })
 </script>
 <script>
+ function navsideopen() {
+        $("#myDIV").addClass("open-nav-modal");
+    }
+function navcls()
+{
+    $("#myDIV").removeClass("open-nav-modal");
+}
     function openlogin() {
         $("#side-modal").addClass("open-side-modal");
         $("#login").slideDown();
