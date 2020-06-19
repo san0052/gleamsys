@@ -373,7 +373,7 @@ width: 45px;
   height: 100%;
   left: 0;
   width: 70%;
-  padding: 40px 0;
+  padding-bottom: 40px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 }
 .profile-side-close
@@ -395,6 +395,24 @@ width: 9% !important;
 .profile-side-close .prf-menu-box ul li
 {
   text-align: center;
+  padding-right: 0;
+}
+.applied-box {
+  padding: 15px;
+}
+.applied-items .teacherlisting-class .table tr td:first-child {
+  width: 14%;
+}
+.applied-items .teacherlisting-class .table tr td:last-child
+{
+  width: 40%;
+  word-break: break-all;
+  padding-right: 0;
+}
+.applied-items .teacherlisting-class .table tr td {
+
+  padding-right: 10px;
+
 }
 .profile-side-close .teacherlisting-pic {
   text-align: left;
@@ -413,9 +431,8 @@ width: 9% !important;
 }
 .prf-side-btn
 {
-  position: absolute;
-  top: 7px;
-  right: 0;
+  margin: 8px 0;
+    float: right;
   color: #442d2d;
   background: white;
   border: 0;
@@ -463,6 +480,10 @@ width: 9% !important;
 .chk-body
 {
   padding: 40px 15px;
+}
+.profile-side-close .prf-menu-box{
+  padding: 5px;
+  padding-right: 0;
 }
   /*online-store*/
   .item-details, .order-summery .order-list .item-details {
