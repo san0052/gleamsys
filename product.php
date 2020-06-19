@@ -130,11 +130,15 @@ include_once("includes/links_frontend.php"); ?>
                         <h2><?php echo (!empty($productType)) ? $productType.' Products' : 'Products'; ?></h2>
                         <div>
                             <ul class="sort-by">
-                                <li class="active">All</li>
-                                <li>Populer</li>
-                                <li>Low to Hign</li>
-                                <li>Hight to Low</li>
-                                <li>Newest</li>
+                                <li onclick="setUrl()" class="<?php echo !isset($_GET['sort'])?'active':''; ?>">All</li>
+
+                                <!-- <li onclick="setUrl('popular')" class="<?php //echo (isset($_GET['sort']) && ($_GET['sort'] == 'popular'))?'active':''; ?>">Popular</li> -->
+
+                                <li onclick="setUrl('low_to_high')" class="<?php echo (isset($_GET['sort']) && ($_GET['sort'] == 'low_to_high'))?'active':''; ?>">Low to High</li>
+
+                                <li onclick="setUrl('high_to_low')" class="<?php echo (isset($_GET['sort']) && ($_GET['sort'] == 'high_to_low'))?'active':''; ?>">High to Low</li>
+
+                                <li onclick="setUrl('newest')" class="<?php echo (isset($_GET['sort']) && ($_GET['sort'] == 'newest'))?'active':''; ?>">Newest</li>
                             </ul>
                         </div>
                     </div>
@@ -318,6 +322,14 @@ include_once("includes/links_frontend.php"); ?>
         function viewMore(next_id) {
            let htmlmore = '<button data-id="'+next_id+'" onclick="getMoreProducts('+next_id+')" class="product-more hide_view_more">View More</button>';
            $('.product-more-box').html(htmlmore);
+        }
+
+        function setUrl(sort=null) {
+          if(sort == null || sort == '') {
+            window.location.href = 'product.php';
+          } else {
+            window.location.href = 'product.php?sort='+sort;
+          }
         }
 
     </script>

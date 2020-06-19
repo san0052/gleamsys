@@ -1,10 +1,13 @@
 <?php
 include_once("includes/links_frontend.php");
 
-$type = !empty($_REQUEST['type']) ? trim($_REQUEST['type']) : '';
+$type = !empty($_REQUEST['type']) ? trim($_REQUEST['type']) : 'all';
 $limit = !empty($_REQUEST['limit']) ? trim($_REQUEST['limit']) : 1;
-$is_more = !empty($_REQUEST['is_more']) ? trim($_REQUEST['is_more']) : '';
 $offset = !empty($_REQUEST['offset']) ? trim($_REQUEST['offset']) : 0;
+
+$sort = !empty($_REQUEST['sort']) ? trim($_REQUEST['sort']) : '';
+$is_more = !empty($_REQUEST['is_more']) ? trim($_REQUEST['is_more']) : '';
+
 $min_amount = !empty($_REQUEST['min_amount']) ? trim($_REQUEST['min_amount']) : 0;
 $max_amount = !empty($_REQUEST['max_amount']) ? trim($_REQUEST['max_amount']) : 0;
 
@@ -67,7 +70,6 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE pro.`status` =
 		}
 
 		$anyCondition++;
-
 	} // end of type
 
 	if(!empty($min_amount) && empty($max_amount)) {
@@ -102,7 +104,29 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE pro.`status` =
 	// }
 
 	# order by 
-	$productSql .= " ORDER BY pro.`pd_id` DESC ";
+
+	if (!empty($sort)) {
+		switch ($sort) {
+			// case 'popular':
+			// 	$productSql .= " pro.`pd_featured` = 'A'";
+			// 	break;
+			case 'low_to_high':
+				$productSql .= " ORDER BY pro.`pd_price` ASC ";
+				break;
+			case 'high_to_low':
+				$productSql .= " ORDER BY pro.`pd_price` DESC ";
+				break;
+			case 'newest':
+				$productSql .= " ORDER BY pro.`pd_date` DESC ";
+				break;
+			default:
+				$productSql .= " ORDER BY pro.`pd_id` DESC ";
+				break;
+		}
+
+		$anyCondition++;
+	} // end of sort
+
 
 	# limit
 	$productSql .= " LIMIT ".$limit." OFFSET ".$nextOffset;
