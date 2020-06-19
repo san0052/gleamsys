@@ -263,6 +263,12 @@
 <script>
  function navsideopen() {
         $("#myDIV").addClass("open-nav-modal");
+        $("#filter-teacher").css({
+                'left': '-200%',
+                'opacity': '0',
+                'visibility': 'hidden',
+                'transition': '.3s'
+            });
     }
 function navcls()
 {

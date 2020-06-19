@@ -13,6 +13,9 @@
     transition: 0.3s;
     overflow: auto;
   }
+  #myDIV::after{
+    content: '';
+  }
   .open-nav-modal {
     right: 0 !important;
     opacity: 1 !important;
@@ -297,19 +300,20 @@ width: 45px;
 }
 #filter-teacher {
   position: fixed;
-  bottom: 0;
+  
   background: white;
-  z-index: 1;
+  
   margin: 0;
-  top: 100%;
-  left: 0;
+  top: 0;
+  left: -200%;
   height: 100vh;
-  right: 0;
+  
   opacity: 0;
   visibility: hidden;
   transition: 0.3s;
   overflow: auto;
-  z-index: 2;
+  z-index: 9999999999;
+    width: 70%;
 }
 .product-item-box
 {
@@ -429,6 +433,24 @@ width: 9% !important;
   position: sticky;
   top: 15vh;
   float: left;
+}
+.sort-by li {
+  list-style: none;
+  display: inline-block;
+  margin-right: 0;
+  cursor: pointer;
+  width: 100%;
+  margin: 6px 0;
+  display: none;
+  padding-left: 10px;
+}
+.sort-by button
+{
+  background: transparent;
+    border: 0;
+    /* margin-right: 15px; */
+    color: #207da4;
+    padding: 0 10px;
 }
   /*online-store*/
   .item-details {
