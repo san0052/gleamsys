@@ -22,6 +22,7 @@
                     <div class="col-xs-12 form-group forget-password-item" dep="forget-password">
                         <!-- <label>Full Name</label> -->
                         <input type="text" placeholder="Email Id">
+                        <button type="button">SUBMIT</button>
                     </div>
                     <style>
                         .forget-password-item

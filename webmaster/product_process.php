@@ -62,7 +62,7 @@ case 'insert':
 	$today_Spcial_product =	addslashes(($_REQUEST['today_Spcial_product']!=""))?'Y':'N';
 	$new_arrival_pro =addslashes(($_REQUEST['new_arrival_pro']!=""))?'A':'I';
 
-	 $sql="INSERT INTO ".$cfg['DB_PRODUCT']." SET `pd_name` = '".$pname."',`pd_price` = '".$price."',`pd_unit_price` = '".$Unitprice."',`pd_double_cost`= '".$doubleCost."',	`strike_price` = '".$sprice."',	`pd_description` = '".$desc."',`pd_deliveryinformation` = '".$deliInfo."',`category`='".$cat."',`disclaimer` = '".$prod_dis."',`notes` = '".$prod_note."',`location` = '".$prod_loc."',`pd_date`=NOW(),`pd_featured`='".$pf."',`today_Spcial_product`='".$today_Spcial_product."', `new_arrival_pro` = '".$new_arrival_pro."' ,`pd_bestseller`='".$bp."',`status`='A',`keyword`='".$key."',`siteId`= '".$cfg['SESSION_SITE']."' " ;	
+	 $sql="INSERT INTO ".$cfg['DB_PRODUCT']." SET `pd_name` = '".$pname."',`pd_price` = '".$price."',`pd_unit_price` = '".$Unitprice."',`pd_double_cost`= '".$doubleCost."',`strike_price` = '".$sprice."',	`pd_description` = '".$desc."',`pd_deliveryinformation` = '".$deliInfo."',`category`='".$cat."',`disclaimer` = '".$prod_dis."',`notes` = '".$prod_note."',`location` = '".$prod_loc."',`pd_date`=NOW(),`pd_featured`='".$pf."',`today_Spcial_product`='".$today_Spcial_product."', `new_arrival_pro` = '".$new_arrival_pro."' ,`pd_bestseller`='".$bp."',`status`='A',`keyword`='".$key."',`siteId`= '".$cfg['SESSION_SITE']."' " ;	
 	$heart->sql_query($sql);
 			 
 	 $last_id=$heart->inserted_id();
