@@ -285,28 +285,53 @@
      <script src="//code.tidio.co/t6vivnuwfi76jl2shg2r4ehymsoe06rv.js"></script>
     <script type="text/javascript">
       function cartItems() {
-    $.ajax({
-        url : "<?php echo 'cart-process.php?act=show_cart_details'; ?>",
-        dataType : 'JSON',
-        type : 'POST',
-        data : { cart_details:'cart_details'  },
-        success : function(response) {
-            if(response != '') {
-                console.log('response ',response);
-                if(response.status) {
-                    $('.cartFooter').show();
-                    $('.totalPayableAmount').text('$'+response.totalAmount);
-                    $('.cartItems').html(response.details);
-                } else {
-                    $('.cartFooter').hide();
-                    $('.cartItems').html(response.details);
-                }
-            } else {
-                alert('Something went wrong. Please went wrong');
-            }
-        }
-    });
-}
+          $.ajax({
+              url : "<?php echo 'cart-process.php?act=show_cart_details'; ?>",
+              dataType : 'JSON',
+              type : 'POST',
+              data : { cart_details:'cart_details'  },
+              success : function(response) {
+                  if(response != '') {
+                      console.log('response ',response);
+                      if(response.status) {
+                          $('.cartFooter').show();
+                          $('.totalPayableAmount').text('$'+response.totalAmount);
+                          $('.cartItems').html(response.details);
+                      } else {
+                          $('.cartFooter').hide();
+                          $('.cartItems').html(response.details);
+                      }
+                  } else {
+                      alert('Something went wrong. Please went wrong');
+                  }
+              }
+          });
+      }
+
+      $(document.body).on('click','.rmv_cart_item', function() {
+          let id = $(this).attr('data-remove_prod_id');
+          event.preventDefault();
+          $.ajax({
+              url : "<?php echo 'cart-process.php?act=remove_cart_item'; ?>",
+              dataType : 'JSON',
+              type : 'POST',
+              data : { product_id:id  },
+              success : function(response) {
+                  if(response != '') {
+                      if(response.status) {
+                          alert('Item removed from cart');
+                          setTimeout(function() {
+                            location.reload();
+                          },700);
+                      } else {
+                         alert('Something went wrong. Please went wrong');
+                      }
+                  } else {
+                      alert('Something went wrong. Please went wrong');
+                  }
+              }
+          });
+      });
       $(document).ready(function (event) {
         cartItems();
       });
