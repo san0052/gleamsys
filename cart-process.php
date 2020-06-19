@@ -55,7 +55,7 @@ switch($action) {
 	            $rowCart    =   $mycms->sql_fetchrow($resCart);
 	            if (!empty($rowCart)) {
 	            	  $totalCount++;
-	            	  $totalAmount += $rowCart['pd_price'];
+	            	  $totalAmount += $rowCart['pd_price']*$cart['product_count'];
 	                  $cartItems .= '<div class="order-list">';
 	                      $cartItems .= '<div class="item-pic">';
 	                          $cartItems .= '<img src="image_bank/product_image/'.$rowCart['pd_image'].'">';
@@ -67,7 +67,7 @@ switch($action) {
 	                                      // <p class="prd-id">product id</p> 
 	                                          // <p class="deliver-date">Delivery by Sun 21 Jun | Free</p>
 	                          $cartItems .= '<p class="prd-price">Price :- $'.$rowCart['pd_price'].'</p>';
-	                          $cartItems .= '<p class="prd-price">Quanity :- '.$rowCart['pd_qty'].'</p>';
+	                          $cartItems .= '<p class="prd-price">Quanity :- '.$cart['product_count'].'</p>';
 	                          $cartItems .= '<button class="rmv-btn rmv_cart_item" data-remove_prod_id="'.$rowCart['pd_id'].'">Remove</button>';
 	                      $cartItems .= '</div>';
 	                  $cartItems .= '</div>';
