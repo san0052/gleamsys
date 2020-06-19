@@ -610,7 +610,6 @@ function cartItems() {
         data : { cart_details:'cart_details'  },
         success : function(response) {
             if(response != '') {
-                // console.log(response.details);
                 if(response.status) {
                     $('.cartFooter').show();
                     $('.totalPayableAmount').text('$'+response.totalAmount);
