@@ -321,10 +321,11 @@ include_once("includes/links_frontend.php"); ?>
                             }
                             
                         } else {
-                            if(response.sidebarCounter) {
+                            if(response.nextOffset==0) {
                                 $(".product-item-box").html(response.details);
                             }
                             $('.hide_view_more').hide();
+                            
                         }
                     }
                 }
