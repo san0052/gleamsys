@@ -33,11 +33,11 @@ include_once('includes/pagesources.php'); ?>
                                 <ul id="chklogin" class="show">
                                 <?php 
                                     $userId     = $_SESSION['gleam_users_session']['user_id'];
-                                    $sqlgetUser = "SELECT * FROM ".$cfg['DB_USERS']."  WHERE `status`='A' AND `id` = ".$userId."  ";
-                                    $res        =   $mycms->sql_query($sqlgetUser);
-                                    $row        =   $mycms->sql_fetchrow($res);
+                                    if($userId){ 
+                                        $sqlgetUser = "SELECT * FROM ".$cfg['DB_USERS']."  WHERE `status`='A' AND `id` = ".$userId."  ";
+                                        $res        =   $mycms->sql_query($sqlgetUser);
+                                        $row        =   $mycms->sql_fetchrow($res); ?>
                                 
-                                if($userId){ ?>
                                     <li class="address">
                                         <p><?php echo $row['name'];?></p><p class="chk-email"><?php echo $row['email'];?></p>
                                     </li>
@@ -123,61 +123,202 @@ include_once('includes/pagesources.php'); ?>
                         <div class="chk-inner-rt">
                             <button>Delivery Address</button>
                                 <ul id="edit-address" class="show">
-                                <?php if($userId){ ?>
+                                <?php 
+                                   if($row['email']){
+                                    $sqlgetUser = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']."  WHERE `status`='A' AND `email` = '".$row['email']."'  ";
+                                    $res        =   $mycms->sql_query($sqlgetUser);
+                                    $rows        =   $mycms->sql_fetchrow($res);
+                                }
+                                if($userId && $rows['email']){ ?>
+                                    <p style="color:#b8171d">Your Registered Shipping address</p>
                                     <li class="address">
-                                        <p><?php echo $row['name'].','.$row['mobile'];?> </p>
-                                        <p><?php echo $row['location']; ?></p>
-                                        <p><?php echo $row['city']; ?></p>
+                                        <p><?php echo ucfirst($rows['name']).','.$row['mobile'];?> </p>
+                                        <p><?php echo $rows['location'].','.' '.$row['pincode']; ?></p>
+                                        <p><?php echo $rows['city'].','.' '.$row['state']; ?></p>
+                                        <p><?php echo $rows['country']; ?></p>
                                     </li>
-                                <?php } ?>
+                                <?php } else if($userId){ ?>
+                                        <p><?php echo ucfirst($row['name']).','.$row['mobile'];?> </p>
+                                        <p><?php echo $row['location'].','.' '.$row['pincode']; ?></p>
+                                        <p><?php echo $row['city'].','.' '.$row['state']; ?></p>
+                                        <p><?php echo $row['country']; ?></p>
+                                   <?php }else{?>
+                                        <p>Please Add your shipping/delivery address</p>
+                                   <?php } ?>
                                     <button class="change-btn" onclick="editaddress()">Edit</button>
                                     <div class="edit-frm">
                                         <p>Edit Address</p>
-                                        <div>
-                                            <div class="col-xs-6 form-group">
-                                                <!-- <label>Full Name</label> -->
-                                                <input type="text" placeholder="Full Name">
-                                            </div>
-                                            <div class="col-xs-6 form-group">
-                                                <!-- <label>Full Name</label> -->
-                                                <input type="text" placeholder="Mobile Number">
-                                            </div>
-                                            <div class="col-xs-6 form-group">
-                                                <!-- <label>Full Name</label> -->
-                                                <input type="text" placeholder="Location">
-                                            </div>
-                                            <div class="col-xs-6 form-group">
-                                                <!-- <label>Full Name</label> -->
-                                                <input type="text" placeholder="City">
-                                            </div>
-                                            <div class="col-xs-6 form-group">
-                                                <!-- <label>Full Name</label> -->
-                                                <input type="text" placeholder="State">
-                                            </div>
-                                            <div class="col-xs-6 form-group">
-                                                <!-- <label>Full Name</label> -->
-                                                <input type="text" placeholder="Country">
-                                            </div>
-                                            <div class="col-xs-6 form-group">
-                                                <!-- <label>Full Name</label> -->
-                                                <input type="text" placeholder="Pin Code">
-                                            </div>
-                                            <div class="col-xs-6 form-group">
-                                                <!-- <label>Full Name</label> -->
-                                                <input type="text" placeholder="Landmark">
-                                            </div>
-                                            <div class="col-xs-12 form-group">
-                                                <button class="save-btn" onclick="saveaddress()">Save</button>
-                                            </div>
+                                        <?php if($userId && $row['id']){ ?>
+                                            <div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="Full Name" name="name" id="fname" class="ship_fullname" value="<?php echo $rows['name']; ?>">
+                                                     <small class="error_ship_fullname" style="color:red"></small>
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="Mobile Number" name="mobile" id="mobNo" class="ship_mobile" value="<?php echo $rows['mobile']; ?>">
+                                                    <small class="error_ship_mobile" style="color:red"></small>
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="Email" name="email" id="email" class="ship_email" value="<?php echo $rows['email']; ?>">
+                                                    <small class="error_ship_email" style="color:red"></small>
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="Location" name="location" id="location"  class="ship_location" value="<?php echo $rows['location']; ?>">
+                                                    <small class="error_ship_loaction" style="color:red"></small>
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="City" name="city" id="city" class="ship_city" value="<?php echo $rows['city']; ?>">
+                                                    <small class="error_ship_city" style="color:red"></small>
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="State" name="state" id="state"  class="ship_state" value="<?php echo $rows['state']; ?>">
+                                                    <small class="error_ship_state" style="color:red"></small>
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="Country" name="country" class="ship_country" value="<?php echo $rows['state']; ?>">
+                                                    <small class="error_ship_country" style="color:red"></small>
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="Pin Code" name="pincode" id="pincode" class="ship_pincode" value="<?php echo $rows['pincode']; ?>">
+                                                    <small class="error_ship_pincode" style="color:red"></small>
+                                                </div>
+                                                
+                                                <div class="col-xs-12 form-group">
+                                                    <button class="save-btn" onclick="updateAddress()">Save</button>
+                                                </div>
 
-                                        </div>
+                                            </div>
+                                        <?php } else{ ?>
+                                                           <div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="Full Name" name="name" id="f_name" class="ship_fullname" >
+                                                     <small class="error_ship_fullname" style="color:red"></small>
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="Mobile Number" name="mobile" id="mob_No" class="ship_mobile" >
+                                                    <small class="error_ship_mobile" style="color:red"></small>
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="Email" name="email" id="email_id" class="ship_email" >
+                                                    <small class="error_ship_email" style="color:red"></small>
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="Location" name="location" id="add_location"  class="ship_location" >
+                                                    <small class="error_ship_loaction" style="color:red"></small>
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="City" name="city" id="add_city" class="ship_city" value="<?php echo $rows['city']; ?>">
+                                                    <small class="error_ship_city" style="color:red"></small>
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="State" name="state" id="add_state"  class="ship_state" >
+                                                    <small class="error_ship_state" style="color:red"></small>
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="Country" name="add_country" class="ship_country" >
+                                                    <small class="error_ship_country" style="color:red"></small>
+                                                </div>
+                                                <div class="col-xs-6 form-group">
+                                                    <input type="text" placeholder="Pin Code" name="add_pincode" id="pincode" class="ship_pincode">
+                                                    <small class="error_ship_pincode" style="color:red"></small>
+                                                </div>
+                                                
+                                                <div class="col-xs-12 form-group">
+                                                    <button class="save-btn" onclick="saveAddress()">Save</button>
+                                                </div>
+
+                                            </div>
+                                        <?php }?>
                                     </div>
                                     <script>
                                         function editaddress() {
                                             $("#edit-address").addClass("edit");
                                         }
 
-                                        function saveaddress() {
+                                        function updateAddress() {
+                                            
+                                            let error = 0;
+                                            $('.error_ship_fullname, .error_ship_mobile, .error_ship_email, .error_ship_location, .error_ship_city, .error_ship_state, .error_ship_country, .error_ship_pincode, .error_ship_password, .error_ship_confirm_password').text('');
+                                            let ship_fullname            =   $('.ship_fullname').val().trim();
+                                            let ship_mobile              =   $('.ship_mobile').val().trim();
+                                            let ship_email               =   $('.ship_email').val().trim();
+                                            let ship_location            =   $('.ship_location').val().trim();
+                                            let ship_city                =   $('.ship_city').val().trim();
+                                            let ship_state               =   $('.ship_state').val().trim();
+                                            let ship_country             =   $('.ship_country').val();
+                                            let ship_pincode             =   $('.ship_pincode').val().trim();
+                                            
+
+                                            if(ship_fullname == '') {
+                                                $('.error_ship_fullname').text('Name is required');
+                                                error++;   
+                                            }
+                                            if(ship_mobile == '') {
+                                                $('.error_ship_mobile').text('Mobile number is required');
+                                                error++;   
+                                            }
+                                            if(ship_mobile != '' && ship_mobile.length != 10) {
+                                                $('.error_ship_mobile').text('Mobile number should be 10 digit');
+                                                error++;   
+                                            }
+                                            if(ship_email == '') {
+                                                $('.error_ship_email').text('Email address is required');
+                                                error++;  
+                                            }
+                                            if(ship_email != '' && (isEmail(ship_email) == false)) {
+                                                $('.error_ship_email').text('Email address is invalid');
+                                                error++;   
+                                            }
+                                            if(ship_location == '') {
+                                                $('.error_ship_location').text('Location is required');
+                                                error++;   
+                                            }
+                                            if(ship_city == '') {
+                                                $('.error_ship_city').text('City is required');
+                                                error++;   
+                                            }
+                                            if(ship_state == '') {
+                                                $('.error_ship_state').text('State is required');
+                                                error++;   
+                                            }
+                                            if(ship_country == '') {
+                                                $('.error_ship_country').text('Country is required');
+                                                error++;   
+                                            }
+                                            if(ship_pincode == '') {
+                                                $('.error_ship_pincode').text('Pincode is required');
+                                                error++;   
+                                            }
+                                            
+                                            
+                                            if(error>0) {
+                                                event.preventDefault();
+                                            }else{
+                                                 $.ajax({
+                                                    url : "<?php echo 'shipping-process.php?act=updateShipAddress'; ?>",
+                                                    dataType : 'JSON',
+                                                    type : 'POST',
+                                                    data : { name:ship_fullname, mobile:ship_mobile, email:ship_email,
+                                                        location:ship_location, city:ship_city, state:ship_state,
+                                                        country: ship_country, pincode: ship_pincode
+                                                    },
+                                                    success : function(response) {
+                                                        console.log(response);
+                                                        if(response != '') {
+                                                            if(response.status) {
+                                                                alert(response.message);
+                                                                setTimeout(function() {
+                                                                    location.reload();
+                                                                },1200);
+                                                            } else {
+                                                                alert(response.message);
+                                                            }
+                                                        } else {
+                                                            alert('Something went wrong. Please went wrong');
+                                                        }
+                                                    }
+                                                });
+                                            }
                                             $("#edit-address").removeClass("edit");
                                         }
                                     </script>
