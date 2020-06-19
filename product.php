@@ -167,7 +167,7 @@ include_once("includes/links_frontend.php"); ?>
                                                     <input class="cart_counter_<?php echo $product['pd_id']; ?>" type="number" min="1" max="10" value="1">
                                                 </div>
                                             </div>
-                                            <button class="add_to_cart" data-cartCatId="<?php echo $product['pd_id']; ?>">Add to Cart</button>
+                                            <button class="add_to_cart" data-cartProductId="<?php echo $product['pd_id']; ?>">Add to Cart</button>
                                         </div>
                                     </div>
                                 </div>   
@@ -326,16 +326,20 @@ include_once("includes/links_frontend.php"); ?>
 
 
         $(document.body).on('click', '.add_to_cart', function(event) {
-            console.log('dsd');
-            let cat_id = $(this).attr('data-cartCatId');
-            let product_count = $('.cart_counter_'+cat_id).val();
+            let product_id = $(this).attr('data-cartProductId');
+            let product_count = $(this).parent().find('.cart_counter_'+product_id).val();
             $.ajax({
                 url : 'cart-process.php?act=add_to_cart',
                 method : 'POST',
-                data : { category_id : cat_id, product_count : product_count },
+                data : { product_id : product_id, product_count : product_count },
                 dataType : 'JSON',
                 success : function(response) {
-                    console.log('response ',response);
+                    if(response != '') {
+                        if(response.status) {
+                            $('.cart_counter').text(response.cart_count);
+                        }
+                        alert(response.message);
+                    }
                 }
             });
         });

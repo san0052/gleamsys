@@ -18,13 +18,6 @@ $sidebarCounter = false;
 #next offset
 $nextOffset = 0;
 if (!empty($is_more)) {
-	// if ($offset == 1) {
-	// 	$nextOffset = $offset+$limit;
-	// } else if($offset>1){
-	// 	$nextOffset = ($offset - 1)*$limit+1;
-	// }else{
-	// 	$nextOffset = 0;
-	// }
 	$nextOffset = ($offset - 1)*$limit+$limit;
 }
 
@@ -173,10 +166,10 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
 		    		$htmlData .= '<div class="prd-box-fot">';
 		    			$htmlData .= '<div class="quentity-frm">';
 		    				$htmlData .= '<div class="check-delivery">';
-		    					$htmlData .= '<input type="number" min="1" max="10" value="1">';
+		    					$htmlData .= '<input type="number" min="1" max="10" value="1" class="cart_counter_'.$value['pd_id'].'">';
 		    					$htmlData .= '</div>';
 		    				$htmlData .= '</div>';
-		    				$htmlData .= '<button>Add to Cart</button>';
+		    				$htmlData .= '<button class="add_to_cart" data-cartProductId="'.$value['pd_id'].'">Add to Cart</button>';
 		    			$htmlData .= '</div>';
 		    		$htmlData .= '</div>';
 		    	$htmlData .= '</div>';

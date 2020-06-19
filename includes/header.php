@@ -79,7 +79,11 @@
                             </li>
                         <?php } ?>
                         <li class="cart" onclick="cartopen()">
-                            <sub>0</sub>
+                            <?php 
+                                $cart_session = !empty($_SESSION['gleam_cart_session'])?count($_SESSION['gleam_cart_session']):0;
+
+                             ?>
+                            <sub class="cart_counter"><?php echo $cart_session; ?></sub>
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 437.812 437.812" style="enable-background:new 0 0 437.812 437.812;" xml:space="preserve">
                                 <g>
                                     <g>
@@ -360,19 +364,36 @@ $(".drop-menu").addClass("hide");
         }
     }
 
-
-        function logout() {
-            $.ajax({
-                url: "<?php echo 'mail-process.php?act=logout'; ?>",
-                type: 'POST',
-                data: {
-                    'logout': "logout"
-                },
-                success: function(response) {
-                    location.reload();
-                }
-            });
-
+    function logout() {
+        $.ajax({
+            url: "<?php echo 'mail-process.php?act=logout'; ?>",
+            type: 'POST',
+            data: {
+                'logout': "logout"
+            },
+            success: function(response) {
+                location.reload();
+            }
+        });
     }
+
+    $(document.body).on('click', '.add_to_cart', function(event) {
+        let product_id = $(this).attr('data-cartProductId');
+        let product_count = $(this).parent().find('.cart_counter_'+product_id).val();
+        $.ajax({
+            url : 'cart-process.php?act=add_to_cart',
+            method : 'POST',
+            data : { product_id : product_id, product_count : product_count },
+            dataType : 'JSON',
+            success : function(response) {
+                if(response != '') {
+                    if(response.status) {
+                        $('.cart_counter').text(response.cart_count);
+                    }
+                    alert(response.message);
+                }
+            }
+        });
+    });
         
 </script>
