@@ -240,13 +240,14 @@ include_once("includes/links_frontend.php"); ?>
             let sub_category = $(this).attr('data-subcategory');
             sub_category_array.push(sub_category);
             let counter_id = $('.hide_view_more').attr('data-id');
-            if(counter_id == 1) {
-                counter_id = 0;
-                let type = "<?php echo $type ?>";
-                getProducts(counter_id, type, 1);
-            } else {
-                getMoreProducts(counter_id);
-            }
+            getMoreProducts();
+            // if(counter_id == 1) {
+            //     counter_id = 0;
+            //     let type = "<?php echo $type ?>";
+            //     getProducts(counter_id, type, 1);
+            // } else {
+            //     getMoreProducts(counter_id);
+            // }
         });
 
 
@@ -294,18 +295,29 @@ include_once("includes/links_frontend.php"); ?>
                 },
                 dataType : 'JSON',
                 success : function(response) {
-
+                    console.log(response);
                     if (response !='') {
                         if (response.status) {
                             if(response.sidebarCounter) {
-                                $(".product-item-box").html(response.details);
-                            } else  {
-                                if($('.productItem').length>0) {
-                                    $(".productItem:last").after(response.details); 
-                                } else {
+                                if(response.nextOffset <= 1) {
                                     $(".product-item-box").html(response.details);
+                                    viewMore(response.nextOffset);
+                                } else {
+                                    $(".productItem:last").after(response.details); 
+                                    viewMore(response.nextOffset);
                                 }
-                                viewMore(response.nextOffset);
+                            } else  {
+                                console.log('sds ',$('.productItem').length);
+                                if($('.productItem').length>0) {
+                                    console.log('dee');
+                                    $(".productItem:last").after(response.details); 
+                                    viewMore(response.nextOffset);
+                                } else {
+                                    console.log('else');
+                                    $(".product-item-box").html(response.details);
+                                    viewMore(response.nextOffset);
+                                }
+                                
                             }
                             
                         } else {

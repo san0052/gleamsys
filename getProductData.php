@@ -2,7 +2,7 @@
 include_once("includes/links_frontend.php");
 
 $type = !empty($_REQUEST['type']) ? trim($_REQUEST['type']) : '';
-$limit = !empty($_REQUEST['limit']) ? trim($_REQUEST['limit']) : 2;
+$limit = !empty($_REQUEST['limit']) ? trim($_REQUEST['limit']) : 1;
 $is_more = !empty($_REQUEST['is_more']) ? trim($_REQUEST['is_more']) : '';
 $offset = !empty($_REQUEST['offset']) ? trim($_REQUEST['offset']) : 0;
 $min_amount = !empty($_REQUEST['min_amount']) ? trim($_REQUEST['min_amount']) : 0;
@@ -18,13 +18,14 @@ $sidebarCounter = false;
 #next offset
 $nextOffset = 0;
 if (!empty($is_more)) {
-	if ($offset == 1) {
-		$nextOffset = $offset+$limit;
-	} else if($offset>1){
-		$nextOffset = ($offset - 1)*$limit+1;
-	}else{
-		$nextOffset = 0;
-	}
+	// if ($offset == 1) {
+	// 	$nextOffset = $offset+$limit;
+	// } else if($offset>1){
+	// 	$nextOffset = ($offset - 1)*$limit+1;
+	// }else{
+	// 	$nextOffset = 0;
+	// }
+	$nextOffset = ($offset - 1)*$limit+$limit;
 }
 
 $productSql = '';
@@ -121,7 +122,7 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
 
     if (!empty($is_more)) {
     	if (!empty($productArr)) {
-    		$htmlDetails = dynamicHTML($productArr,$nextOffset);
+    		$htmlDetails = dynamicHTML($productArr,$offset);
     		echo json_encode(
     			array(
     				'status'=>true,
@@ -137,7 +138,7 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
     }
 
 
-    function dynamicHTML($productArr,$nextOffset) {
+    function dynamicHTML($productArr,$offset) {
     	$returnArr = array();
     	$htmlData = '';
     	foreach ($productArr as $key => $value) { 
@@ -175,7 +176,7 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE ";
     	}
 
     	// $returnArr = array('html'=>$htmlData,'nextCounter'=>$previousId);
-    	$returnArr = array('html'=>$htmlData,'nextCounter'=>$nextOffset);
+    	$returnArr = array('html'=>$htmlData,'nextCounter'=>$offset+1);
     	return $returnArr;
     }
 ?>
