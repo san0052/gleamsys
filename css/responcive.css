@@ -503,7 +503,73 @@ width: 9% !important;
   font-size: 14px;
   padding: 8px 21px;
 }
+.portfolio-box, .clients-box {
 
+  grid-template-columns: 49% 49%;
+}
+.port-details h4 {
+
+    margin-bottom: 7px;
+ 
+    padding: 0;
+}
+.port-details p {
+
+  padding: 0;
+}
+.contact-details {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-column-gap: 0%;
+  grid-row-gap: 20px;
+}
+.contact-map {
+    grid-template-columns: 100%;
+    padding: 40px 0;
+}
+.contact-map .requer-form-box {
+  padding: 40px 10px;
+}
+.cm-tr-up {
+  
+  grid-template-columns: 100%;
+  grid-column-gap: 0%;
+  padding: 40px 0;
+  grid-row-gap: 20px;
+}
+.cm-tr-contents {
+ 
+  grid-template-columns: 49% 49%;
+}
+.it-sr-content-box {
+  padding: 15px;
+}
+.cm-tr-content-box svg {
+  width: 50%;
+}
+.it-sr-content-box p {
+ 
+  width: 45%;
+}
+.cm-tr-tab .tabcontent
+{
+  height: auto;
+  margin-top: 20px;
+}
+.cm-tr-content-wrap {
+  padding: 40px 15px;
+  background: #fafafa;
+}
+.cm-tr-content-wrap .cm-tr-contents {
+  grid-template-columns: 100%;
+}
+.service-inner-up {
+  padding: 40px 0;
+}
+.testimonial-wrap
+{
+  padding: 15px;
+}
 }
 @media only screen and (min-device-width: 1920px) and (max-device-width: 3000px) {
   .container {
