@@ -1,4 +1,4 @@
-<?php include_once('sideslide.php') ?>
+<? include_once('sideslide.php') ?>
 <header class="header">
     <div class="container">
         <div class="row">
@@ -11,7 +11,7 @@
             </div>
             <div class="col-xs-10 col-xs-offset-2 navigation-bar">
                 <nav>
-                    <ul id="myDIV">
+                <ul id="myDIV">
                     <button class="hidden-md hidden-lg" onclick="navcls()" style="float: right;
                         background: transparent;
                         border: 0;
@@ -53,9 +53,8 @@
                         <li onclick="window.location.href='portfolio.php'">Portfolio</li>
                         <li onclick="window.location.href='client.php'">Clients</li>
                         <li onclick="window.location.href='contact.php'">Contact</li>
-
-                        <hr class="hidden-md hidden-lg" style="margin: 10px 0;">
                         <?php if (!empty($_SESSION['gleam_users_session'])) { ?>
+                        <hr class="hidden-md hidden-lg" style="margin: 10px 0;">
                             <li class="hidden-xs hidden-sm" onclick="window.location.href='profile.php'">Profile</li>
                            <!--  <li class="hidden-xs hidden-sm" onclick="window.location.href='wishlist.php'">Wishlist</li> -->
                             <li class="hidden-xs hidden-sm" onclick="window.location.href='orderlist.php'">My Orders</li>
@@ -69,10 +68,11 @@
                             <li class="hidden-xs hidden-sm" onclick="openlogin()">Login</li>
                         <?php } else { ?>
                             <li class="profileheaderbtn hidden-xs hidden-sm">
-                                <button onclick="myaccntdrpopen()"><img src="uploads/userProfile/<?php echo $row['image'];?>"><span><?php echo ucfirst($row['name']);?></button>
+                                <button onclick="myaccntdrpopen()"><img src="images/client-1.png">
+                                    <span>Swarnendu</span></button>
                                 <ul class="my-account-drop">
                                     <li onclick="window.location.href='profile.php'">Profile</li>
-                                   <!--  <li onclick="window.location.href='wishlist.php'">Wishlist</li> -->
+                                    <li onclick="window.location.href='wishlist.php'">Wishlist</li>
                                     <li onclick="window.location.href='orderlist.php'">My Orders</li>
                                     <li onclick="logout()">Log Out</li>
                                 </ul>
@@ -261,6 +261,13 @@
     })
 </script>
 <script>
+ function navsideopen() {
+        $("#myDIV").addClass("open-nav-modal");
+    }
+function navcls()
+{
+    $("#myDIV").removeClass("open-nav-modal");
+}
     function openlogin() {
         $("#side-modal").addClass("open-side-modal");
         $("#login").slideDown();
@@ -338,7 +345,7 @@
             window.location.href = "product.php";
         }
 
-    }
+
         function logout() {
             $.ajax({
                 url: "<?php echo 'mail-process.php?act=logout'; ?>",
@@ -350,5 +357,7 @@
                     location.reload();
                 }
             });
+
+    }
         }
 </script>

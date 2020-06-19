@@ -569,6 +569,18 @@ $show=$_REQUEST['show'];
 																					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Image </span> <span class="redstar">*</span> </td>
 																					<td width="70%" colspan="4" align="left"><input name="image_add" id="image_add" type="file" class="forminputelement"/></td>
 																				</tr>
+																				<tr class="row2">
+																					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Image 2</span> </td>
+																					<td width="70%" colspan="4" align="left"><input name="image_add2" id="image_add2" type="file" class="forminputelement"/></td>
+																				</tr>
+																				<tr class="row2">
+																					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Image 3 </span> <span class="redstar"></td>
+																					<td width="70%" colspan="4" align="left"><input name="image_add3" id="image_add3" type="file" class="forminputelement"/></td>
+																				</tr>
+																				<tr class="row2">
+																					<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Image 4</span> </td>
+																					<td width="70%" colspan="4" align="left"><input name="image_add4" id="image_add3" type="file" class="forminputelement"/></td>
+																				</tr>
 
 																			<!-- 	<tr class="row1"><td colspan="6" align="left" valign="top"><span class="leftBarText_new">Keywords Category List</span></td></tr> -->
 																				<!-- <tr class="row2">
@@ -982,6 +994,31 @@ $show=$_REQUEST['show'];
 								<td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Change Image </span> </td>
 								<td width="70%" colspan="4" align="left" valign="top"><input name="image_add[]" id="image_add" type="file" class="forminputelement"/>
 									&nbsp;&nbsp; <img src="../<?=$cfg['PRODUCT_IMAGES'].$row1['pd_image']?>"  width="70" align="top"/></td>
+								</tr>
+								<tr class="row2">
+									<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Image 2</span> </td>
+									<td width="70%" colspan="4" align="left"><input name="image_add2" id="image_add" type="file" class="forminputelement"/></td>
+								</tr>
+								<tr class="row2">
+									<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Image 3 </span> </td>
+									<td width="70%" colspan="4" align="left"><input name="image_add3" id="image_add" type="file" class="forminputelement"/></td>
+								</tr>
+								<tr class="row2">
+									<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Image 4</span> </td>
+									<td width="70%" colspan="4" align="left"><input name="image_add4" id="image_add" type="file" class="forminputelement"/></td>
+								</tr>
+								<tr class="row2">
+									<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Image 2</span> </td>
+									<td width="70%" colspan="4" align="left"><input name="image_add2" id="image_add" type="file" class="forminputelement"/></td>
+								</tr>
+								<tr class="row2">
+									<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Image 3 </span></td>
+									<td width="70%" colspan="4" align="left"><input name="image_add3" id="image_add" type="file" class="forminputelement"/></td>
+								</tr>
+								<tr class="row2">
+									<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Image 4</span> </td>
+									<td width="70%" colspan="4" align="left"><input name="image_add4" id="image_add" type="file" class="forminputelement"/></td>
+								</tr>
 								
 								<!-- <tr class="row1">			 
 									<td colspan="6" align="left" valign="top"><span class="leftBarText_new">Keywords Category List</span>			    			
