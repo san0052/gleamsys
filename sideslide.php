@@ -295,12 +295,12 @@
                         <h5>Total Payble</h5>
                         <p class="prd-price totalPayableAmount">
                             <!-- $200  -->
-                            <!-- <a>view details</a>-->
+                             <!-- <a href="">view details</a> -->
                         </p>
                         
                     </div>
                     <div style="float:right;">
-                        <button type="button" id="nextBtn" class="demo-class" onclick="return validate();">Procceed</button>
+                        <button type="button" id="nextBtn" class="demo-class" onclick="return validate();">Proceed</button>
                     </div>
                 </div>
             </form>
