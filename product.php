@@ -268,6 +268,15 @@ switch ($type) {
             } else {
                 getMoreProducts(counter_id);
             }
+            getMoreProducts();
+            // if(counter_id == 1) {
+            //     counter_id = 0;
+            //     let type = "<?php echo $type ?>";
+            //     getProducts(counter_id, type, 1);
+            // } else {
+            //     getMoreProducts(counter_id);
+            // }
+
         });
 
 
@@ -323,17 +332,42 @@ switch ($type) {
                             } else {
                                 if ($('.productItem').length > 0) {
                                     $(".productItem:last").after(response.details);
-                                } else {
+                dataType : 'JSON',
+                success : function(response) {
+                    console.log(response);
+                    if (response !='') {
+                        if (response.status) {
+                            if(response.sidebarCounter) {
+                                if(response.nextOffset <= 1) {
                                     $(".product-item-box").html(response.details);
+                                    viewMore(response.nextOffset);
+                                } else {
+                                    $(".productItem:last").after(response.details); 
+                                    viewMore(response.nextOffset);
                                 }
-                                viewMore(response.nextOffset);
+                            } else  {
+                                console.log('sds ',$('.productItem').length);
+                                if($('.productItem').length>0) {
+                                    console.log('dee');
+                                    $(".productItem:last").after(response.details); 
+                                    viewMore(response.nextOffset);
+                                } else {
+                                    console.log('else');
+                                    $(".product-item-box").html(response.details);
+                                    viewMore(response.nextOffset);
+                                }
+                                
                             }
 
                         } else {
+
                             if (response.sidebarCounter) {
+
+                            if(response.nextOffset==0) {
                                 $(".product-item-box").html(response.details);
                             }
                             $('.hide_view_more').hide();
+                            
                         }
                     }
                 }
