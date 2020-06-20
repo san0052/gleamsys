@@ -329,6 +329,7 @@ function navcls()
         $("body").css({
             'overflow': 'hidden'
         });
+        cartItems();
     }
 
     function bookcls() {
@@ -387,13 +388,14 @@ $(".drop-menu").addClass("hide");
             dataType : 'JSON',
             success : function(response) {
                 if(response != '') {
+                    console.log(response);
                     if(response.status) {
                         $('.cart_counter').text(response.cart_count);
                     }
                     alert(response.message);
-                    setTimeout(function() {
-                        location.reload();
-                    },1000);
+                    // setTimeout(function() {
+                    //     location.reload();
+                    // },1000);
                 }
             }
         });

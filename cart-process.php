@@ -30,7 +30,7 @@ switch($action) {
 				if (!empty($_SESSION['gleam_users_session'])) {
 					$user_id = $_SESSION['gleam_users_session']['user_id'];
 					$cart_array = array('user_id'=>$user_id, 'product_id'=>$product_id, 'product_count'=>$product_count);
-					checkProductExist($pd_id, $product_id, $product_count, $user_id);
+					checkProductExistInCart($product_id, $product_count, $user_id);
 				} else {
 					checkProductExistInCart($product_id, $product_count);				
 				}
@@ -46,11 +46,13 @@ switch($action) {
 
 	case 'show_cart_details':
 		$cart_session = !empty($_SESSION['gleam_cart_session'])?$_SESSION['gleam_cart_session']:'';
+
 		if (!empty($cart_session)) {
 			$totalCount = 0;
 			$totalAmount = 0;
 			foreach ($cart_session as $cart) {
-				$sqlgetCartDet = "SELECT pd_id, pd_image, pd_price, pd_name, pd_qty FROM ".$cfg['DB_PRODUCT']." WHERE `status` ='A' AND `pd_id` = ".$cart['product_id']."";
+				$sqlgetCartDet = "SELECT pd_id, pd_image, pd_price, pd_name, pd_qty FROM ".$cfg['DB_PRODUCT']." WHERE `status` ='A' AND `pd_id` = '".$cart['product_id']."'";
+
 	            $resCart    =   $mycms->sql_query($sqlgetCartDet);
 	            $rowCart    =   $mycms->sql_fetchrow($resCart);
 	            if (!empty($rowCart)) {
@@ -126,12 +128,13 @@ switch($action) {
 
 		if (!empty($data) && !empty($product_id)) {
 			$product_id_list = array_column($data, 'product_id');
-			if (in_array($product_id, $product_id_list)) {
-				$key = key(array_column($data, 'product_id'));
-				unset($data[$key]);
-				$_SESSION['gleam_cart_session'] = $data;
-				echo json_encode(array('status'=>true)); die;
+			foreach ($data as $key => $value) {
+				if($value['product_id'] == $product_id) {
+					unset($data[$key]);
+				}
 			}
+			$_SESSION['gleam_cart_session'] = $data;
+			echo json_encode(array('status'=>true, 'cart_counter'=>count($data))); die;
 		} else {
 			echo json_encode(array('status'=>false)); die;
 		}
