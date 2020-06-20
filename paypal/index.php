@@ -1,9 +1,9 @@
 <?php 
 // Include configuration file 
-include_once 'config.php'; 
+// include_once 'config.php'; 
  
-// Include database connection file 
-include_once 'dbConnect.php'; 
+// // Include database connection file 
+// include_once 'dbConnect.php'; 
 ?>
 
 <div class="container">

@@ -77,7 +77,7 @@ if (strcmp($res, "VERIFIED") == 0 || strcasecmp($res, "VERIFIED") == 0) {
     // Check if transaction data exists with the same TXN ID 
     // $prevPayment = $db->query("SELECT payment_id FROM payments WHERE txn_id = '".$txn_id."'"); 
     // if($prevPayment->num_rows > 0){ 
-    //     exit(); 
+    //     exit();  
     // }else{ 
     //     // Insert transaction data into the database 
     //     $insert = $db->query("INSERT INTO payments(item_number,txn_id,payment_gross,currency_code,payment_status) VALUES('".$item_number."','".$txn_id."','".$payment_gross."','".$currency_code."','".$payment_status."')"); 

@@ -13,7 +13,7 @@ switch($action)
 	$state 		= stripslashes(strip_tags($_REQUEST['state']));
 	$country 	= stripslashes(strip_tags($_REQUEST['country']));
 	$pincode 	= stripslashes(strip_tags($_REQUEST['pincode']));
-
+ 
 	
 	$sql1="UPDATE ".$cfg['DB_SHIPPING_ADDRESS']." SET
 	       	`name` 		= '".$name."',

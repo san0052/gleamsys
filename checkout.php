@@ -15,7 +15,7 @@ include_once('includes/pagesources.php'); ?>
                 </div>
                 <div class="chk-head-rt">
                     <button onclick="window.location.href='index.php'">Back to Home</button>
-                </div>
+                </div> 
             </div>
         </div>
     </div>

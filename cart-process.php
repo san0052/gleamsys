@@ -9,7 +9,7 @@ switch($action) {
 		$product_id = !empty($_REQUEST['product_id'])?trim($_REQUEST['product_id']) : '';
 		$product_count = !empty($_REQUEST['product_count'])?trim($_REQUEST['product_count']) : '';
 
-		if (empty($product_id)) {
+		if (empty($product_id)) { 
 			echo json_encode(array('status'=>false, 'message'=>'Something went wrong. Please try again later')); die;
 		}
 		$checkProductAvailable = "SELECT `pd_id`,`pd_name`,`pd_qty` FROM ".$cfg['DB_PRODUCT']." WHERE `pd_id` = ".$product_id;
@@ -19,7 +19,7 @@ switch($action) {
 			$database_count = $rows['pd_qty'];
 			if ($rows['pd_qty']<$product_count) {
 				if ($rows['pd_qty'] == 0) {
-					echo json_encode(array('status'=>false, 'message'=>$rows['pd_name'].' is out of stock')); die;
+					echo json_encode(array('status'=>false, 'message'=>$rows['pd_name'].' is out of stock')); die; 
 				}
 				echo json_encode(array('status'=>false, 'message'=>$rows['pd_qty'].' quantity of '.$rows['pd_name'].' are available only')); die;
 			} else {
