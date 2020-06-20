@@ -401,6 +401,7 @@ include_once('includes/pagesources.php'); ?>
                                                     },
                                                     success : function(response) {
                                                         console.log(response);
+                                    
                                                         if(response != '') {
                                                             if(response.status) {
                                                                 alert(response.message);
@@ -408,14 +409,16 @@ include_once('includes/pagesources.php'); ?>
                                                                     location.reload();
                                                                 },1200);
                                                             } else if(response.status =='success'){
-                                                                window.location.reload='checkout.php?id='+data_id;
+                                                                window.location.reload='checkout.php?id='+response.data_id;
                                                             }
                                                         } else {
                                                             alert('Something went wrong. Please went wrong');
                                                         }
                                                     }
                                                 });
+                                                 event.preventDefault();
                                             }
+                                            event.preventDefault();
                                             //$("#edit-address").removeClass("edit");
                                         }
 
@@ -572,18 +575,10 @@ include_once('includes/pagesources.php'); ?>
               success : function(response) {
                   if(response != '') {
                       if(response.status) {
-                        console.log('kshj ',response.cart_counter);
                           $('.cartItemsCheckout').html(response.details);
                           $('.totalPayableCheckout').html(response.totalPayable);
-                          // if(response.cart_counter == 0) {
-                          //   console.log('dfd00');
-                          //   $('.payment-procc').hide();
-                          // }
                       } else {
-                        console.log('dfdfd0');
-                            // $('.payment-procc').hide();
-                          // $('.cartFooter').hide();
-                          // $('.cartItems').html(response.details);
+                        
                       }
                   } else {
                       // alert('Something went wrong. Please went wrong');

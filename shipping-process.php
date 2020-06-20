@@ -85,10 +85,10 @@ switch($action)
 									`state`		=	'".$state."',
 									`country`	=	'".$country."',
 									`pincode`	=	'".$pincode."',
+									`password`	=	'".md5($password)."',
 									`session_id`=	'".session_id()."',
 									`created_at`=	'".date('Y-m-d H:i:s')."',
 									`ip`		=	'".$_SERVER['REMOTE_ADDR']."'";
-
 			$ins = $mycms->sql_insert($registerUsers);
 
 		if($sql1){
@@ -136,6 +136,7 @@ switch($action)
 								`country`	=	'".$country."',
 								`pincode`	=	'".$pincode."',
 								`session_id`=	'".session_id()."',
+								`password`	=	'".md5($password)."',
 								`created_at`=	'".date('Y-m-d H:i:s')."',
 								`ip`		=	'".$_SERVER['REMOTE_ADDR']."'";
 
