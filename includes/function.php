@@ -51,11 +51,15 @@ function serviceDesc($pageid,$flag = null,$pageName)
 	global  $mycms,$cfg;
 	
 	if($pageName=='tech-support'){
-		$sql	=	"SELECT * FROM ".$cfg['DB_SERVICE_INFO']." WHERE `id` = '".$pageid."'  AND `status`= 'A' AND `pageName`= 'tech-support' AND `subjectName`='Work Process'";
+		$sql	=	"SELECT * FROM ".$cfg['DB_SERVICE_INFO']." WHERE `id` = '".$pageid."'  AND `status`= 'A' AND `pageName`= 'tech-support' ";
+		$res	=	$mycms->sql_query($sql);
+		$row	=	$mycms->sql_fetchrow($res);
+	}else if($pageName=='it-service'){
+		$sql	=	"SELECT * FROM ".$cfg['DB_SERVICE_INFO']." WHERE `id` = '".$pageid."'  AND `status`= 'A' AND `pageName`= 'it-service' AND `subjectName`='IT' ";
 		$res	=	$mycms->sql_query($sql);
 		$row	=	$mycms->sql_fetchrow($res);
 	}else{
-		$sql	=	"SELECT * FROM ".$cfg['DB_SERVICE_INFO']." WHERE `id` = '".$pageid."'  AND `status`= 'A' AND `pageName`= 'it-service' AND `subjectName`='IT' ";
+		$sql	=	"SELECT * FROM ".$cfg['DB_SERVICE_INFO']." WHERE `id` = '".$pageid."'  AND `status`= 'A' AND `pageName`= 'tech-support' AND `subjectName`='Work Process'";
 		$res	=	$mycms->sql_query($sql);
 		$row	=	$mycms->sql_fetchrow($res);
 	}
