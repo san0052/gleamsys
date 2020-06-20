@@ -285,7 +285,7 @@
              </ul>
 
            </div>
-           <p class="copy">&copy; 2020 Gleamsys All Rights Reserved - ABN : 37 804 155 992</p>
+           <p class="copy">&copy; <?php echo date('Y')?> Gleamsys All Rights Reserved - ABN : 37 804 155 992</p>
            <div class="clearfix"></div>
          </div>
        </div>
