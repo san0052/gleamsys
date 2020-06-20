@@ -319,10 +319,9 @@
               success : function(response) {
                   if(response != '') {
                       if(response.status) {
+                          $('.cart_counter').text(response.cart_counter);
                           alert('Item removed from cart');
-                          setTimeout(function() {
-                            location.reload();
-                          },700);
+                          cartopen();
                       } else {
                          alert('Something went wrong. Please went wrong');
                       }

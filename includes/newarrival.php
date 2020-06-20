@@ -42,10 +42,10 @@
                             <div class="prd-box-fot">
                                 <div class="quentity-frm">
                                     <div class="check-delivery">
-                                        <input type="number" min="1" max="10" value="1">
+                                        <input class="cart_counter_<?php echo $row['pd_id']; ?>" type="number" min="1" max="10" value="1">
                                     </div>
                                 </div>
-                                <button>Add to Cart</button>
+                                <button class="add_to_cart" data-cartProductId="<?php echo $row['pd_id']; ?>">Add to Cart</button>
                             </div>
                         </div>
                     </div>
