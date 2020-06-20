@@ -122,6 +122,88 @@ switch($action) {
 
 		break;
 
+	case 'show_cart_details_checkout':
+		$cart_session = !empty($_SESSION['gleam_cart_session'])?$_SESSION['gleam_cart_session']:'';
+
+		if (!empty($cart_session)) {
+			$totalCount = 0;
+			$totalAmount = 0;
+			$totalPayable = '';
+			foreach ($cart_session as $cart) {
+				$sqlgetCartDet = "SELECT pd_id, pd_image, pd_price, pd_name, pd_qty FROM ".$cfg['DB_PRODUCT']." WHERE `status` ='A' AND `pd_id` = '".$cart['product_id']."'";
+
+	            $resCart    =   $mycms->sql_query($sqlgetCartDet);
+	            $rowCart    =   $mycms->sql_fetchrow($resCart);
+	            if (!empty($rowCart)) {
+	            	  $totalCount++;
+	            	  $totalAmount += $rowCart['pd_price']*$cart['product_count'];
+	                  $cartItems .= '<div class="order-list">';
+	                      $cartItems .= '<div class="item-pic">';
+	                          $cartItems .= '<img src="image_bank/product_image/'.$rowCart['pd_image'].'">';
+	                          // $cartItems .= '<p>1</p>';
+	                      $cartItems .= '</div>';
+	                      $cartItems .= '<div class="item-details">';
+	                          $cartItems .= '<p class="prd-name" style="font-weight:600">'.$rowCart['pd_name'].'</p>';
+
+	                                      // <p class="prd-id">product id</p> 
+	                                          // <p class="deliver-date">Delivery by Sun 21 Jun | Free</p>
+	                          $cartItems .= '<p class="prd-price">Price :- $'.$rowCart['pd_price'].'</p>';
+	                          $cartItems .= '<p class="prd-price">Quanity :- '.$cart['product_count'].'</p>';
+	                          $cartItems .= '<button class="rmv-btn rmv_cart_item_checkout" data-remove_prod_id="'.$rowCart['pd_id'].'">Remove</button>';
+	                      $cartItems .= '</div>';
+	                  $cartItems .= '</div>';
+	            }
+			}
+
+			if ($totalCount>0) {
+				$totalPayable .= '<table class="table totalpayble">';
+					$totalPayable .= '<thead>';
+						$totalPayable .= '<tr>';
+							$totalPayable .= '<th colspan="2">Price Details</th>';
+						$totalPayable .= '</tr>';
+					$totalPayable .= '</thead>';
+					$totalPayable .= '<tbody>';
+						$totalPayable .= '<tr>';
+							$totalPayable .= '<td>';
+								$totalPayable .= 'Price ('.$totalCount.' Items)';
+							$totalPayable .= '</td>';
+							$totalPayable .= '<td>';
+								$totalPayable .= '$'.$totalAmount;
+							$totalPayable .= '</td>';
+						$totalPayable .= '</tr>';
+						$totalPayable .= '<tr>';
+							$totalPayable .= '<td>';
+								$totalPayable .= 'Delivery Charge';
+							$totalPayable .= '</td>';
+							$totalPayable .= '<td>';
+								$totalPayable .= 'Free';
+							$totalPayable .= '</td>';
+						$totalPayable .= '</tr>';
+					$totalPayable .= '</tbody>';
+					$totalPayable .= '<tfoot>';
+						$totalPayable .= '<tr>';
+							$totalPayable .= '<td>';
+								$totalPayable .= 'Total Payble';
+							$totalPayable .= '</td>';
+							$totalPayable .= '<td>';
+								$totalPayable .= '$'.$totalAmount;
+							$totalPayable .= '</td>';
+						$totalPayable .= '</tr>';
+					$totalPayable .= '</tfoot>';
+				$totalPayable .= '</table>';
+				$totalPayable .= '<button class="change-btn payment-procc">Procced to Payment</button>';
+			}
+
+			echo json_encode(array('status'=>true, 'details'=>$cartItems, 'totalAmount'=>$totalAmount, 'totalPayable'=>$totalPayable, 'cart_counter'=>count($cart_session))); die;
+		} else {
+			$noDataHtml = '<p style="text-align:center; margin-top:10px">Empty Cart</p>';
+     		echo json_encode(array('status'=>false, 'details'=>$noDataHtml)); die;
+		}
+
+		break;
+
+
+
 	case 'remove_cart_item':
 		$data = $_SESSION['gleam_cart_session'];
 		$product_id = !empty($_REQUEST['product_id'])?trim($_REQUEST['product_id']) : '';
@@ -138,7 +220,25 @@ switch($action) {
 		} else {
 			echo json_encode(array('status'=>false)); die;
 		}
-		break;
+	break;
+
+	case 'remove_cart_item_checkout':
+		$data = $_SESSION['gleam_cart_session'];
+		$product_id = !empty($_REQUEST['product_id'])?trim($_REQUEST['product_id']) : '';
+
+		if (!empty($data) && !empty($product_id)) {
+			$product_id_list = array_column($data, 'product_id');
+			foreach ($data as $key => $value) {
+				if($value['product_id'] == $product_id) {
+					unset($data[$key]);
+				}
+			}
+			$_SESSION['gleam_cart_session'] = $data;
+			echo json_encode(array('status'=>true, 'cart_counter'=>count($data))); die;
+		} else {
+			echo json_encode(array('status'=>false)); die;
+		}
+	break;
 }
 
 // if product is already present then add product count only
