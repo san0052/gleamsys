@@ -136,9 +136,9 @@ include_once('includes/pagesources.php'); ?>
                                 if($userId && $rows['email']){ ?>
                                     <p style="color:#b8171d">Your Registered Shipping address</p>
                                     <li class="address">
-                                        <p><?php echo ucfirst($rows['name']).','.$row['mobile'];?> </p>
-                                        <p><?php echo $rows['location'].','.' '.$row['pincode']; ?></p>
-                                        <p><?php echo $rows['city'].','.' '.$row['state']; ?></p>
+                                        <p><?php echo ucfirst($rows['name']).','.$rows['mobile'];?> </p>
+                                        <p><?php echo $rows['location'].','.' '.$rows['pincode']; ?></p>
+                                        <p><?php echo $rows['city'].','.' '.$rows['state']; ?></p>
                                         <p><?php echo $rows['country']; ?></p>
                                     </li>
                                 <?php } else if($userId){ ?>
@@ -148,17 +148,18 @@ include_once('includes/pagesources.php'); ?>
                                         <p><?php echo $row['country']; ?></p>
 
                                    <?php }else if($_GET['id']){?>
-                                        <p><?php echo 'Name :- '.ucfirst($rows['name']).','.$row['mobile'];?> </p>
-                                        <p><?php echo 'Location :- '.$rows['location'].','.' '.$row['pincode']; ?></p>
+                                        <p><?php echo 'Name :- '.ucfirst($rows['name']).','.$rows['mobile'];?> </p>
+                                        <p><?php echo 'Location :- '.$rows['location'].','.' '.$rows['pincode']; ?></p>
                                         <p><?php echo $rows['city'].','.' '.$rows['state']; ?></p>
                                         <p><?php echo 'Country :- '.$rows['country']; ?></p>
                                    <?php }else{?>
                                     <p>Please Add your shipping/delivery address</p>
                                   <?php } ?>
                                     <button class="change-btn" onclick="editaddress()">Edit</button>
+                                    <input type="hidden" name="shippingAddress" value="<?php echo $rows['id']; ?>">
                                     <div class="edit-frm">
                                         <p>Edit Address</p>
-                                        <?php if($userId && $row['id']){ ?>
+                                        <?php if($row['id'] || $rows['id']){ ?>
                                             <div>
                                                 <div class="col-xs-6 form-group">
                                                     <input type="text" placeholder="Full Name" name="name" id="fname" class="ship_fullname" value="<?php echo $rows['name']; ?>">
@@ -317,9 +318,9 @@ include_once('includes/pagesources.php'); ?>
                                                         if(response != '') {
                                                             if(response.status) {
                                                                 alert(response.message);
-                                                                /*setTimeout(function() {
+                                                                setTimeout(function() {
                                                                     location.reload();
-                                                                },1200);*/
+                                                                },800);
                                                             } else {
                                                                 alert(response.message);
                                                             }

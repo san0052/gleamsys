@@ -75,6 +75,7 @@ switch($action)
 		     	`pincode` 	= '".$pincode."'
 		        WHERE `email` = '".$email."' ";
 		$mycms->sql_query($sql1);
+		
 		$registerUsers = "INSERT INTO ".$cfg['DB_SHIPPING_ADDRESS']."
 								 SET
 								 	`name`		=   '".$name."',
@@ -85,11 +86,11 @@ switch($action)
 									`state`		=	'".$state."',
 									`country`	=	'".$country."',
 									`pincode`	=	'".$pincode."',
-									`password`	=	'".md5($password)."',
 									`session_id`=	'".session_id()."',
 									`created_at`=	'".date('Y-m-d H:i:s')."',
 									`ip`		=	'".$_SERVER['REMOTE_ADDR']."'";
 			$ins = $mycms->sql_insert($registerUsers);
+			
 
 		if($sql1){
 			echo json_encode(array('status'=>true,'message'=>'Your shipping address updated successfully','data_id'=>$ins));die;
@@ -111,6 +112,7 @@ switch($action)
 								`session_id`=	'".session_id()."',
 								`created_at`=	'".date('Y-m-d H:i:s')."',
 								`ip`		=	'".$_SERVER['REMOTE_ADDR']."'";
+								
 
 		$ins = $mycms->sql_insert($registerUsers);
 		if (!empty($ins)) {
@@ -125,6 +127,8 @@ switch($action)
 								";
 			$ins1 = $mycms->sql_insert($userLogin);
 
+			
+
 			$registerUsers = "INSERT INTO ".$cfg['DB_SHIPPING_ADDRESS']."
 							 SET
 							 	`name`		=   '".$name."',
@@ -136,10 +140,9 @@ switch($action)
 								`country`	=	'".$country."',
 								`pincode`	=	'".$pincode."',
 								`session_id`=	'".session_id()."',
-								`password`	=	'".md5($password)."',
 								`created_at`=	'".date('Y-m-d H:i:s')."',
 								`ip`		=	'".$_SERVER['REMOTE_ADDR']."'";
-
+							
 		$ins = $mycms->sql_insert($registerUsers);
 	
 		echo json_encode(array('status'=>'success','message'=>'User registered successfully', 'data_id'=>$ins)); die;
