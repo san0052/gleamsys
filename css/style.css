@@ -1956,9 +1956,8 @@ footer .content-details-box p
     box-shadow: none;
     float: left;
     position: relative;
-    cursor: pointer;
 }
-.serve .item:after {
+/* .serve .item:after {
     content: '';
     position: absolute;
     top: 0;
@@ -1977,7 +1976,7 @@ footer .content-details-box p
       -webkit-transition: all 0.4s ease-in-out;
          -moz-transition: all 0.4s ease-in-out;
               transition: all 0.4s ease-in-out;
-  }
+  } */
 .serve h4 {
 
     font-size: calc(13px + (16 - 13) * ((100vw - 300px) / (1600 - 300)));
@@ -2662,7 +2661,11 @@ padding: 60px 0;
         transform: scale(1.01);
         border: 0;
     }
-    
+    .prd-tec-sp .it-sr-content-box:hover
+    {
+        cursor: inherit;
+        transform: inherit;
+    }
     .cm-tr-content-wrap
     {
         padding: 60px 15px;
@@ -3963,4 +3966,8 @@ display: none;
     padding-right: 0;
 }
 /*online store*/
+.cm-tr-tab .tabcontent {
+    height: auto;
+    margin-top: 40px;
+}
     

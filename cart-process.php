@@ -123,6 +123,7 @@ switch($action) {
 		break;
 
 	case 'show_cart_details_checkout':
+
 		$cart_session = !empty($_SESSION['gleam_cart_session'])?$_SESSION['gleam_cart_session']:'';
 
 		if (!empty($cart_session)) {
@@ -154,6 +155,8 @@ switch($action) {
 	                  $cartItems .= '</div>';
 	            }
 			}
+
+			$paypal = paypalForm();
 
 			if ($totalCount>0) {
 				$totalPayable .= '<table class="table totalpayble">';
@@ -191,7 +194,15 @@ switch($action) {
 						$totalPayable .= '</tr>';
 					$totalPayable .= '</tfoot>';
 				$totalPayable .= '</table>';
-				$totalPayable .= '<button class="change-btn payment-procc">Procced to Payment</button>';
+
+				if (!empty($paypal)) {
+					$totalPayable .= '<form action="'.PAYPAL_URL.'" method="post">';
+					$totalPayable .= $paypal;
+					$totalPayable .= '<button class="change-btn payment-procc">Procced to Payment</button>';
+					$totalPayable .= '</form>';
+				} else {
+					$totalPayable .= '<button class="change-btn payment-procc">Procced to Payment</button>';
+				}
 			}
 
 			echo json_encode(array('status'=>true, 'details'=>$cartItems, 'totalAmount'=>$totalAmount, 'totalPayable'=>$totalPayable, 'cart_counter'=>count($cart_session))); die;
@@ -260,6 +271,45 @@ function checkProductExistInCart($product_id, $product_count, $user_id = 0) {
 	} else { 
 		$cart_array = array('product_id'=>$product_id, 'product_count'=>$product_count, 'user_id'=>$user_id);
 		$_SESSION['gleam_cart_session'][] = $cart_array;
+	}
+}
+
+function paypalForm() {
+	$cart_session = !empty($_SESSION['gleam_cart_session'])?$_SESSION['gleam_cart_session']:'';
+	$paypalFormData = '';
+	global $mycms;
+	global $cfg;
+	$dataExist = 0;
+	if (!empty($cart_session)) {
+			// Identify your business so that you can collect the payments
+			$paypalFormData .= '<input type="hidden" name="business" value="'.PAYPAL_ID.'">';
+			// Specify a Buy Now button
+			$paypalFormData .= '<input type="hidden" name="cmd" value="_cart">';
+			$paypalFormData .= '<input type="hidden" name="upload" value="1">';
+			$paypalFormData .= '<input type="hidden" name="currency_code" value="'.PAYPAL_CURRENCY.'">';
+			$counter = 1;
+			foreach ($cart_session as $key => $cart) {
+				$sqlgetCartDet = "SELECT pd_id, pd_image, pd_price, pd_name, pd_qty FROM ".$cfg['DB_PRODUCT']." WHERE `status` ='A' AND `pd_id` = '".$cart['product_id']."'";
+				$resCart    =   $mycms->sql_query($sqlgetCartDet);
+	            $rowCart    =   $mycms->sql_fetchrow($resCart);
+	            if (!empty($rowCart)) {
+	            	$dataExist++;
+					// Specify details about the item that buyers will purchase.
+					$paypalFormData .= '<input type="hidden" name="item_name_'.$counter.'" value="'.$rowCart['pd_name'].'">';
+					// $paypalFormData .= '<input type="hidden" name="item_number" value="'.$rowCart['pd_id'].'">';
+					$paypalFormData .= '<input type="hidden" name="amount_'.$counter.'" value="'.$rowCart['pd_price'].'">';
+				}
+				$counter++;
+			}
+
+		$paypalFormData .= ' <input type="hidden" name="return" value="'.PAYPAL_RETURN_URL.'">';
+		$paypalFormData .= ' <input type="hidden" name="cancel_return" value="'.PAYPAL_CANCEL_URL.'">';
+		$paypalFormData .= ' <input type="hidden" name="notify_url" value="'.PAYPAL_NOTIFY_URL.'">';
+	}
+	if ($dataExist>0) {
+		return $paypalFormData;
+	}else {
+		return;
 	}
 }
 
