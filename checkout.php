@@ -129,10 +129,14 @@ include_once('includes/pagesources.php'); ?>
                                     $sqlgetUser = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']."  WHERE `status`='A' AND `email` = '".$row['email']."'  ";
                                     $res        =   $mycms->sql_query($sqlgetUser);
                                     $rows       =   $mycms->sql_fetchrow($res);
-                                }else{
-                                     $sqlgetUser = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']."  WHERE `status`='A' AND `id` = '".$_GET['id']."'  ";
-                                    $res        =   $mycms->sql_query($sqlgetUser);
+                                }else if($_GET['id']){
+                                    $sqlgetUsers = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']."  WHERE `status`='A' AND `id` = '".$_GET['id']."'  ";
+                                    $res        =   $mycms->sql_query($sqlgetUsers);
                                     $rows       =   $mycms->sql_fetchrow($res);
+                                }else{
+                                    $getUser = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']."  WHERE `status`='A' AND `id` = '".$userId."'  ";
+                                    $res        =   $mycms->sql_query($getUser);
+                                    $row       =   $mycms->sql_fetchrow($res);
                                 }
                                 if($userId && $rows['email']){ ?>
                                     <p style="color:#b8171d">Your Registered Shipping address</p>
