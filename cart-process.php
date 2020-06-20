@@ -196,7 +196,7 @@ switch($action) {
 				$totalPayable .= '</table>';
 
 				if (!empty($paypal)) {
-					$totalPayable .= '<form action="'.PAYPAL_URL.'" method="post">';
+					$totalPayable .= '<form action="'.PAYPAL_URL.'" method="post" id="submitPaypalForm">';
 					$totalPayable .= $paypal;
 					$totalPayable .= '<button class="change-btn payment-procc">Procced to Payment</button>';
 					$totalPayable .= '</form>';
