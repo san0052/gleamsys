@@ -102,6 +102,7 @@ case 'update':
 	$city           = addslashes($_REQUEST['city']);
 	$district       = addslashes($_REQUEST['district']);
 	$state          = addslashes($_REQUEST['state']);
+	$delivery_charges          = addslashes($_REQUEST['delivery_charges']);
 	
 		
 	
@@ -112,7 +113,7 @@ case 'update':
 			`City` = '".$city."',
 			`District` = '".$district."',
 			`State` = '".$state."',
-			`status`='A'
+			`delivery_charges` = '".$delivery_charges."'
 			WHERE `id`=".$_REQUEST['id']." ";
 
 			$heart->sql_query($sql);
