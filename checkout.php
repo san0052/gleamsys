@@ -476,8 +476,8 @@ include_once('includes/pagesources.php'); ?>
                             </div>
                             <div class="chk-inner-rt">
                                 <button>Order Summery</button>
-                                <ul class="order-summery show">
-                                    <li>
+                                <ul class="order-summery show cartItemsCheckout">
+                                    <!-- <li>
                                         <div class="order-list">
                                         <div class="item-pic">
                                                 <img src="images/prd-1.png">
@@ -508,7 +508,7 @@ include_once('includes/pagesources.php'); ?>
                                             </div>
                                             
                                         </div>
-                                    </li>
+                                    </li> -->
                                     
                                 </ul>
 
@@ -516,8 +516,8 @@ include_once('includes/pagesources.php'); ?>
                         </li>
                     </ul>
                 </div>
-                <div class="col-xs-12 col-md-4 total-checkout-items">
-                    <table class="table totalpayble">
+                <div class="col-xs-12 col-md-4 total-checkout-items totalPayableCheckout">
+                    <!-- <table class="table totalpayble">
                         <thead>
                             <tr>
                                 <th colspan="2">Price Details</th>
@@ -551,13 +551,67 @@ include_once('includes/pagesources.php'); ?>
                                 </td>
                             </tr>
                         </tfoot>
-                    </table>
-                    <button class="change-btn payment-procc">Procced to Payment</button>
+                    </table> -->
+                    <!-- <button class="change-btn payment-procc">Procced to Payment</button> -->
                 </div>
             </div>
         </div>
     </div>
     <? include_once('includes/footer.php') ?>
 </body>
+<script>
+    $(document).ready(function() {
+        cartItemsCheckOut();
+    });
+    function cartItemsCheckOut() {
+          $.ajax({
+              url : "<?php echo 'cart-process.php?act=show_cart_details_checkout'; ?>",
+              dataType : 'JSON',
+              type : 'POST',
+              data : { cart_details:'cart_details' },
+              success : function(response) {
+                  if(response != '') {
+                      if(response.status) {
+                        console.log('kshj ',response.cart_counter);
+                          $('.cartItemsCheckout').html(response.details);
+                          $('.totalPayableCheckout').html(response.totalPayable);
+                          // if(response.cart_counter == 0) {
+                          //   console.log('dfd00');
+                          //   $('.payment-procc').hide();
+                          // }
+                      } else {
+                        console.log('dfdfd0');
+                            // $('.payment-procc').hide();
+                          // $('.cartFooter').hide();
+                          // $('.cartItems').html(response.details);
+                      }
+                  } else {
+                      // alert('Something went wrong. Please went wrong');
+                  }
+              }
+          });
+      }
 
+    $(document.body).on('click','.rmv_cart_item_checkout', function() {
+          let id = $(this).attr('data-remove_prod_id');
+          event.preventDefault();
+          $.ajax({
+              url : "<?php echo 'cart-process.php?act=remove_cart_item_checkout'; ?>",
+              dataType : 'JSON',
+              type : 'POST',
+              data : { product_id:id },
+              success : function(response) {
+                  if(response != '') {
+                      if(response.status) {
+                          location.reload();
+                      } else {
+                         alert('Something went wrong. Please went wrong');
+                      }
+                  } else {
+                      alert('Something went wrong. Please went wrong');
+                  }
+              }
+          });
+      });
+</script>
 </html>
