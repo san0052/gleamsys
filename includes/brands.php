@@ -21,7 +21,7 @@
 
                             <div class="col-xs-12 team-image">
 
-                                <img src="uploads/brand_logo/<?php echo $row['BrandLogoImage'] ;?>" alt="<?php echo $row['altTag']?>">
+                                <img src="uploads/brand_logo/<?php echo $row['BrandLogoImage'] ;?>" alt="<?php echo $row['altTag']?>" style="cursor: not-allowed;;">
 
                             </div>
 

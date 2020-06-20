@@ -54,13 +54,13 @@
 
               <!-- <label>Full Name</label> -->
 
-              <textarea placeholder="Requerments" name="message" id="message"></textarea>
+              <textarea placeholder="Requerments" name="message" id="mess"></textarea>
 
             </div>
 
             <div class="col-xs-12 form-group">
 
-             <button type="button" class="regi-btn" onclick="return validate()">Submit</button>
+             <button type="button" class="regi-btn" onclick="return validateQuote()">Submit</button>
 
             </div>
 
@@ -76,45 +76,45 @@
   </div>
 
    <script>
-    function validate()
+    function validateQuote()
     {
-      var name               =   $('#name').val();
-      var email              =   $('#email').val();
-      var mobileno           =   $('#mobileno').val();
-      var message            =   $('#message').val();
-      var flag = 0;
+      let flag = 0;
+      let name      = $('#name').val();
+      let email     = $('#email').val();
+      let mobileno  = $('#mobileno').val();
+      let message   = $('#mess').val();
+
       if($('#name').val()=='')
         {
             alert('Please enter your name');
             $('#name').focus();
-            flag++;
+            return false;
         }
         if($('#email').val()=='')
         {
             alert('Please enter your email address');
             $('#email').focus();
-            flag++;
+            return false;
         }
         if($('#mobileno').val()=='')
         {
             alert('Please enter your mobile number');
             $('#mobileno').focus();
-            flag++;
+            return false;
         }
-        if($('#message').val()=='')
+        if($('#mess').val()=='')
         {
             alert('Please enter your query');
-            $('#message').focus();
-            flag++;
+            $('#mess').focus();
+            return false;
         }
-
       
       if(flag>0)
       {
         return false;
       }else{
             $.ajax({
-                url :"<?php echo $cfg['base_url'].'mail-process.php?act=QuickContact'?>",
+                url :"<?php echo $cfg['base_url'].'mail-process.php?act=quickContact'?>",
                 type: "POST",
                 data : { name : name, email: email,mobileno: mobileno,message: message },
                 success : function(response){

@@ -192,17 +192,17 @@
 
                <li onclick="window.location.href='about.php'">About us</li>
 
-               <li>My Account</li>
+              <!--  <li>My Account</li> -->
 
-               <li>Terms of use</li>
+               <!-- <li onclick="window.location.href='terms.php'">Terms of use</li> -->
 
-               <li>Delivery Policy</li>
+               <li  >Delivery Policy</li>
 
                <li>Returns Policy</li>
 
-               <li onclick="window.location.href='privecy-policy.php'">Privacy Policy</li>
+               <li onclick="window.location.href='privacy-policy.php'">Privacy Policy</li>
 
-               <li>FAQs</li>
+               <li onclick="window.location.href='faq.php'">FAQs</li>
 
                <li onclick="window.location.href='contact.php'">Contact us</li>
 

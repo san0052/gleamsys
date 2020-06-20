@@ -316,7 +316,7 @@ if($show=='editRefund'){
 <?  }
 
 if($show=='editPrivacy'){
-  $sql="SELECT * FROM ".$cfg['DB_PRIVACY']." WHERE `siteId`='".$cfg['SESSION_SITE']."' and id =3";
+  $sql="SELECT * FROM ".$cfg['DB_PRIVACY']." WHERE `siteId`='".$cfg['SESSION_SITE']."' and id =1";
   $res=$heart->sql_query($sql);
   $row=$heart->sql_fetchrow($res);
 
