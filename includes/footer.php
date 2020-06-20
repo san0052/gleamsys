@@ -231,16 +231,24 @@
            <div class="col-xs-12 col-md-3 footer-link contact-list">
 
              <ul>
+               <?php 
+                  $sql =   "SELECT * FROM ".$cfg['DB_CONTACT_US']."
+                                           WHERE  
+                                          `status` ='A' ORDER BY `id` DESC";
+                  $res        =   $mycms->sql_query($sql);
+                  $row        =   $mycms->sql_fetchrow($res);
+                  $address    =   $row['address'];
+                ?>
 
                <p class="des">Contact</p>
 
-               <li><span class="chk-tick"><i class="fas fa-map-marker"></i></span>Suit 209, 86 Murray Street, Hobart, Tasmania 7000, Australia</li>
+               <li><span class="chk-tick"><i class="fas fa-map-marker"></i></span><?php echo $row['address'];?></li>
 
-               <li><span class="chk-tick"><i class="fas fa-map-marker"></i></span>Level 17, 570 Bourke Street, Melbourne, Victoria 3000, Australia</li>
+               <li><span class="chk-tick"><i class="fas fa-map-marker"></i></span><?php echo $row['address2'];?></li>
 
-               <li><span class="chk-tick"><i class="fas fa-map-marker"></i></span>Suite 5-7, 187 Brisbane Street, Launceston, Tasmania 7000, Australia</li>
+               <li><span class="chk-tick"><i class="fas fa-map-marker"></i></span><?php echo $row['address3'];?></li>
 
-               <li><span class="chk-tick"><i style="transform: rotate(90deg);" class="fas fa-phone"></i></span>+61 435 074 100</li>
+               <li><span class="chk-tick"><i style="transform: rotate(90deg);" class="fas fa-phone"></i></span><?php echo $row['phone1'];?></li>
 
              </ul>
 
