@@ -47,6 +47,22 @@ switch($action) {
 	case 'show_cart_details':
 		$cart_session = !empty($_SESSION['gleam_cart_session'])?$_SESSION['gleam_cart_session']:'';
 
+		$deliveryCharge = 'free';
+		if (!empty($_REQUEST['id'])) {
+			$sqlShip = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']." WHERE `status`!='D' AND `id` = '".$_REQUEST['id']."'";
+			$resShip    =   $mycms->sql_query($sqlShip);
+	        $rowShip    =   $mycms->sql_fetchrow($resShip);
+	        if (!empty($rowShip)) {
+	        	$pincode = $rowShip['pincode'];
+    			$sqlPin = "SELECT * FROM ".$cfg['DB_PINCODES']." WHERE `status`!='D' AND `Pincode` = '".$pincode."'";
+				$resPin    =   $mycms->sql_query($sqlPin);
+		        $rowPin    =   $mycms->sql_fetchrow($resPin);
+		        if (!empty($rowPin)) {
+		        	$deliveryCharge = $rowPin['delivery_charges'];
+		        }
+	        }
+		}
+
 		if (!empty($cart_session)) {
 			$totalCount = 0;
 			$totalAmount = 0;
@@ -97,7 +113,7 @@ switch($action) {
 								$cartItems .= 'Delivery Charge';
 							$cartItems .= '</td>';
 							$cartItems .= '<td>';
-								$cartItems .= 'Free';
+								$cartItems .= $deliveryCharge;
 							$cartItems .= '</td>';
 						$cartItems .= '</tr>';
 					$cartItems .= '</tbody>';
