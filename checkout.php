@@ -148,10 +148,10 @@ include_once('includes/pagesources.php'); ?>
                                         <p><?php echo $row['country']; ?></p>
 
                                    <?php }else if($_GET['id']){?>
-                                        <p><?php echo ucfirst($rows['name']).','.$row['mobile'];?> </p>
-                                        <p><?php echo $rows['location'].','.' '.$row['pincode']; ?></p>
-                                        <p><?php echo $rows['city'].','.' '.$row['state']; ?></p>
-                                        <p><?php echo $rows['country']; ?></p>
+                                        <p><?php echo 'Name :- '.ucfirst($rows['name']).','.$row['mobile'];?> </p>
+                                        <p><?php echo 'Location :- '.$rows['location'].','.' '.$row['pincode']; ?></p>
+                                        <p><?php echo $rows['city'].','.' '.$rows['state']; ?></p>
+                                        <p><?php echo 'Country :- '.$rows['country']; ?></p>
                                    <?php }else{?>
                                     <p>Please Add your shipping/delivery address</p>
                                   <?php } ?>
@@ -400,16 +400,18 @@ include_once('includes/pagesources.php'); ?>
                                                         country: ship_country, pincode: ship_pincode
                                                     },
                                                     success : function(response) {
-                                                        console.log(response);
-                                    
+                                                    
                                                         if(response != '') {
                                                             if(response.status) {
-                                                                alert(response.message);
-                                                                setTimeout(function() {
-                                                                    location.reload();
-                                                                },1200);
-                                                            } else if(response.status =='success'){
-                                                                window.location.reload='checkout.php?id='+response.data_id;
+
+                                                                if(response.data_id === undefined || response.data_id == null || response.data_id == '') {
+                                                                    alert(response.message);
+                                                                    setTimeout(function() {
+                                                                        location.reload();
+                                                                    },800);
+                                                                } else {
+                                                                    window.location.href='checkout.php?id='+response.data_id;
+                                                                }
                                                             }
                                                         } else {
                                                             alert('Something went wrong. Please went wrong');
