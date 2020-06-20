@@ -124,6 +124,7 @@ include_once('includes/pagesources.php'); ?>
                             <button>Delivery Address</button>
                                 <ul id="edit-address" class="show">
                                 <?php 
+                                    $rows = array();
                                    if($row['email']){
                                     $sqlgetUser = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']."  WHERE `status`='A' AND `email` = '".$row['email']."'  ";
                                     $res        =   $mycms->sql_query($sqlgetUser);
@@ -160,7 +161,7 @@ include_once('includes/pagesources.php'); ?>
                                     <p>Please Add your shipping/delivery address</p>
                                   <?php } ?>
                                     <button class="change-btn" onclick="editaddress()">Edit</button>
-                                    <input type="hidden" name="shippingAddress" value="<?php echo $rows['id']; ?>">
+                                    <input type="hidden" name="shipping_id" value="<?php echo $rows['id']; ?>" class="shippingAddressId">
                                     <div class="edit-frm">
                                         <p>Edit Address</p>
                                         <?php if($row['id'] || $rows['id']){ ?>
@@ -466,7 +467,6 @@ include_once('includes/pagesources.php'); ?>
                                         }
 
                                         function putData(data){
-                                            console.log(data);
                                             $('.ship_fullname').val(data.name);
                                             $('.ship_mobile').val(data.mobile);
                                             $('.ship_email').val(data.email);
@@ -615,5 +615,28 @@ include_once('includes/pagesources.php'); ?>
               }
           });
       });
+
+     $(document.body).on('click', '.payment-procc', function(event) {
+        let shippingAddressId = $('.shippingAddressId').val();
+        if(shippingAddressId == '' || shippingAddressId === undefined) {
+            alert('Please save shipping address to proceed to payment');
+            event.preventDefault();
+        } else {
+            event.preventDefault();
+            $.ajax({
+                url : "shipping-process.php?act=place_order",
+                dataType : 'JSON',
+                type : 'POST',
+                data : { shippingAddressId : shippingAddressId },
+                success : function(response) {
+                    if(response.status) {
+                        $('#submitPaypalForm').submit();
+                    } else {
+                        alert('Something went wrong. Please try again later');
+                    }
+                }
+            });
+        }
+     });
 </script>
 </html>

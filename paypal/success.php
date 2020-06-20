@@ -1,7 +1,17 @@
 <?php 
 
-include_once("includes/links_frontend.php");
+@session_start();
+//header("Cache-Control: no-cache, must-revalidate");
+include_once("../includes/configure.php");
+include_once("../includes/configure.override.php");
 
+include_once("../includes/configure.language.php");
+
+include_once("../includes/function.php");
+include_once("../includes/frontend.template.php");
+include_once("../includes/libs/class.common.php"); 
+
+unset($_SESSION['gleam_cart_session']);
 // Include configuration file 
 // include_once 'config.php'; 
  
