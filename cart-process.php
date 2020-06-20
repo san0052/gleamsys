@@ -198,7 +198,7 @@ switch($action) {
 				if (!empty($paypal)) {
 					$totalPayable .= '<form action="'.PAYPAL_URL.'" method="post">';
 					$totalPayable .= $paypal;
-					$totalPayable .= '<input type="image" name="submit" border="0" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif">';
+					$totalPayable .= '<button class="change-btn payment-procc">Procced to Payment</button>';
 					$totalPayable .= '</form>';
 				} else {
 					$totalPayable .= '<button class="change-btn payment-procc">Procced to Payment</button>';
