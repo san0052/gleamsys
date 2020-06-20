@@ -127,7 +127,11 @@ include_once('includes/pagesources.php'); ?>
                                    if($row['email']){
                                     $sqlgetUser = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']."  WHERE `status`='A' AND `email` = '".$row['email']."'  ";
                                     $res        =   $mycms->sql_query($sqlgetUser);
-                                    $rows        =   $mycms->sql_fetchrow($res);
+                                    $rows       =   $mycms->sql_fetchrow($res);
+                                }else{
+                                     $sqlgetUser = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']."  WHERE `status`='A' AND `id` = '".$_GET['id']."'  ";
+                                    $res        =   $mycms->sql_query($sqlgetUser);
+                                    $rows       =   $mycms->sql_fetchrow($res);
                                 }
                                 if($userId && $rows['email']){ ?>
                                     <p style="color:#b8171d">Your Registered Shipping address</p>
@@ -142,9 +146,15 @@ include_once('includes/pagesources.php'); ?>
                                         <p><?php echo $row['location'].','.' '.$row['pincode']; ?></p>
                                         <p><?php echo $row['city'].','.' '.$row['state']; ?></p>
                                         <p><?php echo $row['country']; ?></p>
+
+                                   <?php }else if($_GET['id']){?>
+                                        <p><?php echo ucfirst($rows['name']).','.$row['mobile'];?> </p>
+                                        <p><?php echo $rows['location'].','.' '.$row['pincode']; ?></p>
+                                        <p><?php echo $rows['city'].','.' '.$row['state']; ?></p>
+                                        <p><?php echo $rows['country']; ?></p>
                                    <?php }else{?>
-                                        <p>Please Add your shipping/delivery address</p>
-                                   <?php } ?>
+                                    <p>Please Add your shipping/delivery address</p>
+                                  <?php } ?>
                                     <button class="change-btn" onclick="editaddress()">Edit</button>
                                     <div class="edit-frm">
                                         <p>Edit Address</p>
@@ -189,7 +199,7 @@ include_once('includes/pagesources.php'); ?>
 
                                             </div>
                                         <?php } else{ ?>
-                                                           <div>
+                                            <div>
                                                 <div class="col-xs-6 form-group">
                                                     <input type="text" placeholder="Full Name" name="name" id="f_name" class="ship_fullname" >
                                                      <small class="error_ship_fullname" style="color:red"></small>
@@ -199,7 +209,7 @@ include_once('includes/pagesources.php'); ?>
                                                     <small class="error_ship_mobile" style="color:red"></small>
                                                 </div>
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="Email" name="email" id="email_id" class="ship_email" >
+                                                    <input type="text" placeholder="Email" name="email" id="email_id" class="ship_email" onblur="getAlldata();">
                                                     <small class="error_ship_email" style="color:red"></small>
                                                 </div>
                                                 <div class="col-xs-6 form-group">
@@ -294,8 +304,95 @@ include_once('includes/pagesources.php'); ?>
                                             if(error>0) {
                                                 event.preventDefault();
                                             }else{
-                                                 $.ajax({
+                                                $.ajax({
                                                     url : "<?php echo 'shipping-process.php?act=updateShipAddress'; ?>",
+                                                    dataType : 'JSON',
+                                                    type : 'POST',
+                                                    data : { name:ship_fullname, mobile:ship_mobile, email:ship_email,
+                                                        location:ship_location, city:ship_city, state:ship_state,
+                                                        country: ship_country, pincode: ship_pincode
+                                                    },
+                                                    success : function(response) {
+                                                        console.log(response);
+                                                        if(response != '') {
+                                                            if(response.status) {
+                                                                alert(response.message);
+                                                                /*setTimeout(function() {
+                                                                    location.reload();
+                                                                },1200);*/
+                                                            } else {
+                                                                alert(response.message);
+                                                            }
+                                                        } else {
+                                                            alert('Something went wrong. Please went wrong');
+                                                        }
+                                                    }
+                                                });
+                                            }
+                                            $("#edit-address").removeClass("edit");
+                                        }
+
+                                        function saveAddress() {
+                                            
+                                            let error = 0;
+                                            $('.error_ship_fullname, .error_ship_mobile, .error_ship_email, .error_ship_location, .error_ship_city, .error_ship_state, .error_ship_country, .error_ship_pincode, .error_ship_password, .error_ship_confirm_password').text('');
+                                            let ship_fullname            =   $('.ship_fullname').val().trim();
+                                            let ship_mobile              =   $('.ship_mobile').val().trim();
+                                            let ship_email               =   $('.ship_email').val().trim();
+                                            let ship_location            =   $('.ship_location').val().trim();
+                                            let ship_city                =   $('.ship_city').val().trim();
+                                            let ship_state               =   $('.ship_state').val().trim();
+                                            let ship_country             =   $('.ship_country').val();
+                                            let ship_pincode             =   $('.ship_pincode').val().trim();
+                                            
+
+                                            if(ship_fullname == '') {
+                                                $('.error_ship_fullname').text('Name is required');
+                                                error++;   
+                                            }
+                                            if(ship_mobile == '') {
+                                                $('.error_ship_mobile').text('Mobile number is required');
+                                                error++;   
+                                            }
+                                            if(ship_mobile != '' && ship_mobile.length != 10) {
+                                                $('.error_ship_mobile').text('Mobile number should be 10 digit');
+                                                error++;   
+                                            }
+                                            if(ship_email == '') {
+                                                $('.error_ship_email').text('Email address is required');
+                                                error++;  
+                                            }
+                                            if(ship_email != '' && (isEmail(ship_email) == false)) {
+                                                $('.error_ship_email').text('Email address is invalid');
+                                                error++;   
+                                            }
+                                            if(ship_location == '') {
+                                                $('.error_ship_location').text('Location is required');
+                                                error++;   
+                                            }
+                                            if(ship_city == '') {
+                                                $('.error_ship_city').text('City is required');
+                                                error++;   
+                                            }
+                                            if(ship_state == '') {
+                                                $('.error_ship_state').text('State is required');
+                                                error++;   
+                                            }
+                                            if(ship_country == '') {
+                                                $('.error_ship_country').text('Country is required');
+                                                error++;   
+                                            }
+                                            if(ship_pincode == '') {
+                                                $('.error_ship_pincode').text('Pincode is required');
+                                                error++;   
+                                            }
+                                            
+                                            
+                                            if(error>0) {
+                                                event.preventDefault();
+                                            }else{
+                                                 $.ajax({
+                                                    url : "<?php echo 'shipping-process.php?act=updateAddress'; ?>",
                                                     dataType : 'JSON',
                                                     type : 'POST',
                                                     data : { name:ship_fullname, mobile:ship_mobile, email:ship_email,
@@ -310,8 +407,8 @@ include_once('includes/pagesources.php'); ?>
                                                                 setTimeout(function() {
                                                                     location.reload();
                                                                 },1200);
-                                                            } else {
-                                                                alert(response.message);
+                                                            } else if(response.status =='success'){
+                                                                window.location.reload='checkout.php?id='+data_id;
                                                             }
                                                         } else {
                                                             alert('Something went wrong. Please went wrong');
@@ -319,7 +416,55 @@ include_once('includes/pagesources.php'); ?>
                                                     }
                                                 });
                                             }
-                                            $("#edit-address").removeClass("edit");
+                                            //$("#edit-address").removeClass("edit");
+                                        }
+
+                                        function getAlldata() {
+            
+                                            let error = 0;
+                                            $('.error_ship_email').text('');
+                                           
+                                            let ship_email               =   $('.ship_email').val().trim();
+                                            
+                                            if(ship_email == '') {
+                                                $('.error_ship_email').text('Email address is required');
+                                                error++;  
+                                            }
+                                            if(error>0) {
+                                                event.preventDefault();
+                                            }else{
+                                                 $.ajax({
+                                                    url : "<?php echo 'shipping-process.php?act=fetchAddress'; ?>",
+                                                    dataType : 'JSON',
+                                                    type : 'POST',
+                                                    data : { email:ship_email },
+                                                    success : function(response) {
+                                                        console.log(response);
+                                                        event.preventDefault();
+                                                        if(response != '') {
+                                                            if(response.status) {
+                                                                if (response.user_exist == 1) {
+                                                                    putData(response.details);
+                                                                }
+                                                            }
+                                                        } 
+                                                    }
+                                                });
+                                                event.preventDefault();
+                                            }
+                                            //$("#edit-address").removeClass("edit");
+                                        }
+
+                                        function putData(data){
+                                            console.log(data);
+                                            $('.ship_fullname').val(data.name);
+                                            $('.ship_mobile').val(data.mobile);
+                                            $('.ship_email').val(data.email);
+                                            $('.ship_location').val(data.location);
+                                            $('.ship_city').val(data.city);
+                                            $('.ship_state').val(data.state);
+                                            $('.ship_country').val(data.country);
+                                            $('.ship_pincode').val(data.pincode);
                                         }
                                     </script>
                                 </ul>
