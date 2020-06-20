@@ -116,7 +116,7 @@ case 'update':
 		$sql="UPDATE ".$cfg['DB_HOME_BANNER']." SET `bannerTitle`='".$bannerTitle."',`altTag` = '".$altTag."',`bannerButton`='".$bannerButton."' WHERE `id`='".$_REQUEST['id']."'  ";
 		$heart->sql_query($sql);
 	}	
-	$heart->redirect('homebanner.php?pageno='.$_REQUEST['pageno'].'&m=2');
+	$heart->redirect('homeBanner.php?pageno='.$_REQUEST['pageno'].'&m=2');
 	
 break;
 

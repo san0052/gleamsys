@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 heading">
-                <h2>feature products</h2>
+                <h2>featured products</h2>
             </div>
 
             <div class="col-xs-12 prd-listing-scrol">

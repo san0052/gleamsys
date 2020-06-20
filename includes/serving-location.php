@@ -14,7 +14,7 @@
 
                 <form >
 
-                    <input class="form-control" placeholder="EMAIL ID" id="emailId" name="emailNews">
+                    <input class="form-control" placeholder="EMAIL ID" id="emailNews" name="emailNews">
 
                     <button style="border: 0;
 
@@ -30,7 +30,7 @@
 
                         border-radius: 0;
 
-                        text-transform: uppercase;margin-top: 30px;" >Send</button>
+                        text-transform: uppercase;margin-top: 30px;" onclick="return validateNewsletter();">Send</button>
 
                 </form>
 
@@ -42,16 +42,16 @@
 
 </div>
 <script>
-    function validate()
+    function validateNewsletter()
     {
       
-      var email              =   $('#emailId').val();
+      var email              =   $('#emailNews').val();
       var flag = 0;
      
-        if($('#emailId').val()=='')
+        if($('#emailNews').val()=='')
         {
             alert('Please enter your email address');
-            $('#email').focus();
+            $('#emailNews').focus();
             flag++;
         }
         
@@ -59,6 +59,7 @@
       {
         return false;
       }else{
+            event.preventDefault();
             $.ajax({
                 url :"<?php echo $cfg['base_url'].'mail-process.php?act=newsletterAdd'?>",
                 type: "POST",
@@ -68,7 +69,7 @@
                         response = response.trim();
                        if(response == 'true') {
                             alert('Email Send successfully');
-                            window.location.href="<?php echo $cfg['base_url'];?>";
+                            location.reload();
                        } else {
                             alert('Something went wrong');
                        } 

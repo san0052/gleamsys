@@ -2,7 +2,7 @@
 include_once("includes/links_frontend.php");
 
 $type = !empty($_REQUEST['type']) ? trim($_REQUEST['type']) : 'all';
-$limit = !empty($_REQUEST['limit']) ? trim($_REQUEST['limit']) : 1;
+$limit = !empty($_REQUEST['limit']) ? trim($_REQUEST['limit']) : 9;
 $offset = !empty($_REQUEST['offset']) ? trim($_REQUEST['offset']) : 0;
 
 $sort = !empty($_REQUEST['sort']) ? trim($_REQUEST['sort']) : '';

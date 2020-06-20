@@ -103,6 +103,7 @@ $cfg['DB_PORTFOLIO_BANNER']			= "`".$cfg['TABLE_PREFIX']."portfolio_banner`";
 $cfg['DB_PORTFOLIO_INFO']			= "`".$cfg['TABLE_PREFIX']."portfolio_info`";
 $cfg['DB_SERVICE_BANNER']			= "`".$cfg['TABLE_PREFIX']."services_banner`";
 $cfg['DB_SERVICE_INFO']				= "`".$cfg['TABLE_PREFIX']."services_info`";
+$cfg['DB_FAQ']						= "`".$cfg['TABLE_PREFIX']."faq`";
 
 //Tanushree 2.07.16
 $cfg['DB_RECENTLY_VIEWED_DETAILS']		= "`".$cfg['TABLE_PREFIX']."recently_viewed_details`";
