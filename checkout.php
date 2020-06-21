@@ -169,37 +169,37 @@ include_once('includes/pagesources.php'); ?>
                                         <?php if($_GET['id']) { ?>
                                             <div>
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="Email" name="email" id="email" class="ship_email" value="<?php echo $rowsData['email']; ?>">
+                                                    <input type="text" placeholder="Email" name="email" id="email" class="ship_email" value="<?php echo $rows['email']; ?>">
                                                     <small class="error_ship_email" style="color:red"></small>
                                                 </div>
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="Mobile Number" name="mobile" id="mobNo" class="ship_mobile" value="<?php echo $rowsData['mobile']; ?>">
+                                                    <input type="text" placeholder="Mobile Number" name="mobile" id="mobNo" class="ship_mobile" value="<?php echo $rows['mobile']; ?>">
                                                     <small class="error_ship_mobile" style="color:red"></small>
                                                 </div>
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="Full Name" name="name" id="fname" class="ship_fullname" value="<?php echo $rowsData['name']; ?>">
+                                                    <input type="text" placeholder="Full Name" name="name" id="fname" class="ship_fullname" value="<?php echo $rows['name']; ?>">
                                                      <small class="error_ship_fullname" style="color:red"></small>
                                                 </div>
                                                 
                                                 
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="Location" name="location" id="location"  class="ship_location" value="<?php echo $rowsData['location']; ?>">
+                                                    <input type="text" placeholder="Location" name="location" id="location"  class="ship_location" value="<?php echo $rows['location']; ?>">
                                                     <small class="error_ship_loaction" style="color:red"></small>
                                                 </div>
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="City" name="city" id="city" class="ship_city" value="<?php echo $rowsData['city']; ?>">
+                                                    <input type="text" placeholder="City" name="city" id="city" class="ship_city" value="<?php echo $rows['city']; ?>">
                                                     <small class="error_ship_city" style="color:red"></small>
                                                 </div>
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="State" name="state" id="state"  class="ship_state" value="<?php echo $rowsData['state']; ?>">
+                                                    <input type="text" placeholder="State" name="state" id="state"  class="ship_state" value="<?php echo $rows['state']; ?>">
                                                     <small class="error_ship_state" style="color:red"></small>
                                                 </div>
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="Country" name="country" class="ship_country" value="<?php echo $rowsData['state']; ?>">
+                                                    <input type="text" placeholder="Country" name="country" class="ship_country" value="<?php echo $rows['state']; ?>">
                                                     <small class="error_ship_country" style="color:red"></small>
                                                 </div>
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="Pin Code" name="pincode" id="pincode" class="ship_pincode" value="<?php echo $rowsData['pincode']; ?>">
+                                                    <input type="text" placeholder="Pin Code" name="pincode" id="pincode" class="ship_pincode" value="<?php echo $rows['pincode']; ?>">
                                                     <small class="error_ship_pincode" style="color:red"></small>
                                                 </div>
                                                 
@@ -215,33 +215,33 @@ include_once('includes/pagesources.php'); ?>
                                                     <small class="error_ship_email" style="color:red"></small>
                                                 </div>
                                                  <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="Mobile Number" name="mobile" id="mob_No" class="ship_mobile" >
+                                                    <input type="text" placeholder="Mobile Number" name="mobile" id="mob_No" class="ship_mobile" autocomplete="off">
                                                     <small class="error_ship_mobile" style="color:red"></small>
                                                 </div>
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="Full Name" name="name" id="f_name" class="ship_fullname" >
+                                                    <input type="text" placeholder="Full Name" name="name" id="f_name" class="ship_fullname" autocomplete="off">
                                                      <small class="error_ship_fullname" style="color:red"></small>
                                                 </div>
                                                
                                                 
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="Location" name="location" id="add_location"  class="ship_location" >
+                                                    <input type="text" placeholder="Location" name="location" id="add_location"  class="ship_location" autocomplete="off">
                                                     <small class="error_ship_loaction" style="color:red"></small>
                                                 </div>
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="City" name="city" id="add_city" class="ship_city" >
+                                                    <input type="text" placeholder="City" name="city" id="add_city" class="ship_city" autocomplete="off">
                                                     <small class="error_ship_city" style="color:red"></small>
                                                 </div>
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="State" name="state" id="add_state"  class="ship_state" >
+                                                    <input type="text" placeholder="State" name="state" id="add_state"  class="ship_state" autocomplete="off">
                                                     <small class="error_ship_state" style="color:red"></small>
                                                 </div>
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="Country" name="add_country" class="ship_country" >
+                                                    <input type="text" placeholder="Country" name="add_country" class="ship_country" autocomplete="off">
                                                     <small class="error_ship_country" style="color:red"></small>
                                                 </div>
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="Pin Code" name="add_pincode" id="pincode" class="ship_pincode">
+                                                    <input type="text" placeholder="Pin Code" name="add_pincode" id="pincode" class="ship_pincode" autocomplete="off">
                                                     <small class="error_ship_pincode" style="color:red"></small>
                                                 </div>
                                                 
@@ -425,7 +425,10 @@ include_once('includes/pagesources.php'); ?>
                                                                 } else {
                                                                     window.location.href='checkout.php?id='+response.data_id;
                                                                 }
+                                                            } else {
+                                                                alert(response.message);
                                                             }
+                                                            
                                                         } else {
                                                             alert('Something went wrong. Please went wrong');
                                                         }

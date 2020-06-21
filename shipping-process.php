@@ -48,7 +48,7 @@ switch($action)
 	break;
 
 
-	case 'updateAddress':
+		case 'updateAddress':
 
 		$name 		= stripslashes(strip_tags($_REQUEST['name']));
 		$mobile 	= stripslashes(strip_tags($_REQUEST['mobile']));
@@ -60,7 +60,7 @@ switch($action)
 		$pincode 	= stripslashes(strip_tags($_REQUEST['pincode']));
 		$password   = rand(100000,999999);
 
-		$checkSql = "SELECT `email` FROM ".$cfg['DB_USERS']." WHERE `email` = '".$email."' ";
+		$checkSql = "SELECT `email`,`id` FROM ".$cfg['DB_USERS']." WHERE `email` = '".$email."' ";
 		$user	=	$mycms->sql_query($checkSql);
 		$row	=	$mycms->sql_fetchrow($user);
 		if (!empty($row)) {
@@ -92,11 +92,32 @@ switch($action)
 				$ins = $mycms->sql_insert($registerUsers);
 				
 			if($sql1){
+					session_start();
+					$_SESSION['gleam_users_session'] = array(
+						'email' => $row['email'],
+						'user_id' => $row['id']
+					);
 				echo json_encode(array('status'=>true,'message'=>'Your shipping address updated successfully','data_id'=>$ins));die;
 			}else{
 				echo json_encode(array('status'=>false,'message'=>'Failed to update shipping address')); die;
 			}
 		}else{
+
+			//check mobile exist
+			$checkSqlMobile = "SELECT `mobile` FROM ".$cfg['DB_USERS']." WHERE `mobile` = '".$mobile."'";
+			$resMobile	=	$mycms->sql_query($checkSqlMobile);
+			$rowMobile	=	$mycms->sql_fetchrow($resMobile);
+			if (!empty($rowMobile)) {
+				echo json_encode(array('status'=>false,'message'=>'Mobile already exist')); die;
+			}
+
+			// check email exist
+			$checkSqlEmail = "SELECT `email` FROM ".$cfg['DB_USERS']." WHERE `email` = '".$email."'";
+			$resEmail	=	$mycms->sql_query($checkSqlEmail);
+			$rowEmail	=	$mycms->sql_fetchrow($resEmail);
+			if (!empty($rowEmail)) {
+				echo json_encode(array('status'=>false,'message'=>'Email already exist')); die;
+			}
 				$registerUsers = "INSERT INTO ".$cfg['DB_USERS']."
 								 SET
 								 	`name`		=   '".$name."',
@@ -111,10 +132,15 @@ switch($action)
 									`session_id`=	'".session_id()."',
 									`created_at`=	'".date('Y-m-d H:i:s')."',
 									`ip`		=	'".$_SERVER['REMOTE_ADDR']."'";
-									
 
 				$ins = $mycms->sql_insert($registerUsers);
 			if (!empty($ins)) {
+
+					session_start();
+					$_SESSION['gleam_users_session'] = array(
+						'email' => $email,
+						'user_id' => $ins
+					);
 				$userLogin = "INSERT INTO ".$cfg['DB_USER_LOGIN']."
 								 SET
 								 	`user_id`		=	".$ins.",
@@ -140,6 +166,58 @@ switch($action)
 									`ip`		=	'".$_SERVER['REMOTE_ADDR']."'";
 								
 				$ins = $mycms->sql_insert($registerUsers);
+
+					//Send Email To Admin
+					$mail.='			<table width="100%" border="0" cellspacing="0" cellpadding="12" style="min-width: 700px;">';
+					$mail.='				<tr>';
+					$mail.='					<td height="9" colspan="3" align="left" valign="top" style="padding:1em 0 0 0;"><h2>New User Registration</h2></td>';
+					$mail.='				</tr>';
+					$mail.='					<tr>';
+					$mail.='						<td style="width:10%; padding:0;">Name</td>';
+					$mail.='						<td style="width:2%; padding:0;">:</td>';
+					$mail.='						<td style="width:88%; padding:0;">'.$name.'</td>';
+					$mail.='					</tr>';
+					$mail.='					<tr>';
+					$mail.='						<td style="width:10%; padding:0;">Contact</td>';
+					$mail.='						<td style="width:2%; padding:0;">:</td>';
+					$mail.='						<td style="width:88%; padding:0;">'.$mobile.'</td>';
+					$mail.='					</tr>';
+					$mail.='					<tr>';
+					$mail.='						<td style="width:10%; padding:0;">Email</td>';
+					$mail.='						<td style="width:2%; padding:0;">:</td>';
+					$mail.='						<td style="width:88%; padding:0;">'.$email.'</td>';
+					$mail.='					</tr>';
+					$mail.='					<tr>';
+					$mail.='						<td style="width:10%; padding:0;">Address</td>';
+					$mail.='						<td style="width:2%; padding:0;">:</td>';
+					$mail.='						<td style="width:88%; padding:0;">'.$location.','.$city.', '.$state.', '.$pincode.', '.$country.'</td>';
+					$mail.='					</tr>';
+					$mail.='					<tr>';
+					$mail.='						<td height="10" colspan="3" align="left" valign="top" style="padding:10px; border:1px solid #ccc; background:#f9f9f9;">';
+					$mail.='							<p style="font-weight:bold;">Query :</p>';
+					$mail.='							<p></p>';
+					$mail.='						</td>';
+					$mail.='					</tr>';
+					$mail.='				</table>';		
+					
+					$message		=	'New User Registration';
+					
+					$to_name 		=	'Admin';
+					$to_email 		=	$cfg['INFO_EMAIL'];
+					$form_name 		=	$cfg['ADMIN_NAME'];
+					$form_email		=	$cfg['ADMIN_EMAIL'];
+					$subject		=	"User Query";		
+					send_mail_contact($to_name, $to_email, $form_name, $form_email, $subject, $message);		
+						
+					/* ***** Send Email ***** */
+					$to_name 		=	$name;
+					$to_email 		=	$email;
+					$form_name 		=	$cfg['ADMIN_NAME'];
+					$form_email		=	$cfg['ADMIN_EMAIL'];
+					$subject		=	"Login Credentials";		
+					$message		.=	'Dear '.$name.',<br/><br/> your login credentials.<br>';
+					$message 		.= 	'Email - '.$email.'<br> Password - '.$password;
+					send_mail_contact($to_name, $to_email, $form_name, $form_email, $subject, $message, $bcc='');
 		
 				echo json_encode(array('status'=>'success','message'=>'User registered successfully', 'data_id'=>$ins)); die;
 			} else {
