@@ -132,13 +132,15 @@ include_once('includes/pagesources.php'); ?>
                                 }else if($_GET['id']){
                                     $sqlgetUsers = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']."  WHERE `status`='A' AND `id` = '".$_GET['id']."'  ";
                                     $res        =   $mycms->sql_query($sqlgetUsers);
-                                    $rows       =   $mycms->sql_fetchrow($res);
+                                    $rowsData   =   $mycms->sql_fetchrow($res);
+                                  
                                 }else{
                                     $getUser = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']."  WHERE `status`='A' AND `id` = '".$userId."'  ";
                                     $res        =   $mycms->sql_query($getUser);
                                     $row       =   $mycms->sql_fetchrow($res);
                                 }
-                                if($userId && $rows['email']){ ?>
+                                if($userId && $rows['email']){
+                                ?>
                                     <p style="color:#b8171d">Your Registered Shipping address</p>
                                     <li class="address">
                                         <p><?php echo ucfirst($rows['name']).','.$rows['mobile'];?> </p>
@@ -146,38 +148,40 @@ include_once('includes/pagesources.php'); ?>
                                         <p><?php echo $rows['city'].','.' '.$rows['state']; ?></p>
                                         <p><?php echo $rows['country']; ?></p>
                                     </li>
-                                <?php } else if($userId){ ?>
-                                        <p><?php echo ucfirst($row['name']).','.$row['mobile'];?> </p>
-                                        <p><?php echo $row['location'].','.' '.$row['pincode']; ?></p>
-                                        <p><?php echo $row['city'].','.' '.$row['state']; ?></p>
-                                        <p><?php echo $row['country']; ?></p>
+                                <?php } 
 
-                                   <?php }else if($_GET['id']){?>
-                                        <p><?php echo 'Name :- '.ucfirst($rows['name']).','.$rows['mobile'];?> </p>
-                                        <p><?php echo 'Location :- '.$rows['location'].','.' '.$rows['pincode']; ?></p>
-                                        <p><?php echo $rows['city'].','.' '.$rows['state']; ?></p>
-                                        <p><?php echo 'Country :- '.$rows['country']; ?></p>
-                                   <?php }else{?>
+                                   else if($_GET['id']){
+                                    
+                                    ?>
+                                        <p><?php echo 'Name :- '.ucfirst($rowsData['name']).','.$rowsData['mobile'];?> </p>
+                                        <p><?php echo 'Location :- '.$rowsData['location'].','.' '.$rowsData['pincode']; ?></p>
+                                        <p><?php echo $rowsData['city'].','.' '.$rowsData['state']; ?></p>
+                                        <p><?php echo 'Country :- '.$rowsData['country']; ?></p>
+                                   <?php }
+
+                                   else{?>
                                     <p>Please Add your shipping/delivery address</p>
                                   <?php } ?>
                                     <button class="change-btn" onclick="editaddress()">Edit</button>
                                     <input type="hidden" name="shipping_id" value="<?php echo $rows['id']; ?>" class="shippingAddressId">
                                     <div class="edit-frm">
                                         <p>Edit Address</p>
-                                        <?php if($row['id'] || $rows['id']){ ?>
+                                        <?php if($rows['id'] ){ ?>
                                             <div>
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="Full Name" name="name" id="fname" class="ship_fullname" value="<?php echo $rows['name']; ?>">
-                                                     <small class="error_ship_fullname" style="color:red"></small>
+                                                    <input type="text" placeholder="Email" name="email" id="email" class="ship_email" value="<?php echo $rows['email']; ?>">
+                                                    <small class="error_ship_email" style="color:red"></small>
                                                 </div>
                                                 <div class="col-xs-6 form-group">
                                                     <input type="text" placeholder="Mobile Number" name="mobile" id="mobNo" class="ship_mobile" value="<?php echo $rows['mobile']; ?>">
                                                     <small class="error_ship_mobile" style="color:red"></small>
                                                 </div>
                                                 <div class="col-xs-6 form-group">
-                                                    <input type="text" placeholder="Email" name="email" id="email" class="ship_email" value="<?php echo $rows['email']; ?>">
-                                                    <small class="error_ship_email" style="color:red"></small>
+                                                    <input type="text" placeholder="Full Name" name="name" id="fname" class="ship_fullname" value="<?php echo $rows['name']; ?>">
+                                                     <small class="error_ship_fullname" style="color:red"></small>
                                                 </div>
+                                                
+                                                
                                                 <div class="col-xs-6 form-group">
                                                     <input type="text" placeholder="Location" name="location" id="location"  class="ship_location" value="<?php echo $rows['location']; ?>">
                                                     <small class="error_ship_loaction" style="color:red"></small>
@@ -408,7 +412,8 @@ include_once('includes/pagesources.php'); ?>
                                                     success : function(response) {
                                                     
                                                         if(response != '') {
-                                                            if(response.status) {
+                                                            console.log(response);
+                                                            /*if(response.status) {
 
                                                                 if(response.data_id === undefined || response.data_id == null || response.data_id == '') {
                                                                     alert(response.message);
@@ -418,7 +423,7 @@ include_once('includes/pagesources.php'); ?>
                                                                 } else {
                                                                     window.location.href='checkout.php?id='+response.data_id;
                                                                 }
-                                                            }
+                                                            }*/
                                                         } else {
                                                             alert('Something went wrong. Please went wrong');
                                                         }
@@ -574,11 +579,12 @@ include_once('includes/pagesources.php'); ?>
         cartItemsCheckOut();
     });
     function cartItemsCheckOut() {
+        let shippingAddressId = $('.shippingAddressId').val();
           $.ajax({
               url : "<?php echo 'cart-process.php?act=show_cart_details_checkout'; ?>",
               dataType : 'JSON',
               type : 'POST',
-              data : { cart_details:'cart_details' },
+              data : { cart_details:'cart_details','shipId': shippingAddressId},
               success : function(response) {
                   if(response != '') {
                       if(response.status) {

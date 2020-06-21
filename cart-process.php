@@ -47,7 +47,7 @@ switch($action) {
 	case 'show_cart_details':
 		$cart_session = !empty($_SESSION['gleam_cart_session'])?$_SESSION['gleam_cart_session']:'';
 
-		$deliveryCharge = 'free';
+		/*$deliveryCharge = 'free';
 		if (!empty($_REQUEST['id'])) {
 			$sqlShip = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']." WHERE `status`!='D' AND `id` = '".$_REQUEST['id']."'";
 			$resShip    =   $mycms->sql_query($sqlShip);
@@ -61,7 +61,7 @@ switch($action) {
 		        	$deliveryCharge = $rowPin['delivery_charges'];
 		        }
 	        }
-		}
+		}*/
 
 		if (!empty($cart_session)) {
 			$totalCount = 0;
@@ -109,12 +109,12 @@ switch($action) {
 							$cartItems .= '</td>';
 						$cartItems .= '</tr>';
 						$cartItems .= '<tr>';
-							$cartItems .= '<td>';
+							/*$cartItems .= '<td>';
 								$cartItems .= 'Delivery Charge';
 							$cartItems .= '</td>';
 							$cartItems .= '<td>';
 								$cartItems .= $deliveryCharge;
-							$cartItems .= '</td>';
+							$cartItems .= '</td>';*/
 						$cartItems .= '</tr>';
 					$cartItems .= '</tbody>';
 					$cartItems .= '<tfoot>';
@@ -141,10 +141,12 @@ switch($action) {
 	case 'show_cart_details_checkout':
 
 		$cart_session = !empty($_SESSION['gleam_cart_session'])?$_SESSION['gleam_cart_session']:'';
-
-		$deliveryCharge = 'free';
-		if (!empty($_REQUEST['id'])) {
-			$sqlShip = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']." WHERE `status`!='D' AND `id` = '".$_REQUEST['id']."'";
+		/*echo '<pre>';
+		print_r($_GET);
+		exit;*/
+		$deliveryCharge = 0;
+		if (!empty($_REQUEST['shipId'])) {
+			$sqlShip = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']." WHERE `status`!='D' AND `id` = '".$_REQUEST['shipId']."'";
 			$resShip    =   $mycms->sql_query($sqlShip);
 	        $rowShip    =   $mycms->sql_fetchrow($resShip);
 	        if (!empty($rowShip)) {
@@ -190,6 +192,7 @@ switch($action) {
 			$paypal = paypalForm();
 
 			if ($totalCount>0) {
+				$totalAmountFinal = $totalAmount+$deliveryCharge;
 				$totalPayable .= '<table class="table totalpayble">';
 					$totalPayable .= '<thead>';
 						$totalPayable .= '<tr>';
@@ -210,7 +213,7 @@ switch($action) {
 								$totalPayable .= 'Delivery Charge';
 							$totalPayable .= '</td>';
 							$totalPayable .= '<td>';
-								$totalPayable .= $deliveryCharge;
+								$totalPayable .= (!empty($deliveryCharge)?$deliveryCharge:'Free');
 							$totalPayable .= '</td>';
 						$totalPayable .= '</tr>';
 					$totalPayable .= '</tbody>';
@@ -220,7 +223,7 @@ switch($action) {
 								$totalPayable .= 'Total Payble';
 							$totalPayable .= '</td>';
 							$totalPayable .= '<td>';
-								$totalPayable .= '$'.$totalAmount;
+								$totalPayable .= '$'.$totalAmountFinal;
 							$totalPayable .= '</td>';
 						$totalPayable .= '</tr>';
 					$totalPayable .= '</tfoot>';
