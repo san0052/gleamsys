@@ -48,4 +48,16 @@ $cfg['DB_DATABASE']						=	'gleamsys'; // Database Name*/
 
 $cfg['DB_TYPE']		        			=	'mysql'; // Dabase type MYSQL or ORACLE
 $cfg['USE_PCONNECT']					=	FALSE;
+
+
+// PayPal configuration 
+define('PAYPAL_ID', 'sb-8vqor1649489@business.example.com'); 
+define('PAYPAL_SANDBOX', TRUE); //TRUE or FALSE 
+ 
+define('PAYPAL_RETURN_URL', $cfg['base_url'].'paypal/success.php'); 
+define('PAYPAL_CANCEL_URL', $cfg['base_url'].'paypal/cancel.php'); 
+define('PAYPAL_NOTIFY_URL', $cfg['base_url'].'paypal/ipn.php'); 
+define('PAYPAL_CURRENCY', 	'AUD'); 
+
+define('PAYPAL_URL', (PAYPAL_SANDBOX == true)?"https://www.sandbox.paypal.com/cgi-bin/webscr":"https://www.paypal.com/cgi-bin/webscr");
 ?>

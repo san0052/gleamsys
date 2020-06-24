@@ -48,10 +48,8 @@ include_once("includes/links_frontend.php"); ?>
                 <div class="col-xs-12 col-md-7 right-section prd-detail-rt">
                     <p class="prd-name"><?php echo $row['pd_name'] ?></p>
                     <p class="prd-id"><?php echo $row['pd_code'] ?></p>
-                    <p class="include-tax">Quentity</p>
-                        <div class="check-delivery">
-                        <input type="number" min="1" max="10" value="1">
-                        </div>
+                   
+                        
                     
                     <hr>
                     <p class="prd-price">
@@ -101,8 +99,12 @@ include_once("includes/links_frontend.php"); ?>
                         <b>Description</b><br><br>
                         <?php echo $row['pd_description'];?></p>
                     <hr>
+                    <p class="include-tax">Quantity</p>
+                    <div class="check-delivery">
+                              <input class="cart_counter_<?php echo $row['pd_id']; ?>" type="number" min="1" max="10" value="1">
+                        </div>
                     
-                        <button class="addtocart">Add to Cart</button>
+                        <button class="addtocart add_to_cart"  data-cartProductId="<?php echo $row['pd_id']; ?>">Add to Cart</button>
                     
                 </div>
 

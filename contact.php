@@ -165,7 +165,7 @@ include_once("includes/links_frontend.php"); ?>
 
                                 <!-- <label>Full Name</label> -->
 
-                                <textarea placeholder="Requerments" id="message" name="message"></textarea>
+                                <textarea placeholder="Requerments" id="message" name="mess"></textarea>
 
                             </div>
 
@@ -208,7 +208,7 @@ include_once("includes/links_frontend.php"); ?>
             $('#mobileno').focus();
             return false;
         }
-        if($('#message').val()=='')
+        if($('#mess').val()=='')
         {
             alert('Please enter your query');
             $('#message').focus();

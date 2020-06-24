@@ -16,7 +16,7 @@
                         while($row    =   $mycms->sql_fetchrow($res)){ ?>
                     <div class="item">
                         <div class="col-xs-12 team-image">
-                            <img src="uploads/client_logo/<?php echo $row['projectLogo']?>" alt="<?php echo $row['altTag']?>">
+                            <img src="uploads/client_logo/<?php echo $row['projectLogo']?>" alt="<?php echo $row['altTag']?>" style="cursor: not-allowed;">
                         </div>
                     </div>
                 <?php } }?>

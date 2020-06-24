@@ -227,7 +227,7 @@ $orderstat =($_REQUEST['status']!="")?$_REQUEST['status']:'';
 																</td>
 																<td align="center"><?=$i+$offset?></td>                  
 																<td align="center"><?=$row['or_pattern']?> </td>
-																<td align="center" class="linkTitle"><?=$row['od_payment_first_name'].' '.$row['od_payment_last_name']?></td>
+																<td align="center" class="linkTitle"><?=$row['od_shipping_first_name'];?></td>
 																<td align="center"><?=$row['od_amount']?></td>
 
 																<td align="center"><?=$row['od_shipping_type']?></td>
@@ -782,17 +782,8 @@ $orderstat =($_REQUEST['status']!="")?$_REQUEST['status']:'';
 														<?php if($row['received_option']==''){?>
 															<select id="receive_through" name="receive_through" class="forminputelement">
 																<option value="">--select option--</option>
-																<option value="cash">Cash</option>
 																<option value="paypal">Paypal</option>
-																<option value="ebs">EBS</option>
-																<option value="payumoney">PayUmoney</option>
-																<option value="bank deposit">Bank Deposit</option>
-																<option value="shop received">Shop Received</option>
-																<option value="paytm">Paytm</option>
-																<option value="mobikwik">Mobikwik</option>
-																<option value="ft cash">FT Cash</option>
-																<option value="Google Pay">Google Pay</option>
-																<option value="Phone Pay">Phone Pay</option>
+																
 															</select>
 														<?php }else{?>
 															<input type="hidden" name="receive_through" id="receive_through" value="<?=$row['received_option'];?>" />	
@@ -920,7 +911,7 @@ $orderstat =($_REQUEST['status']!="")?$_REQUEST['status']:'';
 											</tr>
 										</thead>
 										<tbody>
-											<?
+											<?php
 											$sqlDeliveryDate="SELECT * FROM ".$cfg['DB_ORDER']." WHERE  `od_id` = '".$orderId."'";
 											$resDeliveryDate=$heart->sql_query($sqlDeliveryDate);
 											$rowDeliveryDate=$heart->sql_fetchrow($resDeliveryDate);
@@ -950,7 +941,7 @@ $orderstat =($_REQUEST['status']!="")?$_REQUEST['status']:'';
 												</td>
 												<td colspan="2" align="left" valign="top" class="row2">
 													<?php /*?><?=$row['od_shipping_city']?><?php */?>
-													<?=getFieldsFromTable($row['od_shipping_city'],'city_name',$cfg['DB_CITIES'],'ct_id')?>
+													<?=$row['od_shipping_city']?>
 												</td>
 											</tr>
 											<tr>
@@ -1015,7 +1006,7 @@ $orderstat =($_REQUEST['status']!="")?$_REQUEST['status']:'';
 										</tbody>
 									</table>
 									<br/>
-									<table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
+									<!-- <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
 										<thead>
 											<tr>
 												<td colspan="3" align="left" class="style2">&nbsp;Billing Information </td>
@@ -1096,7 +1087,7 @@ $orderstat =($_REQUEST['status']!="")?$_REQUEST['status']:'';
 												</td>
 											</tr>
 										</tbody>
-									</table>
+									</table> -->
 									<? 
 								}
 								if($_REQUEST['show']=='date')

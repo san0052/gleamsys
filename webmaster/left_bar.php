@@ -108,7 +108,7 @@
 				<li><a href="delPincode.php">Manage Delivery Pincodes</a></li>
 				<li><a href="revieweb.php">Manage Reviews</a></li>
 			</ul>
-			<!-- <h3 class="menuheader expandable">Customer Management </h3> -->
+			 <h3 class="menuheader expandable">Customer Management </h3> 
 			<ul class="categoryitems">
 				<li><a href="customer.php">Manage Customer</a></li>
 			</ul>
@@ -118,7 +118,7 @@
 				<li><a href="mailedNewsletter.php">Mailed Newsletter Content</a></li>
 				<li><a href="view_newsletter.php">Manage Newsletter</a></li>
 			</ul>
-			<!-- <h3 class="menuheader expandable">Vendor Management</h3> -->
+			<h3 class="menuheader expandable">Vendor Management</h3>
 			<ul class="categoryitems">
 				<li><a href="vendor.php?show=add">Add Vendor</a></li>
 				<li><a href="vendor.php">Manage Vendor</a></li>

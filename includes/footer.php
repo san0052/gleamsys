@@ -192,17 +192,17 @@
 
                <li onclick="window.location.href='about.php'">About us</li>
 
-               <li>My Account</li>
+              <!--  <li>My Account</li> -->
 
-               <li>Terms of use</li>
+               <!-- <li onclick="window.location.href='terms.php'">Terms of use</li> -->
 
-               <li>Delivery Policy</li>
+               <li  >Delivery Policy</li>
 
                <li>Returns Policy</li>
 
-               <li onclick="window.location.href='privecy-policy.php'">Privacy Policy</li>
+               <li onclick="window.location.href='privacy-policy.php'">Privacy Policy</li>
 
-               <li>FAQs</li>
+               <li onclick="window.location.href='faq.php'">FAQs</li>
 
                <li onclick="window.location.href='contact.php'">Contact us</li>
 
@@ -231,16 +231,24 @@
            <div class="col-xs-12 col-md-3 footer-link contact-list">
 
              <ul>
+               <?php 
+                  $sql =   "SELECT * FROM ".$cfg['DB_CONTACT_US']."
+                                           WHERE  
+                                          `status` ='A' ORDER BY `id` DESC";
+                  $res        =   $mycms->sql_query($sql);
+                  $row        =   $mycms->sql_fetchrow($res);
+                  $address    =   $row['address'];
+                ?>
 
                <p class="des">Contact</p>
 
-               <li><span class="chk-tick"><i class="fas fa-map-marker"></i></span>Suit 209, 86 Murray Street, Hobart, Tasmania 7000, Australia</li>
+               <li><span class="chk-tick"><i class="fas fa-map-marker"></i></span><?php echo $row['address'];?></li>
 
-               <li><span class="chk-tick"><i class="fas fa-map-marker"></i></span>Level 17, 570 Bourke Street, Melbourne, Victoria 3000, Australia</li>
+               <li><span class="chk-tick"><i class="fas fa-map-marker"></i></span><?php echo $row['address2'];?></li>
 
-               <li><span class="chk-tick"><i class="fas fa-map-marker"></i></span>Suite 5-7, 187 Brisbane Street, Launceston, Tasmania 7000, Australia</li>
+               <li><span class="chk-tick"><i class="fas fa-map-marker"></i></span><?php echo $row['address3'];?></li>
 
-               <li><span class="chk-tick"><i style="transform: rotate(90deg);" class="fas fa-phone"></i></span>+61 435 074 100</li>
+               <li><span class="chk-tick"><i style="transform: rotate(90deg);" class="fas fa-phone"></i></span><?php echo $row['phone1'];?></li>
 
              </ul>
 
@@ -277,7 +285,7 @@
              </ul>
 
            </div>
-           <p class="copy">&copy; 2020 Gleamsys All Rights Reserved - ABN : 37 804 155 992</p>
+           <p class="copy">&copy; <?php echo date('Y')?> Gleamsys All Rights Reserved - ABN : 37 804 155 992</p>
            <div class="clearfix"></div>
          </div>
        </div>

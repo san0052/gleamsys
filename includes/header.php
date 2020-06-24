@@ -68,7 +68,12 @@
                             <li class="hidden-xs hidden-sm" onclick="openlogin()">Login</li>
                         <?php } else { ?>
                             <li class="profileheaderbtn hidden-xs hidden-sm">
-                                <button onclick="myaccntdrpopen()"><img src="uploads/userProfile/<?php echo $row['image'];?>">
+                                <button onclick="myaccntdrpopen()">
+                                    <?php if($row['image']){ ?>
+                                        <img src="uploads/userProfile/<?php echo $row['image'];?>">
+                                   <?php }else{ ?>
+                                     <img src="uploads/userProfile/man.png"><span></span>
+                                   <?php }?>
                                     <span><?php echo ucfirst($row['name']);?></span></button>
                                 <ul class="my-account-drop">
                                     <li onclick="window.location.href='profile.php'">Profile</li>

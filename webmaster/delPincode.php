@@ -110,7 +110,7 @@ $show=$_REQUEST['show'];
                       <td align="center" class="leftBarText_new1">City</td>
                       <td width="10%" align="center" class="leftBarText_new1">District</td>
                       <td width="10%" align="center" class="leftBarText_new1">State</td>
-                       <td width="10%" align="center" class="leftBarText_new1">Country</td>
+                       <td width="10%" align="center" class="leftBarText_new1">Delivery Charges</td>
                       <td width="9%" align="center" class="leftBarText_new1">Status</td>
                       <td width="14%" align="center" class="leftBarText_new1">Action</td>
                     </tr>
@@ -155,7 +155,7 @@ $show=$_REQUEST['show'];
 				  <td align="center" valign="top"><?=$row['City']?></td>
 				  <td align="center" valign="top"><?=$row['District']?></td>
 				  <td align="center" valign="top"><?=$row['State']?></td>
-          <td align="center" valign="top"><?=$row['country']?></td>
+          <td align="center" valign="top"><?=$row['delivery_charges'];?></td>
 				  
 				  <td align="center" valign="top">&nbsp;<a href="delPincode_process.php?act=<?=($row['status']=='A')?'Inactive':'Active'?>&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?=$row['id']?>" class="<?=($row['status']=='A')?'greenbuttonelementsNew':'redbuttonelementsNew'?>">
 					<?=($row['status']=='A')?'Active':'Inactive'?>
@@ -328,7 +328,11 @@ $show=$_REQUEST['show'];
                    <tr class="row1">
                     <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">State</span> <span class="redstar">*</span></td>
                     <td width="70%" colspan="4" align="left"><input name="state" type="text" class="forminputelement" id="state" value="<?=$row1['State']?>"/></td>
-                  </tr>   
+                  </tr> 
+                  <tr class="row1">
+                    <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Delivery Charges</span> <span class="redstar">*</span></td>
+                    <td width="70%" colspan="4" align="left"><input name="delivery_charges" type="text" class="forminputelement" id="delivery_charges" value="<?=$row1['delivery_charges']?>"/></td>
+                  </tr>     
                 		  
                     <tr>
                       

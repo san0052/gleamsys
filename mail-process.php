@@ -31,7 +31,7 @@ switch($action)
 		
 	break;
 
-		case 'forgotPassword':
+	case 'forgotPassword':
 
 				$email = !empty($_POST['email'])?trim($_POST['email']):'';
 
@@ -301,7 +301,8 @@ switch($action)
 		$mycms->redirect("contact.php?m=1");
 	break;
 
-	case'QuickContact':
+	case 'quickContact':
+	
 		$contactName	=	$_REQUEST['name'];
 		$contactEmail	=	$_REQUEST['email'];
 		$contactPhone	=	$_REQUEST['mobileno'];
@@ -345,7 +346,7 @@ switch($action)
 		$form_name 		=	$cfg['ADMIN_NAME'];
 		$form_email		=	$cfg['ADMIN_EMAIL'];
 		$subject		=	"User Query";		
-		send_mail_contact($to_name, $to_email, $form_name, $form_email, $subject, $message);		
+		send_mail_contact($to_name, $to_email, $form_name, $form_email, $subject, $message,$bcc='');		
 			
 		/* ***** Send Email ***** */
 		$to_name 		=	$contactName;
@@ -508,31 +509,17 @@ switch($action)
 	break;
 
 	case 'newsletterAdd' :
-		$custId	    =	stripslashes(strip_tags($_SESSION['userid']));
-		$email	    =	stripslashes(strip_tags($_REQUEST['emailNews']));
+		$email	    =	stripslashes(strip_tags($_REQUEST['email']));
 
-		$sqlCustomer = "SELECT * FROM ".$cfg['DB_CUSTOMER']."
-						WHERE `status`='A'
-						AND `id`='".$custId."'
-					   ";
-	    $resCustomer = $mycms->sql_select($sqlCustomer);
-
-	    $rowCustomer = $resCustomer[0];
-
-	    $name= $rowCustomer['fname'].' '.$rowCustomer['lname'];
 
 		$sqlInsertNews = "INSERT INTO ".$cfg['DB_NEWSLETTER_EMAIL']."
 							 SET
-							 	`cust_id`				=   '".$custId."',
+							 	
 							    `siteId`				=   '".$_SESSION['site']."',
 							    `email`					=	'".$email."', 
-								`name`					=	'".$name."',  
 								`date`			        =	'".$date."'
 								";
 		$ins = $mycms->sql_insert($sqlInsertNews);
-
-		
-
 
 		if($ins)
 		{
@@ -541,34 +528,37 @@ switch($action)
 			$to_name 	= $cfg['ADMIN_NAME'];
 			$form_name 	= $cfg['SITE_NAME'];
 			$form_email = $cfg['ADMIN_EMAIL'];
-			$subject 	= 'A visitor has sent query';
+			$subject 	= 'A visitor has applied for Subscription';
 			$message	= 'Hello, Admin<br /><br />
 			A visitor of this site has posted some query/suggestion/comments.<br />
 			Following are the details:<br />
-			<b>Name:	</b>  '.$name.'	 <br />
 			<b>Email:	</b>  '.$_REQUEST['email'].' <br /> <br />
 			
 			Thanks & Regards,<br />
 			'; 
 			
-			send_mail($to_name, $to_email, $form_name, $form_email, $subject, $message, $bcc='');
+			send_mail_contact($to_name, $to_email, $form_name, $form_email, $subject, $message, $bcc='');
 		// die();
 			
-			$to_email  =$_REQUEST['email']; 
-			$to_name = $_REQUEST['name'];
+			$to_email  = $email; 
+			$to_name = 'Subscription';
 			$form_name = $cfg['ADMIN_NAME'];
 			$form_email = $cfg['ADMIN_EMAIL'];
 			$subject = 'Thank you for contact with us';
-			$message = 'Hello '.$name.',<br><br>
+			$message = 'Hello ,<br><br>
 			Thank you for your Opinion.<br>
 			In response to your query we will get back to you soon.
 			<br><br><br>
 			Thanks & Regards,<br>
 			'; 
 			
-			send_mail($to_name, $to_email, $form_name, $form_email, $subject, $message, $bcc='');
-
-			$mycms->redirect("index.php?m=6");
+			$send = send_mail_contact($to_name, $to_email, $form_name, $form_email, $subject, $message, $bcc='');
+			if($send){
+				echo 'true';die;
+			}else{
+				echo 'false';die;
+			}
+			
 		}
 	break;
 }

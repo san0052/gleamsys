@@ -14,7 +14,11 @@ if ($userId) {
         <button class="prf-side-btn hidden-md hidden-lg" onclick="prfsideopen()">></button>
         <div class="col-xs-12 prf-detail-box">
             <div class="col-xs-3 teacherlisting-pic">
-                <img src="uploads/userProfile/<?php echo $row['image'] ?>">
+                <?php if($row['image']){ ?>
+                    <img src="uploads/userProfile/<?php echo $row['image'];?>">
+                <?php }else{ ?>
+                    <img src="uploads/userProfile/man.png"><span></span>
+                <?php }?>
             </div>
             <div class="col-xs-12 teacherlisting-about-text-left">
                 <h4>Hello</h4>
