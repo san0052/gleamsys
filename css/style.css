@@ -2114,6 +2114,14 @@ footer .content-details-box p
         font-size: 16px;
         line-height: 27px;
     }
+    .about-content p span
+    {
+        padding: 0;
+    color: #fff;
+    font-size: 16px !important;
+    line-height: 27px;
+    font-family: inherit !important;
+    }
     .why-us {
         margin-top: 60px;
     }
@@ -2249,6 +2257,10 @@ footer .content-details-box p
         color: #4e4e4e;
         list-style: none;
     }
+    .why-us-content li span:last-child
+    {
+        font-size: 16px !important;
+    }
     .why-us-content li:last-child
     {
         margin-bottom: 0;
@@ -2343,8 +2355,20 @@ footer .content-details-box p
     }
     .contact-list ul li
     {
-        text-indent: -16px;
-        padding-left: 34px;
+        display: flex;
+    }
+    .contact-list ul li p{
+        margin: 0 0 10px 0;
+    font-size: 14px;
+    color: #fff;
+    list-style: none;
+    text-align: left;
+    cursor: pointer;
+    border: 0;
+    padding-bottom: 0;
+    text-transform: capitalize;
+    font-weight: normal;
+    line-height: 20px;
     }
     .carret {
         margin-left: 5px;
@@ -2385,6 +2409,7 @@ footer .content-details-box p
         z-index: 9999999999;
         width: 100%;
         height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
         padding: 0;
         right: -110%;
         transition: .3s;
@@ -2402,6 +2427,7 @@ footer .content-details-box p
         right: 0;
         top: 0;
         height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
         padding: 0;
         box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1)
     }

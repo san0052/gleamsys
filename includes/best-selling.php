@@ -68,10 +68,10 @@ $count      =   $mycms->sql_numrows($res);
         margin: 10,
         responsive: {
             0: {
-                items: 1
+                items: 2
             },
             600: {
-                items: 1,
+                items: 2,
                 margin: 0,
             },
             1000: {
