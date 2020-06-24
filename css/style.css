@@ -2412,7 +2412,8 @@ footer .content-details-box p
         display: flex;
         align-items: center;
         padding: 0 25px;
-        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1)
+        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+        background: #207da4;
     }
     .book-header p {
         margin-bottom: 0;
@@ -2422,12 +2423,13 @@ footer .content-details-box p
         font-weight: bold;
         font-size: calc(18px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
         text-transform: capitalize;
+        color: white;
     }
     .book-header button {
         padding: 0;
         border: 0;
         background: transparent;
-        color: #4e4e4e;
+        color: #fff;
         font-size: 16px;
     }
     .book-content {
@@ -2937,11 +2939,16 @@ padding: 60px 0;
         grid-column-gap: 2%;
         grid-row-gap: 20px;
     }
+    .portfolio-box .client-item
+    {
+        height: 300px;
+        overflow: hidden;
+    }
     .portfolio-box img{
         width: 100%;
-        height: 300px;
-        object-fit: cover;
         padding: 0;
+        height:auto;
+        object-fit: inherit;
     }
     .port-details
     {
@@ -3194,6 +3201,7 @@ padding: 60px 0;
         display: grid;
         grid-template-columns: 32% 32% 32%;
         grid-column-gap: 2%;
+        padding:60px 0;
     }
      .specility-iamge-box {
         display: inherit;
@@ -3203,8 +3211,7 @@ padding: 60px 0;
     }
     .specility-iamge-box img{
         width: 100%;
-        height: 200px;
-        object-fit: cover;
+       
     }
 .online-store-banner-wrap
 {
@@ -3964,6 +3971,16 @@ display: none;
 .prf-menu-box
 {
     padding-right: 0;
+}
+.online-store-container
+{
+    height: 500px;
+    padding: 0;
+}
+.online-store-container .item img
+{
+ height: auto;
+ object-fit: inherit;
 }
 /*online store*/
 .cm-tr-tab .tabcontent {
