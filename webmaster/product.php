@@ -71,7 +71,7 @@ $show=$_REQUEST['show'];
 					<tr>
 						<td colspan="2" style="background-color:#eee8e8;" align="center">
 			<? //show all record
-			if($_REQUEST['show']==''){
+			if($_REQUEST['show'] ==''){
 				?>
 				<table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
 					<thead>
@@ -237,7 +237,9 @@ $show=$_REQUEST['show'];
 																<?=$row['pd_name']?>&nbsp;&nbsp;[#<?=$row['pd_id']?>
 															]</td>
 															<td colspan="3" align="center" valign="top" ><img src="../<?=$cfg['PRODUCT_IMAGES'].$row['pd_image']?>"  width="70" align="top"/></td>
+															
 															<td align="center" valign="top" class="leftBarText"><input name="catorder[<?=$row['pd_id'];?>]" type="text" class="forminputelement" id="catorder[<?=$row['pd_id'];?>]"  size="2" value="<?=$row['order'];?>" style="text-align:center;"/></td>
+
 															<td align="center" valign="top"><?=$row['pd_price']?></td>
 													
 															<?
@@ -488,6 +490,12 @@ $show=$_REQUEST['show'];
 																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Price</span> <span class="redstar">*</span></td>
 																				<td width="70%" colspan="4" align="left"><input name="prod_price_add" type="text" class="forminputelement" id="prod_price_add" value=""/></td>
 																			</tr>
+
+																			<tr class="row2">
+																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Quentity</span> <span class="redstar">*</span></td>
+																				<td width="70%" colspan="4" align="left"><input name="pd_qty_add" type="text" class="forminputelement" id="pd_qty_add" value=""/></td>
+																			</tr>
+
 																			<!-- <tr class="row1">
 																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Unit Price</span> <span class="redstar" style="font-size: 9px;">*Fill Up This In Case The Product Is Cake</span></td>
 																				<td width="70%" colspan="4" align="left"><input name="prod_unit_price_add" type="text" class="forminputelement" id="prod_unit_price_add" value=""/></td>
@@ -890,14 +898,12 @@ $show=$_REQUEST['show'];
 								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Price</span> <span class="redstar">*</span></td>
 								<td width="70%" colspan="4" align="left"><input name="prod_price_add" type="text" class="forminputelement" id="prod_price_add" value="<?=$row1['pd_price']?>"/></td>
 							</tr>
-							<!-- <tr class="row2">
-								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Unit Price</span> <span class="redstar">*</span></td>
-								<td width="70%" colspan="4" align="left"><input name="prod_unitprice_add" type="text" class="forminputelement" id="prod_unitprice_add" value="<?=$row1['pd_unit_price']?>"/></td>
-							</tr> -->
-							<!-- <tr class="row2">
-								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Double Flower Cost</span> <span class="redstar">*</span></td>
-								<td width="70%" colspan="4" align="left"><input name="double_flower_cost" type="text" class="forminputelement" id="double_flower_cost" value="<?=$row1['prod_double_flower_price']?>"/></td>
-							</tr> -->
+
+							<tr class="row2">
+								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Quentity</span> <span class="redstar">*</span></td>
+								<td width="70%" colspan="4" align="left"><input name="pd_qty_edit" type="text" class="forminputelement" id="pd_qty_edit" value="<?=$row1['pd_qty']?>"/></td>
+							</tr>
+							
 							<tr class="row1">
 								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Strike Through Price</span> <span class="redstar">*</span></td>
 								<td width="70%" colspan="4" align="left"><input name="sprod_price_add" type="text" class="forminputelement" id="sprod_price_add" value="<?=$row1['strike_price']?>"/></td>

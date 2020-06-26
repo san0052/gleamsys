@@ -47,9 +47,10 @@ case 'insert':
 	$prod_loc=addslashes($_REQUEST['prod_loc']);
 	//print_r($prod_loc);
 	//$locs=implode(',',$prod_loc);
-	$prod_dis=addslashes($_REQUEST['prod_dis']);
-	$prod_note=addslashes($_REQUEST['prod_note']);	
-	$price=addslashes($_REQUEST['prod_price_add']);
+	$prod_dis  = addslashes($_REQUEST['prod_dis']);
+	$prod_note =  addslashes($_REQUEST['prod_note']);	
+	$price     = addslashes($_REQUEST['prod_price_add']);
+	$quentity  = addslashes($_REQUEST['pd_qty_add']);
 	$Unitprice=addslashes($_REQUEST['prod_unit_price_add']);
 	$doubleCost=addslashes($_REQUEST['prod_double_flower_price']);
 	$sprice=addslashes($_REQUEST['sprod_price_add']);
@@ -62,7 +63,7 @@ case 'insert':
 	$today_Spcial_product =	addslashes(($_REQUEST['today_Spcial_product']!=""))?'Y':'N';
 	$new_arrival_pro =addslashes(($_REQUEST['new_arrival_pro']!=""))?'A':'I';
 
-	 $sql="INSERT INTO ".$cfg['DB_PRODUCT']." SET `pd_name` = '".$pname."',`pd_price` = '".$price."',`pd_unit_price` = '".$Unitprice."',`pd_double_cost`= '".$doubleCost."',`strike_price` = '".$sprice."',	`pd_description` = '".$desc."',`pd_deliveryinformation` = '".$deliInfo."',`category`='".$cat."',`disclaimer` = '".$prod_dis."',`notes` = '".$prod_note."',`location` = '".$prod_loc."',`pd_date`=NOW(),`pd_featured`='".$pf."',`today_Spcial_product`='".$today_Spcial_product."', `new_arrival_pro` = '".$new_arrival_pro."' ,`pd_bestseller`='".$bp."',`status`='A',`keyword`='".$key."',`siteId`= '".$cfg['SESSION_SITE']."' " ;	
+	 $sql="INSERT INTO ".$cfg['DB_PRODUCT']." SET `pd_name` = '".$pname."',`pd_price` = '".$price."', `pd_qty` = '".$quentity."', `pd_unit_price` = '".$Unitprice."',`pd_double_cost`= '".$doubleCost."',`strike_price` = '".$sprice."',	`pd_description` = '".$desc."',`pd_deliveryinformation` = '".$deliInfo."',`category`='".$cat."',`disclaimer` = '".$prod_dis."',`notes` = '".$prod_note."',`location` = '".$prod_loc."',`pd_date`=NOW(),`pd_featured`='".$pf."',`today_Spcial_product`='".$today_Spcial_product."', `new_arrival_pro` = '".$new_arrival_pro."' ,`pd_bestseller`='".$bp."',`status`='A',`keyword`='".$key."',`siteId`= '".$cfg['SESSION_SITE']."' " ;	
 	$heart->sql_query($sql);
 			 
 	 $last_id=$heart->inserted_id();
@@ -278,18 +279,12 @@ case 'update':
     $key=implode(',',$key_id);
 	
 	$pageno =addslashes(($_REQUEST['pageno']!=""))?addslashes($_REQUEST['pageno']):'0';
-	//$cate_id=$_REQUEST['cate_id'];
 	$pname=addslashes($_REQUEST['prod_pname_add']);
-	//$secpid=$_REQUEST['secpid'];
-	
 	
 	//print_r($secpid);
 	//$cat=implode(',',$cate_id);
 	
 	$prod_loc=addslashes($_REQUEST['prod_loc']);
-	//print_r($prod_loc);
-	//$locs=implode(',',$prod_loc);
-
 	
 	$prod_dis=addslashes($_REQUEST['prod_dis']);
 	$prod_note=addslashes($_REQUEST['prod_note']);
@@ -303,6 +298,7 @@ case 'update':
 			}
 	
 	$price=addslashes($_REQUEST['prod_price_add']);
+	$pd_qty_edit=addslashes($_REQUEST['pd_qty_edit']);
 	$unitprice=addslashes($_REQUEST['prod_unitprice_add']);
 	$doubleCost = addslashes($_REQUEST['double_flower_cost']);
 	$sprice=addslashes($_REQUEST['sprod_price_add']);
@@ -319,6 +315,7 @@ case 'update':
 			 SET 			
 			`pd_name` 				= '".$pname."',
 			`pd_price` 				= '".$price."',
+			`pd_qty` 				= '".$pd_qty_edit."',
 			`pd_unit_price` 		= '".$unitprice."',
 			`pd_double_cost`		= '".$doubleCost."',
 			`earliest_deliveryId` 	= '".$prod_deliv."',

@@ -66,11 +66,8 @@ $pId =($_REQUEST['pId']!="")?$_REQUEST['pId']:'0';
                 </select>
 				&nbsp;&nbsp;&nbsp;
 			<a href="login.php?act=<?=md5("logout")?>"><img src="images/lock.png" height="24" width="24" border="0" style="vertical-align: middle;" /></a>&nbsp;&nbsp;
-			</td>
-            <?php /*?><!--<td width="658" align="left" valign="middle">&nbsp;&nbsp;<span class="style1">Welcome
-              <?=$_SESSION['admin_user_name']?>
-              </span></td>
-            <td  width="56"align="right" valign="middle"><a href="login.php?act=<?=md5("logout")?>"><img src="images/lock.png" title="Logout" width="24" height="24" border="0" /></a>&nbsp;&nbsp;&nbsp;&nbsp;</td>--><?php */?>
+			 </td>
+           
           </tr>
           <tr height="16">
             <td colspan="2" align="left" valign="middle" style="background-color:#eee8e8;">&nbsp;</td>
@@ -159,6 +156,7 @@ $pId =($_REQUEST['pId']!="")?$_REQUEST['pId']:'0';
                           <?php }?>
                         </td>
                       <td align="center" class="leftBarText"><input name="catorder[<?=$row['id'];?>]" type="text" class="forminputelement" id="catorder[<?=$row['id'];?>]"  size="3" value="<?=$row['order'];?>"/></td>
+                      
                       <td align="center"><a href="category_process.php?act=<?=($row['status']=='A')?'Inactive':'Active'?>&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?=$row['id']?>&secpid=<?=($_REQUEST['secpid']!="")?$_REQUEST['secpid']:'0'?>&pId=<?=($_REQUEST['pId']!="")?$_REQUEST['pId']:'0'?>" class="<?=($row['status']=='A')?'greenbuttonelementsNew':'redbuttonelementsNew'?>">
                         <?=($row['status']=='A')?'Active':'Inactive'?>
                         </a> </td>
