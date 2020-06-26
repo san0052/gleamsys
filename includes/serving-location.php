@@ -54,6 +54,11 @@
             $('#emailNews').focus();
             flag++;
         }
+        if(email != '' && (isEmail(email) == false)) {
+            alert('Please enter valid email');
+            $('#emailNews').focus();
+            flag++;   
+        }
         
       if(flag>0)
       {

@@ -35,7 +35,7 @@
           <div class="col-xs-12 heading">
             <h2>Quick Quote</h2>
           </div>
-          <form method="post" action="<?php echo $cfg['base_url']?>mail-process.php" onsubmit="return validate();">
+          <form method="post" action="<?php echo $cfg['base_url']?>mail-process.php" >
             <input type="hidden" name="act" value="QuickContact"/>
             <div class="col-xs-12 form-group">
               <!-- <label>Full Name</label> -->
@@ -95,6 +95,11 @@
             alert('Please enter your email address');
             $('#email').focus();
             return false;
+        }
+        if(email != '' && (isEmail(email) == false)) {
+            alert('Please enter valid address');
+            $('#email').focus();
+            return false; 
         }
         if($('#mobileno').val()=='')
         {

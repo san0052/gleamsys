@@ -263,7 +263,12 @@ $show=$_REQUEST['show'];
                       <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Country</span><span class="redstar">*</span> </td>
                       <td width="70%" colspan="4" align="left"><input name="country" type="text" class="forminputelement" id="country" value=""/></td>
                     </tr>
-					<tr>
+
+                  <tr class="row1">
+                    <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Delivery Charges</span> <span class="redstar">*</span></td>
+                    <td width="70%" colspan="4" align="left"><input name="delivery_charges_add" type="text" class="forminputelement" id="delivery_charges_add" value="" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></td>
+                  </tr> 
+					       <tr>
                     
                     <td colspan="4" align="center">
 						<a href="delPincode.php?category=<?=$_REQUEST['category']?>&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>" class="brownbttn">&lt;&lt;back</a>
@@ -331,14 +336,14 @@ $show=$_REQUEST['show'];
                   </tr> 
                   <tr class="row1">
                     <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Delivery Charges</span> <span class="redstar">*</span></td>
-                    <td width="70%" colspan="4" align="left"><input name="delivery_charges" type="text" class="forminputelement" id="delivery_charges" value="<?=$row1['delivery_charges']?>"/></td>
+                    <td width="70%" colspan="4" align="left"><input name="delivery_charges" type="text" class="forminputelement" id="delivery_charges" value="<?=$row1['delivery_charges']?>" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" /></td>
                   </tr>     
                 		  
                     <tr>
                       
                       <td colspan="4" align="center">
-						<a href="delPincode.php?category=<?=$_REQUEST['category']?>&page=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?><? if($row1['mainaddon']!=0){?>&main=<?=$row1['mainaddon']?><? } ?>" class="brownbttn">&lt;&lt;back</a>
-						<input type="submit" name="Save" id="Save" value="Save" class="loginbttn">
+          						<a href="delPincode.php?category=<?=$_REQUEST['category']?>&page=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?><? if($row1['mainaddon']!=0){?>&main=<?=$row1['mainaddon']?><? } ?>" class="brownbttn">&lt;&lt;back</a>
+          						<input type="submit" name="Save" id="Save" value="Save" class="loginbttn">
                       </td>
                     </tr>
                     </thead>
@@ -346,9 +351,9 @@ $show=$_REQUEST['show'];
                 </table>
               </form>
               <? 
-	  } 
+	             } 
 	  
-	 ?>
+	           ?>
             </td>
           </tr>
           <tr height="16">

@@ -24,12 +24,13 @@ case 'del':
 break; 
 case 'insert':
 
-	$postOfficeName = addslashes($_REQUEST['post_office_name']);
-	$pincode        = addslashes($_REQUEST['pincode']);	
-	$city           = addslashes($_REQUEST['city']);
-	$district       = addslashes($_REQUEST['district']);
-	$state       = addslashes($_REQUEST['state']);
-	$country       = addslashes($_REQUEST['country']);
+	$postOfficeName 		= addslashes($_REQUEST['post_office_name']);
+	$pincode        		= addslashes($_REQUEST['pincode']);	
+	$city           		= addslashes($_REQUEST['city']);
+	$district       		= addslashes($_REQUEST['district']);
+	$state       			= addslashes($_REQUEST['state']);
+	$country        		= addslashes($_REQUEST['country']);
+	$delivery_charges       = addslashes($_REQUEST['delivery_charges_add']);
 
 		
 $sql="INSERT INTO ".$cfg['DB_PINCODES']." SET 
@@ -38,11 +39,11 @@ $sql="INSERT INTO ".$cfg['DB_PINCODES']." SET
 				`City` = '".$city."',
 				`District` = '".$district."',
 				`State`='".$state."',
-				`country`='".$country."'
+				`country`='".$country."',
+				`delivery_charges`='".$delivery_charges."'
 			    " ;	
-	    $heart->sql_query($sql);
-			 
-	    $last_id=mysql_insert_id();
+	    $last_id = $heart->sql_query($sql);
+	    //$last_id=mysql_insert_id();
 	 
 	$heart->redirect('delPincode.php?category='.$_REQUEST['secpid'].'&m=1');
 	$heart->redirect('delPincode.php?&m=1');

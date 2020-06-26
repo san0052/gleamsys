@@ -122,7 +122,7 @@ $pId =($_REQUEST['pId']!="")?$_REQUEST['pId']:'0';
                     </tr>
                     <? 
 
-            		$sql="SELECT * FROM ".$cfg['DB_CATEGORY']."  WHERE `cat_parent_id`=".$parentId." AND `siteId`='".$cfg['SESSION_SITE']."' ORDER BY `order`";
+            		    $sql="SELECT * FROM ".$cfg['DB_CATEGORY']."  WHERE `cat_parent_id`=".$parentId." AND `siteId`='".$cfg['SESSION_SITE']."' ORDER BY `order`";
 
             			 $res=$heart->sql_query($sql);
 
