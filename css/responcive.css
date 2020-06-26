@@ -330,7 +330,7 @@ width: 45px;
 .inner-banner h2 {
   margin-bottom: 0;
 }
-.product-item-box .item {
+.product-item-box .item, .prd-listing-scrol .owl-carousel.owl-drag .owl-item {
   padding: 7px;
 }
 .box_img {

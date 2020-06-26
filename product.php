@@ -31,7 +31,11 @@ include_once("includes/links_frontend.php"); ?>
             <div class="row">
                 <div class="col-xs-12 col-md-3 left-section filter-box " id="filter-teacher">
                     <div class="col-xs-12 cls-box hidden-md hidden-lg">
-                        <button id="serachbtncls" class="" onclick="clsbannerform()"><i class="fas fa-times"></i></button>
+                        <button id="serachbtncls" class="hidden-md hidden-lg" onclick="clsbannerform()" style="float: right;
+                        background: transparent;
+                        border: 0;
+                        color: var(--deep-main-color);
+                        padding: 9px 0;"><i class="fas fa-grip-lines"></i></button>
                     </div>
                     <div class="filter-items">
                         <ul class="filter-items-box">
@@ -71,10 +75,15 @@ include_once("includes/links_frontend.php"); ?>
                             <li>
                                 <button class="filter-btn">Price Range</button>
                                 <ul class="filter-menu">
-                                    <div style="margin-bottom:30px;">
+                                    <div>
                                         <input type="number" min="0" max="9900" oninput="validity.valid||(value='0');" id="min_price" class="price-range-field">
                                         <input type="number" min="1" max="10000" oninput="validity.valid||(value='10000');" id="max_price" class="price-range-field">
-                                        <button class="priceBtn" style="color:white; background-color:#2b7ca3">Submit</button>
+                                        <button class="priceBtn" style="    width: 100%;
+    border: 0;
+    background: var(--deep-main-color);
+    color: white;
+    padding: 10px;
+    text-align: center; margin-top:15px;">Submit</button>
                                     </div>
 
                                     <div id="slider-range" class="price-filter-range" name="rangeInput"></div>
@@ -130,6 +139,8 @@ include_once("includes/links_frontend.php"); ?>
                         <h2><?php echo (!empty($productType)) ? $productType.' Products' : 'Products'; ?></h2>
                         <div>
                             <ul class="sort-by">
+                            <button class="hidden-md hidden-lg" onclick="opensortby()">Sort By</button>
+                            <button id="searchbtn" class="hidden-md hidden-lg" onclick="openbannerform()"><i class="fas fa-filter"></i> Filter</button>
                                 <li onclick="setUrl()" class="<?php echo !isset($_GET['sort'])?'active':''; ?>">All</li>
 
                                 <!-- <li onclick="setUrl('popular')" class="<?php //echo (isset($_GET['sort']) && ($_GET['sort'] == 'popular'))?'active':''; ?>">Popular</li> -->
@@ -183,26 +194,28 @@ include_once("includes/links_frontend.php"); ?>
                         <button data-id="1" onclick="getMoreProducts(1)" class="product-more hide_view_more">View More</button>
                     </div>
                 </div>
-                <div class="banner-btn-box hidden-md hidden-lg">
-                    <button id="searchbtn" class="hidden-md hidden-lg" onclick="openbannerform()"><i class="fas fa-filter"></i></button>
-                </div>
             </div>
         </div>
     </div>
     <? include_once('includes/footer.php') ?>
     <script type="text/javascript">
+    function opensortby()
+    {
+        $(".sort-by li").slideToggle();
+    }
         function openbannerform() {
             $("#filter-teacher").css({
-                'top': '0',
+                'left': '0',
                 'opacity': '1',
                 'visibility': 'visible',
                 'transition': '.3s'
             });
+            $(".sort-by li").slideUp();
         }
 
         function clsbannerform() {
             $("#filter-teacher").css({
-                'top': '100%',
+                'left': '-200%',
                 'opacity': '0',
                 'visibility': 'hidden',
                 'transition': '.3s'

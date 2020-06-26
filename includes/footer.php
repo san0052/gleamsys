@@ -194,11 +194,11 @@
 
               <!--  <li>My Account</li> -->
 
-               <!-- <li onclick="window.location.href='terms.php'">Terms of use</li> -->
+               <!-- <li onclick="window.location.href='terms.php'">Terms of use</li> 
 
-               <li  >Delivery Policy</li>
+               <li>Delivery Policy</li>
 
-               <li>Returns Policy</li>
+               <li>Returns Policy</li>-->
 
                <li onclick="window.location.href='privacy-policy.php'">Privacy Policy</li>
 
@@ -216,7 +216,7 @@
 
                <p class="des">PRODUCTS & SERVICES</p>
 
-               <li>Buy Online</li>
+               <li onclick="window.location.href='online-store.php'">Buy Online</li>
 
                <li onclick="window.location.href='tech-support.php'">Tech Support</li>
 
@@ -356,3 +356,9 @@ function isNumber(evt) {
     return true; 
 }
     </script>
+    <script>
+       // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+let vh = window.innerHeight * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+   </script>

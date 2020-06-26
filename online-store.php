@@ -7,7 +7,7 @@
 
 <body class="online-store">
     <? include_once('includes/header.php') ?>
-    <div class="container-fluid slide_container">
+    <div class="container-fluid online-store-container">
         <div class="online-store-banner-wrap">
             <div class="online-store-banner-left">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
