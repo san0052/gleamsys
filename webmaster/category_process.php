@@ -15,26 +15,79 @@ switch($act){
 
 case 'insert':
 if($_REQUEST['pId']==0)
-
 {
 
- $sql="INSERT INTO " .$cfg['DB_CATEGORY']. " (`name`,`status`,`cat_parent_id`,`siteId`) VALUES ( '".addslashes($_REQUEST['cat_name'])."','A','".$_REQUEST['pId']."' , '".$cfg['SESSION_SITE']."')";
+	$photo  = $_FILES['image']['name'];
+	$a31    = $_FILES['image']['tmp_name'];
+	$last_id = 'categoryImg';
+	if($photo!=''){
+		//echo 'test';die;
+		$file_ext1 = explode(".",$photo);
+		$ext1      = strtolower($file_ext1[count($file_ext1)-1]);
+		$value1    = $last_id."_".date('YmdHis').".".$ext1;
+		$path1     = "../uploads/category/".$value1;
+		
+		//echo $value;
+		chmod($path1,0777);
+		copy($a31,$path1);
+		chmod($path1,0777);
+
+ 		$sql="INSERT INTO " .$cfg['DB_CATEGORY']. " (`name`,`status`,`cat_parent_id`,`siteId`,`image`) VALUES ( '".addslashes($_REQUEST['cat_name'])."','A','".$_REQUEST['pId']."' , '".$cfg['SESSION_SITE']."','".$value1."')";
+ 	}else{
+ 		//echo 'one';die;
+ 		$sql="INSERT INTO " .$cfg['DB_CATEGORY']. " (`name`,`status`,`cat_parent_id`,`siteId`) VALUES ( '".addslashes($_REQUEST['cat_name'])."','A','".$_REQUEST['pId']."' , '".$cfg['SESSION_SITE']."')";
+
+ 	}
 
 }
 
 if($_REQUEST['pId']!=0 && $_REQUEST['secpid']==0)   
-
 {
 
- $sql="INSERT INTO " .$cfg['DB_CATEGORY']. " (`name`,`status`,`cat_parent_id`,`siteId`) VALUES ( '".addslashes($_REQUEST['cat_name'])."','A','".$_REQUEST['pId']."' ,'".$cfg['SESSION_SITE']."')";
+	$photo  = $_FILES['image']['name'];
+	$a31    = $_FILES['image']['tmp_name'];
+	$last_id = 'categoryImg';
+	if($photo!=''){
+		$file_ext1 = explode(".",$photo);
+		$ext1      = strtolower($file_ext1[count($file_ext1)-1]);
+		$value1    = $last_id."_".date('YmdHis').".".$ext1;
+		$path1     = "../uploads/category/".$value1;
+		
+		//echo $value;
+		chmod($path1,0777);
+		copy($a31,$path1);
+		chmod($path1,0777);
+
+ 		$sql="INSERT INTO " .$cfg['DB_CATEGORY']. " (`name`,`status`,`cat_parent_id`,`siteId`,`image`) VALUES ( '".addslashes($_REQUEST['cat_name'])."','A','".$_REQUEST['pId']."' ,'".$cfg['SESSION_SITE']."','".$value1."')";
+ 	}else{
+ 		$sql="INSERT INTO " .$cfg['DB_CATEGORY']. " (`name`,`status`,`cat_parent_id`,`siteId`) VALUES ( '".addslashes($_REQUEST['cat_name'])."','A','".$_REQUEST['pId']."' ,'".$cfg['SESSION_SITE']."')";
+
+ 	}
 
 } 
 
 if($_REQUEST['pId']!=0 && $_REQUEST['secpid']!=0 )   
-
 {
 
-$sql="INSERT INTO " .$cfg['DB_CATEGORY']. " (`name`,`status`,`cat_parent_id`,`siteId`) VALUES ( '".addslashes($_REQUEST['cat_name'])."','A','".$_REQUEST['secpid']."' , '".$cfg['SESSION_SITE']."')";
+	$photo  = $_FILES['image']['name'];
+	$a31    = $_FILES['image']['tmp_name'];
+	$last_id = 'categoryImg';
+	if($photo!=''){
+
+		$file_ext1 = explode(".",$photo);
+		$ext1      = strtolower($file_ext1[count($file_ext1)-1]);
+		$value1    = $last_id."_".date('YmdHis').".".$ext1;
+		$path1     = "../uploads/category/".$value1;
+		
+		//echo $value;
+		chmod($path1,0777);
+		copy($a31,$path1);
+		chmod($path1,0777);
+
+		$sql="INSERT INTO " .$cfg['DB_CATEGORY']. " (`name`,`status`,`cat_parent_id`,`siteId`,`image`) VALUES ( '".addslashes($_REQUEST['cat_name'])."','A','".$_REQUEST['secpid']."' , '".$cfg['SESSION_SITE']."')";
+	}else{
+		$sql="INSERT INTO " .$cfg['DB_CATEGORY']. " (`name`,`status`,`cat_parent_id`,`siteId`) VALUES ( '".addslashes($_REQUEST['cat_name'])."','A','".$_REQUEST['secpid']."' , '".$cfg['SESSION_SITE']."','".$value1."')";
+	}
 
 }  
 
@@ -204,19 +257,39 @@ case 'edit_category':
 
 // echo $_REQUEST['secpid1'];
 
-  if($_REQUEST['ch1']=="Y"){
-		 $sql="UPDATE ".$cfg['DB_CATEGORY']." SET `cat_parent_id`=".$_REQUEST['pId'].",`name` = '".addslashes($_REQUEST['cat_name'])."',`show_in_top_menu`='".$_REQUEST['ch1']."'  WHERE `id`=".$_REQUEST['typeids']." AND `siteId`= '".$cfg['SESSION_SITE']."' ";
-	}
-	else{
-		 $sql="UPDATE ".$cfg['DB_CATEGORY']."	 SET 	`cat_parent_id`=".$_REQUEST['pId'].",`name` = '".addslashes($_REQUEST['cat_name'])."',`show_in_top_menu`='N'  WHERE `id`=".$_REQUEST['typeids']." AND `siteId`= '".$cfg['SESSION_SITE']."' ";
-	}
+
+	$photo  = $_FILES['image']['name'];
+	$a31    = $_FILES['image']['tmp_name'];
+	$last_id = 'categoryImg';
+	if($photo!=''){
+		//echo 'test';die;
+		$file_ext1 = explode(".",$photo);
+		$ext1      = strtolower($file_ext1[count($file_ext1)-1]);
+		$value1    = $last_id."_".date('YmdHis').".".$ext1;
+		$path1     = "../uploads/category/".$value1;
+		
+		//echo $value;
+		chmod($path1,0777);
+		copy($a31,$path1);
+		chmod($path1,0777);
+
+		  	if($_REQUEST['ch1']=="Y"){
+				 $sql="UPDATE ".$cfg['DB_CATEGORY']." SET `cat_parent_id`=".$_REQUEST['pId'].",`name` = '".addslashes($_REQUEST['cat_name'])."',`show_in_top_menu`='".$_REQUEST['ch1']."' ,`image`= '".$value1."'  WHERE `id`=".$_REQUEST['typeids']." AND `siteId`= '".$cfg['SESSION_SITE']."'  ";
+			}
+			else{
+				$sql="UPDATE ".$cfg['DB_CATEGORY']."	 SET 	`cat_parent_id`=".$_REQUEST['pId'].",`name` = '".addslashes($_REQUEST['cat_name'])."',`show_in_top_menu`='N' ,`image`= '".$value1."' WHERE `id`=".$_REQUEST['typeids']." AND `siteId`= '".$cfg['SESSION_SITE']."'  ";
+			}
+		}else{
+
+			if($_REQUEST['ch1']=="Y"){
+				 $sql="UPDATE ".$cfg['DB_CATEGORY']." SET `cat_parent_id`=".$_REQUEST['pId'].",`name` = '".addslashes($_REQUEST['cat_name'])."',`show_in_top_menu`='".$_REQUEST['ch1']."'  WHERE `id`=".$_REQUEST['typeids']." AND `siteId`= '".$cfg['SESSION_SITE']."'  ";
+			}
+			else{
+				 $sql="UPDATE ".$cfg['DB_CATEGORY']."	 SET 	`cat_parent_id`=".$_REQUEST['pId'].",`name` = '".addslashes($_REQUEST['cat_name'])."',`show_in_top_menu`='N'  WHERE `id`=".$_REQUEST['typeids']." AND `siteId`= '".$cfg['SESSION_SITE']."' ";
+			}
+		}
 	
 	$heart->sql_query($sql);
-
- 
-
- 
-	
 
 	$heart->redirect('category.php?m=2&pageno='.$_REQUEST['pageno'].'&secpid='.$_REQUEST['secpid'].'&pId='.$_REQUEST['pId']);
 

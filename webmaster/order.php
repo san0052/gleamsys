@@ -982,24 +982,7 @@ $orderstat =($_REQUEST['status']!="")?$_REQUEST['status']:'';
 												</td>
 												<td width="71%" colspan="2" align="left" class="row2"><?=$row['od_shipping_phone']?></td>
 											</tr>
-											<tr>
-												<td class="row1" align="left">
-													<span class="leftBarText_new">Message On Card</span> 
-												</td>
-												<td colspan="2" align="left" class="row2"><?=$row['od_shipping_msg']?></td>
-											</tr>
-											<tr>
-												<td class="row1" align="left">
-													<span class="leftBarText_new">Sender's Name</span> 
-												</td>
-												<td colspan="2" align="left" class="row2"><?=$row['od_shipping_sender_name']?></td>
-											</tr>
-											<tr>
-												<td class="row1" align="left">
-													<span class="leftBarText_new">Special Instruction</span> 
-												</td>
-												<td colspan="2" align="left" class="row2"><?=$row['od_shipping_instruction']?></td>
-											</tr>
+											
 											<tr>
 												<td colspan="3" align="center" >&nbsp;</td>
 											</tr>

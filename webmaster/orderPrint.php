@@ -276,7 +276,7 @@ $orderstat =($_REQUEST['status']!="")?$_REQUEST['status']:'';
 											</td>
 											<td colspan="2" align="left" valign="top" class="row2">
 												<?php /*?><?=$row['od_shipping_city']?><?php */?>
-												<?=getFieldsFromTable($row['od_shipping_city'],'city_name',$cfg['DB_CITIES'],'ct_id')?>
+												<?=$row['od_shipping_city'];?>
 											</td>
 										</tr>
 										<tr>
@@ -317,109 +317,12 @@ $orderstat =($_REQUEST['status']!="")?$_REQUEST['status']:'';
 											</td>
 											<td width="71%" colspan="2" align="left" class="row2"><?=$row['od_shipping_phone']?></td>
 										</tr>
-										<tr>
-											<td class="row1" align="left">
-												<span class="leftBarText_new">Message On Card</span> 
-											</td>
-											<td colspan="2" align="left" class="row2"><?=$row['od_shipping_msg']?></td>
-										</tr>
-										<tr>
-											<td class="row1" align="left">
-												<span class="leftBarText_new">Sender's Name</span> 
-											</td>
-											<td colspan="2" align="left" class="row2"><?=$row['od_shipping_sender_name']?></td>
-										</tr>
-										<tr>
-											<td class="row1" align="left">
-												<span class="leftBarText_new">Special Instruction</span> 
-											</td>
-											<td colspan="2" align="left" class="row2"><?=$row['od_shipping_instruction']?></td>
-										</tr>
+										
 										
 									</tbody>
 								</table>
 								<br/>
-								<table width="90%" align="center" cellpadding="6" cellspacing="1" class="tborder_new" border="1">
-									<thead>
-										<tr>
-											<td colspan="3" align="center" class="style2">&nbsp;<strong>Billing Information</strong> </td>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td width="29%" align="left" class="row1">
-												<span class="leftBarText_new">First Name </span>
-											</td>
-											<td width="71%" colspan="2" align="left" class="row2"><?=$row['od_payment_first_name']?></td>
-										</tr>
-										<tr>
-											<td align="left" class="row1">
-												<span class="leftBarText_new">Last Name</span>
-											</td>
-											<td colspan="2" align="left" class="row2"><?=$row['od_payment_last_name']?></td>
-										</tr>
-										<tr>
-											<td align="left" valign="top" class="row1">
-												<span class="leftBarText_new">Address </span>
-											</td>
-											<td colspan="2" align="left" valign="top" class="row2"><?=$row['od_payment_address1']?></td>
-										</tr>
-										<tr>
-											<td align="left" valign="top" class="row1">
-												<span class="leftBarText_new">City</span> 
-											</td>
-											<td colspan="2" align="left" valign="top" class="row2">
-												<?=$row['od_payment_city']?>
-												<?php /*?><?=getFieldsFromTable($row['od_payment_city'],'city_name',$cfg['DB_CITIES'],'ct_id')?><?php */?>
-											</td>
-										</tr>
-										<tr>
-											<td align="left" class="row1">
-												<span class="leftBarText_new">State</span>
-											</td>
-											<td colspan="2" align="left" class="row2">
-												<?=$row['od_payment_state']?>
-												<?php /*?><?=getFieldsFromTable($row['od_payment_state'],'state_name',$cfg['DB_STATE'],'st_id')?><?php */?>
-											</td>
-										</tr>
-										<tr>
-											<td align="left" valign="top" class="row1">
-												<span class="leftBarText_new">Country</span> 
-											</td>
-											<td colspan="2" align="left" valign="top" class="row2">
-												<?=$row['od_payment_country']?>
-												<?php /*?><?=getFieldsFromTable($row['od_shipping_country'],'country_name',$cfg['DB_COUNTRY_MASTER'],'country_id')?><?php */?>
-											</td>
-										</tr>
-										<tr>
-											<td width="29%" align="left" class="row1">
-												<span class="leftBarText_new">Mobile Number </span>
-											</td>
-											<td width="71%" colspan="2" align="left" class="row2">
-												<?=($row['od_payment_mobile']!='')?$row['od_payment_mobile']:'No Mobile No.'?>
-											</td>
-										</tr>
-										<tr>
-											<td width="29%" align="left" class="row1">
-												<span class="leftBarText_new">Phone Number </span>
-											</td>
-											<td width="71%" colspan="2" align="left" class="row2"><?=$row['od_payment_phone']?></td>
-										</tr>
-										<tr>
-											<td class="row1" align="left">
-												<span class="leftBarText_new">Pincode</span> 
-											</td>
-											<td colspan="2" align="left" class="row2"><?=$row['od_payment_postal_code']?></td>
-										</tr>
-										<tr>
-											<td class="row1" align="left">
-												<span class="leftBarText_new">Email</span> 
-											</td>
-											<td colspan="2" align="left" class="row2"><?=$row['od_payment_email']?></td>
-										</tr>
-										
-									</tbody>
-								</table>
+								
 <? 
 							}
 ?>

@@ -116,6 +116,7 @@ $pId =($_REQUEST['pId']!="")?$_REQUEST['pId']:'0';
                       <td width="6%" align="center" class="leftBarText_new1">Sl No </td>
                       <td width="8%" align="left" class="leftBarText_new1">Db Id </td>
                       <td align="left" class="leftBarText_new1" colspan="3">Category</td>
+                      <td class="leftBarText_new1">Category Image</td>
                       <td width="13%" align="center" class="leftBarText_new1">Order &nbsp;
                         <input type="image" src="images/1308660287_order.png"  name="save" value="Save" title="Save" align="absmiddle" />
                       </td>
@@ -124,21 +125,19 @@ $pId =($_REQUEST['pId']!="")?$_REQUEST['pId']:'0';
                     </tr>
                     <? 
 
-		
+            		$sql="SELECT * FROM ".$cfg['DB_CATEGORY']."  WHERE `cat_parent_id`=".$parentId." AND `siteId`='".$cfg['SESSION_SITE']."' ORDER BY `order`";
 
-		$sql="SELECT * FROM ".$cfg['DB_CATEGORY']."  WHERE `cat_parent_id`=".$parentId." AND `siteId`='".$cfg['SESSION_SITE']."' ORDER BY `order`";
+            			 $res=$heart->sql_query($sql);
 
-			 $res=$heart->sql_query($sql);
+            			 $maxrow=$heart->sql_numrows($res);
 
-			 $maxrow=$heart->sql_numrows($res);
+            			 if($maxrow >0){
 
-			 if($maxrow >0){
+            			 while($row=$heart->sql_fetchrow($res)){
 
-			 while($row=$heart->sql_fetchrow($res)){
+            			 @$i++;
 
-			 @$i++;
-
-			?>
+            			?>
                     <tr class="<?=($i%2==0)?'row1':'row2'?>">
                       <td align="center"><input  name="checkvalue" id="checkvalue"  value="<?=$row['id']?>" type="checkbox" />
                       </td>
@@ -152,6 +151,13 @@ $pId =($_REQUEST['pId']!="")?$_REQUEST['pId']:'0';
                         <? }else{?>
                         <?=$row['name']?>
                         <? }?></td>
+                        <td width="20%">
+                          <?php if($row['image']){ ?>
+                            <image src="../uploads/category/<?php echo $row['image']?>" style="width:50%; height: auto">
+                            <?php } else{ ?>
+                              Image not available
+                          <?php }?>
+                        </td>
                       <td align="center" class="leftBarText"><input name="catorder[<?=$row['id'];?>]" type="text" class="forminputelement" id="catorder[<?=$row['id'];?>]"  size="3" value="<?=$row['order'];?>"/></td>
                       <td align="center"><a href="category_process.php?act=<?=($row['status']=='A')?'Inactive':'Active'?>&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?=$row['id']?>&secpid=<?=($_REQUEST['secpid']!="")?$_REQUEST['secpid']:'0'?>&pId=<?=($_REQUEST['pId']!="")?$_REQUEST['pId']:'0'?>" class="<?=($row['status']=='A')?'greenbuttonelementsNew':'redbuttonelementsNew'?>">
                         <?=($row['status']=='A')?'Active':'Inactive'?>
@@ -216,7 +222,7 @@ $pId =($_REQUEST['pId']!="")?$_REQUEST['pId']:'0';
 		
 
 	  if($show=='add') { ?>
-              <form name="frmadd" id="frm2" method="post" action="category_process.php"  onsubmit="return add_typ_value()">
+              <form name="frmadd" id="frm2" method="post" action="category_process.php"  enctype='multipart/form-data' onsubmit="return add_typ_value()">
                 <p>
                   <input type="hidden" name="pageno" value="<?=$_REQUEST['pageno']?>" />
                   <input type="hidden" name="secpid" id="secpid" value="<?=$_REQUEST['secpid']?>" />
@@ -238,20 +244,18 @@ $pId =($_REQUEST['pId']!="")?$_REQUEST['pId']:'0';
                     <? } ?>
                     <tr class="row2">
                       <td align="left"><span class="leftBarText_new">Parent Category</span> <span class="redstar">*</span></td>
-                      <td colspan="4" align="left"><?php
-
-				$sql1="SELECT * FROM ".$cfg['DB_CATEGORY']." WHERE  `cat_parent_id` = '0' AND `status`='A' AND `siteId`= '".$cfg['SESSION_SITE']."'  ";
-
-				$res1=$heart->sql_query($sql1);
-
-				?>
+                      <td colspan="4" align="left">
+                        <?php
+                  				$sql1 ="SELECT * FROM ".$cfg['DB_CATEGORY']." WHERE  `cat_parent_id` = '0' AND `status`='A' AND `siteId`= '".$cfg['SESSION_SITE']."'  ";
+                  				$res1 =$heart->sql_query($sql1);
+				                ?>
                         <select name="pId" id="pId" class="forminputelement" onchange="getsec_category(this.value);category_availability();">
                           <option value="0">Parent Category</option>
                           <?
 
-				while($row1=$heart->sql_fetchrow($res1)){
+                				  while($row1=$heart->sql_fetchrow($res1)){
 
-				?>
+                				?>
                           <option value=<?=$row1['id']?>>
                           <?=$row1['name']?>
                           </option>
@@ -268,21 +272,33 @@ $pId =($_REQUEST['pId']!="")?$_REQUEST['pId']:'0';
                         </div></td>
                     </tr>
                     <tr class="row2">
-                      <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Category Name </span> <span class="redstar">*</span></td>
-                      <td width="70%" colspan="4" align="left"><input name="cat_name" type="text" class="forminputelement" id="cat_name" onkeyup="category_availability();" onblur="category_availability();" />
-                        &nbsp;&nbsp;<span style="display:none;" id="exsists"><img src="images/cross_circle.png"  align="absmiddle" width="16"/>&nbsp;Already exists</span><span style="display:none;" id="notexsists"><img src="images/tick_circle.png" width="16" align="absmiddle" />&nbsp;Ok</span>
+                      <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Category Name</span> <span class="redstar">*</span></td>
+                      <td width="70%" colspan="4" align="left">
+                        <input name="cat_name" type="text" class="forminputelement" id="cat_name" onkeyup="category_availability();" onblur="category_availability();" />
+                        &nbsp;&nbsp;<span style="display:none;" id="exsists">
+                          <img src="images/cross_circle.png"  align="absmiddle" width="16"/>&nbsp;Already exists</span><span style="display:none;" id="notexsists">
+                            <img src="images/tick_circle.png" width="16" align="absmiddle" />&nbsp;Ok</span>
                         </div>
                         <? if(countShowinTop() <5){?>
                         <div id="show_in_menu">
                           <input type="checkbox" name="ch1" id="ch1" value="Y" />
-                          &nbsp;<span class="leftBarText_new">Show in top menu</span> </div>
+                          &nbsp;<span class="leftBarText_new">Show in top menu</span></div>
                         <? }?>
                       </td>
+                      <tr>
+                        <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Category image</span></td>
+                         <td width="70%">
+                            <input type="file" name="image" id="image">
+                       </td>
+                      </tr>
                     </tr>
+
+                    
+
                     <tr>
                       <td colspan="4" align="center">
-						<a class="brownbttn" href="category.php?pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&secpid=<?=($_REQUEST['secpid']!="")?$_REQUEST['secpid']:'0'?>&pId=<?=($_REQUEST['pId']!="")?$_REQUEST['pId']:'0'?>">&lt;&lt;back</a>
-						<input type="submit" name="Save" id="Save" value="Save" class="loginbttn">
+            						<a class="brownbttn" href="category.php?pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&secpid=<?=($_REQUEST['secpid']!="")?$_REQUEST['secpid']:'0'?>&pId=<?=($_REQUEST['pId']!="")?$_REQUEST['pId']:'0'?>">&lt;&lt;back</a>
+            						<input type="submit" name="Save" id="Save" value="Save" class="loginbttn">
                       </td>
                     </tr>
                   </tbody>
@@ -294,12 +310,12 @@ $pId =($_REQUEST['pId']!="")?$_REQUEST['pId']:'0';
 
             $sql="SELECT * FROM ". $cfg['DB_CATEGORY']." WHERE  `id` =".$_REQUEST['id']."";
 
-			$res=$heart->sql_query($sql);
+			     $res=$heart->sql_query($sql);
 
-			$row=$heart->sql_fetchrow($res);
+			     $row=$heart->sql_fetchrow($res);
 
-	  ?>
-              <form name="frmedit"  id="frm3" method="post" action="category_process.php" onsubmit="return edit_typ_value()">
+	         ?>
+              <form name="frmedit"  id="frm3" method="post" action="category_process.php" enctype="multipart/form-data" onsubmit="return edit_typ_value()">
                 <p>
                   <input type="hidden" name="act" value="edit_category" />
                   <input type="hidden" name="type_check_edit" value=""  id="type_check_edit"/>
@@ -323,31 +339,32 @@ $pId =($_REQUEST['pId']!="")?$_REQUEST['pId']:'0';
                     <? } ?>
                     <tr class="row2">
                       <td align="left"><span class="leftBarText_new">Parent Category</span> <span class="redstar">*</span></td>
-                      <td colspan="4" align="left"><?php
+                      <td colspan="4" align="left">
+                      <?php
 
-				$sql1="SELECT * FROM ".$cfg['DB_CATEGORY']." WHERE  `id` = '".$_REQUEST['id']."' AND `status`='A' AND `siteId`= '".$cfg['SESSION_SITE']."'";
+                				$sql1="SELECT * FROM ".$cfg['DB_CATEGORY']." WHERE  `id` = '".$_REQUEST['id']."' AND `status`='A' AND `siteId`= '".$cfg['SESSION_SITE']."'";
 
-				$res1=$heart->sql_query($sql1);
-				$row1=$heart->sql_fetchrow($res1);
-				?>
+                				$res1=$heart->sql_query($sql1);
+                				$row1=$heart->sql_fetchrow($res1);
+              				?>
                         <select name="pId" id="pId" class="forminputelement" onchange="getsec_category(this.value);category_availability();">
                           <?php
-				if($row1['cat_parent_id']==0){
-				?>
+				                    if($row1['cat_parent_id']==0){
+				                  ?>
                           <option value="0">Parent Category</option>
                           <?php	$sql4="SELECT * FROM ".$cfg['DB_CATEGORY']." WHERE `cat_parent_id`='0'";
-						$res4=$heart->sql_query($sql4);
-						while($row4=$heart->sql_fetchrow($res4)){
-				?>
+						                $res4=$heart->sql_query($sql4);
+						                while($row4=$heart->sql_fetchrow($res4)){
+				                  ?>
                           <option value="<?=$row4['id']?>">
                           <?=$row4['name']?>
                           </option>
                           <?php 
-				 }}else{				
-					echo $sql2="select * from ".$cfg['DB_CATEGORY']." where `cat_parent_id`='0'";
-				$res2=$heart->sql_query($sql2);	
-				while($row2=$heart->sql_fetchrow($res2)){
-			 	?>
+				                    } }else{				
+					                   echo $sql2="select * from ".$cfg['DB_CATEGORY']." where `cat_parent_id`='0'";
+				                      $res2=$heart->sql_query($sql2);	
+				                      while($row2=$heart->sql_fetchrow($res2)){
+			 	                   ?>
                           <option value="<?=$row2['id']?>"<? if($row2['id']==$_REQUEST['pId']){echo "selected";}?>>
                           <?=$row2['name']?>
                           </option>
@@ -360,19 +377,19 @@ $pId =($_REQUEST['pId']!="")?$_REQUEST['pId']:'0';
                       <td><div id="sec_parent">
                           <select name="secpid" id="secpid" class="forminputelement" onchange="category_availability();">
                             <?php
-							if($row1['cat_parent_id']==0){
-								$sql3="SELECT * FROM ".$cfg['DB_CATEGORY']." WHERE  `cat_parent_id` = '".$_REQUEST['id']."' ";
-							}
-							else{
-								$sql3="SELECT * FROM ".$cfg['DB_CATEGORY']." WHERE  `cat_parent_id` = '".$_REQUEST['pId']."' ";
-							}
-							 
-							$res3=$heart->sql_query($sql3);
-						?>
+              							if($row1['cat_parent_id']==0){
+              								$sql3="SELECT * FROM ".$cfg['DB_CATEGORY']." WHERE  `cat_parent_id` = '".$_REQUEST['id']."' ";
+              							}
+              							else{
+              								$sql3="SELECT * FROM ".$cfg['DB_CATEGORY']." WHERE  `cat_parent_id` = '".$_REQUEST['pId']."' ";
+              							}
+              							 
+              							$res3=$heart->sql_query($sql3);
+						              ?>
                             <option value="0" >Second parent</option>
                             <?php
-								while($row3=$heart->sql_fetchrow($res3)){
-							?>
+								              while($row3=$heart->sql_fetchrow($res3)){
+							              ?>
                             <option value="<?=$row3['cat_parent_id']?>">
                             <?=$row3['name']?>
                             </option>
@@ -385,17 +402,27 @@ $pId =($_REQUEST['pId']!="")?$_REQUEST['pId']:'0';
                       <td width="70%" colspan="4" align="left"><input name="cat_name" type="text" class="forminputelement" id="cat_name" onkeyup="category_availability();" onblur="category_availability();" value="<?=$row1['name']?>" />
                         &nbsp;&nbsp;<span style="display:none;" id="exsists"><img src="images/cross_circle.png"  align="absmiddle" width="16"/>&nbsp;Already exists</span><span style="display:none;" id="notexsists"><img src="images/tick_circle.png" width="16" align="absmiddle" />&nbsp;Ok</span>
                         </div>
-                        <? //if(countShowinTop() <5){?>
+
+                        <tr>
+                        <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Category image</span></td>
+                         <td width="70%">
+                            <input type="file" name="image" id="image">&nbsp;&nbsp;
+                           <br><img src="../uploads/category/<?php echo $row1['image']?>" alt="" style="width:30%;height:auto;">
+                       </td>
+                      </tr>
+                    </tr>
+                        <!-- <? //if(countShowinTop() <5){?>
                         <div id="show_in_menu">
-                          <input type="checkbox" name="ch1" id="ch1" value="Y" <?=($row1['show_in_top_menu']=='Y')?'checked="checked"':'';?>>
-                          &nbsp;<span class="leftBarText_new">Show in top menu</span> </div>
-                        <? //}?>
+                          <input type="checkbox" name="ch1" id="ch1" value="Y" <?//=($row1['show_in_top_menu']=='Y')?'checked="checked"':'';?>>
+                          &nbsp;<span class="leftBarText_new">Show in top menu</span> 
+                        </div>
+                        <? //} ?> -->
                       </td>
                     </tr>
                     <tr>
                       <td colspan="4" align="center">
-						<a class="brownbttn" href="category.php?pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>">&lt;&lt;back</a>
-						<input type="submit" name="Save" id="Save" value="Save" class="loginbttn">
+            						<a class="brownbttn" href="category.php?pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>">&lt;&lt;back</a>
+            						<input type="submit" name="Save" id="Save" value="Save" class="loginbttn">
                       </td>
                     </tr>
                   </tbody>

@@ -192,6 +192,7 @@ switch($action) {
 			$paypal = paypalForm();
 
 			if ($totalCount>0) {
+
 				$totalAmountFinal = $totalAmount+$deliveryCharge;
 				$totalPayable .= '<table class="table totalpayble">';
 					$totalPayable .= '<thead>';

@@ -108,7 +108,7 @@ $show=$_REQUEST['show'];
                       <td width="8%" align="center" class="leftBarText_new1">Post Office Name </td>
                       <td align="left" class="leftBarText_new1">Pincode</td>
                       <td align="center" class="leftBarText_new1">City</td>
-                      <td width="10%" align="center" class="leftBarText_new1">District</td>
+                      <td width="10%" align="center" class="leftBarText_new1">Suburb</td>
                       <td width="10%" align="center" class="leftBarText_new1">State</td>
                        <td width="10%" align="center" class="leftBarText_new1">Delivery Charges</td>
                       <td width="9%" align="center" class="leftBarText_new1">Status</td>
