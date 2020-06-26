@@ -138,6 +138,18 @@ function getShopCategory($pageid)
 		return ''; 
 }
 
+function getParentCat($pageid)
+{
+	global  $mycms,$cfg;
+
+	$sql	=	"SELECT * FROM ".$cfg['DB_CATEGORY']." WHERE `id` = '".$pageid."'  AND `status`= 'A' ";
+	$res	=	$mycms->sql_query($sql);
+	$row	=	$mycms->sql_fetchrow($res);
+	if($row['status']=='A')
+		return base64_encode($row['id']);
+	else
+		return ''; 
+}
 
 function roundup($val,$pressision=2)
 

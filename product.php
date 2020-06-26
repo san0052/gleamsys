@@ -43,7 +43,14 @@ include_once("includes/links_frontend.php"); ?>
                                 <button class="filter-btn">Category</button>
                                 <ul class="filter-menu">
                                 <?php 
-                                    $sql =   "SELECT DISTINCT id, name, cat_parent_id  FROM ".$cfg['DB_CATEGORY']." WHERE  `status` ='A' AND `cat_parent_id` = 0 ORDER BY `id` DESC";
+                                    $fetch_header_category = isset($_GET['category'])?trim(base64_decode($_GET['category'])):'';
+                                    $sql = '';
+                                    if (!empty($fetch_header_category)) {
+                                        $sql =   "SELECT DISTINCT id, name, cat_parent_id  FROM ".$cfg['DB_CATEGORY']." WHERE  `status` = 'A' AND `id` = '".$fetch_header_category."' ORDER BY `id` DESC";
+                                    } else {
+                                        $sql =   "SELECT DISTINCT id, name, cat_parent_id  FROM ".$cfg['DB_CATEGORY']." WHERE  `status` ='A' AND `cat_parent_id` = 0 ORDER BY `id` DESC";
+                                    }
+                                    // echo $sql; die;
                                     $res =   $mycms->sql_query($sql);
                                     $count      =   $mycms->sql_numrows($res);
                                     if ($count>0) {
