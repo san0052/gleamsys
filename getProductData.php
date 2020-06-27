@@ -58,19 +58,23 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE pro.`status` =
 
 		$category_sql = '';
 		if (is_array($category_header)) {
-			$category_sql .= "SELECT group_concat(`id`) AS `ids` FROM ".$cfg['DB_CATEGORY']."  WHERE ";
+			$category_sql .= "SELECT group_concat(DISTINCT `id`) AS `ids` FROM ".$cfg['DB_CATEGORY']."  WHERE ";
 			foreach ($category_header as $value) {
-				
-			// for ($i=0; $i < count($category_header); $i++) {
 				$current_id = (string)base64_decode($value);
-				$category_sql .= " `cat_parent_id`= ".$current_id." AND ";
+				$category_sql .= " `cat_parent_id`= ".$current_id." OR";
+			}
+
+			$pieces = explode(' ', $category_sql);
+			$last_word = array_pop($pieces);
+			if ($last_word == 'OR') {
+				$category_sql = str_replace('OR', 'AND', $category_sql);
 			}
 			$category_sql .= " `siteId`= '".$cfg['SESSION_SITE']."'";
 		} else {
 			$category_header = base64_decode(trim($category_header));
 			$category_sql .= "SELECT group_concat(`id`) AS `ids` FROM ".$cfg['DB_CATEGORY']."  WHERE `cat_parent_id`= ".$category_header." AND `siteId`='".$cfg['SESSION_SITE']."'";
 		}
-	
+		// echo " sql ".$category_sql; die;
 		
 		$res1=$mycms->sql_query($category_sql);
  		$row1=$mycms->sql_fetchrow($res1);
