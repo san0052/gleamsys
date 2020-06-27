@@ -268,10 +268,16 @@ include_once("includes/links_frontend.php"); ?>
         $(".inner-cat").on("click", function(){
             var dataId = $(this).attr("data-idd");
             if (dataId === undefined || dataId == '') {} 
-            else { 
-                parent_category_id = btoa(dataId);
-                sub_category_array=[];
-                getMoreProducts();
+            else {
+                if(!$(this).hasClass('open')) {
+                    parent_category_id = btoa(dataId);
+                    sub_category_array=[];
+                    getMoreProducts();
+                    $(this).addClass(' open');
+                }else {
+                    $(this).removeClass(' open');
+                }
+                
             }
         });
 
