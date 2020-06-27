@@ -37,33 +37,35 @@ $heart->sql_query($sqlnew2);
 	$heart->redirect('product.php?m=3&pageno='.$_REQUEST['pageno']);
 break; 
 case 'insert':
-	$pname=addslashes($_REQUEST['prod_pname_add']);
-	$cate_id=$_REQUEST['cate_id'];
-	//print_r($cate_id);
-	$cat=implode(',',$cate_id);	
-	$key_id=$_REQUEST['key_id'];
-	//print_r($cate_id);
-	$key=implode(',',$key_id);	
-	$prod_loc=addslashes($_REQUEST['prod_loc']);
-	//print_r($prod_loc);
-	//$locs=implode(',',$prod_loc);
-	$prod_dis  = addslashes($_REQUEST['prod_dis']);
-	$prod_note =  addslashes($_REQUEST['prod_note']);	
-	$price     = addslashes($_REQUEST['prod_price_add']);
-	$quentity  = addslashes($_REQUEST['pd_qty_add']);
-	$Unitprice=addslashes($_REQUEST['prod_unit_price_add']);
-	$doubleCost=addslashes($_REQUEST['prod_double_flower_price']);
-	$sprice=addslashes($_REQUEST['sprod_price_add']);
-	$desc=(addslashes($_REQUEST['prod_desc_add']!=""))?addslashes($_REQUEST['prod_desc_add']):'';
-	$deliInfo=(addslashes($_REQUEST['prod_del_info']!=""))?addslashes($_REQUEST['prod_del_info']):'';
-	
-	$pf=addslashes(($_REQUEST['fp']!=""))?'A':'I';
-	//$pr=addslashes(($_REQUEST['rp']!=""))?'A':'I';
-	$bp=addslashes(($_REQUEST['bp']!=""))?'Y':'N';
-	$today_Spcial_product =	addslashes(($_REQUEST['today_Spcial_product']!=""))?'Y':'N';
-	$new_arrival_pro =addslashes(($_REQUEST['new_arrival_pro']!=""))?'A':'I';
 
-	 $sql="INSERT INTO ".$cfg['DB_PRODUCT']." SET `pd_name` = '".$pname."',`pd_price` = '".$price."', `pd_qty` = '".$quentity."', `pd_unit_price` = '".$Unitprice."',`pd_double_cost`= '".$doubleCost."',`strike_price` = '".$sprice."',	`pd_description` = '".$desc."',`pd_deliveryinformation` = '".$deliInfo."',`category`='".$cat."',`disclaimer` = '".$prod_dis."',`notes` = '".$prod_note."',`location` = '".$prod_loc."',`pd_date`=NOW(),`pd_featured`='".$pf."',`today_Spcial_product`='".$today_Spcial_product."', `new_arrival_pro` = '".$new_arrival_pro."' ,`pd_bestseller`='".$bp."',`status`='A',`keyword`='".$key."',`siteId`= '".$cfg['SESSION_SITE']."' " ;	
+	if (empty($_REQUEST['parent_cat'])) {
+		$heart->redirect('product.php?&m=5');	
+	}
+
+	$pname 			= addslashes($_REQUEST['prod_pname_add']);
+	$cate_id 		= $_REQUEST['cate_id'];
+	$cat            = implode(',',$cate_id);	
+	$key_id         = $_REQUEST['key_id'];
+	$key 			= implode(',',$key_id);	
+	$prod_loc       = addslashes($_REQUEST['prod_loc']);
+	$prod_dis  		= addslashes($_REQUEST['prod_dis']);
+	$prod_note 		= addslashes($_REQUEST['prod_note']);	
+	$price     		= addslashes($_REQUEST['prod_price_add']);
+	$quentity  		= addslashes($_REQUEST['pd_qty_add']);
+	$Unitprice 		= addslashes($_REQUEST['prod_unit_price_add']);
+	$doubleCost     = addslashes($_REQUEST['prod_double_flower_price']);
+	$sprice   		= addslashes($_REQUEST['sprod_price_add']);
+	$desc 			= (addslashes($_REQUEST['prod_desc_add']!=""))?addslashes($_REQUEST['prod_desc_add']):'';
+	$deliInfo 		= (addslashes($_REQUEST['prod_del_info']!=""))?addslashes($_REQUEST['prod_del_info']):'';
+	$pf 			= addslashes(($_REQUEST['fp']!=""))?'A':'I';
+	$bp 			= addslashes(($_REQUEST['bp']!=""))?'Y':'N';
+	$today_Spcial_product =	addslashes(($_REQUEST['today_Spcial_product']!=""))?'Y':'N';
+	$new_arrival_pro 	= addslashes(($_REQUEST['new_arrival_pro']!=""))?'A':'I';
+
+	$pd_parent_cat 		= !empty($_REQUEST['parent_cat'])?implode(',',$_REQUEST['parent_cat']):NULL;
+
+
+	 $sql="INSERT INTO ".$cfg['DB_PRODUCT']." SET `pd_name` = '".$pname."',`pd_price` = '".$price."', `pd_qty` = '".$quentity."', `pd_unit_price` = '".$Unitprice."',`pd_double_cost`= '".$doubleCost."',`strike_price` = '".$sprice."',	`pd_description` = '".$desc."',`pd_deliveryinformation` = '".$deliInfo."',`category`='".$cat."',`disclaimer` = '".$prod_dis."',`notes` = '".$prod_note."',`location` = '".$prod_loc."',`pd_date`=NOW(),`pd_featured`='".$pf."',`today_Spcial_product`='".$today_Spcial_product."', `new_arrival_pro` = '".$new_arrival_pro."' ,`pd_bestseller`='".$bp."',`status`='A',`keyword`='".$key."',`pd_parent_cat`='".$pd_parent_cat."',`siteId`= '".$cfg['SESSION_SITE']."' " ;	
 	$heart->sql_query($sql);
 			 
 	 $last_id=$heart->inserted_id();
@@ -89,7 +91,6 @@ case 'insert':
 			if($_REQUEST['prod_code']==''){
 				$code='H2H '.$last_id;
 			}
-//@@@@@@@@@@@@@@@@@@@@//
 			
 	$ph = $_FILES['image_add']['name'];
 	$a3 = $_FILES['image_add']['tmp_name'];
@@ -269,21 +270,20 @@ break;
 /* ------------------------ TYPE START ------------------------------------------------*/
 
 case 'update':
+// echo '<pre>';
+// print_r($_REQUEST);
+// exit;
 
-
-	$cate_id=$_REQUEST['cate_id'];
-	//print_r($cate_id);
-    $cat=implode(',',$cate_id);
-	$key_id=$_REQUEST['key_id'];
-	//print_r($cate_id);
-    $key=implode(',',$key_id);
+	if (empty($_REQUEST['parent_cat'])) {
+		$heart->redirect('product.php?&m=5');	
+	}
+	$cate_id = $_REQUEST['cate_id'];
+    $cat     = implode(',',$cate_id);
+	$key_id  = $_REQUEST['key_id'];
+    $key     = implode(',',$key_id);
 	
-	$pageno =addslashes(($_REQUEST['pageno']!=""))?addslashes($_REQUEST['pageno']):'0';
-	$pname=addslashes($_REQUEST['prod_pname_add']);
-	
-	//print_r($secpid);
-	//$cat=implode(',',$cate_id);
-	
+	$pageno = addslashes(($_REQUEST['pageno']!=""))?addslashes($_REQUEST['pageno']):'0';
+	$pname = addslashes($_REQUEST['prod_pname_add']);
 	$prod_loc=addslashes($_REQUEST['prod_loc']);
 	
 	$prod_dis=addslashes($_REQUEST['prod_dis']);
@@ -291,11 +291,11 @@ case 'update':
 	$prod_deliv=addslashes($_REQUEST['prod_deliv']);
 	
 	 if($_REQUEST['prod_code']!=''){
-				$code=addslashes($_REQUEST['prod_code']);
-			}
-			if($_REQUEST['prod_code']==''){
-				$code='H2H '.$_REQUEST['pd_id'];
-			}
+		$code=addslashes($_REQUEST['prod_code']);
+		}
+		if($_REQUEST['prod_code']==''){
+			$code='H2H '.$_REQUEST['pd_id'];
+		}
 	
 	$price=addslashes($_REQUEST['prod_price_add']);
 	$pd_qty_edit=addslashes($_REQUEST['pd_qty_edit']);
@@ -309,7 +309,7 @@ case 'update':
 	$bp    = addslashes(($_REQUEST['bp']!=""))?'Y':'N';
 	$today_Spcial_product =	addslashes(($_REQUEST['today_Spcial_product']!=""))?'Y':'N';
 	$new_arrival_pro 	  =  addslashes(($_REQUEST['new_arrival_pro']!=""))?'A':'I';		
-		
+	$pd_parent_cat 		= !empty($_REQUEST['parent_cat'])?implode(',',$_REQUEST['parent_cat']):NULL;	
 	
 		 $sql="UPDATE ".$cfg['DB_PRODUCT']."
 			 SET 			
@@ -333,6 +333,7 @@ case 'update':
 			`pd_featured`			= '".$pf."',
 			`pd_bestseller`			= '".$bp."',
 			`today_Spcial_product`  = '".$today_Spcial_product."',
+			`pd_parent_cat`         = '".$pd_parent_cat."',
 			`new_arrival_pro` 		= '".$new_arrival_pro."'
 
 			WHERE `pd_id`=".$_REQUEST['pd_id']." AND `siteId`= '".$cfg['SESSION_SITE']."' ";

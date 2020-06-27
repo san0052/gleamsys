@@ -55,7 +55,7 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE pro.`status` =
 
 	if (!empty($category_header)) {
 	
-	$category_sql ="SELECT group_concat(`id`) AS `ids` FROM ".$cfg['DB_CATEGORY']."  WHERE `cat_parent_id`= ".$category_header." AND `siteId`='".$cfg['SESSION_SITE']."'";
+		$category_sql ="SELECT group_concat(`id`) AS `ids` FROM ".$cfg['DB_CATEGORY']."  WHERE `cat_parent_id`= ".$category_header." AND `siteId`='".$cfg['SESSION_SITE']."'";
 		$res1=$mycms->sql_query($category_sql);
  		$row1=$mycms->sql_fetchrow($res1);
 		if (!empty($row1)) {
@@ -64,12 +64,12 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE pro.`status` =
 			$productSql .= ' AND (';
 			for($i=0; $i<count($new_category_ids1); $i++) {
 				if ($i == (count($new_category_ids1)-1)) {
-					$productSql .= ' pro.`category` LIKE "%'.$new_category_ids1[$i].'%" ';
+					$productSql .= ' pro.`category` LIKE "%'.$new_category_ids1[$i].'%" OR';
 				} else {
 					$productSql .= ' pro.`category` LIKE "%'.$new_category_ids1[$i].'%" OR ';
 				}
 			}
-			$productSql .= ') ';
+			$productSql .= ' pro.pd_parent_cat LIKE "%'.$category_header.'%") ';
 			$sidebarCounter = true;
 			$anyCondition++;
 		}
@@ -166,7 +166,7 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE pro.`status` =
     		echo json_encode(
     			array(
     				'status'=>true,
-    				// 'query'=>$productSql,
+    				 'query'=>$productSql,
     				'details'=>$htmlDetails['html'],
     				'nextOffset'=>$htmlDetails['nextCounter'],
     				'sidebarCounter' => $sidebarCounter
@@ -191,13 +191,14 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE pro.`status` =
     	$htmlData = '';
     	foreach ($productArr as $key => $value) { 
      		$htmlData .= '<div class="item productItem">';
-    			$htmlData .= '<div class="main-prd-box" onclick="window.location.href=\'product-details.php\'">';
-		    		$htmlData .= '<div class="box_img">';
-		    			$htmlData .= '<img has="postloader" src="image_bank/product_image/'.$value['pd_image'].'" alt="'.$value['pd_name'].'">';
-		    		$htmlData .= '</div>';
-		    		$htmlData .= '<p class="product-name">'.$value['pd_name'].'</p>';
-		    	$htmlData .= '</div>';
-
+                $htmlData .= '<a href="'.$cfg['base_url'].'product-details.php?category='.base64_encode($value['pd_id']).'">';
+	    			$htmlData .= '<div class="main-prd-box" onclick="window.location.href=\'product-details.php\'">';
+			    		$htmlData .= '<div class="box_img">';
+			    			$htmlData .= '<img has="postloader" src="image_bank/product_image/'.$value['pd_image'].'" alt="'.$value['pd_name'].'">';
+			    		$htmlData .= '</div>';
+			    		$htmlData .= '<p class="product-name">'.$value['pd_name'].'</p>';
+			    	$htmlData .= '</div>';
+		    	$htmlData .= '</a>';
 		    	$htmlData .= '<div class="price-box">';
 		    		$htmlData .= '<div class="price-content">';
 		    			$htmlData .= '<p class="price">';

@@ -50,14 +50,13 @@ include_once("includes/links_frontend.php"); ?>
                                     } else {
                                         $sql =   "SELECT DISTINCT id, name, cat_parent_id  FROM ".$cfg['DB_CATEGORY']." WHERE  `status` ='A' AND `cat_parent_id` = 0 ORDER BY `id` DESC";
                                     }
-                                    // echo $sql; die;
                                     $res =   $mycms->sql_query($sql);
                                     $count      =   $mycms->sql_numrows($res);
                                     if ($count>0) {
                                     while ($parent_cat    =   $mycms->sql_fetchrow($res)) {
                                 ?>
                                     <li>
-                                        <button class="inner-cat"><?php echo $parent_cat['name']; ?><span class="carret"><i class="fas fa-caret-down"></i></span></button>
+                                        <button class="inner-cat" data-idd = "<?php echo $parent_cat['id']; ?>"><?php echo $parent_cat['name']; ?><span class="carret"><i class="fas fa-caret-down"></i></span></button>
                                         <?php 
                                             $sql =   "SELECT DISTINCT id, name, cat_parent_id  FROM ".$cfg['DB_CATEGORY']." WHERE  `status` ='A' AND `cat_parent_id` = ".$parent_cat['id']." ORDER BY `id` DESC";
                                             $childres =   $mycms->sql_query($sql);
@@ -141,7 +140,7 @@ include_once("includes/links_frontend.php"); ?>
                     </div>
 
                 </div>
-                <div class="col-xs-12 col-md-9 right-section product-item-section ">
+                <div class="col-xs-12 col-md-9 right-section product-item-section">
                     <div class="col-xs-12 heading inner-banner">
                         <h2><?php echo (!empty($productType)) ? $productType.' Products' : 'Products'; ?></h2>
                         <div>
@@ -165,13 +164,17 @@ include_once("includes/links_frontend.php"); ?>
                             if (!empty($productArr)) {
                                 foreach ($productArr as $key => $product) { 
                         ?>
+
                                 <div class="item productItem">
-                                    <div class="main-prd-box" onclick="window.location.href='product-details.php'">
-                                        <div class="box_img">
-                                            <img has="postloader" src="image_bank/product_image/<?=$product['pd_image'];?>" alt="<?php echo $product['pd_name']; ?>">
+                                    <a href="<?=$cfg['base_url']?>product-details.php?category=<?=base64_encode($product['pd_id'])?>">
+
+                                        <div class="main-prd-box" onclick="window.location.href='product-details.php'">
+                                            <div class="box_img">
+                                                <img has="postloader" src="image_bank/product_image/<?=$product['pd_image'];?>" alt="<?php echo $product['pd_name']; ?>">
+                                            </div>
+                                            <p class="product-name"><?php echo $product['pd_name']; ?></p>
                                         </div>
-                                        <p class="product-name"><?php echo $product['pd_name']; ?></p>
-                                    </div>
+                                    </a>
                                     <div class="price-box">
                                         <div class="price-content">
                                             <p class="price">
@@ -250,6 +253,7 @@ include_once("includes/links_frontend.php"); ?>
         });
 
         var sub_category_array = [];
+        var parent_category_id = 0;
         var min_amount = 0;
         var max_amount = 0;
         var see_more = 0;
@@ -261,6 +265,15 @@ include_once("includes/links_frontend.php"); ?>
             getMoreProducts();
         });
 
+        $(".inner-cat").on("click", function(){
+            var dataId = $(this).attr("data-idd");
+            if (dataId === undefined || dataId == '') {} 
+            else { 
+                parent_category_id = btoa(dataId);
+                sub_category_array=[];
+                getMoreProducts();
+            }
+        });
 
         $('.priceBtn').click(function() {
             min_amount = $('#min_price').val();
@@ -299,7 +312,8 @@ include_once("includes/links_frontend.php"); ?>
                     is_more    : see_more,
                     min_amount : min_amount,
                     max_amount : max_amount,
-                    sub_category    :   sub_category_array.toString()
+                    sub_category    :   sub_category_array.toString(),
+                    category   : parent_category_id
                 },
                 dataType : 'JSON',
                 success : function(response) {

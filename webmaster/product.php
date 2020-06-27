@@ -7,6 +7,7 @@ if($_REQUEST['m']==1) { $msg='Record Added';}
 if($_REQUEST['m']==2) { $msg='Record Updated';}
 if($_REQUEST['m']==3) { $msg='Record Deleted';}
 if($_REQUEST['m']==4) { $msg='Order Updated';}
+if($_REQUEST['m']==5) { $msg='Failed to add record';}
 if($_REQUEST['m']==9) { $msg='Content should not be blank';}
 
 page_header($cfg['ADMIN_TITLE']." - Product Management");
@@ -396,8 +397,8 @@ $show=$_REQUEST['show'];
 															if($row['id']!='202'){
 																?>
 																<tr class="row2">
-																	<td colspan="3" align="left" valign="top"><span class="leftBarText_new"><?=$row['name'];?></span> <span class="redstar">*</span> 
-																		<? if($row['id']=='225'){?>
+																	<td colspan="3" align="left" valign="top"><span class="leftBarText_new"><?=$row['name'];?><input name="parent_cat[]" id="parent_cat_<?php echo $row['id'];?>" class="check-all" type="checkbox" value ="<?php echo $row['id'];?>" /></span> <span class="redstar">*</span> 
+																		<?php if($row['id']=='225'){?>
 																			<input name="check_all1" id="check_all1" class="check-all" type="checkbox" onclick="checkall_MidnightDelivery(this);"/>
 
 																			<?	}?></td>
@@ -492,7 +493,7 @@ $show=$_REQUEST['show'];
 																			</tr>
 
 																			<tr class="row2">
-																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Quentity</span> <span class="redstar">*</span></td>
+																				<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Quantity</span> <span class="redstar">*</span></td>
 																				<td width="70%" colspan="4" align="left"><input name="pd_qty_add" type="text" class="forminputelement" id="pd_qty_add" value=""/></td>
 																			</tr>
 
@@ -730,6 +731,11 @@ $show=$_REQUEST['show'];
           		$key = explode(',',$row1['keyword']);
 
           	}
+          	if($row1['pd_parent_cat']!='')
+          	{
+          		$parent = explode(',',$row1['pd_parent_cat']);
+
+          	}
 			/*if($row1['keyword']=='')
 			{
 				$keyA = getcategoryname2($_REQUEST['id']);				
@@ -820,7 +826,7 @@ $show=$_REQUEST['show'];
 
 								?>
 								<tr class="row2">
-									<td colspan="3" align="left" valign="top"><span class="leftBarText_new"><?=$row['name'];?></span> <span class="redstar">*</span>
+									<td colspan="3" align="left" valign="top"><span class="leftBarText_new"><input name="parent_cat[]" id="parent_cat_<?php echo $row['id'];?>" class="check-all" type="checkbox" value ="<?php echo $row['id'];?>" <?php if(in_array($row['id'],$parent)){?> checked="checked"<? }?>/><?=$row['name'];?></span> <span class="redstar">*</span>
 										<? if($row['id']=='225'){?>
 											<input name="check_all1" id="check_all1" class="check-all" type="checkbox" onclick="checkall_edit(this.id,'cate_id');"/>
 
@@ -900,7 +906,7 @@ $show=$_REQUEST['show'];
 							</tr>
 
 							<tr class="row2">
-								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Quentity</span> <span class="redstar">*</span></td>
+								<td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Product Quantity</span> <span class="redstar">*</span></td>
 								<td width="70%" colspan="4" align="left"><input name="pd_qty_edit" type="text" class="forminputelement" id="pd_qty_edit" value="<?=$row1['pd_qty']?>"/></td>
 							</tr>
 							
