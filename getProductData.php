@@ -55,12 +55,14 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE pro.`status` =
 
 	// main category
 	if (!empty($category_header)) {
+
 		$category_sql = '';
 		if (is_array($category_header)) {
 			$category_sql .= "SELECT group_concat(`id`) AS `ids` FROM ".$cfg['DB_CATEGORY']."  WHERE ";
-
-			for ($i=0; $i < count($category_header); $i++) {
-				$current_id = base64_decode($category_header[$i]);
+			foreach ($category_header as $value) {
+				
+			// for ($i=0; $i < count($category_header); $i++) {
+				$current_id = (string)base64_decode($value);
 				$category_sql .= " `cat_parent_id`= ".$current_id." AND ";
 			}
 			$category_sql .= " `siteId`= '".$cfg['SESSION_SITE']."'";
@@ -73,17 +75,16 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE pro.`status` =
 		$res1=$mycms->sql_query($category_sql);
  		$row1=$mycms->sql_fetchrow($res1);
 		if (!empty($row1)) {
-
 			$new_category_ids1 = explode(',', $row1['ids']);
 			$productSql .= ' AND (';
 			for($i=0; $i<count($new_category_ids1); $i++) {
 				if ($i == (count($new_category_ids1)-1)) {
-					$productSql .= ' pro.`category` LIKE "%'.$new_category_ids1[$i].'%" OR';
+					$productSql .= ' pro.`category` LIKE "%'.$new_category_ids1[$i].'%" ';
 				} else {
 					$productSql .= ' pro.`category` LIKE "%'.$new_category_ids1[$i].'%" OR ';
 				}
 			}
-			$productSql .= ' pro.pd_parent_cat LIKE "%'.$category_header.'%") ';
+			$productSql .= ' ) ';
 			$sidebarCounter = true;
 			$anyCondition++;
 		}
