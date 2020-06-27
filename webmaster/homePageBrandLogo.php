@@ -86,7 +86,7 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
           <tbody>
             <? if($_REQUEST['m']){ ?>
             <tr class="row1">
-              <td colspan="11" align="right" class="redbuttonelements"><?=@$msg?></td>
+              <td colspan="17" align="right" class="redbuttonelements"><?=@$msg?></td>
             </tr>
 			<? } ?>			
             <tr class="headercontent">
@@ -94,6 +94,7 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
           	    <td width="6%" align="center" class="leftBarText_new1">Sl No </td>
             	<td width="17%" align="center"colspan="3" class="leftBarText_new1">Brand Logo</td>
 	            <td width="23%" align="center" colspan="3" class="leftBarText_new1">Alt Tag</td>
+	            <td width="23%" align="center" colspan="3" class="leftBarText_new1">Logo Link</td>
 				<td width="13%" align="center" class="leftBarText_new1">Status</td> 
 				<td width="15%" align="center" class="leftBarText_new1">Action</td>
             </tr>		  
@@ -119,7 +120,8 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 				<!-- <td align="center"><?//=$row['id']?></td> -->
 			  
               	<td align="center" colspan="3" >&nbsp;<img src="../uploads/brand_logo/<?=$row['BrandLogoImage'];?>" width="70" align="top"/></td>
-				<td align="center" colspan="3" >&nbsp;<?=$row['altTag'];?></td>		 	  
+				<td align="center" colspan="3" >&nbsp;<?=$row['altTag'];?></td>
+				<td align="center" colspan="3" >&nbsp;<?=$row['logoLink'];?></td>		 		 	  
               	<td align="center">
 			  
 				  <a href="homePageBrandLogo-process.php?act=<?=($row['status']=='A')?'Inactive':'Active'?>&pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>&id=<?=$row['id']?>" class="<?=($row['status']=='A')?'greenbuttonelementsNew':'redbuttonelementsNew'?>"><?=($row['status']=='A')?'Active':'Inactive'?></a>
@@ -140,7 +142,7 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 			}
 			else {?>
             <tr class="row1">
-              <td colspan="11" align="center" class="msg">No Record.</td>
+              <td colspan="17" align="center" class="msg">No Record.</td>
             </tr>  <? }?>
 
 		<!-- <tr >
@@ -204,6 +206,11 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 			<tr class="row1"> 
                 <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Alt Tag </span> <span class="redstar">*</span></td> 
                 <td width="70%" colspan="4" align="left"><input name="altTag" type="text" class="forminputelement" id="altTag" value=""/>&nbsp;&nbsp;</td>
+			</tr>
+
+			<tr class="row1"> 
+                <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Logo Link</span> <span class="redstar">*</span></td> 
+                <td width="70%" colspan="4" align="left"><input name="logoLink" type="text" class="forminputelement" id="logoLink" value=""/>&nbsp;&nbsp;</td>
 			</tr>	
 			      
             <tr> 
@@ -271,9 +278,12 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 			 </tr> 
 				<tr class="row2"> 
 	                <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Alt tag</span></td> 
-	                <td  width="70%" colspan="4" class="leftBarText" align="left" valign="top"><input type="text" name="counter" id="counter" value="<?= $row['altTag'];?>"></td>
+	                <td  width="70%" colspan="4" class="leftBarText" align="left" valign="top"><input type="text" name="altTag" id="altTag" value="<?= $row['altTag'];?>"></td>
 		  		</tr>
-		 		
+		 		<tr class="row2"> 
+	                <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Logo Link</span></td> 
+	                <td  width="70%" colspan="4" class="leftBarText" align="left" valign="top"><input type="text" name="logoLink" id="logoLink" value="<?= $row['logoLink'];?>"></td>
+		  		</tr>
 		   <td align="center" colspan="2">
 				<a class="brownbttn" href="homePageBrandLogo.php?pageno=<?=($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0'?>">&lt;&lt;back</a>
 				<input type="submit" name="Save" id="Save" value="Save" class="loginbttn">

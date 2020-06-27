@@ -92,6 +92,7 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
           	    <td width="17%" align="center"colspan="3" class="leftBarText_new1">Project Name</td>
             	<td width="17%" align="center"colspan="3" class="leftBarText_new1">Project Logo</td>
 	            <td width="23%" align="center" colspan="3" class="leftBarText_new1">Alt Tag</td>
+	            <td width="17%" align="center"colspan="3" class="leftBarText_new1">Project Link</td>
 	            <td width="23%" align="center" colspan="3" class="leftBarText_new1">Project Country Name</td>
 				<td width="13%" align="center" class="leftBarText_new1">Status</td> 
 				<td width="15%" align="center" class="leftBarText_new1">Action</td>
@@ -119,6 +120,7 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 			  
               	<td align="center" colspan="4" >&nbsp;<img src="../uploads/client_logo/<?=$row['projectLogo'];?>" width="70" align="top"/></td>
 				<td align="center" colspan="3" >&nbsp;<?=$row['altTag'];?></td>	
+				<td align="center" colspan="3" >&nbsp;<?=$row['projectLink'];?></td>	
 				<td align="center" colspan="3" >&nbsp;<?=$row['projectCountry'];?></td>		 	  
               	<td align="center">
 			  

@@ -9,6 +9,7 @@ case 'insert':
 	$photo  = $_FILES['image']['name'];
 	$a31    = $_FILES['image']['tmp_name'];
 	$last_id = 'BrandLogo';
+	$logoLink =  addslashes($_REQUEST['logoLink']);
 	if($photo!=''){
 		$file_ext1 = explode(".",$photo);
 		$ext1      = strtolower($file_ext1[count($file_ext1)-1]);
@@ -20,11 +21,11 @@ case 'insert':
 		copy($a31,$path1);
 		chmod($path1,0777);
 
-		$sql = "INSERT INTO " .$cfg['DB_BRAND_LOGO']. "(`altTag`,`BrandLogoImage`) VALUES ('".$altTag."','".$value1."')";
+		$sql = "INSERT INTO " .$cfg['DB_BRAND_LOGO']. "(`altTag`,`BrandLogoImage`,`logoLink`) VALUES ('".$altTag."','".$value1."','".$logoLink."')";
 			$heart->sql_query($sql);
 		
 	}else{
-		$sql = "INSERT INTO " .$cfg['DB_BRAND_LOGO']. "(`altTag`) VALUES ('".$altTag."')";
+		$sql = "INSERT INTO " .$cfg['DB_BRAND_LOGO']. "(`altTag`,`logoLink`) VALUES ('".$altTag."','".$logoLink."')";
 		$heart->sql_query($sql);
 	}
 	$heart->redirect('homePageBrandLogo.php?m=1&pageno='.$_REQUEST['pageno']);
@@ -89,7 +90,9 @@ break;
 
 case 'update':
 
-	$altTag   = addslashes($_REQUEST['altTag']);
+	$altTag   =  addslashes($_REQUEST['altTag']);
+	$logoLink =  addslashes($_REQUEST['logoLink']);
+
 	$photo  = $_FILES['image']['name'];
 	$a31    = $_FILES['image']['tmp_name'];
 	$last_id = 'Brand';
@@ -106,10 +109,10 @@ case 'update':
 	
 	   	 //session_unregister('title');
 	   	
-	 	$sql="UPDATE ".$cfg['DB_BRAND_LOGO']." SET `altTag` = '".$altTag."',`BrandLogoImage` = '".$value1."' WHERE `id`='".$_REQUEST['id']."'  ";
+	 	$sql="UPDATE ".$cfg['DB_BRAND_LOGO']." SET `altTag` = '".$altTag."',`BrandLogoImage` = '".$value1."',`logoLink`='".$logoLink."' WHERE `id`='".$_REQUEST['id']."'  ";
 		 $heart->sql_query($sql);
 	}else{
-		$sql="UPDATE ".$cfg['DB_BRAND_LOGO']." SET `altTag` = '".$altTag."' WHERE `id`='".$_REQUEST['id']."'  ";
+		$sql="UPDATE ".$cfg['DB_BRAND_LOGO']." SET `altTag` = '".$altTag."',`logoLink`='".$logoLink."' WHERE `id`='".$_REQUEST['id']."'  ";
 		$heart->sql_query($sql);
 	}	
 	$heart->redirect('homePageBrandLogo.php?pageno='.$_REQUEST['pageno'].'&m=2');
