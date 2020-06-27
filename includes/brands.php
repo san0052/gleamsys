@@ -18,12 +18,11 @@
                             while($row    =   $mycms->sql_fetchrow($res)){ ?>
                     
                         <div class="item">
-
-                            <div class="col-xs-12 team-image">
-
-                                <img src="uploads/brand_logo/<?php echo $row['BrandLogoImage'] ;?>" alt="<?php echo $row['altTag']?>" style="cursor: not-allowed;;">
-
-                            </div>
+                            <a href="<?php echo $row['logoLink'];?>" target=_blank>
+                                <div class="col-xs-12 team-image">
+                                    <img src="uploads/brand_logo/<?php echo $row['BrandLogoImage'] ;?>" alt="<?php echo $row['altTag']?>" style="cursor: pointer;">
+                                </div>
+                            </a>
 
                         </div>
                 <?php } } ?>

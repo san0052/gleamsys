@@ -214,6 +214,11 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 			</tr>
 
 			<tr class="row1"> 
+                <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Project Link </span> <span class="redstar">*</span></td> 
+                <td width="70%" colspan="4" align="left"><input name="projectLink" type="text" class="forminputelement" id="projectLink" value=""/>&nbsp;&nbsp;</td>
+			</tr>
+
+			<tr class="row1"> 
                 <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Project Country Name</span> <span class="redstar">*</span></td> 
                 <td width="70%" colspan="4" align="left"><input name="projectCountry" type="text" class="forminputelement" id="projectCountry" value=""/>&nbsp;&nbsp;</td>
 			</tr>	
@@ -289,9 +294,13 @@ $pg =($_REQUEST['pageno']!="")?$_REQUEST['pageno']:'0';
 				&nbsp;&nbsp;<img src="../uploads/client_logo/<?=$row['projectLogo'];?>" width="70" align="top"/></td>
 			 </tr>
 
-			 <tr class="row2"> 
+			<tr class="row2"> 
 	            <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Alt Tag</span></td> 
 	            <td  width="70%" colspan="4" class="leftBarText" align="left" valign="top"><input type="text" name="altTag" id="altTag" value="<?= $row['altTag'];?>"></td>
+		  	</tr> 
+		  	<tr class="row2"> 
+	            <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Project Link</span></td> 
+	            <td  width="70%" colspan="4" class="leftBarText" align="left" valign="top"><input type="text" name="projectLink" id="projectLink" value="<?= $row['projectLink'];?>"></td>
 		  	</tr> 
 			<tr class="row2"> 
 	            <td width="30%" align="left" class="leftBarText"><span class="leftBarText_new">Project Country Name</span></td> 

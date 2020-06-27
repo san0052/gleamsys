@@ -8,6 +8,8 @@ case 'insert':
 	$altTag = addslashes($_REQUEST['altTag']);
 	$projectName = addslashes($_REQUEST['projectName']);
 	$projectCountry = addslashes($_REQUEST['projectCountry']);
+	$projectLink   = addslashes($_REQUEST['projectLink']);
+
 	$photo  = $_FILES['image']['name'];
 	$a31    = $_FILES['image']['tmp_name'];
 	$last_id = 'clientLogo';
@@ -22,11 +24,11 @@ case 'insert':
 		copy($a31,$path1);
 		chmod($path1,0777);
 
-		$sql = "INSERT INTO " .$cfg['DB_CLIENT_INFO']. "(`projectName`,`altTag`,`projectLogo`,`projectCountry`) VALUES ('".$projectName."','".$altTag."','".$value1."','".$projectCountry."')";
+		$sql = "INSERT INTO " .$cfg['DB_CLIENT_INFO']. "(`projectName`,`altTag`,`projectLogo`,`projectCountry`,`projectLink`) VALUES ('".$projectName."','".$altTag."','".$value1."','".$projectCountry."','".$projectLink."')";
 			$heart->sql_query($sql);
 		
 	}else{
-		$sql = "INSERT INTO " .$cfg['DB_CLIENT_INFO']. "(`altTag`,`projectName`,`projectCountry`) VALUES ('".$altTag."','".$projectName."','".$projectCountry."')";
+		$sql = "INSERT INTO " .$cfg['DB_CLIENT_INFO']. "(`altTag`,`projectName`,`projectCountry`,`projectLink`) VALUES ('".$altTag."','".$projectName."','".$projectCountry."','".$projectLink."')";
 		$heart->sql_query($sql);
 	}
 	$heart->redirect('client.php?m=1&pageno='.$_REQUEST['pageno']);
@@ -94,6 +96,8 @@ case 'update':
 	$altTag   = addslashes($_REQUEST['altTag']);
 	$projectName   = addslashes($_REQUEST['projectName']);
 	$projectCountry   = addslashes($_REQUEST['projectCountry']);
+	$projectLink   = addslashes($_REQUEST['projectLink']);
+
 	$photo  = $_FILES['image']['name'];
 	$a31    = $_FILES['image']['tmp_name'];
 	$last_id = 'client';
@@ -110,10 +114,10 @@ case 'update':
 	
 	   	 //session_unregister('title');
 	   	
-	 	$sql="UPDATE ".$cfg['DB_CLIENT_INFO']." SET `projectName`='".$projectName."' ,`altTag` = '".$altTag."',`projectLogo` = '".$value1."',`projectCountry`='".$projectCountry."' WHERE `id`='".$_REQUEST['id']."'  ";
+	 	$sql="UPDATE ".$cfg['DB_CLIENT_INFO']." SET `projectName`='".$projectName."' ,`altTag` = '".$altTag."',`projectLogo` = '".$value1."',`projectCountry`='".$projectCountry."',`projectLink`='".$projectLink."' WHERE `id`='".$_REQUEST['id']."'  ";
 		 $heart->sql_query($sql);
 	}else{
-		$sql="UPDATE ".$cfg['DB_CLIENT_INFO']." SET `projectName`='".$projectName."',`altTag` = '".$altTag."',`projectCountry`='".$projectCountry."' WHERE `id`='".$_REQUEST['id']."'  ";
+		$sql="UPDATE ".$cfg['DB_CLIENT_INFO']." SET `projectName`='".$projectName."',`altTag` = '".$altTag."',`projectCountry`='".$projectCountry."',`projectLink`='".$projectLink."'  WHERE `id`='".$_REQUEST['id']."'  ";
 		$heart->sql_query($sql);
 	}	
 	$heart->redirect('client.php?pageno='.$_REQUEST['pageno'].'&m=2');

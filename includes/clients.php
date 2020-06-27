@@ -15,9 +15,11 @@
                     if($num >0){
                         while($row    =   $mycms->sql_fetchrow($res)){ ?>
                     <div class="item">
-                        <div class="col-xs-12 team-image">
-                            <img src="uploads/client_logo/<?php echo $row['projectLogo']?>" alt="<?php echo $row['altTag']?>" style="cursor: not-allowed;">
-                        </div>
+                        <a href="<?php echo $row['projectLink'];?>" target=_blank>
+                            <div class="col-xs-12 team-image">
+                                <img src="uploads/client_logo/<?php echo $row['projectLogo'];?>" alt="<?php echo $row['altTag']?>" style="cursor: pointer;">
+                            </div>
+                        </a>
                     </div>
                 <?php } }?>
                 
