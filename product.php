@@ -253,7 +253,7 @@ include_once("includes/links_frontend.php"); ?>
         });
 
         var sub_category_array = [];
-        var parent_category_id = 0;
+        var parent_category_id = [];
         var min_amount = 0;
         var max_amount = 0;
         var see_more = 0;
@@ -266,16 +266,20 @@ include_once("includes/links_frontend.php"); ?>
         });
 
         $(".inner-cat").on("click", function(){
+            console.log('jkhjv');
             var dataId = $(this).attr("data-idd");
             if (dataId === undefined || dataId == '') {} 
             else {
                 if(!$(this).hasClass('open')) {
-                    parent_category_id = btoa(dataId);
+                    // parent_category_id = btoa(dataId);
+                    parent_category_id.push(btoa(dataId));
                     sub_category_array=[];
                     getMoreProducts();
                     $(this).addClass(' open');
                 }else {
+                    parent_category_id.pop(btoa(dataId));
                     $(this).removeClass(' open');
+                    getMoreProducts();
                 }
                 
             }

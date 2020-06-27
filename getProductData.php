@@ -10,7 +10,7 @@ $is_more = !empty($_REQUEST['is_more']) ? trim($_REQUEST['is_more']) : '';
 
 $min_amount = !empty($_REQUEST['min_amount']) ? trim($_REQUEST['min_amount']) : 0;
 $max_amount = !empty($_REQUEST['max_amount']) ? trim($_REQUEST['max_amount']) : 0;
-$category_header = !empty(base64_decode($_REQUEST['category'])) ? trim(base64_decode($_REQUEST['category'])) : '';
+$category_header = !empty($_REQUEST['category']) ? ($_REQUEST['category']) : '';
 
 $category_ids = !empty($_REQUEST['sub_category']) ? trim($_REQUEST['sub_category']):'';
 
@@ -53,9 +53,23 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE pro.`status` =
 		$anyCondition++;
 	} // end of type
 
+	// main category
 	if (!empty($category_header)) {
+		$category_sql = '';
+		if (is_array($category_header)) {
+			$category_sql .= "SELECT group_concat(`id`) AS `ids` FROM ".$cfg['DB_CATEGORY']."  WHERE ";
+
+			for ($i=0; $i < count($category_header); $i++) {
+				$current_id = base64_decode($category_header[$i]);
+				$category_sql .= " `cat_parent_id`= ".$current_id." AND ";
+			}
+			$category_sql .= " `siteId`= '".$cfg['SESSION_SITE']."'";
+		} else {
+			$category_header = base64_decode(trim($category_header));
+			$category_sql .= "SELECT group_concat(`id`) AS `ids` FROM ".$cfg['DB_CATEGORY']."  WHERE `cat_parent_id`= ".$category_header." AND `siteId`='".$cfg['SESSION_SITE']."'";
+		}
 	
-		$category_sql ="SELECT group_concat(`id`) AS `ids` FROM ".$cfg['DB_CATEGORY']."  WHERE `cat_parent_id`= ".$category_header." AND `siteId`='".$cfg['SESSION_SITE']."'";
+		
 		$res1=$mycms->sql_query($category_sql);
  		$row1=$mycms->sql_fetchrow($res1);
 		if (!empty($row1)) {
