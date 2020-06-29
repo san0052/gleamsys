@@ -261,7 +261,6 @@ include_once("includes/links_frontend.php"); ?>
         $(document.body).on('change', '.select_sub_category', function(event) {
             let sub_category = $(this).attr('data-subcategory');
             sub_category_array.push(sub_category);
-            console.log('change ',sub_category_array);
             let counter_id = $('.hide_view_more').attr('data-id');
             getMoreProducts();
         });
@@ -276,21 +275,17 @@ include_once("includes/links_frontend.php"); ?>
                     getMoreProducts();
                     $(this).addClass(' open');
                 }else {
-                    console.log('sub_category_array ',sub_category_array);
-                    // sub_category_array=[];
-                    // console.log($(this).parent().find('.inner-filter-menu'));
+                    
                     $(this).parent().find('.inner-filter-menu >li input:checked').each(function(i,v) {
                         
                         $(v).prop('checked',false);
                         let sub_cat_id = $(v).attr('data-subcategory');
-                        console.log("hh ",sub_cat_id);
+                      
                         let index = sub_category_array.indexOf(sub_cat_id);
                         if (index > -1) {
                           sub_category_array.splice(index, 1);
                         }
                     });
-                    console.log('sub_category_array ',sub_category_array);
-                    
                     var index = parent_category_id.indexOf(btoa(dataId));
                     if (index !== -1) parent_category_id.splice(index, 1);
                     $(this).removeClass(' open');

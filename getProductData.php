@@ -13,17 +13,12 @@ $max_amount = !empty($_REQUEST['max_amount']) ? trim($_REQUEST['max_amount']) : 
 $category_header = !empty($_POST['category']) ? ($_POST['category']) : $_REQUEST['category'];
 $category_header_get = !empty($_REQUEST['category_get']) ? ($_REQUEST['category_get']) : '';
 
-// var_dump($category_header);
-// var_dump($category_header_get);
-// echo " dfd df ";
-// print_r($category_header);
-// echo " dfd ";
-//print_r($category_header_get);
+
 if (empty($category_header) && !empty($category_header_get)) {
 	$category_header = $category_header_get;
-	// echo "string";
+	
 }
-// die;
+
 $category_ids = !empty($_REQUEST['sub_category']) ? trim($_REQUEST['sub_category']):'';
 
 # if any condition occurs
