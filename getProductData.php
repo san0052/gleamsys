@@ -10,8 +10,20 @@ $is_more = !empty($_REQUEST['is_more']) ? trim($_REQUEST['is_more']) : '';
 
 $min_amount = !empty($_REQUEST['min_amount']) ? trim($_REQUEST['min_amount']) : 0;
 $max_amount = !empty($_REQUEST['max_amount']) ? trim($_REQUEST['max_amount']) : 0;
-$category_header = !empty($_REQUEST['category']) ? ($_REQUEST['category']) : '';
+$category_header = !empty($_POST['category']) ? ($_POST['category']) : $_REQUEST['category'];
+$category_header_get = !empty($_REQUEST['category_get']) ? ($_REQUEST['category_get']) : '';
 
+// var_dump($category_header);
+// var_dump($category_header_get);
+// echo " dfd df ";
+// print_r($category_header);
+// echo " dfd ";
+//print_r($category_header_get);
+if (empty($category_header) && !empty($category_header_get)) {
+	$category_header = $category_header_get;
+	// echo "string";
+}
+// die;
 $category_ids = !empty($_REQUEST['sub_category']) ? trim($_REQUEST['sub_category']):'';
 
 # if any condition occurs
@@ -72,8 +84,8 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE pro.`status` =
 
 			$category_sql .= " `siteId`= '".$cfg['SESSION_SITE']."'";
 		} else {
-			$category_header = base64_decode(trim($category_header));
-			$category_sql .= "SELECT group_concat(`id`) AS `ids` FROM ".$cfg['DB_CATEGORY']."  WHERE `cat_parent_id`= ".$category_header." AND `siteId`='".$cfg['SESSION_SITE']."'";
+			$category_header1 = base64_decode(trim($category_header));
+			$category_sql .= "SELECT group_concat(`id`) AS `ids` FROM ".$cfg['DB_CATEGORY']."  WHERE `cat_parent_id`= ".$category_header1." AND `siteId`='".$cfg['SESSION_SITE']."'";
 		}
 		// echo " sql ".$category_sql; die;
 		
@@ -89,12 +101,24 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE pro.`status` =
 					$productSql .= ' pro.`category` LIKE "%'.$new_category_ids1[$i].'%" OR ';
 				}
 			}
+			
+			if (is_array($category_header)) {
+				foreach ($category_header as $key => $value) {
+					$current_id = (string)base64_decode($value);
+					$productSql .= ' OR pro.`pd_parent_cat` LIKE "%'.$current_id.'%" ';
+				}
+			} else {
+				$current_id = (string)base64_decode($category_header);
+				$productSql .= ' OR pro.`pd_parent_cat` LIKE "%'.$current_id.'%" ';
+			}
+			
 			$productSql .= ' ) ';
 			$sidebarCounter = true;
 			$anyCondition++;
 		}
-
 	}
+
+	// echo " sql ".$productSql; die;
 
 	if (!empty($category_ids)) {
 		if ($anyCondition > 0) {
@@ -186,7 +210,7 @@ $productSql .= "SELECT * FROM ".$cfg['DB_PRODUCT']." AS pro WHERE pro.`status` =
     		echo json_encode(
     			array(
     				'status'=>true,
-    				 'query'=>$productSql,
+    				'query'=>$productSql,
     				'details'=>$htmlDetails['html'],
     				'nextOffset'=>$htmlDetails['nextCounter'],
     				'sidebarCounter' => $sidebarCounter

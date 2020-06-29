@@ -275,6 +275,7 @@ include_once("includes/links_frontend.php"); ?>
                     getMoreProducts();
                     $(this).addClass(' open');
                 }else {
+                    // sub_category_array=[];
                     var index = parent_category_id.indexOf(btoa(dataId));
                     if (index !== -1) parent_category_id.splice(index, 1);
                     $(this).removeClass(' open');
@@ -321,7 +322,8 @@ include_once("includes/links_frontend.php"); ?>
                     min_amount : min_amount,
                     max_amount : max_amount,
                     sub_category    :   sub_category_array.toString(),
-                    category   : parent_category_id
+                    category   : parent_category_id,
+                    category_get : "<?php echo isset($_GET['category']) ? $_GET['category'] : '';  ?>"
                 },
                 dataType : 'JSON',
                 success : function(response) {

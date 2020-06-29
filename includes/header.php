@@ -34,25 +34,25 @@
                         <?php } ?>
                         </li>
                         <li class="profileheaderbtn hidden-md hidden-lg" onclick="openlogin()">Login</li>
-                        <li onclick="window.location.href='index.php'">Home</li>
-                        <li onclick="window.location.href='about.php'">About</li>
+                        <li onclick="window.location.href='index.php'">HOME</li>
+                        <li onclick="window.location.href='about.php'">ABOUT</li>
                         <li>
-                            <button class="drop-btn">Services
+                            <button class="drop-btn">SERVICES
                                 <span class="carret" style="color:white;">
                                     <i class="fas fa-caret-down"></i>
                                 </span>
                             </button>
                             <ul class="drop-menu hide">
-                                <li onclick="window.location.href='online-store.php'">Buy Online</li>
-                                <li onclick="window.location.href='tech-support.php'">Tech Support</li>
-                                <li onclick="window.location.href='it-service.php'">IT Services</li>
-                                <li onclick="window.location.href='computer-training.php'">Computer Training</li>
+                                <li onclick="window.location.href='online-store.php'">BUY ONLINE</li>
+                                <li onclick="window.location.href='tech-support.php'">TECH SUPPORT</li>
+                                <li onclick="window.location.href='it-service.php'">IT SERVICES</li>
+                                <li onclick="window.location.href='computer-training.php'">COMPUTER TRAINING</li>
                             </ul>
                         </li>
                        
-                        <li onclick="window.location.href='portfolio.php'">Portfolio</li>
-                        <li onclick="window.location.href='client.php'">Clients</li>
-                        <li onclick="window.location.href='contact.php'">Contact</li>
+                        <li onclick="window.location.href='portfolio.php'">PORTFOLIO</li>
+                        <li onclick="window.location.href='client.php'">CLIENTS</li>
+                        <li onclick="window.location.href='contact.php'">CONTACT</li>
                         <?php if (!empty($_SESSION['gleam_users_session'])) { ?>
                         <hr class="hidden-md hidden-lg" style="margin: 10px 0;">
                             <li class="hidden-md hidden-lg" onclick="window.location.href='profile.php'">Profile</li>

@@ -126,7 +126,7 @@
                     if (response !='') {
                         response = response.trim();
                        if(response == 'true') {
-                            alert('Email Send successfully');
+                            alert('Your enquiry has been submitted.');
                             window.location.href="<?php echo $cfg['base_url'];?>";
                        } else {
                             alert('Something went wrong');

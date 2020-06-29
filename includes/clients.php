@@ -24,9 +24,9 @@
                 <?php } }?>
                 
             </div>
-            <div class="col-xs-12 btn-box">
+            <!-- <div class="col-xs-12 btn-box">
                 <button onclick="window.location.href='client.php'">view all clients</button>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

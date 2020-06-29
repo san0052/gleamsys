@@ -204,7 +204,7 @@
 
                <li onclick="window.location.href='faq.php'">FAQs</li>
 
-               <li onclick="window.location.href='contact.php'">Contact us</li>
+               <!-- <li onclick="window.location.href='contact.php'">Contact us</li> -->
 
              </ul>
 
@@ -242,13 +242,13 @@
 
                <p class="des">Contact</p>
 
-               <li><span class="chk-tick"><i class="fas fa-map-marker"></i></span><?php echo $row['address'];?></li>
+               <li style="cursor: not-allowed;"><span class="chk-tick"><i class="fas fa-map-marker"></i></span><?php echo $row['address'];?></li>
 
-               <li><span class="chk-tick"><i class="fas fa-map-marker"></i></span><?php echo $row['address2'];?></li>
+               <li style="cursor: not-allowed;"><span class="chk-tick"><i class="fas fa-map-marker"></i></span><?php echo $row['address2'];?></li>
 
-               <li><span class="chk-tick"><i class="fas fa-map-marker"></i></span><?php echo $row['address3'];?></li>
+               <li style="cursor: not-allowed;"><span class="chk-tick"><i class="fas fa-map-marker"></i></span><?php echo $row['address3'];?></li>
 
-               <li><span class="chk-tick"><i style="transform: rotate(90deg);" class="fas fa-phone"></i></span><?php echo $row['phone1'];?></li>
+               <li style="cursor: not-allowed;"><span class="chk-tick"><i style="transform: rotate(90deg);" class="fas fa-phone"></i></span><?php echo $row['phone1'];?></li>
 
              </ul>
 
@@ -366,3 +366,5 @@ let vh = window.innerHeight * 0.01;
 // Then we set the value in the --vh custom property to the root of the document
 document.documentElement.style.setProperty('--vh', `${vh}px`);
    </script>
+
+   

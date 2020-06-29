@@ -64,7 +64,8 @@
                      </p>
                      <h4>Android App</h4>
                   </div>
-                  <div class="col-xs-12 it-sr-content-box" onclick="window.location.href='ecommers-website.php'">
+                 <!--  <div class="col-xs-12 it-sr-content-box" onclick="window.location.href='ecommers-website.php'"> -->
+                  <div class="col-xs-12 it-sr-content-box">
                      <p>
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
                            <polygon style="fill:#FF5722;" points="32,0 72.8,460.8 256,512 439.136,460.832 480,0 " />
@@ -265,8 +266,8 @@
                         </ul>
                      </li>
                      <li>
-                        <button class="accrdian-btn">As a mobile web development team, we offer a range of services, including
-                        </button>
+                      <!--   <button class="accrdian-btn">As a mobile web development team, we offer a range of services, including
+                        </button> -->
                         <ul class="accrdian-menu hide">
                            <li><span class="chk-tick"><i class="fab fa-windows" aria-hidden="true"></i></span>Hybrid applications development</li>
                            <li><span class="chk-tick"><i class="fab fa-apple" aria-hidden="true"></i></span>IPhone and IPad applications development</li>

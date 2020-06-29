@@ -33,7 +33,7 @@ include_once("includes/links_frontend.php"); ?>
 
 
 
-    <div class="container-fluied testimonial-wrap">
+    <!-- <div class="container-fluied testimonial-wrap">
 
         <div class="container">
 
@@ -53,7 +53,7 @@ include_once("includes/links_frontend.php"); ?>
 
                         <div class="col-xs-12 arrow_box">
 
-                            <h4><?php echo $row['address'];?></h4>
+                            <h4><?php //echo $row['address'];?></h4>
 
                         </div>
 
@@ -65,7 +65,7 @@ include_once("includes/links_frontend.php"); ?>
 
                         <div class="col-xs-12 arrow_box">
 
-                            <h4><?php echo $row['address2'];?></h4>
+                            <h4><?php //echo $row['address2'];?></h4>
 
                         </div>
 
@@ -77,7 +77,7 @@ include_once("includes/links_frontend.php"); ?>
 
                         <div class="col-xs-12 arrow_box">
 
-                            <h4><?php echo $row['address3'];?></h4>
+                            <h4><?php //echo $row['address3'];?></h4>
 
                         </div>
 
@@ -89,7 +89,7 @@ include_once("includes/links_frontend.php"); ?>
 
                         <div class="col-xs-12 arrow_box">
 
-                            <h4><?php echo $row['phone1'];?></h4>
+                            <h4><?php //echo $row['phone1'];?></h4>
 
                         </div>
 
@@ -102,7 +102,7 @@ include_once("includes/links_frontend.php"); ?>
         </div>
 
     </div>
-
+ -->
 
 
     <div class="container-fluid" style="padding: 0">

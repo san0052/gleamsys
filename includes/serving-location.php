@@ -6,7 +6,7 @@
 
             <div class="col-xs-12 heading">
 
-                <h2>stay in touch</h2>
+                <h2>STAY IN TOUCH</h2>
 
             </div>
 
@@ -73,7 +73,7 @@
                     if (response !='') {
                         response = response.trim();
                        if(response == 'true') {
-                            alert('Email Send successfully');
+                            alert('Sign up our newsletter.');
                             location.reload();
                        } else {
                             alert('Something went wrong');
