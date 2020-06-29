@@ -53,7 +53,7 @@ include_once("includes/links_frontend.php"); ?>
 
                             <h4><?php echo $row['portfiloName']?></h4>
 
-                            <p><a href="#">go to the link<span><i class="fas fa-long-arrow-alt-right"></i></span></a></p>
+                            <!-- <p><a href="#">go to the link<span><i class="fas fa-long-arrow-alt-right"></i></span></a></p> -->
 
                         </div>
 
