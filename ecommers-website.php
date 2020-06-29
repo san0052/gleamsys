@@ -69,7 +69,8 @@
                      <h4>Ecommerce Website Design</h4>
                      <h5>Increase Online Revenue With A Professionally Designed Website That Elevates The Shopping Experience For Your Customers. With A Website Designed For Usability, You Will Start Converting More Visitors Into Loyal Customers. We Design Every Element Of Your Website To Match Your Unique Branding And Industry Best Practices.</h5>
                   </div>
-                  <div class="col-xs-12 it-sr-content-box" onclick="window.location.href='ecommers-website.php'">
+                 <!--  <div class="col-xs-12 it-sr-content-box" onclick="window.location.href='ecommers-website.php'"> -->
+                  <div class="col-xs-12 it-sr-content-box" >
                      <p>
                         <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512">
                            <g>
