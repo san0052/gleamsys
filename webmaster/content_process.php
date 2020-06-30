@@ -15,6 +15,10 @@ case'view':
 	{
 		$heart->redirect('content.php?show=viewContact&id='.$_REQUEST['id']);
 	}
+	if($_REQUEST['page']=='Email Signature')
+	{
+		$heart->redirect('content.php?show=viewEmailSignature&id='.$_REQUEST['id']);
+	}
 	if($_REQUEST['page']=='Privacy Policy')
 	{
 		$heart->redirect('content.php?show=viewPrivacy&id='.$_REQUEST['id']);
@@ -99,6 +103,10 @@ case'view':
 	{
 		$heart->redirect('content.php?show=viewDomain-registration&id='.$_REQUEST['id']);
 	}
+	if($_REQUEST['page']=='Email Signature')
+	{
+		$heart->redirect('content.php?show=viewEmailSignature&id='.$_REQUEST['id']);
+	}
 
 exit();
 break;
@@ -116,6 +124,7 @@ case'edit':
 	{
 		$heart->redirect('content.php?show=editPrivacy&id='.$_REQUEST['id']);
 	}
+
 	if($_REQUEST['id']==114 || $_REQUEST['id']==4)
 	{
 		$heart->redirect('content.php?show=editRefund&id='.$_REQUEST['id']);
@@ -193,6 +202,10 @@ case'edit':
 	{
 		$heart->redirect('content.php?show=editDomain-registration&id='.$_REQUEST['id']);
 	}
+	if($_REQUEST['id']==134 || $_REQUEST['id']==24)
+	{
+		$heart->redirect('content.php?show=editEmailSignature&id='.$_REQUEST['id']);
+	}
 	
 exit();
 break;
@@ -209,6 +222,19 @@ case'updateTerms':
 		        WHERE `id` = '".$_REQUEST['id']."' ";
 		$heart->sql_query($sql1);
         $heart->redirect('content.php?show=viewTerms&m=2&id='.$_REQUEST['id']);
+exit();
+break;
+
+case'updateEmailSignature':
+		$heading         =  addslashes($_REQUEST['heading']);
+		$description     =  addslashes($_REQUEST['description']);
+
+		$sql1="UPDATE ".$cfg['DB_EMAIL_SIGNATURE']." SET
+		       `heading` 		= '".$heading."',
+		       `description` 	= '".$description."'
+		        WHERE `id`      = '".$_REQUEST['id']."' "; 
+		$heart->sql_query($sql1);
+        $heart->redirect('content.php?show=viewEmailSignature&m=2&id='.$_REQUEST['id']);
 exit();
 break;
 

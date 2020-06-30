@@ -30,7 +30,7 @@
                 <!-- Buy Online<br>Buy Quality Computer -->
 
                 <div>
-                <button class="banner-btn"><?php echo $row['bannerButton'];?></button>
+                <!-- <button class="banner-btn"><?php //echo $row['bannerButton'];?></button> -->
                 </div>
     					</div>
             </div>

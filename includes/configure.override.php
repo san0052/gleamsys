@@ -129,6 +129,7 @@ $cfg['DB_ONLINESTORE_BANNER']			= "`".$cfg['TABLE_PREFIX']."onlinestore_banner`"
 $cfg['DB_USERS']						= "`".$cfg['TABLE_PREFIX']."users`";
 $cfg['DB_USER_LOGIN']					= "`".$cfg['TABLE_PREFIX']."user_login`";
 $cfg['DB_SHIPPING_ADDRESS']				= "`".$cfg['TABLE_PREFIX']."shipping_address`";
+$cfg['DB_EMAIL_SIGNATURE']			    = "`".$cfg['TABLE_PREFIX']."email_signature`";
 
 $cfg['SESSION_SITE']=2;
 

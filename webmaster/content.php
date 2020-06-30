@@ -168,8 +168,8 @@ $show=$_REQUEST['show'];
      </form>
    <? } 
 
-   if($show=='editTerms'){
-    $sql="SELECT * FROM ".$cfg['DB_TERMS']." WHERE `siteId`='".$cfg['SESSION_SITE']."' and id =5";
+  if($show=='editTerms'){
+    $sql="SELECT * FROM ".$cfg['DB_TERMS']." WHERE `siteId`='".$cfg['SESSION_SITE']."' and id = 5";
     $res=$heart->sql_query($sql);
     $row=$heart->sql_fetchrow($res);
     
@@ -241,6 +241,71 @@ $show=$_REQUEST['show'];
 </form>
 <?  }
 
+
+  if($show=='editEmailSignature'){
+    $sql = "SELECT * FROM ".$cfg['DB_EMAIL_SIGNATURE']." WHERE `siteId`='".$cfg['SESSION_SITE']."' AND status='A' ";
+    $res = $heart->sql_query($sql);
+    $row = $heart->sql_fetchrow($res);
+    
+    ?>
+      <form action="content_process.php" method="post" name="frm" id="frm" enctype="multipart/form-data">
+        <p>
+          <input type="hidden" name="act" value="updateEmailSignature" />
+          <input type="hidden" name="id" value="<?=$row['id'];?>" />
+        </p>
+        <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
+          <thead>
+            <tr>
+              <td colspan="2" align="left" class="style2">&nbsp;Edit Page Section </td>
+            </tr>
+          </thead>
+          <tbody>
+           <tr class="row1">
+            <td colspan="2" align="left" class="redbuttonelements"><?=@$msg?></td>
+          </tr>
+          <tr class="row1">
+            <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Page Heading</span> <span class="redstar">*</span></td>
+            <td  class="leftBarText" align="left" valign="top"><input type="text" class="forminputelement" name="pageName" id="pageName" readonly style="width:50%;" value="<?php echo $row['pageName'] ?>"></td>
+          </tr>
+          
+        <tr class="row1">
+          <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Heading</span> <span class="redstar">*</span></td>
+
+          <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
+        </tr>
+        <tr class="row2">
+         <td colspan="2" align="left">
+          <textarea name="heading"  class="forminputelement" cols="80" id="heading" /><?=stripslashes($row['heading'])?></textarea>
+          <script>
+            CKEDITOR.replace( 'heading' );
+          </script>
+        </td>
+      </tr>
+      <tr>
+
+      <tr class="row1">
+        <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Description</span> <span class="redstar">*</span></td>
+
+        <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
+      </tr>
+      <tr class="row2">
+       <td colspan="2" align="left">
+        <textarea name="description"  class="forminputelement" cols="80" id="description" /><?=stripslashes($row['description']);?></textarea>
+        <script>
+          CKEDITOR.replace( 'description' );
+        </script>
+      </td>
+    </tr>
+        <td align="center" colspan="2">
+          <a class="brownbttn" href="content.php?show=viewEmailSignature&id=<?=$_REQUEST['id']?>">&lt;&lt;back</a>
+          <input type="submit" name="Save" id="Save" value="Save" class="loginbttn" />
+        </td>
+      </tr>
+      </tbody>
+      </table>
+    </form>
+  <? }
+
 if($show=='editRefund'){
   $sql="SELECT * FROM ".$cfg['DB_PRODUCT_REFUND']." WHERE `siteId`='".$cfg['SESSION_SITE']."' and id =4";
   $res=$heart->sql_query($sql);
@@ -263,48 +328,18 @@ if($show=='editRefund'){
         <td colspan="2" align="left" class="redbuttonelements"><?=@$msg?></td>
       </tr>
       <tr class="row1">
-        <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Page Heading</span> <span class="redstar">*</span></td>
+        <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Description</span> <span class="redstar">*</span></td>
 
         <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
       </tr>
       <tr class="row2">
        <td colspan="2" align="left">
         <textarea name="desc1"  class="forminputelement" cols="80" id="desc1" /><?=stripslashes($row['desc1'])?></textarea>
-        <script>
-          CKEDITOR.replace( 'desc1' );
-        </script>
+        
       </td>
     </tr>
-    <tr class="row1">
-      <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Description</span> <span class="redstar">*</span></td>
 
-      <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
-    </tr>
-    <tr class="row2">
-     <td colspan="2" align="left">
-      <textarea name="desc2"  class="forminputelement" cols="80" id="desc2" /><?=stripslashes($row['desc2'])?></textarea>
-      <script>
-        CKEDITOR.replace( 'desc2' );
-      </script>
-    </td>
-  </tr>
-
-  <tr class="row1">
-    <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Description1</span> <span class="redstar">*</span></td>
-
-    <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
-  </tr>
-  <tr class="row2">
-   <td colspan="2" align="left">
-    <textarea name="desc3"  class="forminputelement" cols="80" id="desc3" /><?=stripslashes($row['desc3'])?></textarea>
-    <script>
-      CKEDITOR.replace( 'desc3' );
-    </script>
-  </td>
-</tr>
-
-<tr>
-
+  <tr>
   <td align="center" colspan="2">
     <a class="brownbttn" href="content.php?show=viewRefund&id=<?=$_REQUEST['id']?>">&lt;&lt;back</a>
     <input type="submit" name="Save" id="Save" value="Save" class="loginbttn" />
@@ -705,34 +740,7 @@ if($show=='editContact'){
                   <td width="30%" align="left" class="leftBarText_new">Banner Title</td>
                   <td align="left"><input name="BannerTitle" type="text" class="forminputelement" id="BannerTitle" value="<?=stripslashes($row['BannerTitle'])?>" /></td>
                 </tr>
-        <!-- <tr class="row1">
-          <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Content English</span> <span class="redstar">*</span></td>
-          
-          <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
-        </tr>
-        <tr class="row2">
-         <td colspan="2" align="left">
-          <textarea name="description1"  class="forminputelement" cols="80" id="description1" /><?=stripslashes($row['desc1'])?></textarea>
-          <script>
-
-                    // Replace the <textarea id="editor1"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace( 'description1' );
-                  </script>
-                </td>
-              </tr>
-
-              <tr class="row2">
-               <td colspan="2" align="left">
-                <textarea name="description2"  class="forminputelement" cols="80" id="description2" /><?=stripslashes($row['desc2'])?></textarea>
-                <script>
-                    // Replace the <textarea id="editor1"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace( 'description2' );
-                  </script>
-                </td>
-              </tr>
-            -->
+        
             <tr class="row2">
               <td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Banner Image </span> </td>
               <td width="70%" colspan="4" align="left" valign="top"><input name="image" id="image" type="file" class="forminputelement"/>
@@ -1573,34 +1581,7 @@ if($show=='editContact'){
                   <td width="30%" align="left" class="leftBarText_new">Banner Title</td>
                   <td align="left"><input name="BannerTitle" type="text" class="forminputelement" id="BannerTitle" value="<?=stripslashes($row['BannerTitle'])?>" /></td>
                 </tr>
-        <!-- <tr class="row1">
-          <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Content English</span> <span class="redstar">*</span></td>
-          
-          <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
-        </tr>
-        <tr class="row2">
-         <td colspan="2" align="left">
-          <textarea name="description1"  class="forminputelement" cols="80" id="description1" /><?=stripslashes($row['desc1'])?></textarea>
-          <script>
-
-                    // Replace the <textarea id="editor1"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace( 'description1' );
-                  </script>
-                </td>
-              </tr>
-
-              <tr class="row2">
-               <td colspan="2" align="left">
-                <textarea name="description2"  class="forminputelement" cols="80" id="description2" /><?=stripslashes($row['desc2'])?></textarea>
-                <script>
-                    // Replace the <textarea id="editor1"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace( 'description2' );
-                  </script>
-                </td>
-              </tr>
-            -->
+        
             <tr class="row2">
               <td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Banner Image </span> </td>
               <td width="70%" colspan="4" align="left" valign="top"><input name="image" id="image" type="file" class="forminputelement"/>
@@ -1652,34 +1633,7 @@ if($show=='editContact'){
                   <td width="30%" align="left" class="leftBarText_new">Banner Title</td>
                   <td align="left"><input name="BannerTitle" type="text" class="forminputelement" id="BannerTitle" value="<?=stripslashes($row['BannerTitle'])?>" /></td>
                 </tr>
-        <!-- <tr class="row1">
-          <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Content English</span> <span class="redstar">*</span></td>
-          
-          <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
-        </tr>
-        <tr class="row2">
-         <td colspan="2" align="left">
-          <textarea name="description1"  class="forminputelement" cols="80" id="description1" /><?=stripslashes($row['desc1'])?></textarea>
-          <script>
-
-                    // Replace the <textarea id="editor1"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace( 'description1' );
-                  </script>
-                </td>
-              </tr>
-
-              <tr class="row2">
-               <td colspan="2" align="left">
-                <textarea name="description2"  class="forminputelement" cols="80" id="description2" /><?=stripslashes($row['desc2'])?></textarea>
-                <script>
-                    // Replace the <textarea id="editor1"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace( 'description2' );
-                  </script>
-                </td>
-              </tr>
-            -->
+       
             <tr class="row2">
               <td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Banner Image </span> </td>
               <td width="70%" colspan="4" align="left" valign="top"><input name="image" id="image" type="file" class="forminputelement"/>
@@ -1731,34 +1685,7 @@ if($show=='editContact'){
                   <td width="30%" align="left" class="leftBarText_new">Banner Title</td>
                   <td align="left"><input name="BannerTitle" type="text" class="forminputelement" id="BannerTitle" value="<?=stripslashes($row['BannerTitle'])?>" /></td>
                 </tr>
-        <!-- <tr class="row1">
-          <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Content English</span> <span class="redstar">*</span></td>
-          
-          <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
-        </tr>
-        <tr class="row2">
-         <td colspan="2" align="left">
-          <textarea name="description1"  class="forminputelement" cols="80" id="description1" /><?=stripslashes($row['desc1'])?></textarea>
-          <script>
-
-                    // Replace the <textarea id="editor1"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace( 'description1' );
-                  </script>
-                </td>
-              </tr>
-
-              <tr class="row2">
-               <td colspan="2" align="left">
-                <textarea name="description2"  class="forminputelement" cols="80" id="description2" /><?=stripslashes($row['desc2'])?></textarea>
-                <script>
-                    // Replace the <textarea id="editor1"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace( 'description2' );
-                  </script>
-                </td>
-              </tr>
-            -->
+       
             <tr class="row2">
               <td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Banner Image </span> </td>
               <td width="70%" colspan="4" align="left" valign="top"><input name="image" id="image" type="file" class="forminputelement"/>
@@ -1810,34 +1737,7 @@ if($show=='editContact'){
                   <td width="30%" align="left" class="leftBarText_new">Banner Title</td>
                   <td align="left"><input name="BannerTitle" type="text" class="forminputelement" id="BannerTitle" value="<?=stripslashes($row['BannerTitle'])?>" /></td>
                 </tr>
-        <!-- <tr class="row1">
-          <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Content English</span> <span class="redstar">*</span></td>
-          
-          <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
-        </tr>
-        <tr class="row2">
-         <td colspan="2" align="left">
-          <textarea name="description1"  class="forminputelement" cols="80" id="description1" /><?=stripslashes($row['desc1'])?></textarea>
-          <script>
-
-                    // Replace the <textarea id="editor1"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace( 'description1' );
-                  </script>
-                </td>
-              </tr>
-
-              <tr class="row2">
-               <td colspan="2" align="left">
-                <textarea name="description2"  class="forminputelement" cols="80" id="description2" /><?=stripslashes($row['desc2'])?></textarea>
-                <script>
-                    // Replace the <textarea id="editor1"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace( 'description2' );
-                  </script>
-                </td>
-              </tr>
-            -->
+       
             <tr class="row2">
               <td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Banner Image </span> </td>
               <td width="70%" colspan="4" align="left" valign="top"><input name="image" id="image" type="file" class="forminputelement"/>
@@ -1889,34 +1789,7 @@ if($show=='editContact'){
                   <td width="30%" align="left" class="leftBarText_new">Banner Title</td>
                   <td align="left"><input name="BannerTitle" type="text" class="forminputelement" id="BannerTitle" value="<?=stripslashes($row['BannerTitle'])?>" /></td>
                 </tr>
-        <!-- <tr class="row1">
-          <td class="leftBarText" align="left" valign="top"> <span class="leftBarText_new">Content English</span> <span class="redstar">*</span></td>
-          
-          <td  class="leftBarText" align="left" valign="top">&nbsp;</td>
-        </tr>
-        <tr class="row2">
-         <td colspan="2" align="left">
-          <textarea name="description1"  class="forminputelement" cols="80" id="description1" /><?=stripslashes($row['desc1'])?></textarea>
-          <script>
-
-                    // Replace the <textarea id="editor1"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace( 'description1' );
-                  </script>
-                </td>
-              </tr>
-
-              <tr class="row2">
-               <td colspan="2" align="left">
-                <textarea name="description2"  class="forminputelement" cols="80" id="description2" /><?=stripslashes($row['desc2'])?></textarea>
-                <script>
-                    // Replace the <textarea id="editor1"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace( 'description2' );
-                  </script>
-                </td>
-              </tr>
-            -->
+        
             <tr class="row2">
               <td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Banner Image </span> </td>
               <td width="70%" colspan="4" align="left" valign="top"><input name="image" id="image" type="file" class="forminputelement"/>
@@ -2078,6 +1951,64 @@ if($show=='editContact'){
 
       <? }
 
+      if($show=='viewEmailSignature'){
+     // $cfg['SESSION_SITE'] = 2;
+
+        $sql="SELECT * FROM ".$cfg['DB_EMAIL_SIGNATURE']." WHERE `siteId`='".$cfg['SESSION_SITE']."' AND `status`='A'";
+        $res=$heart->sql_query($sql);
+        $row=$heart->sql_fetchrow($res);
+
+        ?>
+        <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
+          <thead>
+            <tr>
+              <td colspan="3" align="left" class="style2">&nbsp;View Page Details Section </td>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr class="row1">
+              <td colspan="3" align="right" class="redbuttonelements"><?=@$msg?></td>
+            </tr>
+
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3">Page Name</td>
+            </tr>
+            
+            <tr class="row1">
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['pageName']);?></td>
+            </tr>
+
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Page Heading</td>
+            </tr>
+            
+            <tr class="row1">
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['heading'])?></td>
+            </tr>  
+            
+            <tr class="row2">
+              <td class="leftBarText_new" align="left" valign="top" colspan="3"> Description</td>
+            </tr>
+            
+            <tr class="row1">
+
+              <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['description'])?></td>
+            </tr>
+
+            <tr class="row2">
+              <td class="leftBarText_new" align="left">Status</td>
+              <td colspan="2" align="left"><?=($row['status']=='A')?'Active':'Inactive'?></td>
+            </tr>
+            <tr>
+              <td colspan="3" align="center" >&nbsp;<a href="content.php">&lt;&lt;back</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+      <? }
+
+
       if($show=='viewClient'){
      // $cfg['SESSION_SITE'] = 2;
         $sql="SELECT * FROM ".$cfg['DB_CLIENT_BANNER']." WHERE `siteId`='".$cfg['SESSION_SITE']."' AND `status`='A'";
@@ -2150,65 +2081,7 @@ if($show=='editContact'){
         <? }
 
 
-        if($show=='viewRefund'){
-     // $cfg['SESSION_SITE'] = 2;
-          $sql="SELECT * FROM ".$cfg['DB_PRODUCT_REFUND']." WHERE `siteId`='".$cfg['SESSION_SITE']."' AND `status`='A'";
-          $res=$heart->sql_query($sql);
-          $row=$heart->sql_fetchrow($res);
-
-          ?>
-          <table width="98%" align="center" cellpadding="6" cellspacing="1" class="tborder_new">
-            <thead>
-              <tr>
-                <td colspan="3" align="left" class="style2">&nbsp;View Page Details Section </td>
-              </tr>
-            </thead>
-            <tbody>
-
-              <tr class="row1">
-                <td colspan="3" align="right" class="redbuttonelements"><?=@$msg?></td>
-              </tr>
-              <tr class="row2">
-                <td colspan="3" align="right"><a class="brownbttn" style="font-size:11px; padding:3px 7px;" href="content_process.php?act=edit&amp;id=<?=$row['id']?>">Edit</a></td>
-              </tr>
-
-              <tr class="row2">
-                <td class="leftBarText_new" align="left" valign="top" colspan="3"> Page Heading</td>
-              </tr>
-
-              <tr class="row1">
-
-                <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['desc1'])?></td>
-              </tr>  
-
-              <tr class="row2">
-                <td class="leftBarText_new" align="left" valign="top" colspan="3"> Description1</td>
-              </tr>
-
-              <tr class="row1">
-
-                <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['desc2'])?></td>
-              </tr>
-              <tr class="row2">
-                <td class="leftBarText_new" align="left" valign="top" colspan="3"> Description2</td>
-              </tr>
-
-              <tr class="row1">
-
-                <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['desc3'])?></td>
-              </tr>        
-
-              <tr class="row2">
-                <td class="leftBarText_new" align="left">Status</td>
-                <td colspan="2" align="left"><?=($row['status']=='A')?'Active':'Inactive'?></td>
-              </tr>
-              <tr>
-                <td colspan="3" align="center" >&nbsp;<!--<a href="content.php?show=view&id=<?=$_REQUEST['id']?>">&lt;&lt;back</a>--></td>
-              </tr>
-            </tbody>
-          </table>
-
-        <? }
+        
 
       if($show=='viewPortfollio'){
      // $cfg['SESSION_SITE'] = 2;
@@ -2518,30 +2391,13 @@ if($show=='editContact'){
               </tr>
 
               <tr class="row2">
-                <td class="leftBarText_new" align="left" valign="top" colspan="3"> Page Heading</td>
+                <td class="leftBarText_new" align="left" valign="top" colspan="3"> Description</td>
               </tr>
 
               <tr class="row1">
 
                 <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['desc1'])?></td>
               </tr>  
-
-              <tr class="row2">
-                <td class="leftBarText_new" align="left" valign="top" colspan="3"> Description1</td>
-              </tr>
-
-              <tr class="row1">
-
-                <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['desc2'])?></td>
-              </tr>
-              <tr class="row2">
-                <td class="leftBarText_new" align="left" valign="top" colspan="3"> Description2</td>
-              </tr>
-
-              <tr class="row1">
-
-                <td colspan="3" align="left" style="padding-left:12px; padding-right:10px;"><?=stripslashes($row['desc3'])?></td>
-              </tr>        
 
               <tr class="row2">
                 <td class="leftBarText_new" align="left">Status</td>
