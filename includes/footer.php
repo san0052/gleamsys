@@ -263,6 +263,9 @@
                <li class="social-icon">
 
                  <a href="https://www.facebook.com/gleamsys/?ref=bookmarks"><i class="fab fa-facebook-f"></i></a>
+                 <a href="https://www.instagram.com/invites/contact/?i=e5f3nx0u58zm&utm_content=h7waw8p"><i class="fab fa-instagram"></i></a>
+                 <a href="https://twitter.com/gleamsys"><i class="fab fa-twitter"></i></a>
+                 <a href="https://www.linkedin.com/company/gleamsys"><i class="fab fa-linkedin-in"></i></a>
 
                  <a href="https://wa.me/+61 435 074 100"><i class="fab fa-whatsapp"></i></a>
 
