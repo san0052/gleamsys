@@ -226,12 +226,12 @@ header .logo img {
 {
     width: 70%;
 }
-#myDIV .drop-btn
+#myDIV .hover-btn
 
 {
     background: transparent;
     border: 0;
-    padding: 0;
+    padding: 15px 6px;
 }
 .navigation-bar nav ul {
     list-style: none;
@@ -243,7 +243,7 @@ header .logo img {
     font-size: 16px;
     font-weight: 400;
     display: inline-block;
-    padding: 3px 6px;
+    padding: 15px 6px;
     text-align: center;
     /* border-bottom: 2px solid #fff; */
     margin-right: 6px;
@@ -321,7 +321,7 @@ background: transparent;
 {
     margin-right: 25px;
     cursor: pointer;
-    font-size: 30px;
+    font-size: 20px;
 }
 .social-icon a:last-child
 {
@@ -2356,6 +2356,7 @@ footer .content-details-box p
     .contact-list ul li
     {
         display: flex;
+        cursor: inherit;
     }
     .contact-list ul li p{
         margin: 0 0 10px 0;
@@ -2363,7 +2364,6 @@ footer .content-details-box p
     color: #fff;
     list-style: none;
     text-align: left;
-    cursor: pointer;
     border: 0;
     padding-bottom: 0;
     text-transform: capitalize;
@@ -2547,13 +2547,14 @@ footer .content-details-box p
         font-weight: bold;
         font-size: calc(15px + (18 - 15) * ((100vw - 300px) / (1600 - 300)));
     }
-    #myDIV .drop-menu
+    
+    #myDIV .hover-menu
     {
        
         background: #207da4;
         position: absolute;
         right: 0;
-        top: 150%;
+        top: 100%;
         width: 200px;
         z-index: 9;
         /* height: 100vh; */
@@ -2562,10 +2563,14 @@ footer .content-details-box p
         left: 0;
         box-shadow: 3px 3px 7px #08000061;
     padding: 0;
-           
+           display: none;
        
     }
-    #myDIV .drop-menu li {
+    #myDIV .hover-btn:hover .hover-menu
+    {
+        display: block;
+    }
+    #myDIV .hover-menu li {
         list-style: none !important;
         padding: 10px 15px !important;
         font-size: 16px !important;
@@ -2978,7 +2983,7 @@ padding: 60px 0;
     }
     .port-details
     {
-        padding: 15px;
+        padding: 20px 15px;
         position: absolute;
         left: 0;
         bottom: 0;
@@ -2989,11 +2994,10 @@ padding: 60px 0;
         font-size:18px;
         color:#fff;
         font-weight:400;
-        margin-bottom:17px;
+        margin-bottom:0px;
         margin-top:0;
         text-align:left;
         text-transform:uppercase;
-        padding: 0 15px;
     }
     .port-details p
     {
@@ -4012,5 +4016,9 @@ display: none;
 .cm-tr-tab .tabcontent {
     height: auto;
     margin-top: 40px;
+}
+.contact-map iframe{
+    height: 100%;
+    width: 100%;
 }
     
