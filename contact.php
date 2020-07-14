@@ -113,7 +113,7 @@ include_once("includes/links_frontend.php"); ?>
 
                 <div class="contact-map">
 
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2923.5169241037233!2d147.32408371525779!3d-42.883039348404125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xaa6e751fef321173%3A0xe629349a5a80275e!2sGleamsys!5e0!3m2!1sen!2sin!4v1591444220363!5m2!1sen!2sin" width="100%" height="534.15" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> 
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2923.5169241037233!2d147.32408371525779!3d-42.883039348404125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xaa6e751fef321173%3A0xe629349a5a80275e!2sGleamsys!5e0!3m2!1sen!2sin!4v1591444220363!5m2!1sen!2sin" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> 
 
                 <!--  <iframe width="100%" height="534.15" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" src="https://maps.google.it/maps?q=<?php //echo str_replace(" ", "+", $address); ?>&output=embed"></iframe>  -->
 

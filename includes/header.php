@@ -11,56 +11,51 @@
             </div>
             <div class="col-xs-10 col-xs-offset-2 navigation-bar">
                 <nav>
-                <ul id="myDIV">
-                    <button class="hidden-md hidden-lg" onclick="navcls()" style="float: right;
+                    <ul id="myDIV">
+                        <button class="hidden-md hidden-lg" onclick="navcls()" style="float: right;
                         background: transparent;
                         border: 0;
                         color: white;
                         padding: 0;
                         padding-bottom: 9px;"><i class="fas fa-grip-lines"></i></button>
                         <?php
-                            $userId     = $_SESSION['gleam_users_session']['user_id'];
-                            if($userId){
-                            $sqlgetUser = "SELECT image,name FROM ".$cfg['DB_USERS']."  WHERE `status`='A' AND `id` = ".$userId."  ";
+                        $userId     = $_SESSION['gleam_users_session']['user_id'];
+                        if ($userId) {
+                            $sqlgetUser = "SELECT image,name FROM " . $cfg['DB_USERS'] . "  WHERE `status`='A' AND `id` = " . $userId . "  ";
                             $res        =   $mycms->sql_query($sqlgetUser);
                             $row        =   $mycms->sql_fetchrow($res);
-                            }
+                        }
                         ?>
-                    <li class="profileheaderbtn hidden-md hidden-lg">
-                        <?php if (!empty($_SESSION['gleam_users_session'])) {?>
-                            <button><img src="uploads/userProfile/<?php echo $row['image'];?>"><span><?php echo ucfirst($row['name']);?></span></button>
-                        <?php }else{ ?>
-                              <button><img src="uploads/userProfile/man.png"><span></span></button>
-                        <?php } ?>
+                        <li class="profileheaderbtn hidden-md hidden-lg">
+                            <?php if (!empty($_SESSION['gleam_users_session'])) { ?>
+                                <button><img src="uploads/userProfile/<?php echo $row['image']; ?>"><span><?php echo ucfirst($row['name']); ?></span></button>
+                            <?php } else { ?>
+                                <button><img src="uploads/userProfile/man.png"><span></span></button>
+                            <?php } ?>
                         </li>
                         <li class="profileheaderbtn hidden-md hidden-lg" onclick="openlogin()">Login</li>
-                        <li onclick="window.location.href='index.php'">HOME</li>
-                        <li onclick="window.location.href='about.php'">ABOUT</li>
-                        <li>
-                            <button class="drop-btn">SERVICES
-                                <span class="carret" style="color:white;">
-                                    <i class="fas fa-caret-down"></i>
-                                </span>
-                            </button>
-                            <ul class="drop-menu hide">
+                        <li class="hover-btn" onclick="window.location.href='index.php'">HOME</li>
+                        <li class="hover-btn" onclick="window.location.href='about.php'">ABOUT US</li>
+                        <li class="hover-btn">SERVICES<span class="carret" style="color:white;"><i class="fas fa-caret-down"></i></span>
+                            <ul class="hover-menu">
                                 <li onclick="window.location.href='online-store.php'">BUY ONLINE</li>
                                 <li onclick="window.location.href='tech-support.php'">TECH SUPPORT</li>
                                 <li onclick="window.location.href='it-service.php'">IT SERVICES</li>
                                 <li onclick="window.location.href='computer-training.php'">COMPUTER TRAINING</li>
                             </ul>
                         </li>
-                       
-                        <li onclick="window.location.href='portfolio.php'">PORTFOLIO</li>
-                        <li onclick="window.location.href='client.php'">CLIENTS</li>
-                        <li onclick="window.location.href='contact.php'">CONTACT</li>
+
+                        <li class="hover-btn" onclick="window.location.href='portfolio.php'">PORTFOLIO</li>
+                        <li class="hover-btn" onclick="window.location.href='client.php'">CLIENTS</li>
+                        <li class="hover-btn" onclick="window.location.href='contact.php'">CONTACT</li>
                         <?php if (!empty($_SESSION['gleam_users_session'])) { ?>
-                        <hr class="hidden-md hidden-lg" style="margin: 10px 0;">
+                            <hr class="hidden-md hidden-lg" style="margin: 10px 0;">
                             <li class="hidden-md hidden-lg" onclick="window.location.href='profile.php'">Profile</li>
-                           <!--  <li class="hidden-xs hidden-sm" onclick="window.location.href='wishlist.php'">Wishlist</li> -->
+                            <!--  <li class="hidden-xs hidden-sm" onclick="window.location.href='wishlist.php'">Wishlist</li> -->
                             <li class="hidden-md hidden-lg" onclick="window.location.href='orderlist.php'">My Orders</li>
                             <li class="hidden-md hidden-lg" onclick="logout()">Log Out</li>
                         <?php } ?>
-                        
+
 
                     </ul>
                     <ul class="cart-box">
@@ -69,12 +64,12 @@
                         <?php } else { ?>
                             <li class="profileheaderbtn hidden-xs hidden-sm">
                                 <button onclick="myaccntdrpopen()">
-                                    <?php if($row['image']){ ?>
-                                        <img src="uploads/userProfile/<?php echo $row['image'];?>">
-                                   <?php }else{ ?>
-                                     <img src="uploads/userProfile/man.png"><span></span>
-                                   <?php }?>
-                                    <span><?php echo ucfirst($row['name']);?></span></button>
+                                    <?php if ($row['image']) { ?>
+                                        <img src="uploads/userProfile/<?php echo $row['image']; ?>">
+                                    <?php } else { ?>
+                                        <img src="uploads/userProfile/man.png"><span></span>
+                                    <?php } ?>
+                                    <span><?php echo ucfirst($row['name']); ?></span></button>
                                 <ul class="my-account-drop">
                                     <li onclick="window.location.href='profile.php'">Profile</li>
                                     <!-- <li onclick="window.location.href='wishlist.php'">Wishlist</li> -->
@@ -84,10 +79,10 @@
                             </li>
                         <?php } ?>
                         <li class="cart" onclick="cartopen()">
-                            <?php 
-                                $cart_session = !empty($_SESSION['gleam_cart_session'])?count($_SESSION['gleam_cart_session']):0;
+                            <?php
+                            $cart_session = !empty($_SESSION['gleam_cart_session']) ? count($_SESSION['gleam_cart_session']) : 0;
 
-                             ?>
+                            ?>
                             <sub class="cart_counter"><?php echo $cart_session; ?></sub>
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 437.812 437.812" style="enable-background:new 0 0 437.812 437.812;" xml:space="preserve">
                                 <g>
@@ -193,6 +188,7 @@
     </div>
 </header>
 <script>
+   
     $(window).scroll(function() {
         if ($(this).scrollTop() > 200) {
             $(".header").css({
@@ -225,6 +221,7 @@
     });
 </script>
 <script>
+    
     $(".drop-btn").click(function(event) {
         $(".my-account-drop").slideUp();
         event.stopPropagation();
@@ -271,19 +268,20 @@
     })
 </script>
 <script>
- function navsideopen() {
+    function navsideopen() {
         $("#myDIV").addClass("open-nav-modal");
         $("#filter-teacher").css({
-                'left': '-200%',
-                'opacity': '0',
-                'visibility': 'hidden',
-                'transition': '.3s'
-            });
+            'left': '-200%',
+            'opacity': '0',
+            'visibility': 'hidden',
+            'transition': '.3s'
+        });
     }
-function navcls()
-{
-    $("#myDIV").removeClass("open-nav-modal");
-}
+
+    function navcls() {
+        $("#myDIV").removeClass("open-nav-modal");
+    }
+
     function openlogin() {
         $("#side-modal").addClass("open-side-modal");
         $("#login").slideDown();
@@ -347,11 +345,10 @@ function navcls()
         });
     }
 
-    function myaccntdrpopen()
-    {
-$(".my-account-drop").slideToggle();
-$(".drop-menu").removeClass("show");
-$(".drop-menu").addClass("hide");
+    function myaccntdrpopen() {
+        $(".my-account-drop").slideToggle();
+        $(".drop-menu").removeClass("show");
+        $(".drop-menu").addClass("hide");
     }
 </script>
 <script type="text/javascript">
@@ -385,16 +382,19 @@ $(".drop-menu").addClass("hide");
 
     $(document.body).on('click', '.add_to_cart', function(event) {
         let product_id = $(this).attr('data-cartProductId');
-        let product_count = $(this).parent().find('.cart_counter_'+product_id).val();
+        let product_count = $(this).parent().find('.cart_counter_' + product_id).val();
         $.ajax({
-            url : 'cart-process.php?act=add_to_cart',
-            method : 'POST',
-            data : { product_id : product_id, product_count : product_count },
-            dataType : 'JSON',
-            success : function(response) {
-                if(response != '') {
+            url: 'cart-process.php?act=add_to_cart',
+            method: 'POST',
+            data: {
+                product_id: product_id,
+                product_count: product_count
+            },
+            dataType: 'JSON',
+            success: function(response) {
+                if (response != '') {
                     console.log(response);
-                    if(response.status) {
+                    if (response.status) {
                         $('.cart_counter').text(response.cart_count);
                     }
                     alert(response.message);
@@ -405,6 +405,4 @@ $(".drop-menu").addClass("hide");
             }
         });
     });
-
-
 </script>

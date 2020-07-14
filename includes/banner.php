@@ -25,7 +25,7 @@
              <?php } ?>
             
               <img src="uploads/banner_img/<?php echo $row['bannerImg']; ?>">
-              <div class="banner-text">
+              <div style="display: none;" class="banner-text">
                 <?php echo $row['bannerTitle'];?>
                 <!-- Buy Online<br>Buy Quality Computer -->
 
