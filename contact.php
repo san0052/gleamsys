@@ -188,34 +188,34 @@ include_once("includes/links_frontend.php"); ?>
     </div>
 
     <script>
-    function validate()
-    {
-        if($('#name').val()=='')
+        function validate()
         {
-            alert('Please enter your name');
-            $('#name').focus();
-            return false;
+            if($('#name').val()=='')
+            {
+                alert('Please enter your name');
+                $('#name').focus();
+                return false;
+            }
+            if($('#email').val()=='')
+            {
+                alert('Please enter your email address');
+                $('#email').focus();
+                return false;
+            }
+            if($('#mobileno').val()=='')
+            {
+                alert('Please enter your mobile number');
+                $('#mobileno').focus();
+                return false;
+            }
+            if($('#mess').val()=='')
+            {
+                alert('Please enter your query');
+                $('#message').focus();
+                return false;
+            }
         }
-        if($('#email').val()=='')
-        {
-            alert('Please enter your email address');
-            $('#email').focus();
-            return false;
-        }
-        if($('#mobileno').val()=='')
-        {
-            alert('Please enter your mobile number');
-            $('#mobileno').focus();
-            return false;
-        }
-        if($('#mess').val()=='')
-        {
-            alert('Please enter your query');
-            $('#message').focus();
-            return false;
-        }
-    }
-</script>
+    </script>
 
 
     <? include_once('includes/footer.php') ?>

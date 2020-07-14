@@ -10,9 +10,9 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="Lateral On-Scroll Sliding with jQuery - Timeline Example with CSS3" />
+    <meta name="description" content="Ecommerce Website Design and Development with latest technology and offers on TLDs and your favorite domains only from Gleamsys. Here you can buy electronics products also." />
 
-    <meta name="keywords" content="lateral, sides, slide, scroll, jquery, css3, timeline" />
+    <meta name="keywords" content="Web development, Database Management, Latest Programming Technologies, Buy Electronics products"/>
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 
