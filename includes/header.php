@@ -80,8 +80,13 @@
                         <?php } ?>
                         <li class="cart" onclick="cartopen()">
                             <?php
-                            $cart_session = !empty($_SESSION['gleam_cart_session']) ? count($_SESSION['gleam_cart_session']) : 0;
-
+                            if (!empty($_SESSION['gleam_cart_session'])) {
+                                $products = array_column($_SESSION['gleam_cart_session'], 'product_id');
+                                $cart_session = count(array_unique($products));
+                            } else {
+                                $cart_session = 0;
+                            }
+                            
                             ?>
                             <sub class="cart_counter"><?php echo $cart_session; ?></sub>
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 437.812 437.812" style="enable-background:new 0 0 437.812 437.812;" xml:space="preserve">

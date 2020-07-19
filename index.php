@@ -6,6 +6,7 @@ include_once("includes/links_frontend.php");
 <?php 
 include_once('includes/pagesources.php');?>
 <body>
+    
     <? include_once('includes/header.php') ?>
 
     <? include_once('includes/banner.php') ?>
@@ -17,6 +18,7 @@ include_once('includes/pagesources.php');?>
     <div class="container-fluid counter">
 
         <div class="container">
+           
             <div class="row">
                 <?php 
                     $sql =   "SELECT * FROM ".$cfg['DB_HOME_COUNTER']."

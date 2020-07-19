@@ -8,11 +8,12 @@ switch($action) {
 		#check product with available items are available
 		$product_id = !empty($_REQUEST['product_id'])?trim($_REQUEST['product_id']) : '';
 		$product_count = !empty($_REQUEST['product_count'])?trim($_REQUEST['product_count']) : '';
+		
 
 		if (empty($product_id)) { 
 			echo json_encode(array('status'=>false, 'message'=>'Something went wrong. Please try again later')); die;
 		}
-		$checkProductAvailable = "SELECT `pd_id`,`pd_name`,`pd_qty` FROM ".$cfg['DB_PRODUCT']." WHERE `pd_id` = ".$product_id;
+		$checkProductAvailable = "SELECT `pd_id`,`pd_name`,`pd_qty`,`pd_price` FROM ".$cfg['DB_PRODUCT']." WHERE `pd_id` = ".$product_id;
 		$resProducts	=	$mycms->sql_query($checkProductAvailable);
 		$rows			=	$mycms->sql_fetchrow($resProducts);
 		if(!empty($rows)) {
@@ -27,16 +28,19 @@ switch($action) {
 
 				$cart_array = array();
 				$cart_counter = 0;
+				$product_amount = !empty($rows['pd_price'])?$rows['pd_price']:0;
 				if (!empty($_SESSION['gleam_users_session'])) {
 					$user_id = $_SESSION['gleam_users_session']['user_id'];
-					$cart_array = array('user_id'=>$user_id, 'product_id'=>$product_id, 'product_count'=>$product_count);
-					checkProductExistInCart($product_id, $product_count, $user_id);
+					$cart_array = array('user_id'=>$user_id, 'product_id'=>$product_id, 'product_count'=>$product_count,'product_amount'=>$product_amount);
+					checkProductExistInCart($product_id, $product_count, $user_id,$product_amount);
 				} else {
-					checkProductExistInCart($product_id, $product_count);				
+					checkProductExistInCart($product_id, $product_count,0,$product_amount);				
 				}
 
 				$cart_counter = count($_SESSION['gleam_cart_session']);
-				echo json_encode(array('status'=>true, 'message'=>'product added to cart', 'cart_session'=>$_SESSION['gleam_cart_session'], 'cart_count'=>$cart_counter)); die;
+				$products = array_column($_SESSION['gleam_cart_session'], 'product_id');
+				$product_counter = count(array_unique($products));
+				echo json_encode(array('status'=>true, 'message'=>'product added to cart', 'cart_session'=>$_SESSION['gleam_cart_session'], 'cart_count'=>$product_counter)); die;
 			}
 		} else {
 			echo json_encode(array('status'=>false, 'message'=>'Something went wrong. Please try again later')); die;
@@ -47,7 +51,7 @@ switch($action) {
 	case 'show_cart_details':
 		$cart_session = !empty($_SESSION['gleam_cart_session'])?$_SESSION['gleam_cart_session']:'';
 
-		/*$deliveryCharge = 'free';
+		$deliveryCharge = 'free';
 		if (!empty($_REQUEST['id'])) {
 			$sqlShip = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']." WHERE `status`!='D' AND `id` = '".$_REQUEST['id']."'";
 			$resShip    =   $mycms->sql_query($sqlShip);
@@ -61,7 +65,7 @@ switch($action) {
 		        	$deliveryCharge = $rowPin['delivery_charges'];
 		        }
 	        }
-		}*/
+		}
 
 		if (!empty($cart_session)) {
 			$totalCount = 0;
@@ -141,14 +145,16 @@ switch($action) {
 	case 'show_cart_details_checkout':
 
 		$cart_session = !empty($_SESSION['gleam_cart_session'])?$_SESSION['gleam_cart_session']:'';
-		/*echo '<pre>';
-		print_r($_GET);
-		exit;*/
+		$userId = !empty($_POST['userId'])?$_POST['userId']:null;
+		// echo '<pre>';
+		// print_r($_SESSION);
+		// exit;
 		$deliveryCharge = 0;
 		if (!empty($_REQUEST['shipId'])) {
 			$sqlShip = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']." WHERE `status`!='D' AND `id` = '".$_REQUEST['shipId']."'";
 			$resShip    =   $mycms->sql_query($sqlShip);
 	        $rowShip    =   $mycms->sql_fetchrow($resShip);
+
 	        if (!empty($rowShip)) {
 	        	$pincode = $rowShip['pincode'];
     			$sqlPin = "SELECT * FROM ".$cfg['DB_PINCODES']." WHERE `status`!='D' AND `Pincode` = '".$pincode."'";
@@ -156,6 +162,7 @@ switch($action) {
 		        $rowPin    =   $mycms->sql_fetchrow($resPin);
 		        if (!empty($rowPin)) {
 		        	$deliveryCharge = $rowPin['delivery_charges'];
+		        	$_SESSION['gleam_cart_session']['delivery_charges'] = $rowPin['delivery_charges'];
 		        }
 	        }
 		}
@@ -189,7 +196,7 @@ switch($action) {
 	            }
 			}
 
-			$paypal = paypalForm();
+			$paypal = paypalForm($userId);
 
 			if ($totalCount>0) {
 
@@ -231,7 +238,7 @@ switch($action) {
 				$totalPayable .= '</table>';
 
 				if (!empty($paypal)) {
-					$totalPayable .= '<form action="'.PAYPAL_URL.'" method="post" id="submitPaypalForm">';
+					$totalPayable .= '<form action="paypal/index.php" method="post" id="submitPaypalForm">';
 					$totalPayable .= $paypal;
 					$totalPayable .= '<button class="change-btn payment-procc">Procced to Payment</button>';
 					$totalPayable .= '</form>';
@@ -262,7 +269,12 @@ switch($action) {
 				}
 			}
 			$_SESSION['gleam_cart_session'] = $data;
-			echo json_encode(array('status'=>true, 'cart_counter'=>count($data))); die;
+			$products = array_column($_SESSION['gleam_cart_session'], 'product_id');
+			$product_counter = count(array_unique($products));
+			if(empty($products)) {
+				unset($_SESSION['gleam_cart_session']);
+			}
+			echo json_encode(array('status'=>true, 'cart_counter'=>count($product_counter))); die;
 		} else {
 			echo json_encode(array('status'=>false)); die;
 		}
@@ -280,7 +292,12 @@ switch($action) {
 				}
 			}
 			$_SESSION['gleam_cart_session'] = $data;
-			echo json_encode(array('status'=>true, 'cart_counter'=>count($data))); die;
+			$products = array_column($_SESSION['gleam_cart_session'], 'product_id');
+			$product_counter = count(array_unique($products));
+			if(empty($products)) {
+				unset($_SESSION['gleam_cart_session']);
+			}
+			echo json_encode(array('status'=>true, 'cart_counter'=>count($product_counter))); die;
 		} else {
 			echo json_encode(array('status'=>false)); die;
 		}
@@ -288,7 +305,7 @@ switch($action) {
 }
 
 // if product is already present then add product count only
-function checkProductExistInCart($product_id, $product_count, $user_id = 0) {
+function checkProductExistInCart($product_id, $product_count, $user_id = 0,$product_amount =0) {
 
 	$data = $_SESSION['gleam_cart_session'];
 	if (!empty($data)) {
@@ -297,32 +314,33 @@ function checkProductExistInCart($product_id, $product_count, $user_id = 0) {
 			$key 				= key(array_column($data, 'product_id'));
 			$product_count_prev = $data[$key]['product_count'];
 			$data[$key]['product_count'] = $product_count_prev+$product_count;
+			$data[$key]['product_amount'] = $data[$key]['product_amount'];
 			$_SESSION['gleam_cart_session'] = $data;
 			return 1;
 		} else { 
-			$cart_array = array('product_id'=>$product_id, 'product_count'=>$product_count, 'user_id'=>$user_id);
+			$cart_array = array('product_id'=>$product_id, 'product_count'=>$product_count, 'user_id'=>$user_id,'product_amount' => $product_amount);
 			array_push($_SESSION['gleam_cart_session'],$cart_array);
 		}
 	} else { 
-		$cart_array = array('product_id'=>$product_id, 'product_count'=>$product_count, 'user_id'=>$user_id);
+		$cart_array = array('product_id'=>$product_id, 'product_count'=>$product_count, 'user_id'=>$user_id,'product_amount' => $product_amount);
 		$_SESSION['gleam_cart_session'][] = $cart_array;
 	}
 }
 
-function paypalForm() {
+function paypalForm($userId=null) {
 	$cart_session = !empty($_SESSION['gleam_cart_session'])?$_SESSION['gleam_cart_session']:'';
 	$paypalFormData = '';
 	global $mycms;
 	global $cfg;
 	$dataExist = 0;
+
 	if (!empty($cart_session)) {
-			// Identify your business so that you can collect the payments
-			$paypalFormData .= '<input type="hidden" name="business" value="'.PAYPAL_ID.'">';
-			// Specify a Buy Now button
-			$paypalFormData .= '<input type="hidden" name="cmd" value="_cart">';
-			$paypalFormData .= '<input type="hidden" name="upload" value="1">';
 			$paypalFormData .= '<input type="hidden" name="currency_code" value="'.PAYPAL_CURRENCY.'">';
+			$paypalFormData .= '<input type="hidden" name="total_products" value="'.count($cart_session).'">';
 			$counter = 1;
+			$paypalFormData .= '<input type="hidden" name="userId" value="'.$userId.'">';
+		
+
 			foreach ($cart_session as $key => $cart) {
 				$sqlgetCartDet = "SELECT pd_id, pd_image, pd_price, pd_name, pd_qty FROM ".$cfg['DB_PRODUCT']." WHERE `status` ='A' AND `pd_id` = '".$cart['product_id']."'";
 				$resCart    =   $mycms->sql_query($sqlgetCartDet);
@@ -331,15 +349,14 @@ function paypalForm() {
 	            	$dataExist++;
 					// Specify details about the item that buyers will purchase.
 					$paypalFormData .= '<input type="hidden" name="item_name_'.$counter.'" value="'.$rowCart['pd_name'].'">';
-					// $paypalFormData .= '<input type="hidden" name="item_number" value="'.$rowCart['pd_id'].'">';
+					$paypalFormData .= '<input type="hidden" name="item_quantity_'.$counter.'" value="'.$cart['product_count'].'">';
+					$paypalFormData .= '<input type="hidden" name="item_id_'.$counter.'" value="'.$rowCart['pd_id'].'">';
 					$paypalFormData .= '<input type="hidden" name="amount_'.$counter.'" value="'.$rowCart['pd_price'].'">';
 				}
 				$counter++;
 			}
 
-		$paypalFormData .= ' <input type="hidden" name="return" value="'.PAYPAL_RETURN_URL.'">';
-		$paypalFormData .= ' <input type="hidden" name="cancel_return" value="'.PAYPAL_CANCEL_URL.'">';
-		$paypalFormData .= ' <input type="hidden" name="notify_url" value="'.PAYPAL_NOTIFY_URL.'">';
+		
 	}
 	if ($dataExist>0) {
 		return $paypalFormData;

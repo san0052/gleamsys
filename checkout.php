@@ -34,6 +34,7 @@ include_once('includes/pagesources.php'); ?>
                                 <?php 
                                     $userId     = $_SESSION['gleam_users_session']['user_id'];
                                     if($userId){ 
+                                        $_SESSION['gleam_cart_session']['userId'] = $userId;
                                         $sqlgetUser = "SELECT * FROM ".$cfg['DB_USERS']."  WHERE `status`='A' AND `id` = ".$userId."  ";
                                         $res        =   $mycms->sql_query($sqlgetUser);
                                         $row        =   $mycms->sql_fetchrow($res); ?>
@@ -126,10 +127,12 @@ include_once('includes/pagesources.php'); ?>
                                 <?php 
                                     $rows = array();
                                    if($row['email']){
+
                                     $sqlgetUser = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']."  WHERE `status`='A' AND `email` = '".$row['email']."'  ";
                                     $res        =   $mycms->sql_query($sqlgetUser);
                                     $rows       =   $mycms->sql_fetchrow($res);
                                 }else if($_GET['id']){
+                                    $_SESSION['gleam_cart_session']['userId'] = $_GET['id'];
                                     $sqlgetUsers = "SELECT * FROM ".$cfg['DB_SHIPPING_ADDRESS']."  WHERE `status`='A' AND `id` = '".$_GET['id']."'  ";
                                     $res        =   $mycms->sql_query($sqlgetUsers);
                                     $rows   =   $mycms->sql_fetchrow($res);
@@ -537,42 +540,6 @@ include_once('includes/pagesources.php'); ?>
                     </ul>
                 </div>
                 <div class="col-xs-12 col-md-4 total-checkout-items totalPayableCheckout">
-                    <!-- <table class="table totalpayble">
-                        <thead>
-                            <tr>
-                                <th colspan="2">Price Details</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    Price( 2 Items )
-                                </td>
-                                <td>
-                                    $400
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Delivery Charge
-                                </td>
-                                <td>
-                                   Free
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td>
-                                    Total Payble
-                                </td>
-                                <td>
-                                    $400
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table> -->
-                    <!-- <button class="change-btn payment-procc">Procced to Payment</button> -->
                 </div>
             </div>
         </div>
@@ -610,10 +577,13 @@ include_once('includes/pagesources.php'); ?>
           event.preventDefault();
           $.ajax({
               url : "<?php echo 'cart-process.php?act=remove_cart_item_checkout'; ?>",
+              // url : "<?php //echo 'cart-process.php?act=remove_cart_item'; ?>",
               dataType : 'JSON',
               type : 'POST',
               data : { product_id:id },
               success : function(response) {
+                console.log('response ',response);
+                // event.preventDefault();
                   if(response != '') {
                       if(response.status) {
                           location.reload();
@@ -627,27 +597,28 @@ include_once('includes/pagesources.php'); ?>
           });
       });
 
-     $(document.body).on('click', '.payment-procc', function(event) {
+    $(document.body).on('click', '.payment-procc', function(event) {
         let shippingAddressId = $('.shippingAddressId').val();
         if(shippingAddressId == '' || shippingAddressId === undefined) {
             alert('Please save shipping address to proceed to payment');
             event.preventDefault();
-        } else {
-            event.preventDefault();
-            $.ajax({
-                url : "shipping-process.php?act=place_order",
-                dataType : 'JSON',
-                type : 'POST',
-                data : { shippingAddressId : shippingAddressId },
-                success : function(response) {
-                    if(response.status) {
-                        $('#submitPaypalForm').submit();
-                    } else {
-                        alert('Something went wrong. Please try again later');
-                    }
-                }
-            });
-        }
+        } 
+        // else {
+        //     event.preventDefault();
+        //     $.ajax({
+        //         url : "shipping-process.php?act=place_order",
+        //         dataType : 'JSON',
+        //         type : 'POST',
+        //         data : { shippingAddressId : shippingAddressId },
+        //         success : function(response) {
+        //             if(response.status) {
+        //                 $('#submitPaypalForm').submit();
+        //             } else {
+        //                 alert('Something went wrong. Please try again later');
+        //             }
+        //         }
+        //     });
+        // }
      });
 </script>
 </html>

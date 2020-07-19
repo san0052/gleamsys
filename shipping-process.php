@@ -227,7 +227,7 @@ switch($action)
 		}
 	break;
 
-	case 'place_order':
+	/*case 'place_order':
 		$shipping_id = !empty($_REQUEST['shippingAddressId'])?$_REQUEST['shippingAddressId']:'';
 		$cart_session = !empty($_SESSION['gleam_cart_session'])?$_SESSION['gleam_cart_session']:'';
 
@@ -266,7 +266,7 @@ switch($action)
 								`od_shipping_city`	=	'".$row['city']."',
 								`od_shipping_state`	=	'".$row['state']."',
 								`od_shipping_country`	=	'".$row['country']."',
-								`or_pattern`	=	'".$random_number."',
+								`or_pattern`		=	'".$random_number."',
 								`od_shipping_postal_code`	=	'".$row['pincode']."'
 							";
 				$ins = $mycms->sql_insert($insert_order);
@@ -292,5 +292,5 @@ switch($action)
 		} else {
 			echo json_encode(array('status'=>false,'message'=>'Something went wrong.')); die;
 		}
-		break;
+		break;*/
 }

@@ -34,6 +34,12 @@ $cfg['HTTPS_COOKIE_PATH']				=	'';
 $cfg['DIR_WS_INCLUDES']					=	$cfg['DIR_WS'].'includes/';
 $cfg['DIR_WS_CLASSES']					=	$cfg['HTTP_SERVER'].'libs/';
 
+
+$cfg['FOLDER_NAME']						= 	'/gleamsys/';
+$cfg['DIR_PAYPAL_PATH']					=	$_SERVER['DOCUMENT_ROOT'].$cfg['FOLDER_NAME'].'paypal/';
+
+// paypal credentails is present in  paypal/bootstrap.php page
+
 // Client side path
 $cfg['IMAGES']							=	'images/';
 $cfg['IMAGES_FRANT']					=	'images/';
@@ -52,12 +58,14 @@ $cfg['USE_PCONNECT']					=	FALSE;
 
 // PayPal configuration 
 define('PAYPAL_ID', 'sb-8vqor1649489@business.example.com'); 
+define('PAYPAL_CLIENT_ID','AZJ_Yg1pnWhNZoC0mZL5zqL-CkAsKn0-r4VBJfetFZfXyD1oCgoS5FDRzi4l1aKhpuUsQEyaXDnld5cw');
+define('PAYPAL_CLIENT_SECRET','EKQfm7HaE1plTmrEtGXGOcwx8zwlFkM23uye3FD5ZLWVoXws7Au4tv0dfOflR0kqvky3hD_fKSGDYtM7');
 define('PAYPAL_SANDBOX', TRUE); //TRUE or FALSE 
  
-define('PAYPAL_RETURN_URL', $cfg['base_url'].'paypal/success.php'); 
+define('PAYPAL_SUCCESS_URL', $cfg['base_url'].'paypal/success.php'); 
 define('PAYPAL_CANCEL_URL', $cfg['base_url'].'paypal/cancel.php'); 
-define('PAYPAL_NOTIFY_URL', $cfg['base_url'].'paypal/ipn.php'); 
 define('PAYPAL_CURRENCY', 	'AUD'); 
 
-define('PAYPAL_URL', (PAYPAL_SANDBOX == true)?"https://www.sandbox.paypal.com/cgi-bin/webscr":"https://www.paypal.com/cgi-bin/webscr");
+// define('PAYPAL_URL', (PAYPAL_SANDBOX == true)?"https://www.sandbox.paypal.com/cgi-bin/webscr":"https://www.paypal.com/cgi-bin/webscr");
+
 ?>
