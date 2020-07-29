@@ -335,7 +335,9 @@ if($show=='editRefund'){
       <tr class="row2">
        <td colspan="2" align="left">
         <textarea name="desc1"  class="forminputelement" cols="80" id="desc1" /><?=stripslashes($row['desc1'])?></textarea>
-        
+        <script>
+            CKEDITOR.replace( 'desc1' );
+          </script>
       </td>
     </tr>
 

@@ -89,13 +89,13 @@ require $cfg['DIR_PAYPAL_PATH'].'/vendor/autoload.php';
 		  	$approvalUrl = $payment->getApprovalLink();
 			header('Location: '.$approvalUrl);
 		} else {
-			header('location: checkout.php');
+			header('location: '.$cfg['base_url'].'checkout.php');
 		}
 	}
 	catch (\PayPal\Exception\PayPalConnectionException $ex) {
 	    // This will print the detailed information on the exception.
 	    //REALLY HELPFUL FOR DEBUGGING
 	    // echo $ex->getData();
-	    header('location: checkout.php');
+	    header('location: '.$cfg['base_url'].'checkout.php');
 	}
 ?>

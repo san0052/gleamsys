@@ -19,7 +19,11 @@ include_once("includes/links_frontend.php"); ?>
                 ?>
 
                 <div class="col-xs-12 heading">
-                    <h2><?php echo $row['heading'];?></h2>
+                    <h2>Terms And Condition</h2>
+
+                </div>
+                <div class="col-xs-12 heading">
+                    <p><?php echo $row['heading'];?></p>
 
                 </div>
 

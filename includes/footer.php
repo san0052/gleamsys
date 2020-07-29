@@ -196,9 +196,9 @@
 
              <!--  <li>My Account</li> -->
 
-             <!-- <li onclick="window.location.href='terms.php'">Terms of use</li> 
+              <li onclick="window.location.href='terms.php'">Terms of use</li> 
 
-               <li>Delivery Policy</li>-->
+              <!--  <li>Delivery Policy</li> -->
 
              <li onclick="window.location.href='returnAndRefundPolicy.php'">Returns Policy</li>
 
