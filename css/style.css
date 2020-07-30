@@ -231,7 +231,13 @@ header .logo img {
 {
     background: transparent;
     border: 0;
-    padding: 15px 6px;
+    padding: 9px 6px;
+}
+#myDIV .hover-btn.active{
+    border-bottom: 2px solid white;
+}
+#myDIV .hover-btn:hover{
+    border-bottom: 2px solid white;
 }
 .navigation-bar nav ul {
     list-style: none;
