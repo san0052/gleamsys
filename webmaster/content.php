@@ -169,9 +169,9 @@ $show=$_REQUEST['show'];
    <? } 
 
   if($show=='editTerms'){
-    $sql="SELECT * FROM ".$cfg['DB_TERMS']." WHERE `siteId`='".$cfg['SESSION_SITE']."' and id = 5";
-    $res=$heart->sql_query($sql);
-    $row=$heart->sql_fetchrow($res);
+    $sql = "SELECT * FROM ".$cfg['DB_TERMS']." WHERE `siteId`='".$cfg['SESSION_SITE']."' and id = 5";
+    $res = $heart->sql_query($sql);
+    $row = $heart->sql_fetchrow($res);
     
     ?>
     <form action="content_process.php" method="post" name="frm" id="frm" enctype="multipart/form-data">
@@ -519,7 +519,7 @@ if($show=='editContact'){
                 <td align="left"><input name="phone1" type="tel" class="forminputelement" id="phone1" value="<?=stripslashes($row['phone1'])?>" /></td>
               </tr> 
               <tr class="row1">
-                <td width="30%" align="left" class="leftBarText_new">Phone1</td>
+                <td width="30%" align="left" class="leftBarText_new">Phone2</td>
                 <td align="left"><input name="phone2" type="tel" class="forminputelement" id="phone2" value="<?=stripslashes($row['phone2'])?>" /></td>
               </tr>
               <tr class="row2">
@@ -615,7 +615,7 @@ if($show=='editContact'){
                   &nbsp;&nbsp; <img src="../images/<?=$row['image1']?>"  width="70" align="top"/></td>
                 </tr> 
                 <tr class="row2">
-                  <td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Change Image2 </span> </td>
+                  <td width="30%" align="left" class="leftBarText" valign="top"><span class="leftBarText_new">Mobile Image</span></td>
                   <td width="70%" colspan="4" align="left" valign="top"><input name="image2_add" id="image2_add" type="file" class="forminputelement"/>
                     &nbsp;&nbsp; <img src="../images/<?=$row['image2']?>"  width="70" align="top"/></td>
                   </tr> 

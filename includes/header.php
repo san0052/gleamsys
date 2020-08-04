@@ -192,6 +192,7 @@
         </div>
     </div>
 </header>
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
    
     $(window).scroll(function() {

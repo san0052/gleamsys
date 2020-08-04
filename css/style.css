@@ -124,11 +124,11 @@ header .row {
 {
     background: white;
     position: absolute;
-    height: 20vh;
+    height: 15vh;
     top: 0;
     /* padding: 15px; */
     padding: 0;
-    width: 14%;
+    width: 10%;
 }
 header .logo {
     margin: 0;
@@ -234,10 +234,10 @@ header .logo img {
     padding: 9px 6px;
 }
 #myDIV .hover-btn.active{
-    border-bottom: 2px solid white;
+    border-bottom: 1px solid white;
 }
 #myDIV .hover-btn:hover{
-    border-bottom: 2px solid white;
+    border-bottom: 1px solid white;
 }
 .navigation-bar nav ul {
     list-style: none;
@@ -1221,7 +1221,7 @@ blockquote {
 
 .slide_container {
     padding: 0;
-    height: 70vh;
+    height: auto;
 }
 .slide_container .item img {
     width: 100%;
@@ -2275,7 +2275,8 @@ footer .content-details-box p
         margin-right: 15px;
     }
     .welcome{
-        background: #b89e1b;
+        background: #207da4;
+        /*background: #b89e1b;*/
         padding: 60px 0;
         position: relative;
         padding-right: 40px;

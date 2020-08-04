@@ -33,78 +33,6 @@ include_once("includes/links_frontend.php"); ?>
 
 
 
-    <!-- <div class="container-fluied testimonial-wrap">
-
-        <div class="container">
-
-            <div class="row">
-
-                <div class="col-xs-12 heading">
-
-                    <h2>Contact Information</h2>
-
-                </div>
-
-                <div class="col-xs-12 testimonial-content contact-details">
-
-                    <div class="item">
-
-                        <div class="col-xs-12 quote-left"><i class="fas fa-map-marker"></i></div>
-
-                        <div class="col-xs-12 arrow_box">
-
-                            <h4><?php //echo $row['address'];?></h4>
-
-                        </div>
-
-                    </div>
-
-                    <div class="item">
-
-                        <div class="col-xs-12 quote-left"><i class="fas fa-map-marker"></i></div>
-
-                        <div class="col-xs-12 arrow_box">
-
-                            <h4><?php //echo $row['address2'];?></h4>
-
-                        </div>
-
-                    </div>
-
-                    <div class="item">
-
-                        <div class="col-xs-12 quote-left"><i class="fas fa-map-marker"></i></div>
-
-                        <div class="col-xs-12 arrow_box">
-
-                            <h4><?php //echo $row['address3'];?></h4>
-
-                        </div>
-
-                    </div>
-
-                    <div class="item">
-
-                        <div class="col-xs-12 quote-left"><i style="transform: rotate(90deg)" class="fas fa-phone"></i></div>
-
-                        <div class="col-xs-12 arrow_box">
-
-                            <h4><?php //echo $row['phone1'];?></h4>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
- -->
-
-
     <div class="container-fluid" style="padding: 0">
 
         <div class="container">
@@ -128,7 +56,19 @@ include_once("includes/links_frontend.php"); ?>
                             if($_REQUEST['m']=='1')
                             {
                             ?>
-                            <p style="font-size: 16px;text-align: center;margin-bottom: 35px;box-shadow: 0 0 15px #00000033;padding: 10px;color: #207da4;">We have received your query, will get back to you soon.</p>
+                            <!-- <p style="font-size: 16px;text-align: center;margin-bottom: 35px;box-shadow: 0 0 15px #00000033;padding: 10px;color: #207da4;">We have received your query, will get back to you soon.</p> -->
+                            <script type="text/javascript">
+                             swal({
+                                title: "Query submitted successfully",
+                                text: "We have received your query, will get back to you soon.",
+                                icon: "success",
+                                button: true,
+                              })
+                             .then((yes) => {
+                                 window.location='contact.php';
+                             });
+
+                          </script>
                             <?php } ?>
 
                         </div>

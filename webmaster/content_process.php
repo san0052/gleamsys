@@ -277,7 +277,7 @@ case'updateContact':
 		$address3=addslashes($_REQUEST['address3']);
 		$phone1=addslashes($_REQUEST['phone1']);
 		$phone2=addslashes($_REQUEST['phone2']);
-		$tel=addslashes($_REQUEST['tel']);
+		$tel =addslashes($_REQUEST['tel']);
 		$email=addslashes($_REQUEST['email']);
 		$order_email=addslashes($_REQUEST['order_email']);
 		$manager_email=addslashes($_REQUEST['manager_email']);
@@ -323,6 +323,7 @@ case'updateContact':
 						       `order_email` = '".$order_email."',
 						       `manager_email` = '".$manager_email."'
 						        WHERE `id` = '".$_REQUEST['id']."' ";
+						    
 			$heart->sql_query($sql1);
 		}
 $heart->redirect('content.php?show=viewContact&m=2&id='.$_REQUEST['id']);
@@ -339,12 +340,15 @@ case'update':
        $description2=addslashes($_REQUEST['description2']);
        $ph1 = $_FILES['image1_add']['name'];
 	   $a31 = $_FILES['image1_add']['tmp_name'];
+
+
 	   $ph2 = $_FILES['image2_add']['name'];
 	   $a32 = $_FILES['image2_add']['tmp_name'];
 	   $last_id = 'content';
-	if($ph1!='' || $ph2!='')
-	{
+	   $last_mobile_id ='mobile_content';
 
+	if($ph1!='' && $ph2!='')
+	{
 			$file_ext1=explode(".",$ph1);
 			$ext1= strtolower($file_ext1[count($file_ext1)-1]);
 			$value1=$last_id."_".$last_id.".".$ext1;
@@ -355,20 +359,21 @@ case'update':
 				copy($a31,$path1);
 				chmod($path1,0777);
 
-		    $file_ext2=explode(".",$ph2);
+		    $file_ext2 = explode(".",$ph2);
 			$ext2= strtolower($file_ext2[count($file_ext2)-1]);
-			$value2=$last_id."_".$last_id.".".$ext2;
+			$value2=$last_id."_".$last_mobile_id.".".$ext2;
 			$path2="../images/".$value2;
 				
 				//echo $value;
 				chmod($path2,0777);
 				copy($a32,$path2);
 				chmod($path2,0777);		
-	 	$sql1="UPDATE ".$cfg['DB_PRODUCT_ABOUTUS']." SET
+
+	 	$sql1  ="UPDATE ".$cfg['DB_PRODUCT_ABOUTUS']." SET
 	       `title1` = '".$pageheading."',
 	       `title2` = '".$title."',
-	       `desc1` = '".$description1."',
-	       `desc2` = '".$description2."',
+	       `desc1` 	= '".$description1."',
+	       `desc2` 	= '".$description2."',
 	       `image1` = '".$value1."',
 	       `image2` = '".$value2."'
 	        WHERE `id` = '".$_REQUEST['id']."' ";
@@ -376,7 +381,6 @@ case'update':
 	}
 	elseif($ph1!='')
 	{
-
 			$file_ext1=explode(".",$ph1);
 			$ext1= strtolower($file_ext1[count($file_ext1)-1]);
 			$value1=$last_id."_".$last_id.".".$ext1;
@@ -398,33 +402,33 @@ case'update':
 	}
 	elseif($ph2!='')
 	{
+	    $file_ext2=explode(".",$ph2);
+		$ext2= strtolower($file_ext2[count($file_ext2)-1]);
+		$value2=$last_id."_".$last_mobile_id.".".$ext2;
+		$path2="../images/".$value2;
+			
+			//echo $value;
+			chmod($path2,0777);
+			copy($a32,$path2);
+			chmod($path2,0777);		
 
-		    $file_ext2=explode(".",$ph2);
-			$ext2= strtolower($file_ext2[count($file_ext2)-1]);
-			$value2=$last_id."_".$last_id.".".$ext2;
-			$path2="../images/".$value2;
-				
-				//echo $value;
-				chmod($path2,0777);
-				copy($a32,$path2);
-				chmod($path2,0777);		
 	$sql1="UPDATE ".$cfg['DB_PRODUCT_ABOUTUS']." SET
-	       `title1` = '".$pageheading."',
-	       `title2` = '".$title."',
-	       `desc1` = '".$description1."',
-	       `desc2` = '".$description2."'
-	       `image2` = '".$value2."'
-	        WHERE `id` = '".$_REQUEST['id']."' ";
+	       `title1` 	= '".$pageheading."',
+	       `title2` 	= '".$title."',
+	       `desc1` 		= '".$description1."',
+	       `desc2` 		= '".$description2."',
+	       `image2` 	= '".$value2."'
+	        WHERE `id`  = '".$_REQUEST['id']."' ";
 	$heart->sql_query($sql1);
 	}
 	else
 	{
 	$sql1="UPDATE ".$cfg['DB_PRODUCT_ABOUTUS']." SET
-	       `title1` = '".$pageheading."',
-	       `title2` = '".$title."',
-	       `desc1` = '".$description1."',
-	       `desc2` = '".$description2."'
-	        WHERE `id` = '".$_REQUEST['id']."' ";
+	       `title1` 	= '".$pageheading."',
+	       `title2` 	= '".$title."',
+	       `desc1` 		= '".$description1."',
+	       `desc2` 		= '".$description2."'
+	        WHERE `id`  = '".$_REQUEST['id']."' ";
 	$heart->sql_query($sql1);
 	}
        
@@ -451,14 +455,12 @@ case'updateClientBanner':
 				chmod($path1,0777);
 				copy($a31,$path1);
 				chmod($path1,0777);
-
-		   	
-	 	$sql1="UPDATE ".$cfg['DB_CLIENT_BANNER']." SET
-	       `BannerTitle` = '".$BannerTitle."',
-	       `altTag` 	= '".$altTag."',
-	       `bannerImg` 	= '".$value1."'
-	        WHERE `id` 	= '".$_REQUEST['id']."' ";
-	$heart->sql_query($sql1);
+		$sql1="UPDATE ".$cfg['DB_CLIENT_BANNER']." SET
+		       `BannerTitle` = '".$BannerTitle."',
+		       `altTag` 	= '".$altTag."',
+		       `bannerImg` 	= '".$value1."'
+		        WHERE `id` 	= '".$_REQUEST['id']."' ";
+		$heart->sql_query($sql1);
 	}else{
 		$sql1="UPDATE ".$cfg['DB_CLIENT_BANNER']." SET
 		       `BannerTitle` = '".$BannerTitle."',
@@ -568,7 +570,7 @@ case'updateIt-ServiceBanner':
 				chmod($path1,0777);
 
 		   	
-	 	$sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
+	 $sql1="UPDATE ".$cfg['DB_SERVICE_BANNER']." SET
 	       `BannerTitle` = '".$BannerTitle."',
 	       `altTag` 	= '".$altTag."',
 	       `bannerImg` 	= '".$value1."'

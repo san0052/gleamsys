@@ -8,6 +8,7 @@
             </div>
             <form class="book-content" method="POST">
                 <div class="book-content-inner">
+                     <p class="error_msg" style="font-size: 16px;text-align: center;margin-bottom: 35px;box-shadow: 0 0 15px #00000033;padding: 10px;color: red;display:none"> </p>
                     <div class="col-xs-12 form-group">
                        <input type="email" placeholder="Email Id" class="login_email" name="email" autocomplete="off">
                        <small class="login_error_email" style="color:red"></small>
@@ -58,7 +59,7 @@
             </div>
             <form class="book-content" method="POST">
                 <div class="book-content-inner">
-               
+                      
                         <div class="col-xs-12 form-group">
                             <input type="text" placeholder="Full Name"  name="name" class="reg_fullname">
                             <small class="error_reg_fullname" style="color:red"></small>
@@ -101,8 +102,11 @@
                             <input type="password" placeholder="Confirm Password" class="reg_confirm_password">
                             <small class="error_reg_confirm_password" style="color:red"></small>
                         </div>
-                    
+                        <div>
+                        <p class="reg_success" style="font-size: 16px;text-align: center;margin-bottom: 35px;box-shadow: 0 0 15px #00000033;padding: 10px;color: #207da4;dispay:none"></p>
+                    </div>
                 </div>
+
                 <div class="book-footer">
                     <div class="total">
 
@@ -122,7 +126,7 @@
             </div>
             <form method="post" action="mail-process.php" class="book-content enquiry_form">
                 <div class="book-content-inner">
-                    
+                     <p class="enq_success" style="font-size: 16px;text-align: center;margin-bottom: 35px;box-shadow: 0 0 15px #00000033;padding: 10px;color: #207da4;display:none"> </p>
                         <div class="col-xs-12 form-group">
                             <!-- <label>Full Name</label> -->
                             <input type="text" placeholder="Full Name" name="name" id="fname">
@@ -425,9 +429,17 @@
                         response = response.trim();
                         $('.enquiry_form').trigger('reset');
                        if(response == 'true') {
-
-                            alert('Email Send successfully');
-                            window.location.href="computer-training.php";
+                            // swal({
+                            //     title: "Congratulation",
+                            //     text: "Your enquiry submitted successfully",
+                            //     timer: 3000
+                            // }).
+                            // alert('Email Send successfully');
+                            // window.location.href="computer-training.php";
+                            $('.enq_success').text('Your enquery has been submitted successfully').css('display','block');
+                            setTimeout(function(){
+                                location.reload();
+                            },1500);
                        } else {
                             alert('Something went wrong');
                        } 
@@ -480,10 +492,12 @@
                                 // },1200);
                                 location.reload();
                             } else {
-                                alert(response.message);
+                                //alert(response.message);
+                                 $('.error_msg').text(response.message).css('display','block');
                             }
                         } else {
-                            alert('Something went wrong. Please went wrong');
+                            //alert('Something went wrong. Please went wrong');
+                             $('.error_msg').text('Something went wrong. Please went wrong').css('display','block');
                         }
                     }
                 });
@@ -571,10 +585,11 @@
                     success : function(response) {
                         if(response != '') {
                             if(response.status) {
-                                alert(response.message);
+                                //alert(response.message);
+                                $('.reg_success').text(response.message).css('display','block');
                                 setTimeout(function() {
                                     location.reload();
-                                },1200);
+                                },1800);
                             } else {
                                 alert(response.message);
                             }
