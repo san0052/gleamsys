@@ -27,7 +27,23 @@
     margin-right: 0;
     width: 100%;
     margin-bottom: 6px;
+    position: relative;
   }
+  #myDIV .hover-btn
+  {
+    padding: 9px 6px;
+  }
+  .hover-menu {
+
+    position: relative;
+    margin-top: 10px !important;
+  }
+  .hover-inner-menu {
+    grid-template-columns: 100%;
+}
+.hover-menu li {
+  padding: 10px !important;
+}
   #myDIV .drop-menu {
     background: #207da4;
     position: inherit;

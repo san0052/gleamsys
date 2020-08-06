@@ -221,6 +221,7 @@ header .logo img {
 .navigation-bar nav{
     display: flex;
     align-items: center;
+    position: relative;
 }
 #myDIV
 {
@@ -232,6 +233,7 @@ header .logo img {
     background: transparent;
     border: 0;
     padding: 9px 6px;
+    border-bottom: 1px solid transparent;
 }
 #myDIV .hover-btn.active{
     border-bottom: 1px solid white;
@@ -255,7 +257,7 @@ header .logo img {
     margin-right: 6px;
     color: white;
     cursor: pointer;
-    position: relative;
+    
 }
 .cart-box
 {
@@ -1225,6 +1227,7 @@ blockquote {
 }
 .slide_container .item img {
     width: 100%;
+
 }
 .carousel-control.left, .carousel-control.right
 {
@@ -1256,6 +1259,7 @@ blockquote {
 .slide_container .item
 {
     height:100%;
+    position: relative;
 }
 .slide_container .item img{
     width: 100%;
@@ -2555,14 +2559,14 @@ footer .content-details-box p
         font-size: calc(15px + (18 - 15) * ((100vw - 300px) / (1600 - 300)));
     }
     
-    #myDIV .hover-menu
+    .hover-menu
     {
        
-        background: #207da4;
+        background: #fff;
         position: absolute;
         right: 0;
-        top: 100%;
-        width: 200px;
+        top: 83%;
+        width: 100%;
         z-index: 9;
         /* height: 100vh; */
         padding: 15px;
@@ -2570,26 +2574,55 @@ footer .content-details-box p
         left: 0;
         box-shadow: 3px 3px 7px #08000061;
     padding: 0;
-           display: none;
+           display:none;
        
     }
-    #myDIV .hover-btn:hover .hover-menu
+   .hover-btn:hover .hover-menu
     {
         display: block;
     }
-    #myDIV .hover-menu li {
+    .hover-menu li {
         list-style: none !important;
-        padding: 10px 15px !important;
+        padding: 20px !important;
         font-size: 16px !important;
-        color: white !important;
+        color: #207da4 !important;
         margin-bottom: 0px !important;
         position: relative !important;
         cursor: pointer !important;
         text-align: left !important;
         width: 100% !important;
         margin-right: 0 !important;
+        display: inline-block !important;
     }
-
+.hover-inner-menu
+{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+.hover-inner-menu h4
+{
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: normal;
+}
+.hover-inner-menu h4 svg{
+    width: 30px;
+    height: auto;
+    margin-right: 9px;
+}
+.hover-inner-menu p
+{
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 15px;
+    color: #4e4e4e;
+}
+.hover-menu li:hover p
+{
+    color: #207da4 !important;
+}
     .tab {
         
       }
