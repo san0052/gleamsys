@@ -39,6 +39,11 @@ case'edit':
 	$heart->redirect('tech-service.php?show=edit&id='.$_REQUEST['id'].'&pageno='.$_REQUEST['pageno']);
 
 break;
+case'edit_menu_cms':
+
+	$heart->redirect('service_cms_management.php?show=edit&id='.$_REQUEST['id'].'&pageno='.$_REQUEST['pageno']);
+
+break;
 case'editItServe':
 
 	$heart->redirect('It-Services.php?show=editItServe&id='.$_REQUEST['id'].'&pageno='.$_REQUEST['pageno']);
@@ -69,11 +74,29 @@ case 'Active':
 	 $heart->redirect('tech-service.php?m=2&pageno='.$_REQUEST['pageno']);
 
 break;
+
 case 'Inactive':
 
 	$sql="UPDATE ".$cfg['DB_SERVICE_INFO']."SET `status` = 'I' WHERE `id` ='".$_REQUEST['id']."'";
 	 $heart->sql_query($sql);
 	 $heart->redirect('tech-service.php?m=2&pageno='.$_REQUEST['pageno']);
+
+break;
+
+
+case 'Active_menu':
+
+	 $sql_active="UPDATE ".$cfg['DB_MEGA_MENU_CMS']."SET `status` = 'A' WHERE `id` ='".$_REQUEST['id']."'";
+	 $heart->sql_query($sql_active);
+	 $heart->redirect('service_cms_management.php?m=2&pageno='.$_REQUEST['pageno']);
+
+break;
+
+case 'Inactive_menu':
+
+	$sql_inactive="UPDATE ".$cfg['DB_MEGA_MENU_CMS']."SET `status` = 'I' WHERE `id` ='".$_REQUEST['id']."'";
+	 $heart->sql_query($sql_inactive);
+	 $heart->redirect('service_cms_management.php?m=2&pageno='.$_REQUEST['pageno']);
 
 break;
 
@@ -118,6 +141,14 @@ case 'updateTechSupport':
 	 	 $sql="UPDATE ".$cfg['DB_SERVICE_INFO']." SET `serviceTitle` = '".$serviceTitle."',`description` = '".$description."',`subjectName`='".$subjectName."' WHERE `id`='".$_REQUEST['id']."' AND `siteId`= '".$cfg['SESSION_SITE']."' ";
 		 $heart->sql_query($sql);	
 		 $heart->redirect('tech-service.php?pageno='.$_REQUEST['pageno'].'&m=2');
+	
+break;
+
+case 'update_mega_menu':
+		$content   = addslashes($_REQUEST['content']);
+	 	$sql_menu="UPDATE ".$cfg['DB_MEGA_MENU_CMS']." SET `content` = '".$content."' WHERE `id`='".$_REQUEST['id']."' AND `siteId`= '".$cfg['SESSION_SITE']."' ";
+		$heart->sql_query($sql_menu);	
+		$heart->redirect('service_cms_management.php?pageno='.$_REQUEST['pageno'].'&m=2');
 	
 break;
 

@@ -59,10 +59,6 @@
 			<!-- <h3 class="menuheader expandable">Shop Configuration</h3> -->
 			<h3 class="menuheader expandable">CMS Configuration</h3>
 			<ul class="categoryitems">
-				<!-- <li><a href="shop_configuration.php">Manage Shop Configuration</a></li> -->
-				<!-- <li><a href="watermark.php">Manage Watermark</a></li> -->
-				<!-- <li><a href="notes.php">Manage Notes</a></li> -->
-				<!-- <li><a href="disclaimer.php">Manage Disclaimer</a></li> -->
 				<li><a href="content.php">Manage Page Content</a></li>
 				<li><a href="zone.php">Manage Zone </a></li> 
 				 <li><a href="location.php">Manage Location</a></li>
@@ -86,6 +82,7 @@
 				<li><a href="tech-service.php">Manage Tech-Support</a></li>
 				<li><a href="It-services.php">Manage It-Services</a></li>
 				<li><a href="computer-training.php">Manage Computer Training</a></li>
+				<li><a href="service_cms_management.php">Manage Mega-menu Service Content</a></li>
 			</ul>
 
 			<h3 class="menuheader expandable">Shop Configuration Management</h3>

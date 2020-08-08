@@ -40,7 +40,16 @@
                         <li class="hover-btn">SERVICES<span class="carret" style="color:white;"><i class="fas fa-caret-down"></i></span>
                             <ul class="hover-menu">
                                 <div class="hover-inner-menu">
+                                   
                                     <li onclick="window.location.href='online-store.php'">
+                                        <?php 
+                                            $sql_menu_cms_1 = "SELECT id,subject,content FROM " . 
+                                                            $cfg['DB_MEGA_MENU_CMS'] . "  
+                                                            WHERE   `status`='A'  
+                                                            AND `subject` = 'Buy Online' ";
+                                            $res_menu_1     =   $mycms->sql_query($sql_menu_cms_1);
+                                            $row_menu_1    =   $mycms->sql_fetchrow($res_menu_1);
+                                        ?>
                                         <h4><span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 512.004 512.004" height="512" viewBox="0 0 512.004 512.004" width="512">
 
@@ -144,9 +153,17 @@
 
                                                 </svg>
                                             </span>BUY ONLINE</h4>
-                                        <p class="hidden-xs">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
+                                        <p class="hidden-xs"><?php echo $row_menu_1['content']; ?></p>
                                     </li>
                                     <li onclick="window.location.href='tech-support.php'">
+                                        <?php 
+                                            $sql_menu_cms_2 = "SELECT id,subject,content FROM " . 
+                                                                    $cfg['DB_MEGA_MENU_CMS'] . "  
+                                                                    WHERE   `status`='A'  
+                                                                    AND `subject` = 'Tech Support' ";
+                                            $res_menu_2     =   $mycms->sql_query($sql_menu_cms_2);
+                                            $row_menu_2     =   $mycms->sql_fetchrow($res_menu_2);
+                                        ?>
                                         <h4>
                                             <span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -269,9 +286,17 @@
                                             </span>
                                             TECH SUPPORT
                                         </h4>
-                                        <p class="hidden-xs">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
+                                        <p class="hidden-xs"><?php echo $row_menu_2['content']?></p>
                                     </li>
                                     <li onclick="window.location.href='it-service.php'">
+                                        <?php 
+                                            $sql_menu_cms_3 = "SELECT id,subject,content FROM " . 
+                                                                    $cfg['DB_MEGA_MENU_CMS'] . "  
+                                                                    WHERE   `status`='A'  
+                                                                    AND `subject` = 'IT Services' ";
+                                            $res_menu_3     =   $mycms->sql_query($sql_menu_cms_3);
+                                            $row_menu_3     =   $mycms->sql_fetchrow($res_menu_3);
+                                        ?>
                                         <h4>
                                             <span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" height="512" viewBox="0 0 64 64" width="512">
@@ -330,9 +355,17 @@
                                             </span>
                                             IT SERVICES
                                         </h4>
-                                        <p class="hidden-xs">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
+                                        <p class="hidden-xs"><?php echo $row_menu_3['content']; ?></p>
                                     </li>
                                     <li onclick="window.location.href='computer-training.php'">
+                                          <?php 
+                                            $sql_menu_cms_4 = "SELECT id,subject,content FROM " . 
+                                                                    $cfg['DB_MEGA_MENU_CMS'] . "  
+                                                                    WHERE   `status`='A'  
+                                                                    AND `subject` = 'IT Services' ";
+                                            $res_menu_4     =   $mycms->sql_query($sql_menu_cms_4);
+                                            $row_menu_4     =   $mycms->sql_fetchrow($res_menu_4);
+                                        ?>
                                         <h4>
                                             <span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 512.003 512.003" height="512" viewBox="0 0 512.003 512.003" width="512">
@@ -425,7 +458,7 @@
                                             </span>
                                             COMPUTER TRAINING
                                         </h4>
-                                        <p class="hidden-xs">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.</p>
+                                        <p class="hidden-xs"><?php echo $row_menu_4['content']; ?></p>
                                     </li>
                                 </div>
 

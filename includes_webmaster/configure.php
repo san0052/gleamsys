@@ -178,6 +178,7 @@ $cfg['DB_COMPUTER_TRAIN']			= "`".$cfg['TABLE_PREFIX']."computer_training`";
 $cfg['DB_SHOP_CONTENT']				= "`".$cfg['TABLE_PREFIX']."shop_content`";
 $cfg['DB_ONLINESTORE_BANNER']		= "`".$cfg['TABLE_PREFIX']."onlinestore_banner`";
 $cfg['DB_EMAIL_SIGNATURE']			= "`".$cfg['TABLE_PREFIX']."email_signature`";
+$cfg['DB_MEGA_MENU_CMS']			= "`".$cfg['TABLE_PREFIX']."mega_menu_service_cms`";
 
 $cfg['SESSION_SITE']=2;
 ?>

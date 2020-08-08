@@ -131,9 +131,10 @@ $cfg['DB_USER_LOGIN']					= "`".$cfg['TABLE_PREFIX']."user_login`";
 $cfg['DB_SHIPPING_ADDRESS']				= "`".$cfg['TABLE_PREFIX']."shipping_address`";
 $cfg['DB_EMAIL_SIGNATURE']			    = "`".$cfg['TABLE_PREFIX']."email_signature`";
 $cfg['DB_PAYMENT_EMAIL_HISTORY']		= "`".$cfg['TABLE_PREFIX']."payment_email_history`";
+$cfg['DB_MEGA_MENU_CMS']				= "`".$cfg['TABLE_PREFIX']."mega_menu_service_cms`";
 
 $cfg['SESSION_SITE']=2;
 
 
 
-?>
+?>.
